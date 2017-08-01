@@ -1,5 +1,5 @@
 {
-  "name": "es6-module-starter",
+  "name": "ufp-core",
   "version": "2.0.0",
   "description": "Starter kit to create npm modules using ES6 and Babel with sensible defaults",
   "main": "dist/index.js",
