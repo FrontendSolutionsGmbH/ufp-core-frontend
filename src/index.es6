@@ -1,11 +1,13 @@
 'use strict';
+import UFPMiddleWare from './ufpmiddleware'
 
-const name = 'ES6 Starter Kit',
+const name = 'ufp core',
   version = '1.0';
 
 const myObject = {
   name,
-  version
+  version,
+  UFPMiddleWare
 };
 
 

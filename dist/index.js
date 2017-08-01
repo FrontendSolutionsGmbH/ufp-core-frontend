@@ -1,14 +1,21 @@
 'use strict';
-
 Object.defineProperty(exports, '__esModule', {
   value: true
 });
-var name = 'ES6 Starter Kit',
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+var _ufpmiddleware = require('./ufpmiddleware');
+
+var _ufpmiddleware2 = _interopRequireDefault(_ufpmiddleware);
+
+var name = 'ufp core',
     version = '1.0';
 
 var myObject = {
   name: name,
-  version: version
+  version: version,
+  UFPMiddleWare: _ufpmiddleware2['default']
 };
 
 exports['default'] = myObject;

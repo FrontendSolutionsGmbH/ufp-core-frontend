@@ -1,6 +1,6 @@
 {
   "name": "ufp-core",
-  "version": "2.0.0",
+  "version": "1.0.0",
   "description": "Starter kit to create npm modules using ES6 and Babel with sensible defaults",
   "main": "dist/index.js",
   "scripts": {
@@ -41,5 +41,7 @@
     "plato": "^1.5.0",
     "tape": "^4.2.0"
   },
-  "dependencies": {}
+  "dependencies": {
+    "prop-types": "^15.5.10"
+  }
 }
