@@ -1,7 +1,7 @@
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
-  value: true
+    value: true
 });
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
@@ -16,20 +16,25 @@ var _UfpMiddlewareActionCreator = require('./UfpMiddlewareActionCreator');
 
 var _UfpMiddlewareActionCreator2 = _interopRequireDefault(_UfpMiddlewareActionCreator);
 
-var createActionCreatorForDefinition = _UfpMiddlewareActionCreator2['default'].createActionCreatorForDefinition;
-exports.createActionCreatorForDefinition = createActionCreatorForDefinition;
-var createUFPMiddleware = _UfpMiddleware2['default'];
-exports.createUFPMiddleware = createUFPMiddleware;
-var ResultHandlerResult = _modulesUfpmiddlewareUfpHandlerUtils.ResultHandlerResult;
-exports.ResultHandlerResult = ResultHandlerResult;
-var PreHandlerResult = _modulesUfpmiddlewareUfpHandlerUtils.PreHandlerResult;
-exports.PreHandlerResult = PreHandlerResult;
+var _UfpMiddlewareConfiguration = require('./UfpMiddlewareConfiguration');
+
+var _UfpMiddlewareConfiguration2 = _interopRequireDefault(_UfpMiddlewareConfiguration);
+
 var RequestMethodConstants = {
-  POST: 'post',
-  DELETE: 'delete',
-  GET: 'get',
-  PATCH: 'patch'
+    POST: 'post',
+    DELETE: 'delete',
+    GET: 'get',
+    PATCH: 'patch'
 };
 
-exports.RequestMethodConstants = RequestMethodConstants;
-exports['default'] = createUFPMiddleware;
+exports['default'] = {
+    createUFPMiddleware: _UfpMiddleware2['default'],
+    RequestMethodConstants: RequestMethodConstants,
+    PreHandlerResult: _modulesUfpmiddlewareUfpHandlerUtils.PreHandlerResult,
+    ResultHandlerResult: _modulesUfpmiddlewareUfpHandlerUtils.ResultHandlerResult,
+    createActionCreatorForDefinition: _UfpMiddlewareActionCreator2['default'].createActionCreatorForDefinition,
+    registerResultHandler: _UfpMiddlewareConfiguration2['default'].registerResultHandler,
+    registerUnhandledHandler: _UfpMiddlewareConfiguration2['default'].registerUnhandledHandler,
+    setCreateConfig: _UfpMiddlewareConfiguration2['default'].setCreateConfig
+};
+module.exports = exports['default'];
