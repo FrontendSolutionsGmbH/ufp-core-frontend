@@ -18,5 +18,6 @@ var myObject = {
   UFPMiddleware: _ufpmiddleware2['default']
 };
 
+var UFPMiddleware = _ufpmiddleware2['default'];
+exports.UFPMiddleware = UFPMiddleware;
 exports['default'] = myObject;
-module.exports = exports['default'];
