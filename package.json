@@ -42,6 +42,7 @@
     "tape": "^4.2.0"
   },
   "dependencies": {
-    "prop-types": "^15.5.10"
+    "prop-types": "^15.5.10",
+    "babel-polyfill": "^6.23.0"
   }
 }

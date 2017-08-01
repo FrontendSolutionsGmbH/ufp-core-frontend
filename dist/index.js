@@ -5,6 +5,8 @@ Object.defineProperty(exports, '__esModule', {
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
+require('babel-polyfill');
+
 var _ufpmiddlewareIndexJs = require('./ufpmiddleware/index.js');
 
 var _ufpmiddlewareIndexJs2 = _interopRequireDefault(_ufpmiddlewareIndexJs);
