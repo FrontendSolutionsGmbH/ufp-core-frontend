@@ -15,7 +15,7 @@ var name = 'ufp core',
 var myObject = {
   name: name,
   version: version,
-  UFPMiddleWare: _ufpmiddleware2['default']
+  UFPMiddleware: _ufpmiddleware2['default']
 };
 
 exports['default'] = myObject;
