@@ -5,9 +5,9 @@ Object.defineProperty(exports, '__esModule', {
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-var _ufpmiddleware = require('./ufpmiddleware');
+var _ufpmiddlewareIndexJs = require('./ufpmiddleware/index.js');
 
-var _ufpmiddleware2 = _interopRequireDefault(_ufpmiddleware);
+var _ufpmiddlewareIndexJs2 = _interopRequireDefault(_ufpmiddlewareIndexJs);
 
 var name = 'ufp core',
     version = '1.0';
@@ -15,9 +15,9 @@ var name = 'ufp core',
 var myObject = {
   name: name,
   version: version,
-  UFPMiddleware: _ufpmiddleware2['default']
+  UFPMiddleware: _ufpmiddlewareIndexJs2['default']
 };
 
-var UFPMiddleware = _ufpmiddleware2['default'];
+var UFPMiddleware = _ufpmiddlewareIndexJs2['default'];
 exports.UFPMiddleware = UFPMiddleware;
 exports['default'] = myObject;

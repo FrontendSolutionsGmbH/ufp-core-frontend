@@ -1,5 +1,5 @@
 'use strict';
-import _UFPMiddleware from './ufpmiddleware'
+import _UFPMiddleware from './ufpmiddleware/index.js'
 
 const name = 'ufp core',
   version = '1.0';
