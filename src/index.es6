@@ -1,5 +1,5 @@
 'use strict';
-import UFPMiddleWare from './ufpmiddleware'
+import UFPMiddleware from './ufpmiddleware'
 
 const name = 'ufp core',
   version = '1.0';
@@ -7,7 +7,7 @@ const name = 'ufp core',
 const myObject = {
   name,
   version,
-  UFPMiddleWare
+  UFPMiddleware
 };
 
 
