@@ -107,6 +107,16 @@ function createUfpMiddleware (axiosInstance, options={}) {
                         }
 
                         if(options.useFetch) {
+                            function queryParams(params) {
+                                return Object.keys(params)
+                                    .map(k => encodeURIComponent(k) + '=' + encodeURIComponent(params[k]))
+                                    .join('&');
+                            }
+                            if(config.params) {
+                                config.url += (config.url.indexOf('?') === -1 ? '?' : '&')
+                                config.url += typeof config.paramsSerializer === 'function' ? config.paramsSerializer(config.params):queryParams(config.params);
+                                delete config.params; //delete so that not preocessed again
+                            }
                             axiosResponse =await fetch(config.url, { method:config.method, body:config.body, credentials:config.credentials, headers: config.headers || {} });
                             if(axiosResponse.ok) {
                                 axiosResponse.data=await Util.getJSON(axiosResponse)
