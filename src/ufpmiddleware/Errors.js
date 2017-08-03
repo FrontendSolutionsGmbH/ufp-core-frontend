@@ -84,3 +84,5 @@ class ResultParserError extends Error {
 }
 
 export { InvalidUFPAction, InternalError, RequestError, ApiError, ResultParserError }
+
+export default { InvalidUFPAction, InternalError, RequestError, ApiError, ResultParserError }

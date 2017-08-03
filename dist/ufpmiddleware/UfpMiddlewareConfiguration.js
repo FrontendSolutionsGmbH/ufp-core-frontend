@@ -4,8 +4,6 @@ Object.defineProperty(exports, '__esModule', {
     value: true
 });
 
-var _modulesUtilsJsUtils = require('modules/utils/JsUtils');
-
 var UFPMiddlewareConfigurationX = {
     resultHandlings: {
         genericResultHandler: [],

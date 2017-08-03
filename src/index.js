@@ -1,5 +1,4 @@
-'use strict';
-import 'babel-polyfill'
+
 import _UFPMiddleware from './ufpmiddleware/index.js'
 
 const name = 'ufp core',

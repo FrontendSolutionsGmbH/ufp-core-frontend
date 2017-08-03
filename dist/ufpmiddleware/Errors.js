@@ -120,3 +120,4 @@ exports.InternalError = InternalError;
 exports.RequestError = RequestError;
 exports.ApiError = ApiError;
 exports.ResultParserError = ResultParserError;
+exports['default'] = { InvalidUFPAction: InvalidUFPAction, InternalError: InternalError, RequestError: RequestError, ApiError: ApiError, ResultParserError: ResultParserError };

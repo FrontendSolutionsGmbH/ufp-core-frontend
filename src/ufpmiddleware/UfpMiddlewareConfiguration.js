@@ -1,4 +1,4 @@
-import {ThrowParam} from 'modules/utils/JsUtils'
+
 const UFPMiddlewareConfigurationX = {
     resultHandlings: {
         genericResultHandler: [],

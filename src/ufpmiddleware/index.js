@@ -1,5 +1,5 @@
 import _createUFPMiddleware from './UfpMiddleware'
-import {ResultHandlerResult as _ResultHandlerResult, PreHandlerResult as _PreHandlerResult} from 'modules/ufpmiddleware/UfpHandlerUtils'
+import {ResultHandlerResult as _ResultHandlerResult, PreHandlerResult as _PreHandlerResult} from './UfpHandlerUtils'
 import UFPMiddlewareActionCreator from './UfpMiddlewareActionCreator'
 import UFPMiddlewareConfiguration from './UfpMiddlewareConfiguration'
 
