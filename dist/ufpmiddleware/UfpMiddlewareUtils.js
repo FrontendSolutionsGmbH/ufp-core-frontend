@@ -4,6 +4,8 @@ Object.defineProperty(exports, '__esModule', {
     value: true
 });
 
+var _this = this;
+
 var UfpMiddlewareUtils = {
 
     validateResultHandlerResult: function validateResultHandlerResult(handlerResultArray) {
@@ -104,9 +106,121 @@ var UfpMiddlewareUtils = {
                 return dispatch(action);
             }
         };
+    },
+    handleResultHandlers: function handleResultHandlers(handlerArray, resultData) {
+        var result = new Promise(function callee$1$0(resolve) {
+            var ufpErrorHandlerResultPromiseArray, promiseAll;
+            return regeneratorRuntime.async(function callee$1$0$(context$2$0) {
+                while (1) switch (context$2$0.prev = context$2$0.next) {
+                    case 0:
+                        ufpErrorHandlerResultPromiseArray = [];
+
+                        handlerArray.map(function (handlerObject) {
+                            if (handlerObject.matcher(resultData)) {
+                                ufpErrorHandlerResultPromiseArray.push(handlerObject.handler(resultData));
+                            }
+                        });
+                        context$2$0.next = 4;
+                        return regeneratorRuntime.awrap(Promise.all(ufpErrorHandlerResultPromiseArray));
+
+                    case 4:
+                        promiseAll = context$2$0.sent;
+
+                        resolve(promiseAll);
+
+                    case 6:
+                    case 'end':
+                        return context$2$0.stop();
+                }
+            }, null, _this);
+        });
+        return result;
+    },
+
+    handlePreHandlers: function handlePreHandlers(handlerArray, resultData) {
+        // // console.log('handleSuccessive 2')
+        var result = new Promise(function callee$1$0(resolve) {
+            var handled, i, handlerObject, handlerRes;
+            return regeneratorRuntime.async(function callee$1$0$(context$2$0) {
+                while (1) switch (context$2$0.prev = context$2$0.next) {
+                    case 0:
+                        if (!(handlerArray.length === 0)) {
+                            context$2$0.next = 4;
+                            break;
+                        }
+
+                        // // console.log('handleSuccessive 3')
+                        resolve({
+                            'break': false,
+                            handled: false
+                        });
+                        context$2$0.next = 18;
+                        break;
+
+                    case 4:
+                        handled = false;
+                        i = 0;
+
+                    case 6:
+                        if (!(i < handlerArray.length)) {
+                            context$2$0.next = 17;
+                            break;
+                        }
+
+                        handlerObject = handlerArray[i];
+
+                        if (handled) {
+                            context$2$0.next = 14;
+                            break;
+                        }
+
+                        if (!handlerObject.matcher(resultData)) {
+                            context$2$0.next = 14;
+                            break;
+                        }
+
+                        context$2$0.next = 12;
+                        return regeneratorRuntime.awrap(handlerObject.handler(resultData));
+
+                    case 12:
+                        handlerRes = context$2$0.sent;
+
+                        // // console.log('handleSuccessive 6', handlerRes)
+                        if (handlerRes.handled) {
+                            // // console.log('handleSuccessive 7', handlerRes)
+                            handled = true;
+                            resolve(handlerRes);
+                        }
+
+                    case 14:
+                        i++;
+                        context$2$0.next = 6;
+                        break;
+
+                    case 17:
+                        if (!handled) {
+                            resolve({
+                                'break': false,
+                                handled: false
+                            });
+                        }
+
+                    case 18:
+                    case 'end':
+                        return context$2$0.stop();
+                }
+            }, null, _this);
+        });
+        return result;
     }
 
 };
 
 exports['default'] = UfpMiddlewareUtils;
 module.exports = exports['default'];
+
+// // console.log('handleSuccessive 2')
+
+// // console.log('handleSuccessive 4')
+
+// // console.log('handleSuccessive 5', handlerObject)

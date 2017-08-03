@@ -88,6 +88,59 @@ const UfpMiddlewareUtils = {
             // //   // console.log('Dispatching normal action ', action)
             return dispatch(action)
         }
+    },
+    handleResultHandlers: (handlerArray, resultData) => {
+        var result = new Promise(async(resolve) => {
+            var ufpErrorHandlerResultPromiseArray = []
+            handlerArray.map((handlerObject) => {
+                if (handlerObject.matcher(resultData)) {
+                    ufpErrorHandlerResultPromiseArray.push(handlerObject.handler(resultData))
+                }
+            })
+            var promiseAll = await Promise.all(ufpErrorHandlerResultPromiseArray)
+            resolve(promiseAll)
+        })
+        return result
+    },
+
+    handlePreHandlers: (handlerArray, resultData) =>{
+        // // console.log('handleSuccessive 2')
+        var result = new Promise(async(resolve) => {
+            // // console.log('handleSuccessive 2')
+            if (handlerArray.length === 0) {
+                // // console.log('handleSuccessive 3')
+                resolve({
+                    break: false,
+                    handled: false
+                })
+            }
+            else {
+                var handled = false
+                // // console.log('handleSuccessive 4')
+                for (var i = 0; i < handlerArray.length; i++) {
+                    var handlerObject = handlerArray[i]
+                    if (!handled) {
+                        // // console.log('handleSuccessive 5', handlerObject)
+                        if (handlerObject.matcher(resultData)) {
+                            var handlerRes = await handlerObject.handler(resultData)
+                            // // console.log('handleSuccessive 6', handlerRes)
+                            if (handlerRes.handled) {
+                                // // console.log('handleSuccessive 7', handlerRes)
+                                handled = true
+                                resolve(handlerRes)
+                            }
+                        }
+                    }
+                }
+                if (!handled) {
+                    resolve({
+                        break: false,
+                        handled: false
+                    })
+                }
+            }
+        })
+        return result
     }
 
 }

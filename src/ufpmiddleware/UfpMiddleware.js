@@ -4,9 +4,9 @@ import {InvalidUFPAction} from './Errors'
 import UFPMiddlewareUtils from './UfpMiddlewareUtils'
 import UFPMiddlewareConstants from './UfpMiddlewareConstants'
 import UFPMiddlewareConfiguration from './UfpMiddlewareConfiguration'
-import UFPHandler from './UfpHandler'
+//import UFPHandler from './UfpHandler'
 
-function createUfpMiddleware (axiosInstance) {
+function createUfpMiddleware (axiosInstance, options={}) {
 
  return ({getState, dispatch}) => {
     return (next) => async(action) => {
@@ -83,9 +83,9 @@ function createUfpMiddleware (axiosInstance) {
                 }
 
                 //  // console.log('UfP types', ufpTypesUnited)
-                const allPreHandler = new UFPHandler(([].concat(ufpPreHandler || [])).concat(UFPMiddlewareConfiguration.get().preRequestHandling))
+                const allPreHandler = ([].concat(ufpPreHandler || [])).concat(UFPMiddlewareConfiguration.get().preRequestHandling)
                 // // console.log('ufpPreHandler', ufpPreHandler, resultContainerForPreHandler, preHandler)
-                const preHandlerResult = await allPreHandler.handleSuccessive(resultContainerForPreHandler)
+                const preHandlerResult = await UFPMiddlewareUtils.handlePreHandlers(allPreHandler,resultContainerForPreHandler)
                 // // console.log('preHandlerResult ', preHandlerResult)
                 // // console.log('UFPMiddleware PreHandlerResult makeRequest:', makeRequestResult)
                 makeRequest = !preHandlerResult.break
@@ -101,12 +101,15 @@ function createUfpMiddleware (axiosInstance) {
                             payload: thePayload
                         })
                         // Make the API call
-
-                        console.log('UFP MIDDLEWARE making request', config)
+                        if(options.debug) {
+                            console.log('UFP MIDDLEWARE making request', config)
+                        }
 
                         axiosResponse = await axiosInstance.request(config).then((response) => response, (response) => response)
+                        if(options.debug) {
+                            console.log('UFP MIDDLEWARE making request finished', axiosResponse)
+                        }
 
-                        console.log('UFP MIDDLEWARE making request finished', axiosResponse)
 
                         const resultContainerForHandler = {
                             ufpAction: {
@@ -130,9 +133,9 @@ function createUfpMiddleware (axiosInstance) {
                         var resultHandler
                         //  console.log('ufpResultHandler', ufpResultHandler, ufpDefinition)
                         if (ufpResultHandler !== undefined && ufpResultHandler.length > 0) {
-                            resultHandler = new UFPHandler(ufpResultHandler)
+                            resultHandler = ufpResultHandler
                             // // // console.log('resultHandler', resultHandler)
-                            promiseAll0 = await resultHandler.handle(resultContainerForHandler)
+                            promiseAll0 = await UFPMiddlewareUtils.handleResultHandlers(resultHandler, resultContainerForHandler)
                             // console.log('UFPMiddleware HandlerResult: ', promiseAll0, resultHandler)
                             try {
                                 validateResult = UFPMiddlewareUtils.validateResultHandlerResult(promiseAll0)
@@ -161,8 +164,7 @@ function createUfpMiddleware (axiosInstance) {
                         // console.log('UFPMiddleware validateResult: ', validateResult)
                         if (!resultHandler || (validateResult && validateResult.handled !== true)) {
 
-                            const genericResultHandler = new UFPHandler(UFPMiddlewareConfiguration.get().resultHandlings.genericResultHandler)
-                            promiseAll1 = await genericResultHandler.handle(resultContainerForHandler)
+                            promiseAll1 = await UFPMiddlewareUtils.handleResultHandlers(UFPMiddlewareConfiguration.get().resultHandlings.genericResultHandler, resultContainerForHandler)
                             try {
                                 // console.log('genericResultHandler', promiseAll1)
                                 validateResult = UFPMiddlewareUtils.validateResultHandlerResult(promiseAll1)
@@ -179,7 +181,7 @@ function createUfpMiddleware (axiosInstance) {
                         if (!validateResult.handled && !validateResult.success && !validateResult.retry) {
                             //    console.warn('UFPMiddleware UNHANDLED RESULT UNSUSESFUL UNRETRY: ')
                             var promiseAll2
-                            promiseAll2 = await new UFPHandler(UFPMiddlewareConfiguration.get().resultHandlings.unhandledResultHandler).handle(resultContainerForHandler)
+                            promiseAll2 = await UFPMiddlewareUtils.handleResultHandlers(UFPMiddlewareConfiguration.get().resultHandlings.unhandledResultHandler, resultContainerForHandler)
 
                             // // console.log('xxxxx middleware promiseall2',promiseAll2)
                             //    console.warn('UFPMiddleware UNHANDLED RESULT UNSUSESFUL UNRETRY: ', promiseAll2)
@@ -226,7 +228,8 @@ function createUfpMiddleware (axiosInstance) {
             }
         })
         // // // console.log('MIDDLEWARE PROIMISE IS ', action, dispatchPromise)
-        return next(() => dispatchPromise)
+        //return next(() => dispatchPromise)
+        return dispatchPromise
     }
 }
 

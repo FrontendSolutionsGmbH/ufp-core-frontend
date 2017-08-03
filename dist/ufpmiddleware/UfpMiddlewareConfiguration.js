@@ -4,6 +4,16 @@ Object.defineProperty(exports, '__esModule', {
     value: true
 });
 
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+var _Util = require('./Util');
+
+var _Util2 = _interopRequireDefault(_Util);
+
+var _propTypes = require('prop-types');
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
 var UFPMiddlewareConfigurationX = {
     resultHandlings: {
         genericResultHandler: [],
@@ -13,14 +23,34 @@ var UFPMiddlewareConfigurationX = {
     createConfig: undefined
 };
 
+var UFPHandlerPropTypeDefinition = _propTypes2['default'].shape({
+    matcher: _propTypes2['default'].func.isRequired,
+    handler: _propTypes2['default'].func.isRequired
+});
+
+var UFPHandlerPropTypeDefinitionArray = {
+    input: _propTypes2['default'].arrayOf(UFPHandlerPropTypeDefinition).isRequired
+};
+var UFPHandlerPropTypeDefinitionObject = {
+    input: UFPHandlerPropTypeDefinition.isRequired
+};
+
 var register = function register(array) {
     return function (handlers) {
         if (Array.isArray(handlers)) {
-            handlers.map(function (handler) {
-                array.push(handler);
-            });
+            if (_Util2['default'].PropTypesCheck({ input: handlers }, UFPHandlerPropTypeDefinitionArray)) {
+                handlers.map(function (handler) {
+                    array.push(handler);
+                });
+            } else {
+                throw new Error('UFP ResultHandler or Prehandler Objects need to have a matcher and handler function');
+            }
         } else {
-            array.push(handlers);
+            if (_Util2['default'].PropTypesCheck({ input: handlers }, UFPHandlerPropTypeDefinitionObject)) {
+                array.push(handlers);
+            } else {
+                throw new Error('UFP ResultHandler or Prehandler Objects need to have a matcher and handler function');
+            }
         }
     };
 };
