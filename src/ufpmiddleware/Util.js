@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types'
 /**
- * Extract JSON body from a server response
+ * Extract JSON body from a server response made with fetch
  *
  * @function getJSON
  * @access public

@@ -3,6 +3,7 @@ import {isUFPAction, validateUFPAction} from './Validation'
 import {InvalidUFPAction} from './Errors'
 import UFPMiddlewareUtils from './UfpMiddlewareUtils'
 import UFPMiddlewareConstants from './UfpMiddlewareConstants'
+import Util from './Util'
 import UFPMiddlewareConfiguration from './UfpMiddlewareConfiguration'
 //import UFPHandler from './UfpHandler'
 
@@ -85,7 +86,7 @@ function createUfpMiddleware (axiosInstance, options={}) {
                 //  // console.log('UfP types', ufpTypesUnited)
                 const allPreHandler = ([].concat(ufpPreHandler || [])).concat(UFPMiddlewareConfiguration.get().preRequestHandling)
                 // // console.log('ufpPreHandler', ufpPreHandler, resultContainerForPreHandler, preHandler)
-                const preHandlerResult = await UFPMiddlewareUtils.handlePreHandlers(allPreHandler,resultContainerForPreHandler)
+                const preHandlerResult = await UFPMiddlewareUtils.handlePreHandlers(allPreHandler, resultContainerForPreHandler)
                 // // console.log('preHandlerResult ', preHandlerResult)
                 // // console.log('UFPMiddleware PreHandlerResult makeRequest:', makeRequestResult)
                 makeRequest = !preHandlerResult.break
@@ -105,11 +106,18 @@ function createUfpMiddleware (axiosInstance, options={}) {
                             console.log('UFP MIDDLEWARE making request', config)
                         }
 
-                        axiosResponse = await axiosInstance.request(config).then((response) => response, (response) => response)
+                        if(options.useFetch) {
+                            axiosResponse =await fetch(config.url, { method:config.method, body:config.body, credentials:config.credentials, headers: config.headers || {} });
+                            if(axiosResponse.ok) {
+                                axiosResponse.data=await Util.getJSON(axiosResponse)
+                            }
+                        } else {
+                            axiosResponse = await axiosInstance.request(config).then((response) => response, (response) => response)
+                        }
+
                         if(options.debug) {
                             console.log('UFP MIDDLEWARE making request finished', axiosResponse)
                         }
-
 
                         const resultContainerForHandler = {
                             ufpAction: {
