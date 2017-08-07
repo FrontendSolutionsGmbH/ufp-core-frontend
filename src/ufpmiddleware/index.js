@@ -2,18 +2,11 @@ import _createUFPMiddleware from './UfpMiddleware'
 import {ResultHandlerResult as _ResultHandlerResult, PreHandlerResult as _PreHandlerResult} from './UfpHandlerUtils'
 import UFPMiddlewareActionCreator from './UfpMiddlewareActionCreator'
 import UFPMiddlewareConfiguration from './UfpMiddlewareConfiguration'
-
-const RequestMethodConstants = {
-    POST: 'post',
-    DELETE: 'delete',
-    GET: 'get',
-    PATCH: 'patch'
-}
-
+import TemplateUtils from './TemplateUtils'
 
 export default {
+    TemplateUtils: TemplateUtils,
     createUFPMiddleware: _createUFPMiddleware,
-    RequestMethodConstants,
     PreHandlerResult:_PreHandlerResult,
     ResultHandlerResult:_ResultHandlerResult,
     createActionCreatorForDefinition:UFPMiddlewareActionCreator.createActionCreatorForDefinition,

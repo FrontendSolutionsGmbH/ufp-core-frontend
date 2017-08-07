@@ -1,4 +1,4 @@
-import Util from './Util'
+import UfpMiddlewareUtils from './UfpMiddlewareUtils'
 import PropTypes from 'prop-types'
 
 const UFPMiddlewareConfigurationX = {
@@ -25,7 +25,7 @@ const UFPHandlerPropTypeDefinitionObject = {
 
 const register = (array) => (handlers) => {
     if (Array.isArray(handlers)) {
-        if(Util.PropTypesCheck({input: handlers}, UFPHandlerPropTypeDefinitionArray)) {
+        if(UfpMiddlewareUtils.PropTypesCheck({input: handlers}, UFPHandlerPropTypeDefinitionArray)) {
             handlers.map((handler) => {
                 array.push(handler)
             })
@@ -33,7 +33,7 @@ const register = (array) => (handlers) => {
             throw new Error('UFP ResultHandler or Prehandler Objects need to have a matcher and handler function')
         }
     } else {
-        if(Util.PropTypesCheck({input: handlers}, UFPHandlerPropTypeDefinitionObject)) {
+        if(UfpMiddlewareUtils.PropTypesCheck({input: handlers}, UFPHandlerPropTypeDefinitionObject)) {
             array.push(handlers)
         } else {
             throw new Error('UFP ResultHandler or Prehandler Objects need to have a matcher and handler function')

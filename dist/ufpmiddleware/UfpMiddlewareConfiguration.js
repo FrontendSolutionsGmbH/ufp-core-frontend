@@ -6,9 +6,9 @@ Object.defineProperty(exports, '__esModule', {
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-var _Util = require('./Util');
+var _UfpMiddlewareUtils = require('./UfpMiddlewareUtils');
 
-var _Util2 = _interopRequireDefault(_Util);
+var _UfpMiddlewareUtils2 = _interopRequireDefault(_UfpMiddlewareUtils);
 
 var _propTypes = require('prop-types');
 
@@ -38,7 +38,7 @@ var UFPHandlerPropTypeDefinitionObject = {
 var register = function register(array) {
     return function (handlers) {
         if (Array.isArray(handlers)) {
-            if (_Util2['default'].PropTypesCheck({ input: handlers }, UFPHandlerPropTypeDefinitionArray)) {
+            if (_UfpMiddlewareUtils2['default'].PropTypesCheck({ input: handlers }, UFPHandlerPropTypeDefinitionArray)) {
                 handlers.map(function (handler) {
                     array.push(handler);
                 });
@@ -46,7 +46,7 @@ var register = function register(array) {
                 throw new Error('UFP ResultHandler or Prehandler Objects need to have a matcher and handler function');
             }
         } else {
-            if (_Util2['default'].PropTypesCheck({ input: handlers }, UFPHandlerPropTypeDefinitionObject)) {
+            if (_UfpMiddlewareUtils2['default'].PropTypesCheck({ input: handlers }, UFPHandlerPropTypeDefinitionObject)) {
                 array.push(handlers);
             } else {
                 throw new Error('UFP ResultHandler or Prehandler Objects need to have a matcher and handler function');

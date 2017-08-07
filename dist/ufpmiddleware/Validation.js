@@ -16,9 +16,9 @@ var _propTypes = require('prop-types');
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
-var _Util = require('./Util');
+var _UfpMiddlewareUtils = require('./UfpMiddlewareUtils');
 
-var _Util2 = _interopRequireDefault(_Util);
+var _UfpMiddlewareUtils2 = _interopRequireDefault(_UfpMiddlewareUtils);
 
 var UFPActionPropTypes = _defineProperty({}, _UfpRequestActions2['default'].UFP_REQUEST_ACTION, _propTypes2['default'].shape({
     ufpDefinition: _propTypes2['default'].shape({
@@ -60,7 +60,7 @@ var isUFPAction = function isUFPAction(action) {
  */
 var validateUFPAction = function validateUFPAction(action) {
     try {
-        _Util2['default'].ReactPropTypesCheck(action, UFPActionPropTypes, true);
+        _UfpMiddlewareUtils2['default'].ReactPropTypesCheck(action, UFPActionPropTypes, true);
     } catch (e) {
         //  console.error('Validation returned check ', action)
         //  console.error('Validation returned check ', action[UfpRequestActions.UFP_REQUEST_ACTION])

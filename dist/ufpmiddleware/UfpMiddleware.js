@@ -22,20 +22,16 @@ var _UfpMiddlewareConstants = require('./UfpMiddlewareConstants');
 
 var _UfpMiddlewareConstants2 = _interopRequireDefault(_UfpMiddlewareConstants);
 
-var _Util = require('./Util');
-
-var _Util2 = _interopRequireDefault(_Util);
-
 var _UfpMiddlewareConfiguration = require('./UfpMiddlewareConfiguration');
 
 var _UfpMiddlewareConfiguration2 = _interopRequireDefault(_UfpMiddlewareConfiguration);
 
 //import UFPHandler from './UfpHandler'
 
-function createUfpMiddleware(axiosInstance) {
+function createUfpMiddleware() {
     var _this2 = this;
 
-    var options = arguments.length <= 1 || arguments[1] === undefined ? {} : arguments[1];
+    var options = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
 
     return function (_ref) {
         var getState = _ref.getState;
@@ -58,7 +54,7 @@ function createUfpMiddleware(axiosInstance) {
 
                         case 2:
                             dispatchPromise = new Promise(function callee$4$0(resolve /*, reject */) {
-                                var validationErrors, ufpAction, dispatchWrapper, ufpDefinition, ufpPayload, ufpResultHandler, ufpPreHandler, ufpTypes, ufpTypesUnited, additionalPayload, thePayload, retry, retryCount, makeRequest, totalSuccess, axiosResponse, resultContainerForPreHandler, allPreHandler, preHandlerResult, config, queryParams, resultContainerForHandler, promiseAll0, promiseAll1, validateResult, resultHandler, promiseAll2;
+                                var validationErrors, ufpAction, dispatchWrapper, ufpDefinition, ufpPayload, ufpResultHandler, ufpPreHandler, ufpTypes, ufpTypesUnited, additionalPayload, thePayload, retry, retryCount, makeRequest, totalSuccess, requestResponse, resultContainerForPreHandler, configPrepared, allPreHandler, preHandlerResult, config, resultContainerForHandler, promiseAll0, promiseAll1, validateResult, resultHandler, promiseAll2;
                                 return regeneratorRuntime.async(function callee$4$0$(context$5$0) {
                                     while (1) switch (context$5$0.prev = context$5$0.next) {
                                         case 0:
@@ -99,7 +95,7 @@ function createUfpMiddleware(axiosInstance) {
                                                 payload: new _Errors.InvalidUFPAction(validationErrors)
                                             });
                                             //  reject()
-                                            context$5$0.next = 75;
+                                            context$5$0.next = 64;
                                             break;
 
                                         case 17:
@@ -107,7 +103,7 @@ function createUfpMiddleware(axiosInstance) {
                                             retryCount = 0;
                                             makeRequest = true;
                                             totalSuccess = true;
-                                            axiosResponse = null;
+                                            requestResponse = null;
                                             resultContainerForPreHandler = {
                                                 ufpAction: {
                                                     ufpDefinition: ufpDefinition,
@@ -122,20 +118,21 @@ function createUfpMiddleware(axiosInstance) {
                                                 getState: getState,
                                                 globalState: getState()
                                             };
+                                            configPrepared = _UfpMiddlewareUtils2['default'].ufpMiddlewarePrepareConfig(ufpAction);
 
                                             if (!(_UfpMiddlewareConfiguration2['default'].get().createConfig === undefined || typeof _UfpMiddlewareConfiguration2['default'].get().createConfig !== 'function')) {
-                                                context$5$0.next = 25;
+                                                context$5$0.next = 26;
                                                 break;
                                             }
 
                                             throw new Error('Please register a createConfig function for axios with setCreateConfig in the MiddlewareConfiguration');
 
-                                        case 25:
+                                        case 26:
                                             allPreHandler = [].concat(ufpPreHandler || []).concat(_UfpMiddlewareConfiguration2['default'].get().preRequestHandling);
-                                            context$5$0.next = 28;
+                                            context$5$0.next = 29;
                                             return regeneratorRuntime.awrap(_UfpMiddlewareUtils2['default'].handlePreHandlers(allPreHandler, resultContainerForPreHandler));
 
-                                        case 28:
+                                        case 29:
                                             preHandlerResult = context$5$0.sent;
 
                                             // // console.log('preHandlerResult ', preHandlerResult)
@@ -143,20 +140,20 @@ function createUfpMiddleware(axiosInstance) {
                                             makeRequest = !preHandlerResult['break'];
 
                                             if (!makeRequest) {
-                                                context$5$0.next = 73;
+                                                context$5$0.next = 62;
                                                 break;
                                             }
 
-                                        case 31:
+                                        case 32:
                                             if (!(retry && retryCount < 5)) {
-                                                context$5$0.next = 73;
+                                                context$5$0.next = 62;
                                                 break;
                                             }
 
                                             retryCount += 1;
 
                                             //console.log('UFPMiddleware executing: ', retryCount, ufpAction)
-                                            config = _UfpMiddlewareConfiguration2['default'].get().createConfig(ufpAction, getState());
+                                            config = _UfpMiddlewareConfiguration2['default'].get().createConfig(configPrepared, ufpAction, getState());
 
                                             // // console.log('UFP MIDDLEWARE config', config)
                                             dispatchWrapper({
@@ -168,58 +165,14 @@ function createUfpMiddleware(axiosInstance) {
                                                 console.log('UFP MIDDLEWARE making request', config);
                                             }
 
-                                            if (!options.useFetch) {
-                                                context$5$0.next = 48;
-                                                break;
-                                            }
+                                            context$5$0.next = 39;
+                                            return regeneratorRuntime.awrap(_UfpMiddlewareUtils2['default'].ufpMiddlewareRequest(options, config));
 
-                                            queryParams = function queryParams(params) {
-                                                return Object.keys(params).map(function (k) {
-                                                    return encodeURIComponent(k) + '=' + encodeURIComponent(params[k]);
-                                                }).join('&');
-                                            };
-
-                                            if (config.params) {
-                                                config.url += config.url.indexOf('?') === -1 ? '?' : '&';
-                                                config.url += typeof config.paramsSerializer === 'function' ? config.paramsSerializer(config.params) : queryParams(config.params);
-                                                delete config.params; //delete so that not preocessed again
-                                            }
-                                            context$5$0.next = 41;
-                                            return regeneratorRuntime.awrap(fetch(config.url, { method: config.method, body: config.body, credentials: config.credentials, headers: config.headers || {} }));
-
-                                        case 41:
-                                            axiosResponse = context$5$0.sent;
-
-                                            if (!axiosResponse.ok) {
-                                                context$5$0.next = 46;
-                                                break;
-                                            }
-
-                                            context$5$0.next = 45;
-                                            return regeneratorRuntime.awrap(_Util2['default'].getJSON(axiosResponse));
-
-                                        case 45:
-                                            axiosResponse.data = context$5$0.sent;
-
-                                        case 46:
-                                            context$5$0.next = 51;
-                                            break;
-
-                                        case 48:
-                                            context$5$0.next = 50;
-                                            return regeneratorRuntime.awrap(axiosInstance.request(config).then(function (response) {
-                                                return response;
-                                            }, function (response) {
-                                                return response;
-                                            }));
-
-                                        case 50:
-                                            axiosResponse = context$5$0.sent;
-
-                                        case 51:
+                                        case 39:
+                                            requestResponse = context$5$0.sent;
 
                                             if (options.debug) {
-                                                console.log('UFP MIDDLEWARE making request finished', axiosResponse);
+                                                console.log('UFP MIDDLEWARE making request finished', requestResponse instanceof Error ? _UfpMiddlewareUtils2['default'].errorToObject(requestResponse) : requestResponse);
                                             }
 
                                             resultContainerForHandler = {
@@ -235,20 +188,20 @@ function createUfpMiddleware(axiosInstance) {
                                                 getState: getState,
                                                 globalState: getState(),
                                                 ufpDefinition: ufpDefinition,
-                                                axiosResponse: axiosResponse
+                                                requestResponse: requestResponse
                                             };
 
                                             if (!(ufpResultHandler !== undefined && ufpResultHandler.length > 0)) {
-                                                context$5$0.next = 59;
+                                                context$5$0.next = 48;
                                                 break;
                                             }
 
                                             resultHandler = ufpResultHandler;
                                             // // // console.log('resultHandler', resultHandler)
-                                            context$5$0.next = 57;
+                                            context$5$0.next = 46;
                                             return regeneratorRuntime.awrap(_UfpMiddlewareUtils2['default'].handleResultHandlers(resultHandler, resultContainerForHandler));
 
-                                        case 57:
+                                        case 46:
                                             promiseAll0 = context$5$0.sent;
 
                                             // console.log('UFPMiddleware HandlerResult: ', promiseAll0, resultHandler)
@@ -275,16 +228,16 @@ function createUfpMiddleware(axiosInstance) {
                                                 // console.warn('UFPMiddleware error: ' + err.message)
                                             }
 
-                                        case 59:
+                                        case 48:
                                             if (!(!resultHandler || validateResult && validateResult.handled !== true)) {
-                                                context$5$0.next = 64;
+                                                context$5$0.next = 53;
                                                 break;
                                             }
 
-                                            context$5$0.next = 62;
+                                            context$5$0.next = 51;
                                             return regeneratorRuntime.awrap(_UfpMiddlewareUtils2['default'].handleResultHandlers(_UfpMiddlewareConfiguration2['default'].get().resultHandlings.genericResultHandler, resultContainerForHandler));
 
-                                        case 62:
+                                        case 51:
                                             promiseAll1 = context$5$0.sent;
 
                                             try {
@@ -295,16 +248,16 @@ function createUfpMiddleware(axiosInstance) {
                                                 // console.warn('UFPMiddleware error: ' + err.message)
                                             }
 
-                                        case 64:
+                                        case 53:
                                             if (!(!validateResult.handled && !validateResult.success && !validateResult.retry)) {
-                                                context$5$0.next = 69;
+                                                context$5$0.next = 58;
                                                 break;
                                             }
 
-                                            context$5$0.next = 67;
+                                            context$5$0.next = 56;
                                             return regeneratorRuntime.awrap(_UfpMiddlewareUtils2['default'].handleResultHandlers(_UfpMiddlewareConfiguration2['default'].get().resultHandlings.unhandledResultHandler, resultContainerForHandler));
 
-                                        case 67:
+                                        case 56:
                                             promiseAll2 = context$5$0.sent;
 
                                             // // console.log('xxxxx middleware promiseall2',promiseAll2)
@@ -313,7 +266,7 @@ function createUfpMiddleware(axiosInstance) {
                                             validateResult = _UfpMiddlewareUtils2['default'].validateResultHandlerResult(promiseAll2);
                                             //    console.warn('UFPMiddleware UNHANDLED RESULT UNSUSESFUL UNRETRY: ', validateResult)
 
-                                        case 69:
+                                        case 58:
 
                                             retry = validateResult.retry;
                                             if (!retry && !validateResult.success) {
@@ -331,10 +284,10 @@ function createUfpMiddleware(axiosInstance) {
                                                 //   // // console.log('xxxxx middleware rejecting2')
                                             }
                                             //   // // console.log('xxxxx middleware looping3')
-                                            context$5$0.next = 31;
+                                            context$5$0.next = 32;
                                             break;
 
-                                        case 73:
+                                        case 62:
                                             // end if(makeRequest)
                                             //  // // console.log('xxxxx middleware looping4')
                                             dispatchWrapper({
@@ -342,19 +295,19 @@ function createUfpMiddleware(axiosInstance) {
                                                 payload: thePayload
                                             });
                                             if (totalSuccess) {
-                                                resolve(axiosResponse);
+                                                resolve(requestResponse);
                                             } else {
                                                 /*
                                                  discussion: when using reject here, every method has to rely on catching the promise error
                                                  so we dispatch an en
                                                  reject(axiosResponse)
                                                  */
-                                                resolve(axiosResponse);
+                                                resolve(requestResponse);
                                             }
                                             // // // console.log('xxxxx middleware end5')
                                             // console.warn('UFPMiddleware END finish: ')
 
-                                        case 75:
+                                        case 64:
                                         case 'end':
                                             return context$5$0.stop();
                                     }

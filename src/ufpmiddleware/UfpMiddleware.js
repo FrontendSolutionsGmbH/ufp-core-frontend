@@ -3,11 +3,11 @@ import {isUFPAction, validateUFPAction} from './Validation'
 import {InvalidUFPAction} from './Errors'
 import UFPMiddlewareUtils from './UfpMiddlewareUtils'
 import UFPMiddlewareConstants from './UfpMiddlewareConstants'
-import Util from './Util'
+
 import UFPMiddlewareConfiguration from './UfpMiddlewareConfiguration'
 //import UFPHandler from './UfpHandler'
 
-function createUfpMiddleware (axiosInstance, options={}) {
+function createUfpMiddleware (options={}) {
 
  return ({getState, dispatch}) => {
     return (next) => async(action) => {
@@ -60,7 +60,7 @@ function createUfpMiddleware (axiosInstance, options={}) {
                 var retryCount = 0
                 var makeRequest = true
                 var totalSuccess = true
-                var axiosResponse= null
+                var requestResponse= null
                 /* dispatchWrapper({
                  type: ufpTypes.REQUEST,
                  payload: thePayload
@@ -79,6 +79,7 @@ function createUfpMiddleware (axiosInstance, options={}) {
                     getState: getState,
                     globalState: getState()
                 }
+                var configPrepared=UFPMiddlewareUtils.ufpMiddlewarePrepareConfig(ufpAction)
                 if (UFPMiddlewareConfiguration.get().createConfig === undefined || typeof UFPMiddlewareConfiguration.get().createConfig !== 'function') {
                     throw new Error('Please register a createConfig function for axios with setCreateConfig in the MiddlewareConfiguration')
                 }
@@ -95,7 +96,7 @@ function createUfpMiddleware (axiosInstance, options={}) {
                         retryCount += 1
 
                         //console.log('UFPMiddleware executing: ', retryCount, ufpAction)
-                        const config = UFPMiddlewareConfiguration.get().createConfig(ufpAction, getState())
+                        const config = UFPMiddlewareConfiguration.get().createConfig(configPrepared,ufpAction, getState())
                         // // console.log('UFP MIDDLEWARE config', config)
                         dispatchWrapper({
                             type: ufpTypesUnited.REQUEST[0],
@@ -106,27 +107,10 @@ function createUfpMiddleware (axiosInstance, options={}) {
                             console.log('UFP MIDDLEWARE making request', config)
                         }
 
-                        if(options.useFetch) {
-                            function queryParams(params) {
-                                return Object.keys(params)
-                                    .map(k => encodeURIComponent(k) + '=' + encodeURIComponent(params[k]))
-                                    .join('&');
-                            }
-                            if(config.params) {
-                                config.url += (config.url.indexOf('?') === -1 ? '?' : '&')
-                                config.url += typeof config.paramsSerializer === 'function' ? config.paramsSerializer(config.params):queryParams(config.params);
-                                delete config.params; //delete so that not preocessed again
-                            }
-                            axiosResponse =await fetch(config.url, { method:config.method, body:config.body, credentials:config.credentials, headers: config.headers || {} });
-                            if(axiosResponse.ok) {
-                                axiosResponse.data=await Util.getJSON(axiosResponse)
-                            }
-                        } else {
-                            axiosResponse = await axiosInstance.request(config).then((response) => response, (response) => response)
-                        }
+                        requestResponse= await UFPMiddlewareUtils.ufpMiddlewareRequest(options, config)
 
                         if(options.debug) {
-                            console.log('UFP MIDDLEWARE making request finished', axiosResponse)
+                            console.log('UFP MIDDLEWARE making request finished', (requestResponse instanceof Error)? UFPMiddlewareUtils.errorToObject(requestResponse):requestResponse)
                         }
 
                         const resultContainerForHandler = {
@@ -142,7 +126,7 @@ function createUfpMiddleware (axiosInstance, options={}) {
                             getState: getState,
                             globalState: getState(),
                             ufpDefinition,
-                            axiosResponse: axiosResponse
+                            requestResponse: requestResponse
                         }
                         var promiseAll0
                         var promiseAll1
@@ -232,14 +216,14 @@ function createUfpMiddleware (axiosInstance, options={}) {
                     payload: thePayload
                 })
                 if (totalSuccess) {
-                    resolve(axiosResponse)
+                    resolve(requestResponse)
                 } else {
                     /*
                      discussion: when using reject here, every method has to rely on catching the promise error
                      so we dispatch an en
                      reject(axiosResponse)
                      */
-                    resolve(axiosResponse)
+                    resolve(requestResponse)
                 }
                 // // // console.log('xxxxx middleware end5')
                 // console.warn('UFPMiddleware END finish: ')

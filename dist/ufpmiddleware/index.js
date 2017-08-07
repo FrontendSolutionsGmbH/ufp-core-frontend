@@ -20,16 +20,13 @@ var _UfpMiddlewareConfiguration = require('./UfpMiddlewareConfiguration');
 
 var _UfpMiddlewareConfiguration2 = _interopRequireDefault(_UfpMiddlewareConfiguration);
 
-var RequestMethodConstants = {
-    POST: 'post',
-    DELETE: 'delete',
-    GET: 'get',
-    PATCH: 'patch'
-};
+var _TemplateUtils = require('./TemplateUtils');
+
+var _TemplateUtils2 = _interopRequireDefault(_TemplateUtils);
 
 exports['default'] = {
+    TemplateUtils: _TemplateUtils2['default'],
     createUFPMiddleware: _UfpMiddleware2['default'],
-    RequestMethodConstants: RequestMethodConstants,
     PreHandlerResult: _UfpHandlerUtils.PreHandlerResult,
     ResultHandlerResult: _UfpHandlerUtils.ResultHandlerResult,
     createActionCreatorForDefinition: _UfpMiddlewareActionCreator2['default'].createActionCreatorForDefinition,

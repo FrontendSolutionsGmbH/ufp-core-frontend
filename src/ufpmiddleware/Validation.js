@@ -1,6 +1,6 @@
 import UFPRequestActions from './UfpRequestActions'
 import PropTypes from 'prop-types'
-import Util from './Util'
+import UfpMiddlewareUtils from './UfpMiddlewareUtils'
 
 const UFPActionPropTypes = {
     [UFPRequestActions.UFP_REQUEST_ACTION]: PropTypes.shape({
@@ -44,7 +44,7 @@ const isUFPAction = (action) => {
  */
 const validateUFPAction = (action) => {
     try {
-      Util.ReactPropTypesCheck(action, UFPActionPropTypes, true)
+        UfpMiddlewareUtils.ReactPropTypesCheck(action, UFPActionPropTypes, true)
     }
     catch (e) {
         //  console.error('Validation returned check ', action)
