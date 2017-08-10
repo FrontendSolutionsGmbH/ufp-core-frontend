@@ -8,10 +8,18 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 var ResultHandlerResult = function ResultHandlerResult() {
   var success = arguments.length <= 0 || arguments[0] === undefined ? false : arguments[0];
+
+  var _this = this;
+
   var handled = arguments.length <= 1 || arguments[1] === undefined ? false : arguments[1];
   var retry = arguments.length <= 2 || arguments[2] === undefined ? false : arguments[2];
 
   _classCallCheck(this, ResultHandlerResult);
+
+  this.addPayload = function (data) {
+    _this.additionalPayload = data;
+    return _this;
+  };
 
   this.success = success;
   this.handled = handled;

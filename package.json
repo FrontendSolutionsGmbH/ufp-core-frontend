@@ -82,7 +82,11 @@
   },
   "dependencies": {
     "babel-runtime": "^6.25.0",
+    "check-prop-types": "^1.1.1",
+    "deepmerge": "^1.5.0",
+    "no-case": "^2.3.1",
     "path-to-regexp": "^1.7.0",
+    "promise-sequential": "^1.1.1",
     "prop-types": "^15.5.10"
   }
 }

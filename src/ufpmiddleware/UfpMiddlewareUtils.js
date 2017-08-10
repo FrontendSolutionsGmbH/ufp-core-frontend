@@ -1,21 +1,21 @@
 import PropTypes from 'prop-types'
 import TemplateUtils from './TemplateUtils'
 import queryParams from './queryParams'
+import checkPropTypes from 'check-prop-types'
+import merge from 'deepmerge'
 
 function ReactPropTypesCheck(object, propTypes, _throw) {
-
     // const stringJSON = JSON.stringify(object)
-    var error = PropTypes.checkPropTypes(propTypes, object, 'prop')
+    var error = checkPropTypes(propTypes, object, 'prop')
     if (error) {
         if (_throw) {
-            throw error
+            throw new Error(error)
         } else {
-            console.error(error.message)
+            console.error(error)
         }
     }
 }
 function PropTypesCheck(data, propTypes) {
-    console.log()
     try {
         ReactPropTypesCheck(data, propTypes, true)
         return true
@@ -24,6 +24,7 @@ function PropTypesCheck(data, propTypes) {
         return false
     }
 }
+
 function isEmptyObject(obj) {
     for(var prop in obj) {
         if(obj.hasOwnProperty(prop))
@@ -31,6 +32,7 @@ function isEmptyObject(obj) {
     }
     return JSON.stringify(obj) === JSON.stringify({})
 }
+
 function errorToObject (err) {
     if ( !( err instanceof Error ) ) {
         throw new TypeError( 'invalid input argument. Must provide an error object. Value: `' + err + '`.' );
@@ -59,7 +61,7 @@ function errorToObject (err) {
     return out
 }
 function validateStatus(status) {
-    return status >= 200 && status < 300; // default
+    return status >= 200 && status < 300
 }
 
 /**
@@ -116,15 +118,21 @@ const createAxiosLikeErrorResponse=async(config, code, response) =>{
     err.response.data= await getJSON(response)
     return err
 }
+const mergeArrayOfObjects= (arr, selector=(t)=>t) => {
+    return arr.reduce((acc, curr) => {
+        return merge(acc, selector(curr) || {})
+    }, {})
+}
+
 const validateResultHandlerResult= (handlerResultArray) => {
     var successCount = handlerResultArray.reduce((curr, obj) => (obj.success ? curr + 1 : curr), 0)
     var retryCount = handlerResultArray.reduce((curr, obj) => (obj.retry ? curr + 1 : curr), 0)
     var handledCount = handlerResultArray.reduce((curr, obj) => (obj.handled ? curr + 1 : curr), 0)
-    var breakCount = handlerResultArray.reduce((curr, obj) => (obj.break ? curr + 1 : curr), 0)
-
-    //  // //   // console.log('UFPMiddleware validateHandlerResult intermediate', successCount, handledCount, retryCount)
+    var additionalPayload=mergeArrayOfObjects(handlerResultArray, (item) => item.additionalPayload)
+    //
+    //  console.log('UFPMiddleware validateHandlerResult intermediate', successCount, handledCount, retryCount)
     if (successCount > 1) {
-        // // //   // console.log('UFPMiddleware  more than 1 success')
+        //console.log('UFPMiddleware  more than 1 success', successCount)
         throw new Error('UFPMiddleware  more than 1 success')
     } else if (successCount === 1) {
         //    // //   // console.log('UFPMiddleware 1 success: dispatch _SUCCESS ')
@@ -134,7 +142,7 @@ const validateResultHandlerResult= (handlerResultArray) => {
         handled: handledCount > 0,
         retry: retryCount > 0,
         success: successCount > 0,
-        break: breakCount > 0
+        additionalPayload
     }
 }
 const addToArrayIfNotExist= (arr, item) => {
@@ -142,26 +150,32 @@ const addToArrayIfNotExist= (arr, item) => {
         arr.push(item)
     }
 }
-const uniteActionResultTypes= (ufpTypes, incoming) => {
-    for (var i in incoming) {
-        var item = incoming[i]
-        // verify in result object is key present
-        if (ufpTypes[i] === undefined) {
-            ufpTypes[i] = []
+const uniteActionResultTypes= ( ufpTypes, actionConstants) => {
+    var target={
+        REQUEST:[],
+        SUCCESS:[],
+        FAILURE:[],
+        END:[]
+    }
+    for (var i in target) {
+        if (ufpTypes[i] !== undefined) {
+            if (Array.isArray(ufpTypes[i])) {
+                ufpTypes[i].map((element) => addToArrayIfNotExist(target[i], element))
+            } else {
+                addToArrayIfNotExist(target[i], ufpTypes[i])
+            }
         }
-
-        // check if item is of type array
-        if (Array.isArray(item)) {
-            // add all from incoming array
-            item.map((element) => addToArrayIfNotExist(ufpTypes[i], element)
-            )
-        } else {
-            // add single string value
-            addToArrayIfNotExist(ufpTypes[i], item)
+        if (actionConstants[i] !== undefined) {
+            if(Array.isArray(actionConstants[i])) {
+                actionConstants[i].map((element) => addToArrayIfNotExist(target[i], element))
+            } else {
+                addToArrayIfNotExist(target[i],  actionConstants[i])
+            }
         }
     }
+    return target
 }
-const checkToCallActionCreators = (dispatch, getState, ufpAction, action, actionType) => {
+/*const checkToCallActionCreators = (dispatch, getState, ufpAction, action, actionType) => {
     if (ufpAction.ufpActionCreators) {
         // //   // console.log('UFPMiddleware calling action creators', ufpAction, actionType)
         var actionCreator = ufpAction.ufpActionCreators[actionType]
@@ -185,13 +199,12 @@ const checkToCallActionCreators = (dispatch, getState, ufpAction, action, action
             }))
         }
     }
-}
-const wrapDispatcher= (dispatch, getState, ufpAction) => (action) => {
+}*/
 
-
+const wrapDispatcher= (dispatch/*, getState , ufpAction*/) => (action) => {
     if (Array.isArray(action.type)) {
         for (var i in action.type) {
-            checkToCallActionCreators(dispatch, getState, ufpAction,action, action.type[i])
+            //checkToCallActionCreators(dispatch, getState, ufpAction, action, action.type[i])
             // //   // console.log('Dispatching array action', i, action.type[i], action.payload)
             dispatch({
                 type: action.type[i],
@@ -199,64 +212,48 @@ const wrapDispatcher= (dispatch, getState, ufpAction) => (action) => {
             })
         }
     } else {
-        checkToCallActionCreators(dispatch, getState, ufpAction,action, action.type)
+        //checkToCallActionCreators(dispatch, getState, ufpAction,action, action.type)
         // //   // console.log('Dispatching normal action ', action)
         return dispatch(action)
     }
 }
-const handleResultHandlers= (handlerArray, resultData) => {
-    var result = new Promise(async(resolve) => {
+
+const handleResultHandlers= async(handlerArray, resultData) => {
         var ufpErrorHandlerResultPromiseArray = []
         handlerArray.map((handlerObject) => {
             if (handlerObject.matcher(resultData)) {
                 ufpErrorHandlerResultPromiseArray.push(handlerObject.handler(resultData))
             }
         })
-        var promiseAll = await Promise.all(ufpErrorHandlerResultPromiseArray)
-        resolve(promiseAll)
-    })
-    return result
+        return await Promise.all(ufpErrorHandlerResultPromiseArray)
 }
 
-const handlePreHandlers= (handlerArray, resultData) => {
-    // // console.log('handleSuccessive 2')
-    var result = new Promise(async(resolve) => {
-        // // console.log('handleSuccessive 2')
-        if (handlerArray.length === 0) {
-            // // console.log('handleSuccessive 3')
-            resolve({
-                break: false,
-                handled: false
-            })
+const handlePreHandlers= async(handlerArray, resultData) => {
+    if (handlerArray.length === 0) {
+        return {
+            break: false,
+            handled: false
         }
-        else {
-            var handled = false
-            // // console.log('handleSuccessive 4')
-            for (var i = 0; i < handlerArray.length; i++) {
-                var handlerObject = handlerArray[i]
-                if (!handled) {
-                    // // console.log('handleSuccessive 5', handlerObject)
-                    if (handlerObject.matcher(resultData)) {
-                        var handlerRes = await handlerObject.handler(resultData)
-                        // // console.log('handleSuccessive 6', handlerRes)
-                        if (handlerRes.handled) {
-                            // // console.log('handleSuccessive 7', handlerRes)
-                            handled = true
-                            resolve(handlerRes)
-                        }
+    }
+        var result=await handlerArray.reduce((previousPromise, currentItem) => {
+            return previousPromise.then((previousResult) => {
+                if(!previousResult.handled) {
+                    if(currentItem.matcher(resultData)) {
+                        return Promise.resolve(currentItem.handler(resultData))
+                    } else {
+                        return Promise.resolve(previousResult)
                     }
+                } else {
+                    return Promise.resolve(previousResult)
                 }
-            }
-            if (!handled) {
-                resolve({
-                    break: false,
-                    handled: false
-                })
-            }
-        }
-    })
-    return result
+            })
+        }, Promise.resolve({
+            break: false,
+            handled: false
+        }))
+        return result
 }
+
 function createFetchUrl(config, queryParams) {
     config.fetchUrl = config.url + (config.url.indexOf('?') === -1 ? '?' : '&')
     config.fetchUrl += typeof config.paramsSerializer === 'function' ? config.paramsSerializer(config.params) : queryParams(config.params)
@@ -272,7 +269,6 @@ const ufpMiddlewareRequest= async(options, config) => {
         }
 
     } else {
-
         if (config.params && !config.fetchUrl) {
             createFetchUrl(config, queryParams)
         }
@@ -296,6 +292,9 @@ const ufpMiddlewareRequest= async(options, config) => {
 }
 
 export default {
+    mergeArrayOfObjects,
+    isEmptyObject,
+    createAxiosLikeErrorResponse,
     createFetchUrl,
     validateStatus,
     queryParams,

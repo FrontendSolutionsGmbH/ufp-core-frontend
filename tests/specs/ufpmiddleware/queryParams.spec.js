@@ -49,4 +49,10 @@ describe('ufpmiddleware queryParams', () => {
             foo: '@:$, '
         })).to.be.equal('foo=@:$,+');
     })
+    it('Should ignore undefined properties', () => {
+        expect(queryParams({
+            bar: 'baz',
+            foo: undefined
+        })).to.be.equal('bar=baz');
+    })
 })

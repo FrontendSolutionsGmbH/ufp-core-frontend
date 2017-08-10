@@ -5,27 +5,27 @@ import UfpMiddlewareUtils from './UfpMiddlewareUtils'
 const UFPActionPropTypes = {
     [UFPRequestActions.UFP_REQUEST_ACTION]: PropTypes.shape({
         ufpDefinition: PropTypes.shape({
-            url: PropTypes.string,
-            method: PropTypes.string,
+            url: PropTypes.string.isRequired,
+            method: PropTypes.oneOf(['get', 'post', 'delete','put', 'patch']).isRequired,
             requestType: PropTypes.string,
             actionConstants: PropTypes.object
-        }),
+        }).isRequired,
         ufpData: PropTypes.shape({
             urlParams: PropTypes.object,
             queryParams: PropTypes.object,
             body: PropTypes.any
-        }),
+        }).isRequired,
         ufpTypes: PropTypes.object,
         ufpPayload: PropTypes.object,
-        ufpActionCreators: PropTypes.object,
+       // ufpActionCreators: PropTypes.object,
         ufpResultHandler: PropTypes.arrayOf(PropTypes.shape({
             matcher: PropTypes.func.isRequired,
             handler: PropTypes.func.isRequired
-        })),
+        })).isRequired,
         ufpPreHandler: PropTypes.arrayOf(PropTypes.shape({
             matcher: PropTypes.func.isRequired,
             handler: PropTypes.func.isRequired
-        }))
+        })).isRequired
     })
 }
 
@@ -50,24 +50,12 @@ const validateUFPAction = (action) => {
         //  console.error('Validation returned check ', action)
         //  console.error('Validation returned check ', action[UfpRequestActions.UFP_REQUEST_ACTION])
         //  console.error('Validation returned check ', action[UfpRequestActions.UFP_REQUEST_ACTION]['ufpTypes'])
-        console.error('Validation returned ', e)
+        // console.error('Validation returned ', e)
         //  console.error('--->' + e + '<--')
         return [e]
     }
-
     return []
 }
 
-/**
- * Is the given action a valid RSAA?
- *
- * @function isValidRSAA
- * @access public
- * @param {object} action - The action to check against the RSAA definition
- * @returns {boolean}
- */
-const isValidUFPAction = (action) => {
-    return validateUFPAction(action).length > 0
-}
 
-export {isUFPAction, validateUFPAction, isValidUFPAction}
+export {isUFPAction, validateUFPAction}

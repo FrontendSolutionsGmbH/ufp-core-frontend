@@ -59,19 +59,6 @@ var setCreateConfig = function setCreateConfig(createConfig) {
     UFPMiddlewareConfigurationX.createConfig = createConfig;
 };
 
-var traverseDefinition = function traverseDefinition(obj, callback, path) {
-    // // console.log('traversinng ', obj, path)
-    path = path || [];
-    if (typeof obj === 'object' && obj.url === undefined) {
-        Object.keys(obj).forEach(function (key) {
-            var value = obj[key];
-            traverseDefinition(value, callback, path.concat(key));
-        });
-    } else {
-        callback.call(obj, path, obj);
-    }
-};
-
 var registerResultHandler = register(UFPMiddlewareConfigurationX.resultHandlings.genericResultHandler);
 var registerPreHandler = register(UFPMiddlewareConfigurationX.preRequestHandling);
 var registerUnhandledHandler = register(UFPMiddlewareConfigurationX.resultHandlings.unhandledResultHandler);
@@ -84,7 +71,6 @@ exports['default'] = {
     registerResultHandler: registerResultHandler,
     registerPreHandler: registerPreHandler,
     registerUnhandledHandler: registerUnhandledHandler,
-    traverseDefinition: traverseDefinition,
     setCreateConfig: setCreateConfig
 };
 module.exports = exports['default'];

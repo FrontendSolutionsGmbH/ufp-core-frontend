@@ -5,6 +5,10 @@ export class ResultHandlerResult {
     this.handled = handled;
     this.retry = retry;
   }
+  addPayload=(data) =>{
+    this.additionalPayload=data
+    return this
+  }
 }
 
 export class PreHandlerResult {

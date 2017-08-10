@@ -4,12 +4,10 @@ import dirtyChai from 'dirty-chai'
 import chaiAsPromised from 'chai-as-promised'
 import sinonChai from 'sinon-chai'
 import chaiEnzyme from 'chai-enzyme'
-//import sinonStubPromise from 'sinon-stub-promise'
 import 'whatwg-fetch'
-//sinonStubPromise(sinon);
 // Mocha / Chai
 // ------------------------------------
-var Promise = require("native-promise-only");
+var Promise = require("native-promise-only")
 mocha.setup({ ui: 'bdd' })
 chai.should()
 

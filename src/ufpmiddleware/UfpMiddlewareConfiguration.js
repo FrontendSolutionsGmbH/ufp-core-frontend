@@ -45,19 +45,6 @@ const setCreateConfig = (createConfig) => {
     UFPMiddlewareConfigurationX.createConfig=createConfig
 }
 
-const traverseDefinition = (obj, callback, path) => {
-    // // console.log('traversinng ', obj, path)
-    path = path || []
-    if (typeof obj === 'object' && obj.url === undefined) {
-        Object.keys(obj).forEach((key) => {
-            var value = obj[key]
-            traverseDefinition(value, callback, path.concat(key))
-        })
-    } else {
-        callback.call(obj, path, obj)
-    }
-}
-
 const registerResultHandler = register(UFPMiddlewareConfigurationX.resultHandlings.genericResultHandler)
 const registerPreHandler = register(UFPMiddlewareConfigurationX.preRequestHandling)
 const registerUnhandledHandler=register(UFPMiddlewareConfigurationX.resultHandlings.unhandledResultHandler)
@@ -68,6 +55,5 @@ export default {
     registerResultHandler,
     registerPreHandler,
     registerUnhandledHandler,
-    traverseDefinition,
     setCreateConfig
 }

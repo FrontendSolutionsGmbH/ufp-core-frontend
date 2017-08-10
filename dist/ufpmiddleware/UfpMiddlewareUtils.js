@@ -20,20 +20,26 @@ var _queryParams2 = require('./queryParams');
 
 var _queryParams3 = _interopRequireDefault(_queryParams2);
 
-function ReactPropTypesCheck(object, propTypes, _throw) {
+var _checkPropTypes = require('check-prop-types');
 
+var _checkPropTypes2 = _interopRequireDefault(_checkPropTypes);
+
+var _deepmerge = require('deepmerge');
+
+var _deepmerge2 = _interopRequireDefault(_deepmerge);
+
+function ReactPropTypesCheck(object, propTypes, _throw) {
     // const stringJSON = JSON.stringify(object)
-    var error = _propTypes2['default'].checkPropTypes(propTypes, object, 'prop');
+    var error = (0, _checkPropTypes2['default'])(propTypes, object, 'prop');
     if (error) {
         if (_throw) {
-            throw error;
+            throw new Error(error);
         } else {
-            console.error(error.message);
+            console.error(error);
         }
     }
 }
 function PropTypesCheck(data, propTypes) {
-    console.log();
     try {
         ReactPropTypesCheck(data, propTypes, true);
         return true;
@@ -42,12 +48,14 @@ function PropTypesCheck(data, propTypes) {
         return false;
     }
 }
+
 function isEmptyObject(obj) {
     for (var prop in obj) {
         if (obj.hasOwnProperty(prop)) return false;
     }
     return JSON.stringify(obj) === JSON.stringify({});
 }
+
 function errorToObject(err) {
     if (!(err instanceof Error)) {
         throw new TypeError('invalid input argument. Must provide an error object. Value: `' + err + '`.');
@@ -75,7 +83,7 @@ function errorToObject(err) {
     return out;
 }
 function validateStatus(status) {
-    return status >= 200 && status < 300; // default
+    return status >= 200 && status < 300;
 }
 
 /**
@@ -166,6 +174,16 @@ var createAxiosLikeErrorResponse = function createAxiosLikeErrorResponse(config,
         }
     }, null, _this);
 };
+var mergeArrayOfObjects = function mergeArrayOfObjects(arr) {
+    var selector = arguments.length <= 1 || arguments[1] === undefined ? function (t) {
+        return t;
+    } : arguments[1];
+
+    return arr.reduce(function (acc, curr) {
+        return (0, _deepmerge2['default'])(acc, selector(curr) || {});
+    }, {});
+};
+
 var validateResultHandlerResult = function validateResultHandlerResult(handlerResultArray) {
     var successCount = handlerResultArray.reduce(function (curr, obj) {
         return obj.success ? curr + 1 : curr;
@@ -176,13 +194,13 @@ var validateResultHandlerResult = function validateResultHandlerResult(handlerRe
     var handledCount = handlerResultArray.reduce(function (curr, obj) {
         return obj.handled ? curr + 1 : curr;
     }, 0);
-    var breakCount = handlerResultArray.reduce(function (curr, obj) {
-        return obj['break'] ? curr + 1 : curr;
-    }, 0);
-
-    //  // //   // console.log('UFPMiddleware validateHandlerResult intermediate', successCount, handledCount, retryCount)
+    var additionalPayload = mergeArrayOfObjects(handlerResultArray, function (item) {
+        return item.additionalPayload;
+    });
+    //
+    //  console.log('UFPMiddleware validateHandlerResult intermediate', successCount, handledCount, retryCount)
     if (successCount > 1) {
-        // // //   // console.log('UFPMiddleware  more than 1 success')
+        //console.log('UFPMiddleware  more than 1 success', successCount)
         throw new Error('UFPMiddleware  more than 1 success');
     } else if (successCount === 1) {}
     //    // //   // console.log('UFPMiddleware 1 success: dispatch _SUCCESS ')
@@ -192,7 +210,7 @@ var validateResultHandlerResult = function validateResultHandlerResult(handlerRe
         handled: handledCount > 0,
         retry: retryCount > 0,
         success: successCount > 0,
-        'break': breakCount > 0
+        additionalPayload: additionalPayload
     };
 };
 var addToArrayIfNotExist = function addToArrayIfNotExist(arr, item) {
@@ -200,57 +218,66 @@ var addToArrayIfNotExist = function addToArrayIfNotExist(arr, item) {
         arr.push(item);
     }
 };
-var uniteActionResultTypes = function uniteActionResultTypes(ufpTypes, incoming) {
-    for (var i in incoming) {
-        var item = incoming[i];
-        // verify in result object is key present
-        if (ufpTypes[i] === undefined) {
-            ufpTypes[i] = [];
+var uniteActionResultTypes = function uniteActionResultTypes(ufpTypes, actionConstants) {
+    var target = {
+        REQUEST: [],
+        SUCCESS: [],
+        FAILURE: [],
+        END: []
+    };
+    for (var i in target) {
+        if (ufpTypes[i] !== undefined) {
+            if (Array.isArray(ufpTypes[i])) {
+                ufpTypes[i].map(function (element) {
+                    return addToArrayIfNotExist(target[i], element);
+                });
+            } else {
+                addToArrayIfNotExist(target[i], ufpTypes[i]);
+            }
         }
-
-        // check if item is of type array
-        if (Array.isArray(item)) {
-            // add all from incoming array
-            item.map(function (element) {
-                return addToArrayIfNotExist(ufpTypes[i], element);
-            });
-        } else {
-            // add single string value
-            addToArrayIfNotExist(ufpTypes[i], item);
+        if (actionConstants[i] !== undefined) {
+            if (Array.isArray(actionConstants[i])) {
+                actionConstants[i].map(function (element) {
+                    return addToArrayIfNotExist(target[i], element);
+                });
+            } else {
+                addToArrayIfNotExist(target[i], actionConstants[i]);
+            }
         }
     }
+    return target;
 };
-var checkToCallActionCreators = function checkToCallActionCreators(dispatch, getState, ufpAction, action, actionType) {
+/*const checkToCallActionCreators = (dispatch, getState, ufpAction, action, actionType) => {
     if (ufpAction.ufpActionCreators) {
         // //   // console.log('UFPMiddleware calling action creators', ufpAction, actionType)
-        var actionCreator = ufpAction.ufpActionCreators[actionType];
+        var actionCreator = ufpAction.ufpActionCreators[actionType]
         if (Array.isArray(actionCreator)) {
             // call all actioncreators
             for (var i in actionCreator) {
                 // call each actioncreator in array individually
                 if (typeof actionCreator[i] === 'function') {
                     dispatch(actionCreator[i]({
-                        payload: Object.assign({}, { globalState: getState() }, action.payload),
+                        payload: Object.assign({}, {globalState: getState()}, action.payload),
                         dispatch: dispatch
-                    }));
+                    }))
                 }
             }
         } else if (typeof actionCreator === 'function') {
             // //   // console.log('UFPMiddleware calling action creators', ufpAction, actionType)
             // just call single listed creator
             dispatch(actionCreator({
-                payload: Object.assign({}, { globalState: getState() }, action.payload),
+                payload: Object.assign({}, {globalState: getState()}, action.payload),
                 dispatch: dispatch
-            }));
+            }))
         }
     }
-};
-var wrapDispatcher = function wrapDispatcher(dispatch, getState, ufpAction) {
-    return function (action) {
+}*/
 
+var wrapDispatcher = function wrapDispatcher(dispatch /*, getState , ufpAction*/) {
+    return function (action) {
         if (Array.isArray(action.type)) {
             for (var i in action.type) {
-                checkToCallActionCreators(dispatch, getState, ufpAction, action, action.type[i]);
+                //checkToCallActionCreators(dispatch, getState, ufpAction, action, action.type[i])
                 // //   // console.log('Dispatching array action', i, action.type[i], action.payload)
                 dispatch({
                     type: action.type[i],
@@ -258,118 +285,83 @@ var wrapDispatcher = function wrapDispatcher(dispatch, getState, ufpAction) {
                 });
             }
         } else {
-            checkToCallActionCreators(dispatch, getState, ufpAction, action, action.type);
+            //checkToCallActionCreators(dispatch, getState, ufpAction,action, action.type)
             // //   // console.log('Dispatching normal action ', action)
             return dispatch(action);
         }
     };
 };
+
 var handleResultHandlers = function handleResultHandlers(handlerArray, resultData) {
-    var result = new Promise(function callee$1$0(resolve) {
-        var ufpErrorHandlerResultPromiseArray, promiseAll;
-        return regeneratorRuntime.async(function callee$1$0$(context$2$0) {
-            while (1) switch (context$2$0.prev = context$2$0.next) {
-                case 0:
-                    ufpErrorHandlerResultPromiseArray = [];
+    var ufpErrorHandlerResultPromiseArray;
+    return regeneratorRuntime.async(function handleResultHandlers$(context$1$0) {
+        while (1) switch (context$1$0.prev = context$1$0.next) {
+            case 0:
+                ufpErrorHandlerResultPromiseArray = [];
 
-                    handlerArray.map(function (handlerObject) {
-                        if (handlerObject.matcher(resultData)) {
-                            ufpErrorHandlerResultPromiseArray.push(handlerObject.handler(resultData));
-                        }
-                    });
-                    context$2$0.next = 4;
-                    return regeneratorRuntime.awrap(Promise.all(ufpErrorHandlerResultPromiseArray));
+                handlerArray.map(function (handlerObject) {
+                    if (handlerObject.matcher(resultData)) {
+                        ufpErrorHandlerResultPromiseArray.push(handlerObject.handler(resultData));
+                    }
+                });
+                context$1$0.next = 4;
+                return regeneratorRuntime.awrap(Promise.all(ufpErrorHandlerResultPromiseArray));
 
-                case 4:
-                    promiseAll = context$2$0.sent;
+            case 4:
+                return context$1$0.abrupt('return', context$1$0.sent);
 
-                    resolve(promiseAll);
-
-                case 6:
-                case 'end':
-                    return context$2$0.stop();
-            }
-        }, null, _this);
-    });
-    return result;
+            case 5:
+            case 'end':
+                return context$1$0.stop();
+        }
+    }, null, _this);
 };
 
 var handlePreHandlers = function handlePreHandlers(handlerArray, resultData) {
-    // // console.log('handleSuccessive 2')
-    var result = new Promise(function callee$1$0(resolve) {
-        var handled, i, handlerObject, handlerRes;
-        return regeneratorRuntime.async(function callee$1$0$(context$2$0) {
-            while (1) switch (context$2$0.prev = context$2$0.next) {
-                case 0:
-                    if (!(handlerArray.length === 0)) {
-                        context$2$0.next = 4;
-                        break;
-                    }
+    var result;
+    return regeneratorRuntime.async(function handlePreHandlers$(context$1$0) {
+        while (1) switch (context$1$0.prev = context$1$0.next) {
+            case 0:
+                if (!(handlerArray.length === 0)) {
+                    context$1$0.next = 2;
+                    break;
+                }
 
-                    // // console.log('handleSuccessive 3')
-                    resolve({
-                        'break': false,
-                        handled: false
+                return context$1$0.abrupt('return', {
+                    'break': false,
+                    handled: false
+                });
+
+            case 2:
+                context$1$0.next = 4;
+                return regeneratorRuntime.awrap(handlerArray.reduce(function (previousPromise, currentItem) {
+                    return previousPromise.then(function (previousResult) {
+                        if (!previousResult.handled) {
+                            if (currentItem.matcher(resultData)) {
+                                return Promise.resolve(currentItem.handler(resultData));
+                            } else {
+                                return Promise.resolve(previousResult);
+                            }
+                        } else {
+                            return Promise.resolve(previousResult);
+                        }
                     });
-                    context$2$0.next = 18;
-                    break;
+                }, Promise.resolve({
+                    'break': false,
+                    handled: false
+                })));
 
-                case 4:
-                    handled = false;
-                    i = 0;
+            case 4:
+                result = context$1$0.sent;
+                return context$1$0.abrupt('return', result);
 
-                case 6:
-                    if (!(i < handlerArray.length)) {
-                        context$2$0.next = 17;
-                        break;
-                    }
-
-                    handlerObject = handlerArray[i];
-
-                    if (handled) {
-                        context$2$0.next = 14;
-                        break;
-                    }
-
-                    if (!handlerObject.matcher(resultData)) {
-                        context$2$0.next = 14;
-                        break;
-                    }
-
-                    context$2$0.next = 12;
-                    return regeneratorRuntime.awrap(handlerObject.handler(resultData));
-
-                case 12:
-                    handlerRes = context$2$0.sent;
-
-                    // // console.log('handleSuccessive 6', handlerRes)
-                    if (handlerRes.handled) {
-                        // // console.log('handleSuccessive 7', handlerRes)
-                        handled = true;
-                        resolve(handlerRes);
-                    }
-
-                case 14:
-                    i++;
-                    context$2$0.next = 6;
-                    break;
-
-                case 17:
-                    if (!handled) {
-                        resolve({
-                            'break': false,
-                            handled: false
-                        });
-                    }
-
-                case 18:
-                case 'end':
-                    return context$2$0.stop();
-            }
-        }, null, _this);
-    });
-    return result;
+            case 6:
+            case 'end':
+                return context$1$0.stop();
+        }
+    }, null, _this);
 };
+
 function createFetchUrl(config, queryParams) {
     config.fetchUrl = config.url + (config.url.indexOf('?') === -1 ? '?' : '&');
     config.fetchUrl += typeof config.paramsSerializer === 'function' ? config.paramsSerializer(config.params) : queryParams(config.params);
@@ -381,42 +373,40 @@ var ufpMiddlewareRequest = function ufpMiddlewareRequest(options, config) {
         while (1) switch (context$1$0.prev = context$1$0.next) {
             case 0:
                 if (!options.useAxios) {
-                    context$1$0.next = 11;
+                    context$1$0.next = 10;
                     break;
                 }
-
-                console.log('instanceof', options.axiosInstance instanceof Axios, options.axiosInstance.constructor.name);
 
                 if (!(typeof options.axiosInstance === 'function' && typeof options.axiosInstance.request === 'function')) {
-                    context$1$0.next = 8;
+                    context$1$0.next = 7;
                     break;
                 }
 
-                context$1$0.next = 5;
+                context$1$0.next = 4;
                 return regeneratorRuntime.awrap(options.axiosInstance.request(config).then(function (response) {
                     return response;
                 }, function (response) {
                     return response;
                 }));
 
-            case 5:
+            case 4:
                 requestResponse = context$1$0.sent;
-                context$1$0.next = 9;
+                context$1$0.next = 8;
                 break;
 
-            case 8:
+            case 7:
                 throw new Error('UFP Middleware Error: if you use the middleware with useAxios=true please provide a property axiosInstance in the options');
 
-            case 9:
-                context$1$0.next = 23;
+            case 8:
+                context$1$0.next = 24;
                 break;
 
-            case 11:
-
+            case 10:
                 if (config.params && !config.fetchUrl) {
                     createFetchUrl(config, _queryParams3['default']);
                 }
-                context$1$0.next = 14;
+
+                context$1$0.next = 13;
                 return regeneratorRuntime.awrap(fetch(config.fetchUrl, {
                     method: config.method,
                     body: config.data,
@@ -424,34 +414,38 @@ var ufpMiddlewareRequest = function ufpMiddlewareRequest(options, config) {
                     headers: config.headers || {}
                 }));
 
-            case 14:
+            case 13:
                 requestResponse = context$1$0.sent;
                 isResolve = typeof config.validateStatus === 'function' ? config.validateStatus(requestResponse.status) : validateStatus(requestResponse.status);
 
                 if (isResolve) {
-                    context$1$0.next = 19;
+                    context$1$0.next = 20;
                     break;
                 }
 
                 responseClone = requestResponse.clone();
-                return context$1$0.abrupt('return', createAxiosLikeErrorResponse(config, responseClone.status, responseClone));
+                context$1$0.next = 19;
+                return regeneratorRuntime.awrap(createAxiosLikeErrorResponse(config, responseClone.status, responseClone));
 
             case 19:
+                return context$1$0.abrupt('return', context$1$0.sent);
+
+            case 20:
                 if (!requestResponse.ok) {
-                    context$1$0.next = 23;
+                    context$1$0.next = 24;
                     break;
                 }
 
-                context$1$0.next = 22;
+                context$1$0.next = 23;
                 return regeneratorRuntime.awrap(getJSON(requestResponse));
 
-            case 22:
+            case 23:
                 requestResponse.data = context$1$0.sent;
 
-            case 23:
+            case 24:
                 return context$1$0.abrupt('return', requestResponse);
 
-            case 24:
+            case 25:
             case 'end':
                 return context$1$0.stop();
         }
@@ -459,6 +453,9 @@ var ufpMiddlewareRequest = function ufpMiddlewareRequest(options, config) {
 };
 
 exports['default'] = {
+    mergeArrayOfObjects: mergeArrayOfObjects,
+    isEmptyObject: isEmptyObject,
+    createAxiosLikeErrorResponse: createAxiosLikeErrorResponse,
     createFetchUrl: createFetchUrl,
     validateStatus: validateStatus,
     queryParams: _queryParams3['default'],
@@ -475,9 +472,3 @@ exports['default'] = {
     PropTypesCheck: PropTypesCheck,
     ufpMiddlewarePrepareConfig: ufpMiddlewarePrepareConfig
 };
-
-// // console.log('handleSuccessive 2')
-
-// // console.log('handleSuccessive 4')
-
-// // console.log('handleSuccessive 5', handlerObject)

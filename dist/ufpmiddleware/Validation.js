@@ -22,27 +22,27 @@ var _UfpMiddlewareUtils2 = _interopRequireDefault(_UfpMiddlewareUtils);
 
 var UFPActionPropTypes = _defineProperty({}, _UfpRequestActions2['default'].UFP_REQUEST_ACTION, _propTypes2['default'].shape({
     ufpDefinition: _propTypes2['default'].shape({
-        url: _propTypes2['default'].string,
-        method: _propTypes2['default'].string,
+        url: _propTypes2['default'].string.isRequired,
+        method: _propTypes2['default'].oneOf(['get', 'post', 'delete', 'put', 'patch']).isRequired,
         requestType: _propTypes2['default'].string,
         actionConstants: _propTypes2['default'].object
-    }),
+    }).isRequired,
     ufpData: _propTypes2['default'].shape({
         urlParams: _propTypes2['default'].object,
         queryParams: _propTypes2['default'].object,
         body: _propTypes2['default'].any
-    }),
+    }).isRequired,
     ufpTypes: _propTypes2['default'].object,
     ufpPayload: _propTypes2['default'].object,
-    ufpActionCreators: _propTypes2['default'].object,
+    // ufpActionCreators: PropTypes.object,
     ufpResultHandler: _propTypes2['default'].arrayOf(_propTypes2['default'].shape({
         matcher: _propTypes2['default'].func.isRequired,
         handler: _propTypes2['default'].func.isRequired
-    })),
+    })).isRequired,
     ufpPreHandler: _propTypes2['default'].arrayOf(_propTypes2['default'].shape({
         matcher: _propTypes2['default'].func.isRequired,
         handler: _propTypes2['default'].func.isRequired
-    }))
+    })).isRequired
 }));
 
 var isUFPAction = function isUFPAction(action) {
@@ -65,26 +65,12 @@ var validateUFPAction = function validateUFPAction(action) {
         //  console.error('Validation returned check ', action)
         //  console.error('Validation returned check ', action[UfpRequestActions.UFP_REQUEST_ACTION])
         //  console.error('Validation returned check ', action[UfpRequestActions.UFP_REQUEST_ACTION]['ufpTypes'])
-        console.error('Validation returned ', e);
+        // console.error('Validation returned ', e)
         //  console.error('--->' + e + '<--')
         return [e];
     }
-
     return [];
-};
-
-/**
- * Is the given action a valid RSAA?
- *
- * @function isValidRSAA
- * @access public
- * @param {object} action - The action to check against the RSAA definition
- * @returns {boolean}
- */
-var isValidUFPAction = function isValidUFPAction(action) {
-    return validateUFPAction(action).length > 0;
 };
 
 exports.isUFPAction = isUFPAction;
 exports.validateUFPAction = validateUFPAction;
-exports.isValidUFPAction = isValidUFPAction;
