@@ -30,17 +30,78 @@ var InvalidUFPAction = (function (_Error) {
     }
 
     /**
-     * Error class for a custom `payload` or `meta` function throwing
+     * Error class for an error resolved by action promise when Request cancelled by Prehandler
      *
-     * @class InternalError
+     * @class UfpMiddlewareRequestCancelledError
      * @access public
      * @param {string} message - the error message
      */
     return InvalidUFPAction;
 })(Error);
 
-var InternalError = (function (_Error2) {
-    _inherits(InternalError, _Error2);
+var UfpMiddlewareRequestCancelledError = (function (_Error2) {
+    _inherits(UfpMiddlewareRequestCancelledError, _Error2);
+
+    function UfpMiddlewareRequestCancelledError() {
+        _classCallCheck(this, UfpMiddlewareRequestCancelledError);
+
+        _get(Object.getPrototypeOf(UfpMiddlewareRequestCancelledError.prototype), 'constructor', this).call(this);
+        this.name = 'UfpMiddlewareRequestCancelledError';
+        this.message = 'UfpMiddlewareRequest Cancelled';
+    }
+
+    /**
+     * Error class for an error when max retry reached
+     *
+     * @class UfpMiddlewareMaxRetryReachedError
+     * @access public
+     */
+    return UfpMiddlewareRequestCancelledError;
+})(Error);
+
+var UfpMiddlewareMaxRetryReachedError = (function (_Error3) {
+    _inherits(UfpMiddlewareMaxRetryReachedError, _Error3);
+
+    function UfpMiddlewareMaxRetryReachedError() {
+        _classCallCheck(this, UfpMiddlewareMaxRetryReachedError);
+
+        _get(Object.getPrototypeOf(UfpMiddlewareMaxRetryReachedError.prototype), 'constructor', this).call(this);
+        this.name = 'UfpMiddlewareMaxRetryReachedError';
+        this.message = 'UfpMiddleware reached the maxRetryCount';
+    }
+
+    /**
+     * Error class for an error when max retry reached
+     *
+     * @class UfpMiddlewareMaxRetryReachedError
+     * @access public
+     */
+    return UfpMiddlewareMaxRetryReachedError;
+})(Error);
+
+var UfpMiddlewareResulthandlerMoreThenOneSuccessError = (function (_Error4) {
+    _inherits(UfpMiddlewareResulthandlerMoreThenOneSuccessError, _Error4);
+
+    function UfpMiddlewareResulthandlerMoreThenOneSuccessError() {
+        _classCallCheck(this, UfpMiddlewareResulthandlerMoreThenOneSuccessError);
+
+        _get(Object.getPrototypeOf(UfpMiddlewareResulthandlerMoreThenOneSuccessError.prototype), 'constructor', this).call(this);
+        this.name = 'UfpMiddlewareResulthandlerMoreThenOneSuccessError';
+        this.message = 'UfpMiddlewareResulthandlerMoreThenOneSuccessError';
+    }
+
+    /**
+     * Error class for a custom `payload` or `meta` function throwing
+     *
+     * @class InternalError
+     * @access public
+     * @param {string} message - the error message
+     */
+    return UfpMiddlewareResulthandlerMoreThenOneSuccessError;
+})(Error);
+
+var InternalError = (function (_Error5) {
+    _inherits(InternalError, _Error5);
 
     function InternalError(message) {
         _classCallCheck(this, InternalError);
@@ -60,8 +121,8 @@ var InternalError = (function (_Error2) {
     return InternalError;
 })(Error);
 
-var RequestError = (function (_Error3) {
-    _inherits(RequestError, _Error3);
+var RequestError = (function (_Error6) {
+    _inherits(RequestError, _Error6);
 
     function RequestError(message) {
         _classCallCheck(this, RequestError);
@@ -84,8 +145,8 @@ var RequestError = (function (_Error3) {
     return RequestError;
 })(Error);
 
-var ApiError = (function (_Error4) {
-    _inherits(ApiError, _Error4);
+var ApiError = (function (_Error7) {
+    _inherits(ApiError, _Error7);
 
     function ApiError(status, statusText, response) {
         _classCallCheck(this, ApiError);
@@ -101,8 +162,8 @@ var ApiError = (function (_Error4) {
     return ApiError;
 })(Error);
 
-var ResultParserError = (function (_Error5) {
-    _inherits(ResultParserError, _Error5);
+var ResultParserError = (function (_Error8) {
+    _inherits(ResultParserError, _Error8);
 
     function ResultParserError(message) {
         _classCallCheck(this, ResultParserError);
@@ -116,8 +177,11 @@ var ResultParserError = (function (_Error5) {
 })(Error);
 
 exports.InvalidUFPAction = InvalidUFPAction;
+exports.UfpMiddlewareRequestCancelledError = UfpMiddlewareRequestCancelledError;
+exports.UfpMiddlewareMaxRetryReachedError = UfpMiddlewareMaxRetryReachedError;
+exports.UfpMiddlewareResulthandlerMoreThenOneSuccessError = UfpMiddlewareResulthandlerMoreThenOneSuccessError;
 exports.InternalError = InternalError;
 exports.RequestError = RequestError;
 exports.ApiError = ApiError;
 exports.ResultParserError = ResultParserError;
-exports['default'] = { InvalidUFPAction: InvalidUFPAction, InternalError: InternalError, RequestError: RequestError, ApiError: ApiError, ResultParserError: ResultParserError };
+exports['default'] = { InvalidUFPAction: InvalidUFPAction, UfpMiddlewareRequestCancelledError: UfpMiddlewareRequestCancelledError, UfpMiddlewareMaxRetryReachedError: UfpMiddlewareMaxRetryReachedError, UfpMiddlewareResulthandlerMoreThenOneSuccessError: UfpMiddlewareResulthandlerMoreThenOneSuccessError, InternalError: InternalError, RequestError: RequestError, ApiError: ApiError, ResultParserError: ResultParserError };

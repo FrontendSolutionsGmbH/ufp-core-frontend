@@ -8,10 +8,6 @@ var _this = this;
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-var _propTypes = require('prop-types');
-
-var _propTypes2 = _interopRequireDefault(_propTypes);
-
 var _TemplateUtils = require('./TemplateUtils');
 
 var _TemplateUtils2 = _interopRequireDefault(_TemplateUtils);
@@ -20,106 +16,24 @@ var _queryParams2 = require('./queryParams');
 
 var _queryParams3 = _interopRequireDefault(_queryParams2);
 
-var _checkPropTypes = require('check-prop-types');
+var _Errors = require('./Errors');
 
-var _checkPropTypes2 = _interopRequireDefault(_checkPropTypes);
+var _UfpMiddlewareHelperUtils = require('./UfpMiddlewareHelperUtils');
 
-var _deepmerge = require('deepmerge');
+var _UfpMiddlewareHelperUtils2 = _interopRequireDefault(_UfpMiddlewareHelperUtils);
 
-var _deepmerge2 = _interopRequireDefault(_deepmerge);
+var ReactPropTypesCheck = _UfpMiddlewareHelperUtils2['default'].ReactPropTypesCheck;
+var PropTypesCheck = _UfpMiddlewareHelperUtils2['default'].PropTypesCheck;
+var getJSON = _UfpMiddlewareHelperUtils2['default'].getJSON;
+var isEmptyObject = _UfpMiddlewareHelperUtils2['default'].isEmptyObject;
+var errorToObject = _UfpMiddlewareHelperUtils2['default'].errorToObject;
+var validateStatus = _UfpMiddlewareHelperUtils2['default'].validateStatus;
+var mergeArrayOfObjects = _UfpMiddlewareHelperUtils2['default'].mergeArrayOfObjects;
+var createAxiosLikeErrorResponse = _UfpMiddlewareHelperUtils2['default'].createAxiosLikeErrorResponse;
+var addToArrayIfNotExist = _UfpMiddlewareHelperUtils2['default'].addToArrayIfNotExist;
+var createConfigDefault = _UfpMiddlewareHelperUtils2['default'].createConfigDefault;
+var infoLogger = _UfpMiddlewareHelperUtils2['default'].infoLogger;
 
-function ReactPropTypesCheck(object, propTypes, _throw) {
-    // const stringJSON = JSON.stringify(object)
-    var error = (0, _checkPropTypes2['default'])(propTypes, object, 'prop');
-    if (error) {
-        if (_throw) {
-            throw new Error(error);
-        } else {
-            console.error(error);
-        }
-    }
-}
-function PropTypesCheck(data, propTypes) {
-    try {
-        ReactPropTypesCheck(data, propTypes, true);
-        return true;
-    } catch (e) {
-        // console.error('Validation error', e)
-        return false;
-    }
-}
-
-function isEmptyObject(obj) {
-    for (var prop in obj) {
-        if (obj.hasOwnProperty(prop)) return false;
-    }
-    return JSON.stringify(obj) === JSON.stringify({});
-}
-
-function errorToObject(err) {
-    if (!(err instanceof Error)) {
-        throw new TypeError('invalid input argument. Must provide an error object. Value: `' + err + '`.');
-    }
-    var keys;
-    var out = {};
-    out.errorToObject = true;
-    out.message = err.message;
-    if (err.stack) {
-        out.stack = err.stack;
-    }
-    // Possible Node.js (system error) properties...
-    if (err.code) {
-        out.code = err.code;
-    }
-    // Any enumerable properties...
-    keys = Object.keys(err);
-    for (var i = 0; i < keys.length; i++) {
-        if (err[keys[i]] instanceof Response) {
-            out[keys[i]] = err[keys[i]];
-        } else {
-            out[keys[i]] = JSON.parse(JSON.stringify(err[keys[i]]));
-        }
-    }
-    return out;
-}
-function validateStatus(status) {
-    return status >= 200 && status < 300;
-}
-
-/**
- * Extract JSON body from a server response made with fetch
- *
- * @function getJSON
- * @access public
- * @param {object} res - A raw response object
- * @returns {promise|undefined}
- */
-var getJSON = function getJSON(res) {
-    var contentType, emptyCodes;
-    return regeneratorRuntime.async(function getJSON$(context$1$0) {
-        while (1) switch (context$1$0.prev = context$1$0.next) {
-            case 0:
-                contentType = res.headers.get('Content-Type');
-                emptyCodes = [204, 205];
-
-                if (!(! ~emptyCodes.indexOf(res.status) && contentType && ~contentType.indexOf('json'))) {
-                    context$1$0.next = 6;
-                    break;
-                }
-
-                return context$1$0.abrupt('return', res.json());
-
-            case 6:
-                return context$1$0.abrupt('return', Promise.resolve());
-
-            case 7:
-            case 'end':
-                return context$1$0.stop();
-        }
-    }, null, _this);
-};
-
-exports.getJSON = getJSON;
 var ufpMiddlewarePrepareConfig = function ufpMiddlewarePrepareConfig(ufpAction) {
     var ufpDefinition = ufpAction.ufpDefinition;
     var ufpData = ufpAction.ufpData;
@@ -149,40 +63,6 @@ var ufpMiddlewarePrepareConfig = function ufpMiddlewarePrepareConfig(ufpAction) 
     }
     return config;
 };
-var createAxiosLikeErrorResponse = function createAxiosLikeErrorResponse(config, code, response) {
-    var err;
-    return regeneratorRuntime.async(function createAxiosLikeErrorResponse$(context$1$0) {
-        while (1) switch (context$1$0.prev = context$1$0.next) {
-            case 0:
-                err = new Error('Request failed with status code ' + response.status);
-
-                err.config = config;
-                if (code) {
-                    err.code = code;
-                }
-                err.response = response;
-                context$1$0.next = 6;
-                return regeneratorRuntime.awrap(getJSON(response));
-
-            case 6:
-                err.response.data = context$1$0.sent;
-                return context$1$0.abrupt('return', err);
-
-            case 8:
-            case 'end':
-                return context$1$0.stop();
-        }
-    }, null, _this);
-};
-var mergeArrayOfObjects = function mergeArrayOfObjects(arr) {
-    var selector = arguments.length <= 1 || arguments[1] === undefined ? function (t) {
-        return t;
-    } : arguments[1];
-
-    return arr.reduce(function (acc, curr) {
-        return (0, _deepmerge2['default'])(acc, selector(curr) || {});
-    }, {});
-};
 
 var validateResultHandlerResult = function validateResultHandlerResult(handlerResultArray) {
     var successCount = handlerResultArray.reduce(function (curr, obj) {
@@ -201,10 +81,8 @@ var validateResultHandlerResult = function validateResultHandlerResult(handlerRe
     //  console.log('UFPMiddleware validateHandlerResult intermediate', successCount, handledCount, retryCount)
     if (successCount > 1) {
         //console.log('UFPMiddleware  more than 1 success', successCount)
-        throw new Error('UFPMiddleware  more than 1 success');
-    } else if (successCount === 1) {}
-    //    // //   // console.log('UFPMiddleware 1 success: dispatch _SUCCESS ')
-
+        throw new _Errors.UfpMiddlewareResulthandlerMoreThenOneSuccessError();
+    }
     // // console.log('handledCount', handledCount, handlerResultArray)
     return {
         handled: handledCount > 0,
@@ -213,12 +91,11 @@ var validateResultHandlerResult = function validateResultHandlerResult(handlerRe
         additionalPayload: additionalPayload
     };
 };
-var addToArrayIfNotExist = function addToArrayIfNotExist(arr, item) {
-    if (arr.indexOf(item) === -1) {
-        arr.push(item);
-    }
-};
-var uniteActionResultTypes = function uniteActionResultTypes(ufpTypes, actionConstants) {
+
+var uniteActionResultTypes = function uniteActionResultTypes() {
+    var ufpTypes = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
+    var actionConstants = arguments.length <= 1 || arguments[1] === undefined ? {} : arguments[1];
+
     var target = {
         REQUEST: [],
         SUCCESS: [],
@@ -398,7 +275,7 @@ var ufpMiddlewareRequest = function ufpMiddlewareRequest(options, config) {
                 throw new Error('UFP Middleware Error: if you use the middleware with useAxios=true please provide a property axiosInstance in the options');
 
             case 8:
-                context$1$0.next = 24;
+                context$1$0.next = 23;
                 break;
 
             case 10:
@@ -431,21 +308,16 @@ var ufpMiddlewareRequest = function ufpMiddlewareRequest(options, config) {
                 return context$1$0.abrupt('return', context$1$0.sent);
 
             case 20:
-                if (!requestResponse.ok) {
-                    context$1$0.next = 24;
-                    break;
-                }
-
-                context$1$0.next = 23;
+                context$1$0.next = 22;
                 return regeneratorRuntime.awrap(getJSON(requestResponse));
 
-            case 23:
+            case 22:
                 requestResponse.data = context$1$0.sent;
 
-            case 24:
+            case 23:
                 return context$1$0.abrupt('return', requestResponse);
 
-            case 25:
+            case 24:
             case 'end':
                 return context$1$0.stop();
         }
@@ -453,22 +325,27 @@ var ufpMiddlewareRequest = function ufpMiddlewareRequest(options, config) {
 };
 
 exports['default'] = {
-    mergeArrayOfObjects: mergeArrayOfObjects,
+    ReactPropTypesCheck: ReactPropTypesCheck,
+    PropTypesCheck: PropTypesCheck,
+    getJSON: getJSON,
     isEmptyObject: isEmptyObject,
-    createAxiosLikeErrorResponse: createAxiosLikeErrorResponse,
-    createFetchUrl: createFetchUrl,
+    errorToObject: errorToObject,
     validateStatus: validateStatus,
-    queryParams: _queryParams3['default'],
-    validateResultHandlerResult: validateResultHandlerResult,
+    mergeArrayOfObjects: mergeArrayOfObjects,
+    createAxiosLikeErrorResponse: createAxiosLikeErrorResponse,
     addToArrayIfNotExist: addToArrayIfNotExist,
+    createConfigDefault: createConfigDefault,
+    infoLogger: infoLogger,
+
+    queryParams: _queryParams3['default'],
+
+    ufpMiddlewarePrepareConfig: ufpMiddlewarePrepareConfig,
+    validateResultHandlerResult: validateResultHandlerResult,
     uniteActionResultTypes: uniteActionResultTypes,
     wrapDispatcher: wrapDispatcher,
     handleResultHandlers: handleResultHandlers,
     handlePreHandlers: handlePreHandlers,
-    ufpMiddlewareRequest: ufpMiddlewareRequest,
-    getJSON: getJSON,
-    errorToObject: errorToObject,
-    ReactPropTypesCheck: ReactPropTypesCheck,
-    PropTypesCheck: PropTypesCheck,
-    ufpMiddlewarePrepareConfig: ufpMiddlewarePrepareConfig
+    createFetchUrl: createFetchUrl,
+    ufpMiddlewareRequest: ufpMiddlewareRequest
 };
+module.exports = exports['default'];

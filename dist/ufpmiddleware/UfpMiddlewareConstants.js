@@ -5,7 +5,7 @@ Object.defineProperty(exports, '__esModule', {
 });
 exports['default'] = {
     ActionConstants: {
-        UFP_ACTION_ERROR: 'UFP_ERROR:'
+        UFP_ACTION_ERROR: 'UFP_ACTION_ERROR'
     }
 };
 module.exports = exports['default'];
