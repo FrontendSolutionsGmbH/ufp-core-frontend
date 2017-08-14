@@ -1,87 +1,21 @@
-import PropTypes from 'prop-types'
+
 import TemplateUtils from './TemplateUtils'
 import queryParams from './queryParams'
-import checkPropTypes from 'check-prop-types'
-import merge from 'deepmerge'
+import {UfpMiddlewareResulthandlerMoreThenOneSuccessError} from './Errors'
 
-function ReactPropTypesCheck(object, propTypes, _throw) {
-    // const stringJSON = JSON.stringify(object)
-    var error = checkPropTypes(propTypes, object, 'prop')
-    if (error) {
-        if (_throw) {
-            throw new Error(error)
-        } else {
-            console.error(error)
-        }
-    }
-}
-function PropTypesCheck(data, propTypes) {
-    try {
-        ReactPropTypesCheck(data, propTypes, true)
-        return true
-    } catch (e) {
-        // console.error('Validation error', e)
-        return false
-    }
-}
-
-function isEmptyObject(obj) {
-    for(var prop in obj) {
-        if(obj.hasOwnProperty(prop))
-            return false
-    }
-    return JSON.stringify(obj) === JSON.stringify({})
-}
-
-function errorToObject (err) {
-    if ( !( err instanceof Error ) ) {
-        throw new TypeError( 'invalid input argument. Must provide an error object. Value: `' + err + '`.' );
-    }
-    var keys
-    var out = {}
-    out.errorToObject=true
-    out.message = err.message
-    if ( err.stack ) {
-        out.stack = err.stack
-    }
-    // Possible Node.js (system error) properties...
-    if ( err.code ) {
-        out.code = err.code
-    }
-    // Any enumerable properties...
-    keys = Object.keys( err )
-    for ( var i = 0; i < keys.length; i++ ) {
-        if(err[ keys[i]] instanceof Response) {
-            out[ keys[i] ]=err[ keys[i] ]
-        } else {
-            out[ keys[i] ] = JSON.parse(JSON.stringify( err[ keys[i] ] ))
-        }
-
-    }
-    return out
-}
-function validateStatus(status) {
-    return status >= 200 && status < 300
-}
-
-/**
- * Extract JSON body from a server response made with fetch
- *
- * @function getJSON
- * @access public
- * @param {object} res - A raw response object
- * @returns {promise|undefined}
- */
-export const getJSON =async(res) => {
-    const contentType = res.headers.get('Content-Type')
-    const emptyCodes = [204, 205]
-
-    if (!~emptyCodes.indexOf(res.status) && contentType && ~contentType.indexOf('json')) {
-        return res.json()
-    } else {
-        return Promise.resolve()
-    }
-}
+import UfpMiddlewareHelperUtils from './UfpMiddlewareHelperUtils'
+const {ReactPropTypesCheck,
+    PropTypesCheck,
+    getJSON,
+    isEmptyObject,
+    errorToObject,
+    validateStatus,
+    mergeArrayOfObjects,
+    createAxiosLikeErrorResponse,
+    addToArrayIfNotExist,
+    createConfigDefault,
+    infoLogger
+}=UfpMiddlewareHelperUtils
 
 const ufpMiddlewarePrepareConfig = (ufpAction) => {
     const {ufpDefinition, ufpData} = ufpAction
@@ -108,21 +42,6 @@ const ufpMiddlewarePrepareConfig = (ufpAction) => {
     }
     return config
 }
-const createAxiosLikeErrorResponse=async(config, code, response) =>{
-    var err=new Error('Request failed with status code ' + response.status)
-    err.config = config
-    if (code) {
-        err.code = code
-    }
-    err.response = response
-    err.response.data= await getJSON(response)
-    return err
-}
-const mergeArrayOfObjects= (arr, selector=(t)=>t) => {
-    return arr.reduce((acc, curr) => {
-        return merge(acc, selector(curr) || {})
-    }, {})
-}
 
 const validateResultHandlerResult= (handlerResultArray) => {
     var successCount = handlerResultArray.reduce((curr, obj) => (obj.success ? curr + 1 : curr), 0)
@@ -133,9 +52,7 @@ const validateResultHandlerResult= (handlerResultArray) => {
     //  console.log('UFPMiddleware validateHandlerResult intermediate', successCount, handledCount, retryCount)
     if (successCount > 1) {
         //console.log('UFPMiddleware  more than 1 success', successCount)
-        throw new Error('UFPMiddleware  more than 1 success')
-    } else if (successCount === 1) {
-        //    // //   // console.log('UFPMiddleware 1 success: dispatch _SUCCESS ')
+        throw new UfpMiddlewareResulthandlerMoreThenOneSuccessError()
     }
     // // console.log('handledCount', handledCount, handlerResultArray)
     return {
@@ -145,12 +62,8 @@ const validateResultHandlerResult= (handlerResultArray) => {
         additionalPayload
     }
 }
-const addToArrayIfNotExist= (arr, item) => {
-    if (arr.indexOf(item) === -1) {
-        arr.push(item)
-    }
-}
-const uniteActionResultTypes= ( ufpTypes, actionConstants) => {
+
+const uniteActionResultTypes= ( ufpTypes={}, actionConstants={}) => {
     var target={
         REQUEST:[],
         SUCCESS:[],
@@ -260,6 +173,7 @@ function createFetchUrl(config, queryParams) {
 }
 
 const ufpMiddlewareRequest= async(options, config) => {
+
     var requestResponse
     if (options.useAxios) {
         if(typeof options.axiosInstance === 'function' && typeof options.axiosInstance.request=== 'function') {
@@ -284,30 +198,32 @@ const ufpMiddlewareRequest= async(options, config) => {
             var responseClone=requestResponse.clone()
             return await createAxiosLikeErrorResponse(config, responseClone.status, responseClone)
         }
-        if (requestResponse.ok) {
-            requestResponse.data = await getJSON(requestResponse)
-        }
+        requestResponse.data = await getJSON(requestResponse)
     }
     return requestResponse
 }
 
 export default {
-    mergeArrayOfObjects,
+    ReactPropTypesCheck,
+    PropTypesCheck,
+    getJSON,
     isEmptyObject,
-    createAxiosLikeErrorResponse,
-    createFetchUrl,
+    errorToObject,
     validateStatus,
-    queryParams,
-    validateResultHandlerResult,
+    mergeArrayOfObjects,
+    createAxiosLikeErrorResponse,
     addToArrayIfNotExist,
+    createConfigDefault,
+    infoLogger,
+
+    queryParams,
+
+    ufpMiddlewarePrepareConfig,
+    validateResultHandlerResult,
     uniteActionResultTypes,
     wrapDispatcher,
     handleResultHandlers,
     handlePreHandlers,
-    ufpMiddlewareRequest,
-    getJSON,
-    errorToObject,
-    ReactPropTypesCheck,
-    PropTypesCheck,
-    ufpMiddlewarePrepareConfig
+    createFetchUrl,
+    ufpMiddlewareRequest
 }

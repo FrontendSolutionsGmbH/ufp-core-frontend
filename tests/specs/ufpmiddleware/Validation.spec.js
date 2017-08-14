@@ -14,12 +14,42 @@ describe('ufpmiddleware Validation', () => {
             expect(validateUFPAction({[UFPRequestActions.UFP_REQUEST_ACTION]:{
                 ufpDefinition:{
                     url:'api/Globals',
-                    method: 'get'
+                    method: 'get',
+                    actionConstants: {
+                        END:'END',
+                        FAILURE:'FAILURE',
+                        REQUEST:'REQUEST',
+                        SUCCESS:'SUCCESS'
+                    }
                 },
                 ufpData:{},
                 ufpPreHandler: [],
                 ufpResultHandler: []
             }}).length).to.be.equal(0)
+            expect(validateUFPAction({[UFPRequestActions.UFP_REQUEST_ACTION]:{
+                ufpDefinition:{
+                    url:'api/Globals',
+                    method: 'get'
+                },
+                ufpData:{},
+                ufpTypes:{
+                    END:'END',
+                    FAILURE:'FAILURE',
+                    REQUEST:'REQUEST',
+                    SUCCESS:'SUCCESS'
+                },
+                ufpPreHandler: [],
+                ufpResultHandler: []
+            }}).length).to.be.equal(0)
+            expect(validateUFPAction({[UFPRequestActions.UFP_REQUEST_ACTION]:{
+                ufpDefinition:{
+                    url:'api/Globals',
+                    method: 'get'
+                },
+                ufpData:{},
+                ufpPreHandler: [],
+                ufpResultHandler: []
+            }}).length).to.be.equal(1)
             expect(validateUFPAction({[UFPRequestActions.UFP_REQUEST_ACTION]:{
                 ufpDefinition:{
                     url:'api/Globals',

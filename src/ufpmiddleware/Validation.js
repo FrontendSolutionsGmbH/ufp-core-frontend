@@ -2,6 +2,24 @@ import UFPRequestActions from './UfpRequestActions'
 import PropTypes from 'prop-types'
 import UfpMiddlewareUtils from './UfpMiddlewareUtils'
 
+const UFPTypes=PropTypes.shape({
+    END: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.arrayOf(PropTypes.string)
+    ]).isRequired,
+    FAILURE:PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.arrayOf(PropTypes.string)
+    ]).isRequired,
+    REQUEST:PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.arrayOf(PropTypes.string)
+    ]).isRequired,
+    SUCCESS:PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.arrayOf(PropTypes.string)
+    ]).isRequired
+}).isRequired
 const UFPActionPropTypes = {
     [UFPRequestActions.UFP_REQUEST_ACTION]: PropTypes.shape({
         ufpDefinition: PropTypes.shape({
@@ -28,6 +46,15 @@ const UFPActionPropTypes = {
         })).isRequired
     })
 }
+const UFPTypesPropTypes = {
+    [UFPRequestActions.UFP_REQUEST_ACTION]: PropTypes.oneOfType([PropTypes.shape({
+        ufpTypes: UFPTypes
+    }),PropTypes.shape({
+        ufpDefinition: PropTypes.shape(
+            {actionConstants: UFPTypes
+        })
+    })])
+}
 
 const isUFPAction = (action) => {
     return typeof action === 'object' && action.hasOwnProperty(UFPRequestActions.UFP_REQUEST_ACTION)
@@ -53,6 +80,14 @@ const validateUFPAction = (action) => {
         // console.error('Validation returned ', e)
         //  console.error('--->' + e + '<--')
         return [e]
+    }
+    try {
+        UfpMiddlewareUtils.ReactPropTypesCheck(action, UFPTypesPropTypes, true)
+    }
+    catch (e) {
+        //console.error('Validation returned check ', e.message)
+        var err=new Error('Failed prop type: The prop `UFPREQUESTACTION.ufpTypes` or `UFPREQUESTACTION.ufpDefinition.actionConstants` need to be defined')
+        return [err]
     }
     return []
 }

@@ -1,4 +1,4 @@
-import {InvalidUFPAction, InternalError, RequestError, ApiError, ResultParserError} from 'ufpmiddleware/Errors'
+import {InvalidUFPAction, UfpMiddlewareRequestCancelledError, UfpMiddlewareMaxRetryReachedError, UfpMiddlewareResulthandlerMoreThenOneSuccessError, InternalError, RequestError, ApiError, ResultParserError} from 'ufpmiddleware/Errors'
 
 describe('ufpmiddleware Errors', () => {
     describe('InvalidUFPAction', () => {
@@ -9,6 +9,33 @@ describe('ufpmiddleware Errors', () => {
             expect(ufpErr).to.have.property('name', 'InvalidUFPAction')
             expect(ufpErr).to.have.property('message', 'Invalid UFPAction')
             expect(ufpErr).to.have.property('validationErrors', 'validationerrors')
+        })
+    })
+    describe('UfpMiddlewareRequestCancelledError', () => {
+        it('Should the right properties', () => {
+            expect(UfpMiddlewareRequestCancelledError).to.be.a('function')
+            var ufpErr =new UfpMiddlewareRequestCancelledError()
+            expect(ufpErr).be.an.instanceof(Error)
+            expect(ufpErr).to.have.property('name', 'UfpMiddlewareRequestCancelledError')
+            expect(ufpErr).to.have.property('message', 'UfpMiddlewareRequest Cancelled')
+        })
+    })
+    describe('UfpMiddlewareMaxRetryReachedError', () => {
+        it('Should the right properties', () => {
+            expect(UfpMiddlewareRequestCancelledError).to.be.a('function')
+            var ufpErr =new UfpMiddlewareMaxRetryReachedError()
+            expect(ufpErr).be.an.instanceof(Error)
+            expect(ufpErr).to.have.property('name', 'UfpMiddlewareMaxRetryReachedError')
+            expect(ufpErr).to.have.property('message', 'UfpMiddleware reached the maxRetryCount')
+        })
+    })
+    describe('UfpMiddlewareResulthandlerMoreThenOneSuccessError', () => {
+        it('Should the right properties', () => {
+            expect(UfpMiddlewareRequestCancelledError).to.be.a('function')
+            var ufpErr =new UfpMiddlewareResulthandlerMoreThenOneSuccessError()
+            expect(ufpErr).be.an.instanceof(Error)
+            expect(ufpErr).to.have.property('name', 'UfpMiddlewareResulthandlerMoreThenOneSuccessError')
+            expect(ufpErr).to.have.property('message', 'UfpMiddlewareResulthandlerMoreThenOneSuccessError')
         })
     })
     describe('InternalError', () => {

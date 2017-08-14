@@ -17,6 +17,49 @@ class InvalidUFPAction extends Error {
 }
 
 /**
+ * Error class for an error resolved by action promise when Request cancelled by Prehandler
+ *
+ * @class UfpMiddlewareRequestCancelledError
+ * @access public
+ * @param {string} message - the error message
+ */
+class UfpMiddlewareRequestCancelledError extends Error {
+    constructor() {
+        super()
+        this.name = 'UfpMiddlewareRequestCancelledError'
+        this.message = 'UfpMiddlewareRequest Cancelled'
+    }
+
+}
+
+/**
+ * Error class for an error when max retry reached
+ *
+ * @class UfpMiddlewareMaxRetryReachedError
+ * @access public
+ */
+class UfpMiddlewareMaxRetryReachedError extends Error {
+    constructor() {
+        super()
+        this.name = 'UfpMiddlewareMaxRetryReachedError'
+        this.message = 'UfpMiddleware reached the maxRetryCount'
+    }
+}
+
+/**
+ * Error class for an error when max retry reached
+ *
+ * @class UfpMiddlewareMaxRetryReachedError
+ * @access public
+ */
+class UfpMiddlewareResulthandlerMoreThenOneSuccessError extends Error {
+    constructor() {
+        super()
+        this.name = 'UfpMiddlewareResulthandlerMoreThenOneSuccessError'
+        this.message = 'UfpMiddlewareResulthandlerMoreThenOneSuccessError'
+    }
+}
+/**
  * Error class for a custom `payload` or `meta` function throwing
  *
  * @class InternalError
@@ -80,9 +123,10 @@ class ResultParserError extends Error {
         this.name = 'ResultParserError'
         this.message = message
     }
-
 }
 
-export { InvalidUFPAction, InternalError, RequestError, ApiError, ResultParserError }
 
-export default { InvalidUFPAction, InternalError, RequestError, ApiError, ResultParserError }
+
+export { InvalidUFPAction, UfpMiddlewareRequestCancelledError,UfpMiddlewareMaxRetryReachedError, UfpMiddlewareResulthandlerMoreThenOneSuccessError, InternalError, RequestError, ApiError, ResultParserError }
+
+export default { InvalidUFPAction, UfpMiddlewareRequestCancelledError, UfpMiddlewareMaxRetryReachedError, UfpMiddlewareResulthandlerMoreThenOneSuccessError, InternalError, RequestError, ApiError, ResultParserError}
