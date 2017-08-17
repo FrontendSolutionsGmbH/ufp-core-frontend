@@ -3,11 +3,13 @@ function noop() {}
 describe('epics ConfigureEpics', () => {
     let stubedgetEpics
     beforeEach(() => {
+        ConfigureEpics.reset()
         stubedgetEpics=sinon.stub(ConfigureEpics, 'getEpics')
     })
 
     afterEach(() => {
         stubedgetEpics.restore()
+
     })
     it('Should call next with the origninal action and dispatch with the mapped action', () => {
         noop()

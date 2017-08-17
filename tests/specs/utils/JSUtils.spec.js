@@ -14,5 +14,16 @@ describe('utils JSUtils', () => {
         })
 
     })
+    describe('pad', () => {
+        it('should fillup string left', () => {
+            expect(JSUtils.pad('000', 't')).to.be.equal('00t')
+        })
+        it('should fillup string right', () => {
+            expect(JSUtils.pad('000', 't', true)).to.be.equal('t00')
+        })
+        it('should return pad for undefined string', () => {
+            expect(JSUtils.pad('000', undefined)).to.be.equal('000')
+        })
+    })
 
 })

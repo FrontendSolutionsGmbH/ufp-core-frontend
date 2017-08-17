@@ -46,8 +46,8 @@ var toSnakeCase = function toSnakeCase(value) {
 };
 var toSnakeCase2 = function toSnakeCase2(value) {
     return value.replace(/\.?([A-Z]+)/g, function (x, y) {
-        return "_" + y.toLowerCase();
-    }).replace(/^_/, "");
+        return '_' + y.toLowerCase();
+    }).replace(/^_/, '');
 };
 var toSnakeCaseUpperCase2 = function toSnakeCaseUpperCase2(value) {
     return toSnakeCase2(value).toUpperCase();

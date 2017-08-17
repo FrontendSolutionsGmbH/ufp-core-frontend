@@ -18,20 +18,21 @@ var _epicConfigureEpicsJs = require('./epic/ConfigureEpics.js');
 
 var _epicConfigureEpicsJs2 = _interopRequireDefault(_epicConfigureEpicsJs);
 
-var name = 'ufp core',
-    version = '1.0';
+var _startupIndexJs = require('./startup/index.js');
 
-var myObject = {
-  name: name,
-  version: version,
-  UFPMiddleware: _ufpmiddlewareIndexJs2['default'],
-  UFPUtils: _utilsIndexJs2['default'],
-  ConfigureEpics: _epicConfigureEpicsJs2['default']
-};
+var _startupIndexJs2 = _interopRequireDefault(_startupIndexJs);
+
 var ConfigureEpics = _epicConfigureEpicsJs2['default'];
 exports.ConfigureEpics = ConfigureEpics;
 var UFPUtils = _utilsIndexJs2['default'];
 exports.UFPUtils = UFPUtils;
+var UFPStartup = _startupIndexJs2['default'];
+exports.UFPStartup = UFPStartup;
 var UFPMiddleware = _ufpmiddlewareIndexJs2['default'];
 exports.UFPMiddleware = UFPMiddleware;
-exports['default'] = myObject;
+exports['default'] = {
+  UFPMiddleware: _ufpmiddlewareIndexJs2['default'],
+  UFPUtils: _utilsIndexJs2['default'],
+  UFPStartup: _startupIndexJs2['default'],
+  ConfigureEpics: _epicConfigureEpicsJs2['default']
+};

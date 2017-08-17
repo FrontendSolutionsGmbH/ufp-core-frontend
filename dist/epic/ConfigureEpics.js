@@ -22,7 +22,7 @@ require('rxjs/add/operator/filter');
 
 var _reduxObservable = require('redux-observable');
 
-var _utilsJSUtilsJs = require('utils/JSUtils.js');
+var _utilsJSUtilsJs = require('../utils/JSUtils.js');
 
 var _utilsJSUtilsJs2 = _interopRequireDefault(_utilsJSUtilsJs);
 
@@ -58,6 +58,11 @@ var ConfigureEpics = (function () {
         key: 'createEpicMiddleware',
         value: function createEpicMiddleware() {
             return (0, _reduxObservable.createEpicMiddleware)(_reduxObservable.combineEpics.apply(undefined, _toConsumableArray(this.getEpics())));
+        }
+    }, {
+        key: 'reset',
+        value: function reset() {
+            this.epics = [];
         }
     }]);
 

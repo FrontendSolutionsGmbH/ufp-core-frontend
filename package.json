@@ -5,16 +5,10 @@
   "main": "dist/index.js",
   "scripts": {
     "dev": "babel-node src/index.js",
-    "lint": "eslint src/**/*.es6",
+    "lint": "eslint src/**/*.js",
     "compile": "babel --stage 0 -d dist/ src/",
     "prepublish": "npm run compile",
-    "tape": "babel-node node_modules/argg src/test/*.es6",
-    "istanbul": "npm run compile && istanbul cover --dir coverage/istanbul node_modules/argg dist/test/*.js --report lcovonly",
-    "coverage": "npm run compile && istanbul cover --dir coverage/istanbul node_modules/argg dist/test/*.js --report html",
-    "coveralls": "cat ./coverage/istanbul/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage",
-    "plato": "plato -d coverage/plato dist/index.js",
-    "test": "npm run istanbul && npm run coveralls",
-    "test2": "cross-env NODE_ENV=test karma start build/karma.config"
+    "test": "cross-env NODE_ENV=test karma start build/karma.config"
   },
   "repository": {
     "type": "git",
@@ -52,7 +46,6 @@
     "chai-as-promised": "^6.0.0",
     "chai-enzyme": "^0.6.1",
     "cheerio": "^0.22.0",
-    "coveralls": "^2.11.4",
     "cross-env": "^5.0.4",
     "dirty-chai": "^1.2.2",
     "enzyme": "^2.8.2",
@@ -76,7 +69,6 @@
     "react-test-renderer": "^15.6.1",
     "sinon": "^2.2.0",
     "sinon-chai": "^2.10.0",
-    "tape": "^4.2.0",
     "webpack": "^3.4.1",
     "whatwg-fetch": "^2.0.3"
   },
@@ -86,8 +78,8 @@
     "deepmerge": "^1.5.0",
     "no-case": "^2.3.1",
     "path-to-regexp": "^1.7.0",
-    "promise-sequential": "^1.1.1",
     "prop-types": "^15.5.10",
+    "react-addons-update": "^15.6.0",
     "redux-observable": "^0.14.0",
     "rxjs": "^5.2.0"
   }

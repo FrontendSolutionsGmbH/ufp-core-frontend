@@ -35,7 +35,7 @@ const toSnakeCase =  (value)=> {
     return noCase(value, undefined, '_')
 }
 const toSnakeCase2 =  (value)=> {
-    return value.replace(/\.?([A-Z]+)/g, function (x,y){return "_" + y.toLowerCase()}).replace(/^_/, "")
+    return value.replace(/\.?([A-Z]+)/g, function (x,y){return '_' + y.toLowerCase()}).replace(/^_/, '')
 }
 const toSnakeCaseUpperCase2 =  (value)=> {
     return  toSnakeCase2(value).toUpperCase()

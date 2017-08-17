@@ -5,7 +5,7 @@ import 'rxjs/add/operator/takeUntil'
 import 'rxjs/add/operator/filter'
 import {combineEpics} from 'redux-observable'
 import {createEpicMiddleware as _createEpicMiddleware} from 'redux-observable'
-import JSUtils from 'utils/JSUtils.js'
+import JSUtils from '../utils/JSUtils.js'
 
 
 /**
@@ -25,6 +25,9 @@ class ConfigureEpics {
     }
     createEpicMiddleware() {
         return _createEpicMiddleware(combineEpics(...this.getEpics()))
+    }
+    reset() {
+        this.epics= []
     }
 
 }
