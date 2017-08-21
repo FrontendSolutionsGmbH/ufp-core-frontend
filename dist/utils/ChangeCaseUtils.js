@@ -1,14 +1,14 @@
 'use strict';
 
-Object.defineProperty(exports, '__esModule', {
+Object.defineProperty(exports, "__esModule", {
     value: true
 });
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
 var _noCase = require('no-case');
 
 var _noCase2 = _interopRequireDefault(_noCase);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var isCharacterUppercase = function isCharacterUppercase(character) {
     return character === character.toUpperCase();
@@ -39,10 +39,10 @@ var camelCaseToConstant = function camelCaseToConstant(input) {
 };
 
 var toSnakeCaseUpperCase = function toSnakeCaseUpperCase(value, locale) {
-    return (0, _noCase2['default'])(value, locale, '_').toUpperCase();
+    return (0, _noCase2.default)(value, locale, '_').toUpperCase();
 };
 var toSnakeCase = function toSnakeCase(value) {
-    return (0, _noCase2['default'])(value, undefined, '_');
+    return (0, _noCase2.default)(value, undefined, '_');
 };
 var toSnakeCase2 = function toSnakeCase2(value) {
     return value.replace(/\.?([A-Z]+)/g, function (x, y) {
@@ -53,11 +53,10 @@ var toSnakeCaseUpperCase2 = function toSnakeCaseUpperCase2(value) {
     return toSnakeCase2(value).toUpperCase();
 };
 
-exports['default'] = {
+exports.default = {
     toSnakeCase: toSnakeCase,
     toSnakeCase2: toSnakeCase2,
     toSnakeCaseUpperCase: toSnakeCaseUpperCase,
     toSnakeCaseUpperCase2: toSnakeCaseUpperCase2,
     camelCaseToConstant: camelCaseToConstant
 };
-module.exports = exports['default'];

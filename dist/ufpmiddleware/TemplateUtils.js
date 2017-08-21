@@ -1,17 +1,17 @@
 'use strict';
 
-Object.defineProperty(exports, '__esModule', {
+Object.defineProperty(exports, "__esModule", {
     value: true
 });
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
 var _pathToRegexp = require('path-to-regexp');
 
 var _pathToRegexp2 = _interopRequireDefault(_pathToRegexp);
 
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 function urlParamsToUrl(templateUrl, urlParams) {
-    var toPath = _pathToRegexp2['default'].compile(templateUrl);
+    var toPath = _pathToRegexp2.default.compile(templateUrl);
     return toPath(urlParams);
 }
 function namedRegexMatch(text, regex, matchNames) {
@@ -23,15 +23,14 @@ function namedRegexMatch(text, regex, matchNames) {
 }
 function urlToUrlParams(templateUrl, testUrl) {
     var keys = [];
-    var re = (0, _pathToRegexp2['default'])(templateUrl, keys);
+    var re = (0, _pathToRegexp2.default)(templateUrl, keys);
     var names = keys.map(function (key) {
         return key.name;
     });
     return namedRegexMatch(testUrl, re, names);
 }
 
-exports['default'] = {
+exports.default = {
     urlParamsToUrl: urlParamsToUrl,
     urlToUrlParams: urlToUrlParams
 };
-module.exports = exports['default'];

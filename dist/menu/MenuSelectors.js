@@ -1,30 +1,28 @@
 'use strict';
 
-Object.defineProperty(exports, '__esModule', {
+Object.defineProperty(exports, "__esModule", {
     value: true
 });
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+exports.MenuDeferedActionsSelector = exports.MenuSubAreaSelector = exports.MenuSubAreasSortedSelector = exports.MenuDataSelector = exports.MenuDefinitionSelector = exports.MenuState = undefined;
 
 var _MenuReducerName = require('./MenuReducerName');
 
 var _MenuReducerName2 = _interopRequireDefault(_MenuReducerName);
 
-var MenuState = function MenuState(state) {
-    return state[_MenuReducerName2['default'].get()];
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var MenuState = exports.MenuState = function MenuState(state) {
+    return state[_MenuReducerName2.default.get()];
 };
 
-exports.MenuState = MenuState;
-var MenuDefinitionSelector = function MenuDefinitionSelector(state) {
+var MenuDefinitionSelector = exports.MenuDefinitionSelector = function MenuDefinitionSelector(state) {
     return MenuState(state).MenuDefinition;
 };
-exports.MenuDefinitionSelector = MenuDefinitionSelector;
-var MenuDataSelector = function MenuDataSelector(state) {
+var MenuDataSelector = exports.MenuDataSelector = function MenuDataSelector(state) {
     return MenuState(state).MenuData;
 };
 
-exports.MenuDataSelector = MenuDataSelector;
-var MenuSubAreasSortedSelector = function MenuSubAreasSortedSelector(state, props) {
+var MenuSubAreasSortedSelector = exports.MenuSubAreasSortedSelector = function MenuSubAreasSortedSelector(state, props) {
     var data = MenuDataSelector(state);
     var keysSorted;
     if (props.menuAreaName !== undefined && data !== undefined && data[props.menuAreaName] !== undefined) {
@@ -51,19 +49,16 @@ var MenuSubAreasSortedSelector = function MenuSubAreasSortedSelector(state, prop
     return sortedItems;
 };
 
-exports.MenuSubAreasSortedSelector = MenuSubAreasSortedSelector;
-var MenuSubAreaSelector = function MenuSubAreaSelector(state, props) {
+var MenuSubAreaSelector = exports.MenuSubAreaSelector = function MenuSubAreaSelector(state, props) {
     var data = MenuDataSelector(state);
     return data[props.menuAreaName][props.menuSubAreaName].items;
 };
 
-exports.MenuSubAreaSelector = MenuSubAreaSelector;
-var MenuDeferedActionsSelector = function MenuDeferedActionsSelector(state) {
+var MenuDeferedActionsSelector = exports.MenuDeferedActionsSelector = function MenuDeferedActionsSelector(state) {
     return MenuState(state).DeferedActionsList;
 };
 
-exports.MenuDeferedActionsSelector = MenuDeferedActionsSelector;
-exports['default'] = {
+exports.default = {
     MenuSubAreaSelector: MenuSubAreaSelector,
     MenuDefinitionSelector: MenuDefinitionSelector,
     MenuDataSelector: MenuDataSelector,

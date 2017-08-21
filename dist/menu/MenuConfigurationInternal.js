@@ -1,38 +1,38 @@
 'use strict';
 
-Object.defineProperty(exports, '__esModule', {
+Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _MenuConstants = require('./MenuConstants');
 
 var _MenuConstants2 = _interopRequireDefault(_MenuConstants);
 
-var _epicConfigureEpics = require('../epic/ConfigureEpics');
+var _ConfigureEpics = require('../epic/ConfigureEpics');
 
-var _epicConfigureEpics2 = _interopRequireDefault(_epicConfigureEpics);
+var _ConfigureEpics2 = _interopRequireDefault(_ConfigureEpics);
 
-var _epicsMenuActionEpicCreator = require('./epics/MenuActionEpicCreator');
+var _MenuActionEpicCreator = require('./epics/MenuActionEpicCreator');
 
-var _epicsMenuActionEpicCreator2 = _interopRequireDefault(_epicsMenuActionEpicCreator);
+var _MenuActionEpicCreator2 = _interopRequireDefault(_MenuActionEpicCreator);
 
-var _utilsJSUtils = require('../utils/JSUtils');
+var _JSUtils = require('../utils/JSUtils');
 
-var _utilsJSUtils2 = _interopRequireDefault(_utilsJSUtils);
+var _JSUtils2 = _interopRequireDefault(_JSUtils);
 
 var _MenuInternalUtils = require('./MenuInternalUtils');
 
 var _MenuInternalUtils2 = _interopRequireDefault(_MenuInternalUtils);
 
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
 var EmptyFunc = function EmptyFunc() {};
 
-var MenuConfigurationInternal = (function () {
+var MenuConfigurationInternal = function () {
     function MenuConfigurationInternal() {
         var _this = this;
 
@@ -42,17 +42,17 @@ var MenuConfigurationInternal = (function () {
         this.MenuData = {};
 
         this.registerMenuReducer = function (_ref) {
-            var _ref$area = _ref.area;
-            var area = _ref$area === undefined ? 'main' : _ref$area;
-            var _ref$sortIndex = _ref.sortIndex;
-            var sortIndex = _ref$sortIndex === undefined ? -1 : _ref$sortIndex;
-            var subArea = _ref.subArea;
-            var actionName = _ref.actionName;
-            var _ref$actionNames = _ref.actionNames;
-            var actionNames = _ref$actionNames === undefined ? [] : _ref$actionNames;
-            var actionHandler = _ref.actionHandler;
-            var _ref$initialState = _ref.initialState;
-            var initialState = _ref$initialState === undefined ? [] : _ref$initialState;
+            var _ref$area = _ref.area,
+                area = _ref$area === undefined ? 'main' : _ref$area,
+                _ref$sortIndex = _ref.sortIndex,
+                sortIndex = _ref$sortIndex === undefined ? -1 : _ref$sortIndex,
+                subArea = _ref.subArea,
+                actionName = _ref.actionName,
+                _ref$actionNames = _ref.actionNames,
+                actionNames = _ref$actionNames === undefined ? [] : _ref$actionNames,
+                actionHandler = _ref.actionHandler,
+                _ref$initialState = _ref.initialState,
+                initialState = _ref$initialState === undefined ? [] : _ref$initialState;
 
             //console.log('MenuConfigurator registerMenuReducer', arguments)
             //console.log('MenuConfigurator registerMenuReducer', area, actionNames, actionHandler, initialState)
@@ -76,7 +76,7 @@ var MenuConfigurationInternal = (function () {
                 // todo/fixme: generalize/centralize generation of ufp id objects!
                 area: area,
                 sortIndex: sortIndex,
-                actionName: actionName + _MenuConstants2['default'].MENU_ACTION_SUFFIX,
+                actionName: actionName + _MenuConstants2.default.MENU_ACTION_SUFFIX,
                 subArea: subArea,
                 initialState: initialState,
                 actionHandler: actionHandler
@@ -92,13 +92,13 @@ var MenuConfigurationInternal = (function () {
                     if (_this.MenuDefinition[currentActionName] === undefined) {
                         _this.MenuDefinition[currentActionName] = [];
                     }
-                    _this.MenuDefinition[currentActionName].push(Object.assign({}, menuDef, { actionName: currentActionName + _MenuConstants2['default'].MENU_ACTION_SUFFIX }));
+                    _this.MenuDefinition[currentActionName].push(Object.assign({}, menuDef, { actionName: currentActionName + _MenuConstants2.default.MENU_ACTION_SUFFIX }));
                     /**
                      * create and register an epic of the form: action->action_Menu meaning that the list of actions is going to get
                      * transformed with the menu suffix, this is handled as before just that no UfpActor is needed to watch over the state
                      *
                      */
-                    _epicConfigureEpics2['default'].registerEpic({ epic: _epicsMenuActionEpicCreator2['default'].createEpicTransformActionToMenuAction(currentActionName) });
+                    _ConfigureEpics2.default.registerEpic({ epic: _MenuActionEpicCreator2.default.createEpicTransformActionToMenuAction(currentActionName) });
                 });
             }
             if (actionName) {
@@ -107,7 +107,7 @@ var MenuConfigurationInternal = (function () {
                     _this.MenuDefinition[actionName] = [];
                 }
                 _this.MenuDefinition[actionName].push(menuDef);
-                _epicConfigureEpics2['default'].registerEpic({ epic: _epicsMenuActionEpicCreator2['default'].createEpicTransformActionToMenuAction(actionName) });
+                _ConfigureEpics2.default.registerEpic({ epic: _MenuActionEpicCreator2.default.createEpicTransformActionToMenuAction(actionName) });
             }
         };
 
@@ -123,23 +123,23 @@ var MenuConfigurationInternal = (function () {
     _createClass(MenuConfigurationInternal, [{
         key: 'createMenuEntry',
         value: function createMenuEntry(_ref2) {
-            var _ref2$open = _ref2.open;
-            var open = _ref2$open === undefined ? false : _ref2$open;
-            var _ref2$sortIndex = _ref2.sortIndex;
-            var sortIndex = _ref2$sortIndex === undefined ? 0 : _ref2$sortIndex;
-            var _ref2$component = _ref2.component;
-            var component = _ref2$component === undefined ? _utilsJSUtils2['default'].ThrowParam('react component has to be set') : _ref2$component;
-            var href = _ref2.href;
-            var styleClass = _ref2.styleClass;
-            var hash = _ref2.hash;
-            var highLight = _ref2.highLight;
-            var _ref2$callback = _ref2.callback;
-            var callback = _ref2$callback === undefined ? EmptyFunc : _ref2$callback;
-            var _ref2$children = _ref2.children;
-            var children = _ref2$children === undefined ? [] : _ref2$children;
+            var _ref2$open = _ref2.open,
+                open = _ref2$open === undefined ? false : _ref2$open,
+                _ref2$sortIndex = _ref2.sortIndex,
+                sortIndex = _ref2$sortIndex === undefined ? 0 : _ref2$sortIndex,
+                _ref2$component = _ref2.component,
+                component = _ref2$component === undefined ? _JSUtils2.default.ThrowParam('react component has to be set') : _ref2$component,
+                href = _ref2.href,
+                styleClass = _ref2.styleClass,
+                hash = _ref2.hash,
+                highLight = _ref2.highLight,
+                _ref2$callback = _ref2.callback,
+                callback = _ref2$callback === undefined ? EmptyFunc : _ref2$callback,
+                _ref2$children = _ref2.children,
+                children = _ref2$children === undefined ? [] : _ref2$children;
 
             return {
-                id: _MenuInternalUtils2['default'].createRandomId(),
+                id: _MenuInternalUtils2.default.createRandomId(),
                 hash: hash,
                 open: open,
                 styleClass: styleClass,
@@ -154,7 +154,6 @@ var MenuConfigurationInternal = (function () {
     }]);
 
     return MenuConfigurationInternal;
-})();
+}();
 
-exports['default'] = new MenuConfigurationInternal();
-module.exports = exports['default'];
+exports.default = new MenuConfigurationInternal();

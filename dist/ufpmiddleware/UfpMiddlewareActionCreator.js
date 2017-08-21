@@ -1,39 +1,38 @@
 'use strict';
 
-Object.defineProperty(exports, '__esModule', {
+Object.defineProperty(exports, "__esModule", {
     value: true
 });
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 var _UfpRequestActions = require('./UfpRequestActions');
 
 var _UfpRequestActions2 = _interopRequireDefault(_UfpRequestActions);
 
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 var createActionCreatorForDefinition = function createActionCreatorForDefinition(definition) {
-    var ufpPrehandler = arguments.length <= 1 || arguments[1] === undefined ? [] : arguments[1];
-    var ufpResultHandler = arguments.length <= 2 || arguments[2] === undefined ? [] : arguments[2];
+    var ufpPrehandler = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : [];
+    var ufpResultHandler = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : [];
     return function () {
-        var _ref = arguments.length <= 0 || arguments[0] === undefined ? {
+        var _ref = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
             urlParams: {},
             queryParams: {},
             body: undefined,
             ufpPayload: {}
-        } : arguments[0];
-
-        var _ref$urlParams = _ref.urlParams;
-        var urlParams = _ref$urlParams === undefined ? {} : _ref$urlParams;
-        var _ref$queryParams = _ref.queryParams;
-        var queryParams = _ref$queryParams === undefined ? {} : _ref$queryParams;
-        var _ref$body = _ref.body;
-        var body = _ref$body === undefined ? undefined : _ref$body;
-        var _ref$ufpPayload = _ref.ufpPayload;
-        var ufpPayload = _ref$ufpPayload === undefined ? {} : _ref$ufpPayload;
+        },
+            _ref$urlParams = _ref.urlParams,
+            urlParams = _ref$urlParams === undefined ? {} : _ref$urlParams,
+            _ref$queryParams = _ref.queryParams,
+            queryParams = _ref$queryParams === undefined ? {} : _ref$queryParams,
+            _ref$body = _ref.body,
+            body = _ref$body === undefined ? undefined : _ref$body,
+            _ref$ufpPayload = _ref.ufpPayload,
+            ufpPayload = _ref$ufpPayload === undefined ? {} : _ref$ufpPayload;
 
         // console.log('Executing automaticly generated action from definition ', UFPRequestActions, definition)
-        var result = _defineProperty({}, _UfpRequestActions2['default'].UFP_REQUEST_ACTION, {
+        var result = _defineProperty({}, _UfpRequestActions2.default.UFP_REQUEST_ACTION, {
             ufpDefinition: definition,
             ufpData: {
                 urlParams: urlParams,
@@ -49,7 +48,6 @@ var createActionCreatorForDefinition = function createActionCreatorForDefinition
     };
 };
 
-exports['default'] = {
+exports.default = {
     createActionCreatorForDefinition: createActionCreatorForDefinition
 };
-module.exports = exports['default'];

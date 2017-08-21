@@ -1,14 +1,14 @@
 'use strict';
 
-Object.defineProperty(exports, '__esModule', {
+Object.defineProperty(exports, "__esModule", {
     value: true
 });
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
 var _MenuConstants = require('./MenuConstants');
 
 var _MenuConstants2 = _interopRequireDefault(_MenuConstants);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var menuClick = function menuClick(menuEntry, pushActionCreator) {
     return function (dispatch, getState) {
@@ -26,7 +26,7 @@ var menuClick = function menuClick(menuEntry, pushActionCreator) {
 
 var menuOpen = function menuOpen(menuItem) {
     return {
-        type: _MenuConstants2['default'].ActionConstants.MENU_OPEN,
+        type: _MenuConstants2.default.ActionConstants.MENU_OPEN,
         payload: {
             menuItem: { id: menuItem.id }
         }
@@ -35,7 +35,7 @@ var menuOpen = function menuOpen(menuItem) {
 
 var menuSwitchOpenClose = function menuSwitchOpenClose(menuItem, area, path) {
     return {
-        type: _MenuConstants2['default'].ActionConstants.MENU_SWITCH_OPENCLOSE,
+        type: _MenuConstants2.default.ActionConstants.MENU_SWITCH_OPENCLOSE,
         payload: {
             menuItem: { id: menuItem.id },
             pathInfo: {
@@ -49,7 +49,7 @@ var menuSwitchOpenClose = function menuSwitchOpenClose(menuItem, area, path) {
 var menuClose = function menuClose(menuItem) {
     if (menuItem.open) {
         return {
-            type: _MenuConstants2['default'].ActionConstants.MENU_CLOSE,
+            type: _MenuConstants2.default.ActionConstants.MENU_CLOSE,
             payload: {
                 menuItem: { id: menuItem.id }
             }
@@ -57,10 +57,9 @@ var menuClose = function menuClose(menuItem) {
     }
 };
 
-exports['default'] = {
+exports.default = {
     menuClick: menuClick,
     menuOpen: menuOpen,
     menuSwitchOpenClose: menuSwitchOpenClose,
     menuClose: menuClose
 };
-module.exports = exports['default'];

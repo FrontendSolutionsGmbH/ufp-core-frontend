@@ -1,14 +1,14 @@
 'use strict';
 
-Object.defineProperty(exports, '__esModule', {
+Object.defineProperty(exports, "__esModule", {
     value: true
 });
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
 var _MenuConstants = require('../MenuConstants');
 
 var _MenuConstants2 = _interopRequireDefault(_MenuConstants);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /**
  * the menu relies on dedicated menu actions that arise from defined action names, this epic transforms
@@ -21,7 +21,7 @@ var createEpicTransformActionToMenuAction = function createEpicTransformActionTo
         return action$.filter(function (action) {
             return action.type === actionName;
         }).mapTo({
-            type: actionName + _MenuConstants2['default'].MENU_ACTION_SUFFIX,
+            type: actionName + _MenuConstants2.default.MENU_ACTION_SUFFIX,
             payload: {
                 // getState: storeLite.getState
                 getState: storeLite.getState
@@ -30,7 +30,6 @@ var createEpicTransformActionToMenuAction = function createEpicTransformActionTo
     };
 };
 
-exports['default'] = {
+exports.default = {
     createEpicTransformActionToMenuAction: createEpicTransformActionToMenuAction
 };
-module.exports = exports['default'];

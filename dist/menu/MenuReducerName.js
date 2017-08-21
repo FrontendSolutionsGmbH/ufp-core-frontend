@@ -1,10 +1,10 @@
 'use strict';
 
-Object.defineProperty(exports, '__esModule', {
+Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 var MenuReducerName = function MenuReducerName() {
     var _this = this;
@@ -39,5 +39,4 @@ var MenuReducerName = function MenuReducerName() {
     this.reducerName = 'ufpMenu';
 };
 
-exports['default'] = new MenuReducerName();
-module.exports = exports['default'];
+exports.default = new MenuReducerName();

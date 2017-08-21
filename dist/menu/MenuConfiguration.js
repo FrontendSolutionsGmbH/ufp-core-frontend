@@ -1,10 +1,8 @@
 'use strict';
 
-Object.defineProperty(exports, '__esModule', {
+Object.defineProperty(exports, "__esModule", {
     value: true
 });
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
 var _react = require('react');
 
@@ -17,6 +15,8 @@ var _MenuConfigurationInternal2 = _interopRequireDefault(_MenuConfigurationInter
 var _reactAddonsUpdate = require('react-addons-update');
 
 var _reactAddonsUpdate2 = _interopRequireDefault(_reactAddonsUpdate);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var creators = {};
 
@@ -50,7 +50,7 @@ function createMenu(MenuConfig, actionNamesArray) {
     ];
     uniqueActionNames(actionNames, actionNamesArray);
     //console.log('GENERICMENU createGenericMenu', MenuConfig)
-    _MenuConfigurationInternal2['default'].registerMenuReducer({
+    _MenuConfigurationInternal2.default.registerMenuReducer({
         area: MenuConfig.settings.area || 'main',
         subArea: MenuConfig.settings.subArea,
         sortIndex: MenuConfig.settings.sortIndex,
@@ -67,9 +67,9 @@ function createMenu(MenuConfig, actionNamesArray) {
                             result = getMenuEntryCreator(child.creator)(child, data);
                             // console.log('createGenericMenu2', result)
                         } else {
-                                //console.log('createGenericMenu call createEntry')
-                                result = createEntry(child);
-                            }
+                            //console.log('createGenericMenu call createEntry')
+                            result = createEntry(child);
+                        }
                         result.map(function (entry) {
                             children.push(entry);
                         });
@@ -99,7 +99,7 @@ function createMenu(MenuConfig, actionNamesArray) {
                 if (item.callback !== undefined && typeof item.callback === 'function') {
                     def.callback = item.callback;
                 }
-                return [_MenuConfigurationInternal2['default'].createMenuEntry(def)];
+                return [_MenuConfigurationInternal2.default.createMenuEntry(def)];
             }
 
             if (MenuConfig.isAuthenticatedSelector(data.getState())) {
@@ -118,7 +118,7 @@ function createMenu(MenuConfig, actionNamesArray) {
                 });
                 console.log('menuAuthenticated', menuAuthenticated);
 
-                return (0, _reactAddonsUpdate2['default'])(data.state, { $set: menuAuthenticated });
+                return (0, _reactAddonsUpdate2.default)(data.state, { $set: menuAuthenticated });
             } else {
                 //console.log('GENERICMENU ACTION HANDLER CREATING UNAUTHENTICATED MENU')
                 var menuUnauthenticated = [];
@@ -134,16 +134,15 @@ function createMenu(MenuConfig, actionNamesArray) {
                     });
                 });
                 console.log('menuUnauthenticated', menuUnauthenticated);
-                return (0, _reactAddonsUpdate2['default'])(data.state, { $set: menuUnauthenticated });
+                return (0, _reactAddonsUpdate2.default)(data.state, { $set: menuUnauthenticated });
             }
         },
         actionNames: actionNames
     });
 }
 
-exports['default'] = {
-    createMenuEntry: _MenuConfigurationInternal2['default'].createMenuEntry,
+exports.default = {
+    createMenuEntry: _MenuConfigurationInternal2.default.createMenuEntry,
     createMenu: createMenu,
     registerCreator: registerCreator
 };
-module.exports = exports['default'];

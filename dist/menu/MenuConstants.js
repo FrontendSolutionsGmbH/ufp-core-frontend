@@ -1,6 +1,6 @@
 'use strict';
 
-Object.defineProperty(exports, '__esModule', {
+Object.defineProperty(exports, "__esModule", {
     value: true
 });
 var ActionConstants = {
@@ -17,10 +17,9 @@ var MenuEntryTypeEnum = {
     DIVIDER: 'DIVIDER'
 };
 
-exports['default'] = {
+exports.default = {
     MENU_ACTION_SUFFIX: '_MENU',
     ActionConstants: ActionConstants,
     MenuStateEnum: MenuStateEnum,
     MenuEntryTypeEnum: MenuEntryTypeEnum
 };
-module.exports = exports['default'];

@@ -1,12 +1,9 @@
 'use strict';
 
-Object.defineProperty(exports, '__esModule', {
+Object.defineProperty(exports, "__esModule", {
     value: true
 });
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+exports.getInitialState = undefined;
 
 var _reactAddonsUpdate = require('react-addons-update');
 
@@ -20,15 +17,18 @@ var _MenuInternalUtils = require('./MenuInternalUtils');
 
 var _MenuInternalUtils2 = _interopRequireDefault(_MenuInternalUtils);
 
-var getInitialState = function getInitialState() {
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+var getInitialState = exports.getInitialState = function getInitialState() {
     return {
-        MenuData: _MenuConfigurationInternal2['default'].getMenuData(),
-        MenuDefinition: _MenuConfigurationInternal2['default'].getMenuDefinition(),
+        MenuData: _MenuConfigurationInternal2.default.getMenuData(),
+        MenuDefinition: _MenuConfigurationInternal2.default.getMenuDefinition(),
         DeferedActionsList: []
     };
 };
 
-exports.getInitialState = getInitialState;
 var MenuActionListReducer = function MenuActionListReducer(state, action) {
     // // console.log('MenuReducer Called', state, action)
     var menuEntryAll = state.MenuDefinition[action.type];
@@ -42,7 +42,7 @@ var MenuActionListReducer = function MenuActionListReducer(state, action) {
             // if menu registered action is encountered, store the aftermath action in the action list to be executed after the "normal" action handlers for that action have done their work
             // this defered actions is then called from the menuactor
             if (pushedalread[menuEntry.actionName] === undefined) {
-                state = (0, _reactAddonsUpdate2['default'])(state, { DeferedActionsList: { $push: [menuEntry.actionName] } });
+                state = (0, _reactAddonsUpdate2.default)(state, { DeferedActionsList: { $push: [menuEntry.actionName] } });
             }
             pushedalread[menuEntry.actionName] = true;
             // // console.log('MenuReducer new state is', state)
@@ -69,24 +69,24 @@ var MenuActionListReducer = function MenuActionListReducer(state, action) {
                             });
                             if (Array.isArray(newLocalState)) {
                                 newLocalState.map(function (menuEntry) {
-                                    _MenuInternalUtils2['default'].sortAllChildren(menuEntry);
+                                    _MenuInternalUtils2.default.sortAllChildren(menuEntry);
                                 });
                             }
                             // retrieve the local state for the menu, each menu reducer shall just receive its local menu definition
-                            state = (0, _reactAddonsUpdate2['default'])(state, { MenuData: _defineProperty({}, menuEntry.area, _defineProperty({}, menuEntry.subArea, { items: { $set: newLocalState } })) });
+                            state = (0, _reactAddonsUpdate2.default)(state, { MenuData: _defineProperty({}, menuEntry.area, _defineProperty({}, menuEntry.subArea, { items: { $set: newLocalState } })) });
                         }
                     });
                 }
             }
             // remove defered action from list
             // // console.log('MenuReducer removing defered action', action)
-            state = (0, _reactAddonsUpdate2['default'])(state, { DeferedActionsList: { $splice: [[state.DeferedActionsList.indexOf(action.type), 1]] } });
+            state = (0, _reactAddonsUpdate2.default)(state, { DeferedActionsList: { $splice: [[state.DeferedActionsList.indexOf(action.type), 1]] } });
         }
         return state;
     }
 };
 
-exports['default'] = {
+exports.default = {
     getInitialState: getInitialState,
     MenuActionListReducer: MenuActionListReducer
 };

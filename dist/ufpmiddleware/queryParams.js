@@ -1,8 +1,11 @@
 'use strict';
 
-Object.defineProperty(exports, '__esModule', {
+Object.defineProperty(exports, "__esModule", {
     value: true
 });
+
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
 exports.isArray = isArray;
 exports.isObject = isObject;
 exports.isDate = isDate;
@@ -17,7 +20,6 @@ var toString = Object.prototype.toString;
  * @param {Object} val The value to test
  * @returns {boolean} True if value is an Array, otherwise false
  */
-
 function isArray(val) {
     return toString.call(val) === '[object Array]';
 }
@@ -28,9 +30,8 @@ function isArray(val) {
  * @param {Object} val The value to test
  * @returns {boolean} True if value is an Object, otherwise false
  */
-
 function isObject(val) {
-    return val !== null && typeof val === 'object';
+    return val !== null && (typeof val === 'undefined' ? 'undefined' : _typeof(val)) === 'object';
 }
 
 /**
@@ -39,7 +40,6 @@ function isObject(val) {
  * @param {Object} val The value to test
  * @returns {boolean} True if value is a Date, otherwise false
  */
-
 function isDate(val) {
     return toString.call(val) === '[object Date]';
 }
@@ -75,4 +75,4 @@ function queryParams(params) {
     return parts.join('&');
 }
 
-exports['default'] = queryParams;
+exports.default = queryParams;

@@ -1,10 +1,8 @@
 'use strict';
 
-Object.defineProperty(exports, '__esModule', {
+Object.defineProperty(exports, "__esModule", {
     value: true
 });
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
 var _MenuActionCreators = require('./MenuActionCreators');
 
@@ -30,12 +28,13 @@ var _MenuReducerName = require('./MenuReducerName');
 
 var _MenuReducerName2 = _interopRequireDefault(_MenuReducerName);
 
-exports['default'] = {
-    MenuActionCreators: _MenuActionCreators2['default'],
-    MenuConfiguration: _MenuConfiguration2['default'],
-    MenuConstants: _MenuConstants2['default'],
-    MenuReducer: _MenuReducer2['default'],
-    MenuReducerName: _MenuReducerName2['default'],
-    MenuSelectors: _MenuSelectors2['default']
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = {
+    MenuActionCreators: _MenuActionCreators2.default,
+    MenuConfiguration: _MenuConfiguration2.default,
+    MenuConstants: _MenuConstants2.default,
+    MenuReducer: _MenuReducer2.default,
+    MenuReducerName: _MenuReducerName2.default,
+    MenuSelectors: _MenuSelectors2.default
 };
-module.exports = exports['default'];

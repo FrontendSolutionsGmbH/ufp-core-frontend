@@ -1,8 +1,9 @@
 'use strict';
 
-Object.defineProperty(exports, '__esModule', {
+Object.defineProperty(exports, "__esModule", {
     value: true
 });
+
 
 var ThrowParam = function ThrowParam(string) {
     throw new Error(string);
@@ -17,8 +18,7 @@ function pad(pad, str, padRight) {
     }
 }
 
-exports['default'] = {
+exports.default = {
     ThrowParam: ThrowParam,
     pad: pad
 };
-module.exports = exports['default'];

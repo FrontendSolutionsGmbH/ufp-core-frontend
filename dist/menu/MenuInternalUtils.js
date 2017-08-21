@@ -1,6 +1,6 @@
 'use strict';
 
-Object.defineProperty(exports, '__esModule', {
+Object.defineProperty(exports, "__esModule", {
     value: true
 });
 var findPathForMenuId = function findPathForMenuId(object, id) {
@@ -56,9 +56,8 @@ var sortAllChildren = function sortAllChildren(menuEntry) {
     }
 };
 
-exports['default'] = {
+exports.default = {
     sortAllChildren: sortAllChildren,
     createRandomId: createRandomId,
     findPathForMenuId: findPathForMenuId
 };
-module.exports = exports['default'];

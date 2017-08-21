@@ -1,30 +1,32 @@
 'use strict';
 
-Object.defineProperty(exports, '__esModule', {
+Object.defineProperty(exports, "__esModule", {
     value: true
 });
+
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 var flattenObject = function flattenObject(target, object) {
-    var path = arguments.length <= 2 || arguments[2] === undefined ? '' : arguments[2];
+    var path = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : '';
 
     for (var i in object) {
         if (object.hasOwnProperty(i)) {
             if (object[i] !== undefined) {
                 if (object[i] !== null) {
                     if (object[i] !== '') {
-                        if (typeof object[i] === 'object') {
+                        if (_typeof(object[i]) === 'object') {
                             flattenObject(target, object[i], path === '' ? i : path + '.' + i);
                         } else if (Array.isArray(object[i])) {
                             // flatten array as comma separated list ?
                         } else {
-                                if (Array.isArray(object)) {
-                                    target[path === '' ? '[' + i + ']' : path + '[' + i + ']'] = object[i];
-                                } else {
-                                    target[path === '' ? i : path + '.' + i] = object[i];
-                                }
+                            if (Array.isArray(object)) {
+                                target[path === '' ? '[' + i + ']' : path + '[' + i + ']'] = object[i];
+                            } else {
+                                target[path === '' ? i : path + '.' + i] = object[i];
                             }
+                        }
                     }
                 }
             }
@@ -69,9 +71,8 @@ var isObjectEmpty = function isObjectEmpty(obj) {
     return true;
 };
 
-exports['default'] = {
+exports.default = {
     isObjectEmpty: isObjectEmpty,
     flattenObject: flattenObject,
     buildUpdateObjectSetValue: buildUpdateObjectSetValue
 };
-module.exports = exports['default'];

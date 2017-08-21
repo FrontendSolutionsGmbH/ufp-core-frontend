@@ -1,13 +1,16 @@
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
 /**
  * identity helper method to for various occasions, where just the input needs to be returned
  * @param t
  * @returns {*}
  */
-'use strict';
-
-Object.defineProperty(exports, '__esModule', {
-    value: true
-});
 var identity = function identity(t) {
     return t;
 };
@@ -25,7 +28,7 @@ var getNodeFromObject = function getNodeFromObject(nodeName, object) {
         if (i === nodeName) {
             //     // console.log('Getnode returning 1', object[i])
             return object[i];
-        } else if (typeof object[i] === 'object' && object[i] !== null) {
+        } else if (_typeof(object[i]) === 'object' && object[i] !== null) {
             var tempResult = getNodeFromObject(nodeName, object[i]);
             if (tempResult !== undefined) {
                 //      // console.log('Getnode returning 2', tempResult)
@@ -69,22 +72,18 @@ var createActionCreator = function createActionCreator(type, actionCreator, meta
     var finalActionCreator = typeof actionCreator === 'function' ? actionCreator : identity;
 
     return function () {
-        for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-            args[_key] = arguments[_key];
-        }
-
         var action = {
             type: type,
-            payload: finalActionCreator.apply(undefined, args)
+            payload: finalActionCreator.apply(undefined, arguments)
         };
 
-        if (args.length === 1 && args[0] instanceof Error) {
+        if (arguments.length === 1 && (arguments.length <= 0 ? undefined : arguments[0]) instanceof Error) {
             // Handle FSA errors where the payload is an Error object. Set error.
             action.error = true;
         }
 
         if (typeof metaCreator === 'function') {
-            action.meta = metaCreator.apply(undefined, args);
+            action.meta = metaCreator.apply(undefined, arguments);
         }
 
         return action;
@@ -99,8 +98,9 @@ var createActionCreator = function createActionCreator(type, actionCreator, meta
  * @returns {reducer} returns the reducer method
  */
 var createReducer = function createReducer(initialState, handlers) {
-    return function (state, action) {
-        if (state === undefined) state = initialState;
+    return function () {
+        var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState;
+        var action = arguments[1];
 
         // // console.log('DEBUG 1 REDUCER CALLED')
         var handler = handlers[action.type];
@@ -115,8 +115,9 @@ var createReducer = function createReducer(initialState, handlers) {
  * @returns {reducer}
  */
 var createReducerWithChildReducers = function createReducerWithChildReducers(initialState, handlers, reducers) {
-    return function (state, action) {
-        if (state === undefined) state = initialState;
+    return function () {
+        var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState;
+        var action = arguments[1];
 
         //  // console.log('createReducerWithChildReducers executing  ', action.type, reducers)
         var currentState = state;
@@ -138,24 +139,23 @@ var createReducerWithChildReducers = function createReducerWithChildReducers(ini
  * @returns {Function}
  */
 var bindActionCreatorAndParams = function bindActionCreatorAndParams(actionCreator, dispatch) {
-    for (var _len2 = arguments.length, params = Array(_len2 > 2 ? _len2 - 2 : 0), _key2 = 2; _key2 < _len2; _key2++) {
-        params[_key2 - 2] = arguments[_key2];
+    for (var _len = arguments.length, params = Array(_len > 2 ? _len - 2 : 0), _key = 2; _key < _len; _key++) {
+        params[_key - 2] = arguments[_key];
     }
 
     return function () {
-        for (var _len3 = arguments.length, args = Array(_len3), _key3 = 0; _key3 < _len3; _key3++) {
-            args[_key3] = arguments[_key3];
+        for (var _len2 = arguments.length, args = Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
+            args[_key2] = arguments[_key2];
         }
 
         return dispatch(actionCreator.apply(undefined, params.concat(args)));
     };
 };
 
-exports['default'] = {
+exports.default = {
     createLocalSelector: createLocalSelector,
     bindActionCreatorAndParams: bindActionCreatorAndParams,
     createReducer: createReducer,
     createActionCreator: createActionCreator,
     createReducerWithChildReducers: createReducerWithChildReducers
 };
-module.exports = exports['default'];
