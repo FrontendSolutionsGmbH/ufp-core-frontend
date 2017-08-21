@@ -4,6 +4,14 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
+var _defineProperty2 = require('babel-runtime/helpers/defineProperty');
+
+var _defineProperty3 = _interopRequireDefault(_defineProperty2);
+
+var _keys = require('babel-runtime/core-js/object/keys');
+
+var _keys2 = _interopRequireDefault(_keys);
+
 var _StartupConstants = require('./StartupConstants');
 
 var _StartupConstants2 = _interopRequireDefault(_StartupConstants);
@@ -14,8 +22,6 @@ var _reactAddonsUpdate2 = _interopRequireDefault(_reactAddonsUpdate);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
 var LoadingStateEnum = _StartupConstants2.default.LoadingStateEnum;
 
 
@@ -25,7 +31,7 @@ var getInitialStatus = function getInitialStatus(StartupStageDefinition) {
     // good ole iterate iterate but no external lib used, todo: fixme: provide Object.reduce() helper method
     for (var i in StartupStageDefinition) {
         var stage = StartupStageDefinition[i];
-        Object.keys(stage).map(function () {
+        (0, _keys2.default)(stage).map(function () {
             totalSteps++;
         });
     }
@@ -36,7 +42,7 @@ var getInitialStatus = function getInitialStatus(StartupStageDefinition) {
         stagePercentage: 0,
         totalPercentage: 0,
         stepPercentage: 0,
-        totalStages: Object.keys(StartupStageDefinition).length,
+        totalStages: (0, _keys2.default)(StartupStageDefinition).length,
         totalSteps: totalSteps,
         totalFinishedSteps: 0
     };
@@ -45,7 +51,7 @@ var getInitialStatus = function getInitialStatus(StartupStageDefinition) {
 
 var getInitialStageStatus = function getInitialStageStatus(StartupStageDefinition) {
     var obj = {};
-    Object.keys(StartupStageDefinition).sort().map(function (StartupStageDefinitionName, index) {
+    (0, _keys2.default)(StartupStageDefinition).sort().map(function (StartupStageDefinitionName, index) {
         var stage = StartupStageDefinition[StartupStageDefinitionName];
         obj[index] = {
             totalSteps: stage.length,
@@ -120,7 +126,7 @@ var stepReducer = function stepReducer(state, action) {
     }
 
     var currentStageIndex = state.status.currentStageIndex;
-    var stageKeys = Object.keys(state.stageDefinition).sort();
+    var stageKeys = (0, _keys2.default)(state.stageDefinition).sort();
     //  // // console.log('StartupReducer ', currentStageIndex, stageKeys)
     // marker flag if any of the registered actions are incoming (dont update state otherwise)
     var currentStage = state.stageDefinition[stageKeys[currentStageIndex]];
@@ -130,22 +136,22 @@ var stepReducer = function stepReducer(state, action) {
         // // console.log('StartupReducer checking', action.type, stepDef.actionNameSuccess)
         // // console.log('StartupReducer checking', action.type === stepDef.actionNameSuccess)
         if (action.type === stepDef.actionNameSuccess) {
-            state = (0, _reactAddonsUpdate2.default)(state, { stepStatus: _defineProperty({}, stepDef.name, { $set: LoadingStateEnum.SUCCESS }) });
+            state = (0, _reactAddonsUpdate2.default)(state, { stepStatus: (0, _defineProperty3.default)({}, stepDef.name, { $set: LoadingStateEnum.SUCCESS }) });
             // increase step for every success
             state = (0, _reactAddonsUpdate2.default)(state, { status: { totalFinishedSteps: { $set: state.status.totalFinishedSteps + 1 } } });
             //update count in stageStatus
-            state = (0, _reactAddonsUpdate2.default)(state, { stageStatus: _defineProperty({}, currentStageIndex, { successCount: { $set: state.stageStatus[currentStageIndex].successCount + 1 } }) });
+            state = (0, _reactAddonsUpdate2.default)(state, { stageStatus: (0, _defineProperty3.default)({}, currentStageIndex, { successCount: { $set: state.stageStatus[currentStageIndex].successCount + 1 } }) });
             state = updateStatus(state);
             // console.log('StartupReducer success', stepDef)
             return true; //breaks the execution
         } else if (action.type === stepDef.actionNameFailure) {
-            state = (0, _reactAddonsUpdate2.default)(state, { stepStatus: _defineProperty({}, stepDef.name, { $set: LoadingStateEnum.FAILURE }) });
+            state = (0, _reactAddonsUpdate2.default)(state, { stepStatus: (0, _defineProperty3.default)({}, stepDef.name, { $set: LoadingStateEnum.FAILURE }) });
             //update count in stageStatus
             if (stepDef.required === true) {
-                state = (0, _reactAddonsUpdate2.default)(state, { stageStatus: _defineProperty({}, currentStageIndex, { failureCount: { $set: state.stageStatus[currentStageIndex].failureCount + 1 } }) });
+                state = (0, _reactAddonsUpdate2.default)(state, { stageStatus: (0, _defineProperty3.default)({}, currentStageIndex, { failureCount: { $set: state.stageStatus[currentStageIndex].failureCount + 1 } }) });
             } else {
                 state = (0, _reactAddonsUpdate2.default)(state, { status: { totalFinishedSteps: { $set: state.status.totalFinishedSteps + 1 } } });
-                state = (0, _reactAddonsUpdate2.default)(state, { stageStatus: _defineProperty({}, currentStageIndex, { successCount: { $set: state.stageStatus[currentStageIndex].successCount + 1 } }) });
+                state = (0, _reactAddonsUpdate2.default)(state, { stageStatus: (0, _defineProperty3.default)({}, currentStageIndex, { successCount: { $set: state.stageStatus[currentStageIndex].successCount + 1 } }) });
             }
 
             state = updateStatus(state);

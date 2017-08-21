@@ -4,7 +4,11 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+var _typeof2 = require('babel-runtime/helpers/typeof');
+
+var _typeof3 = _interopRequireDefault(_typeof2);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /**
  * identity helper method to for various occasions, where just the input needs to be returned
@@ -28,7 +32,7 @@ var getNodeFromObject = function getNodeFromObject(nodeName, object) {
         if (i === nodeName) {
             //     // console.log('Getnode returning 1', object[i])
             return object[i];
-        } else if (_typeof(object[i]) === 'object' && object[i] !== null) {
+        } else if ((0, _typeof3.default)(object[i]) === 'object' && object[i] !== null) {
             var tempResult = getNodeFromObject(nodeName, object[i]);
             if (tempResult !== undefined) {
                 //      // console.log('Getnode returning 2', tempResult)

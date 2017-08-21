@@ -4,6 +4,14 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
+var _assign = require('babel-runtime/core-js/object/assign');
+
+var _assign2 = _interopRequireDefault(_assign);
+
+var _promise = require('babel-runtime/core-js/promise');
+
+var _promise2 = _interopRequireDefault(_promise);
+
 var _UfpRequestActions = require('./UfpRequestActions');
 
 var _UfpRequestActions2 = _interopRequireDefault(_UfpRequestActions);
@@ -41,7 +49,7 @@ function createUfpMiddleware() {
                 }
                 //  console.log('UFP Middleware ', UFPMiddlewareConfiguration, action)
 
-                var dispatchPromise = new Promise(async function (resolve /*, reject */) {
+                var dispatchPromise = new _promise2.default(async function (resolve /*, reject */) {
                     // Do not process actions without a [UFP_ACTION] property
                     // Try to dispatch an error request FSA for invalid UFPAction's
                     var validationErrors = (0, _Validation.validateUFPAction)(action);
@@ -67,7 +75,7 @@ function createUfpMiddleware() {
                             getState: getState,
                             globalState: getState()
                         };
-                        var thePayload = Object.assign({}, ufpPayload, additionalPayload);
+                        var thePayload = (0, _assign2.default)({}, ufpPayload, additionalPayload);
                         // Object.assign({}, ufpDefinition.actionConstants || {}, ufpAction.ufpTypes || {})
                         // join together 2 action type definitions, one from action and one from definition, both definitions are handled as array
 
@@ -162,7 +170,7 @@ function createUfpMiddleware() {
                                         if (validateResult.handled && validateResult.success) {
                                             dispatchWrapper({
                                                 type: ufpTypesUnited.SUCCESS,
-                                                payload: Object.assign(Object.assign({}, { data: requestResponse.data }, ufpAction.ufpPayload), { additionalPayload: validateResult.additionalPayload })
+                                                payload: (0, _assign2.default)((0, _assign2.default)({}, { data: requestResponse.data }, ufpAction.ufpPayload), { additionalPayload: validateResult.additionalPayload })
                                             });
                                         }
                                     } catch (err) {
@@ -189,7 +197,7 @@ function createUfpMiddleware() {
                                         if (validateResult.handled && validateResult.success) {
                                             dispatchWrapper({
                                                 type: ufpTypesUnited.SUCCESS,
-                                                payload: Object.assign(Object.assign({}, { data: requestResponse.data }, ufpAction.ufpPayload), { additionalPayload: validateResult.additionalPayload })
+                                                payload: (0, _assign2.default)((0, _assign2.default)({}, { data: requestResponse.data }, ufpAction.ufpPayload), { additionalPayload: validateResult.additionalPayload })
                                             });
                                         }
                                     } catch (err) {
@@ -222,7 +230,7 @@ function createUfpMiddleware() {
                                         if (validateResult.handled && validateResult.success) {
                                             dispatchWrapper({
                                                 type: ufpTypesUnited.SUCCESS,
-                                                payload: Object.assign(Object.assign({}, { data: requestResponse.data }, ufpAction.ufpPayload), { additionalPayload: validateResult.additionalPayload })
+                                                payload: (0, _assign2.default)((0, _assign2.default)({}, { data: requestResponse.data }, ufpAction.ufpPayload), { additionalPayload: validateResult.additionalPayload })
                                             });
                                         }
                                     } catch (err) {
@@ -247,7 +255,7 @@ function createUfpMiddleware() {
                                     //  console.log('xxxxx middleware rejectin0')
                                     dispatchWrapper({
                                         type: ufpTypesUnited.FAILURE,
-                                        payload: Object.assign(Object.assign({}, { data: requestResponse.data }, ufpAction.ufpPayload), { additionalPayload: validateResult.additionalPayload })
+                                        payload: (0, _assign2.default)((0, _assign2.default)({}, { data: requestResponse.data }, ufpAction.ufpPayload), { additionalPayload: validateResult.additionalPayload })
 
                                     });
                                     totalSuccess = false;

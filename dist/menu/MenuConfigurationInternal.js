@@ -4,7 +4,17 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+var _assign = require('babel-runtime/core-js/object/assign');
+
+var _assign2 = _interopRequireDefault(_assign);
+
+var _classCallCheck2 = require('babel-runtime/helpers/classCallCheck');
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = require('babel-runtime/helpers/createClass');
+
+var _createClass3 = _interopRequireDefault(_createClass2);
 
 var _MenuConstants = require('./MenuConstants');
 
@@ -28,16 +38,13 @@ var _MenuInternalUtils2 = _interopRequireDefault(_MenuInternalUtils);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
 var EmptyFunc = function EmptyFunc() {};
 
 var MenuConfigurationInternal = function () {
     function MenuConfigurationInternal() {
         var _this = this;
 
-        _classCallCheck(this, MenuConfigurationInternal);
-
+        (0, _classCallCheck3.default)(this, MenuConfigurationInternal);
         this.MenuDefinition = [];
         this.MenuData = {};
 
@@ -92,7 +99,7 @@ var MenuConfigurationInternal = function () {
                     if (_this.MenuDefinition[currentActionName] === undefined) {
                         _this.MenuDefinition[currentActionName] = [];
                     }
-                    _this.MenuDefinition[currentActionName].push(Object.assign({}, menuDef, { actionName: currentActionName + _MenuConstants2.default.MENU_ACTION_SUFFIX }));
+                    _this.MenuDefinition[currentActionName].push((0, _assign2.default)({}, menuDef, { actionName: currentActionName + _MenuConstants2.default.MENU_ACTION_SUFFIX }));
                     /**
                      * create and register an epic of the form: action->action_Menu meaning that the list of actions is going to get
                      * transformed with the menu suffix, this is handled as before just that no UfpActor is needed to watch over the state
@@ -120,7 +127,7 @@ var MenuConfigurationInternal = function () {
         };
     }
 
-    _createClass(MenuConfigurationInternal, [{
+    (0, _createClass3.default)(MenuConfigurationInternal, [{
         key: 'createMenuEntry',
         value: function createMenuEntry(_ref2) {
             var _ref2$open = _ref2.open,
@@ -152,7 +159,6 @@ var MenuConfigurationInternal = function () {
             };
         }
     }]);
-
     return MenuConfigurationInternal;
 }();
 

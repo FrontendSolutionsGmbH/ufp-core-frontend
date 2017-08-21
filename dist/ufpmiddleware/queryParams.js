@@ -4,11 +4,24 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+var _stringify = require('babel-runtime/core-js/json/stringify');
+
+var _stringify2 = _interopRequireDefault(_stringify);
+
+var _keys = require('babel-runtime/core-js/object/keys');
+
+var _keys2 = _interopRequireDefault(_keys);
+
+var _typeof2 = require('babel-runtime/helpers/typeof');
+
+var _typeof3 = _interopRequireDefault(_typeof2);
 
 exports.isArray = isArray;
 exports.isObject = isObject;
 exports.isDate = isDate;
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 function encode(val) {
     return encodeURIComponent(val).replace(/%40/gi, '@').replace(/%3A/gi, ':').replace(/%24/g, '$').replace(/%2C/gi, ',').replace(/%20/g, '+').replace(/%5B/gi, '[').replace(/%5D/gi, ']');
 }
@@ -31,7 +44,7 @@ function isArray(val) {
  * @returns {boolean} True if value is an Object, otherwise false
  */
 function isObject(val) {
-    return val !== null && (typeof val === 'undefined' ? 'undefined' : _typeof(val)) === 'object';
+    return val !== null && (typeof val === 'undefined' ? 'undefined' : (0, _typeof3.default)(val)) === 'object';
 }
 
 /**
@@ -52,7 +65,7 @@ function isDate(val) {
  */
 function queryParams(params) {
     var parts = [];
-    Object.keys(params).map(function (k) {
+    (0, _keys2.default)(params).map(function (k) {
         var value = params[k];
         var key = k;
         if (value === null || typeof value === 'undefined') {
@@ -67,7 +80,7 @@ function queryParams(params) {
             if (isDate(v)) {
                 v = v.toISOString();
             } else if (isObject(v)) {
-                v = JSON.stringify(v);
+                v = (0, _stringify2.default)(v);
             }
             parts.push(encode(key) + '=' + encode(v));
         });

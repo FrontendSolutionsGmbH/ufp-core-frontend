@@ -5,6 +5,10 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.getInitialState = undefined;
 
+var _defineProperty2 = require('babel-runtime/helpers/defineProperty');
+
+var _defineProperty3 = _interopRequireDefault(_defineProperty2);
+
 var _reactAddonsUpdate = require('react-addons-update');
 
 var _reactAddonsUpdate2 = _interopRequireDefault(_reactAddonsUpdate);
@@ -18,8 +22,6 @@ var _MenuInternalUtils = require('./MenuInternalUtils');
 var _MenuInternalUtils2 = _interopRequireDefault(_MenuInternalUtils);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 var getInitialState = exports.getInitialState = function getInitialState() {
     return {
@@ -73,7 +75,7 @@ var MenuActionListReducer = function MenuActionListReducer(state, action) {
                                 });
                             }
                             // retrieve the local state for the menu, each menu reducer shall just receive its local menu definition
-                            state = (0, _reactAddonsUpdate2.default)(state, { MenuData: _defineProperty({}, menuEntry.area, _defineProperty({}, menuEntry.subArea, { items: { $set: newLocalState } })) });
+                            state = (0, _reactAddonsUpdate2.default)(state, { MenuData: (0, _defineProperty3.default)({}, menuEntry.area, (0, _defineProperty3.default)({}, menuEntry.subArea, { items: { $set: newLocalState } })) });
                         }
                     });
                 }
