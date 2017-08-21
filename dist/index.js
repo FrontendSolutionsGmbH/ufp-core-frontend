@@ -22,6 +22,10 @@ var _startupIndexJs = require('./startup/index.js');
 
 var _startupIndexJs2 = _interopRequireDefault(_startupIndexJs);
 
+var _menuIndexJs = require('./menu/index.js');
+
+var _menuIndexJs2 = _interopRequireDefault(_menuIndexJs);
+
 var ConfigureEpics = _epicConfigureEpicsJs2['default'];
 exports.ConfigureEpics = ConfigureEpics;
 var UFPUtils = _utilsIndexJs2['default'];
@@ -30,9 +34,12 @@ var UFPStartup = _startupIndexJs2['default'];
 exports.UFPStartup = UFPStartup;
 var UFPMiddleware = _ufpmiddlewareIndexJs2['default'];
 exports.UFPMiddleware = UFPMiddleware;
+var UFPMenu = _menuIndexJs2['default'];
+exports.UFPMenu = UFPMenu;
 exports['default'] = {
   UFPMiddleware: _ufpmiddlewareIndexJs2['default'],
   UFPUtils: _utilsIndexJs2['default'],
   UFPStartup: _startupIndexJs2['default'],
-  ConfigureEpics: _epicConfigureEpicsJs2['default']
+  ConfigureEpics: _epicConfigureEpicsJs2['default'],
+  UFPMenu: _menuIndexJs2['default']
 };

@@ -105,7 +105,7 @@ var updateStatus = function updateStatus(state) {
     var totalPercentage = Math.round(currentStageIndex / state.status.totalStages * 100);
     // // // console.log('StartupReducer actualizing percentages stage1 ', state.status.stagePercentage)
     //  // // console.log('StartupReducer actualizing percentages total2 ', totalPercentage)
-    console.log('StartupReducer actualizing percentages total3', totalPercentage + state.status.stagePercentage / state.status.totalStages * 0.01 * 100.0);
+    //console.log('StartupReducer actualizing percentages total3', totalPercentage + ((state.status.stagePercentage / state.status.totalStages) * 0.01) * 100.0)
     state = (0, _reactAddonsUpdate2['default'])(state, { status: { totalPercentage: { $set: totalPercentage + state.status.stagePercentage / state.status.totalStages * 0.01 * 100.0 } } });
     state = (0, _reactAddonsUpdate2['default'])(state, { status: { stepPercentage: { $set: state.status.totalFinishedSteps / state.status.totalSteps * 100.0 } } });
 
