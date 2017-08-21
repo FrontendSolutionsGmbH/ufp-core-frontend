@@ -58,7 +58,7 @@ var MenuActionListReducer = function MenuActionListReducer(state, action) {
                 if (_menuEntryAll !== undefined) {
                     _menuEntryAll.map(function (menuEntry) {
                         if (menuEntry.actionName === action.type || Array.isArray(menuEntry.actionNames) && menuEntry.actionNames.indexOf(action.type) !== -1) {
-                            //          try {
+
                             // call menu reducer with its state from this reducer
                             // // console.log('MenuReducer Called menudef entry is 1', menuEntry)
                             // // console.log('MenuReducer Called menudef state is 2', state.MenuData[menuEntry.area][menuEntry.subArea])
@@ -74,15 +74,12 @@ var MenuActionListReducer = function MenuActionListReducer(state, action) {
                             }
                             // retrieve the local state for the menu, each menu reducer shall just receive its local menu definition
                             state = (0, _reactAddonsUpdate2['default'])(state, { MenuData: _defineProperty({}, menuEntry.area, _defineProperty({}, menuEntry.subArea, { items: { $set: newLocalState } })) });
-                            /*        } catch (e) {
-                             console.error('Menu Error ', e)
-                             }
-                               */ // remove defered action from list
-                            // // console.log('MenuReducer removing defered action', action)
                         }
                     });
                 }
             }
+            // remove defered action from list
+            // // console.log('MenuReducer removing defered action', action)
             state = (0, _reactAddonsUpdate2['default'])(state, { DeferedActionsList: { $splice: [[state.DeferedActionsList.indexOf(action.type), 1]] } });
         }
         return state;

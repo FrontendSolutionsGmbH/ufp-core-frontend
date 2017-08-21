@@ -20,7 +20,6 @@ var identity = function identity(t) {
  */
 var getNodeFromObject = function getNodeFromObject(nodeName, object) {
     // // console.log('Getnode from objewct called ', nodeName, object)
-    var result;
     for (var i in object) {
         //   // console.log('Getnode checking ', i, object[i])
         if (i === nodeName) {
@@ -34,8 +33,6 @@ var getNodeFromObject = function getNodeFromObject(nodeName, object) {
             }
         }
     }
-    // // console.log('Getnode returning 3', result)
-    return result;
 };
 
 /**

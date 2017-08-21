@@ -18,10 +18,6 @@ var _reactAddonsUpdate = require('react-addons-update');
 
 var _reactAddonsUpdate2 = _interopRequireDefault(_reactAddonsUpdate);
 
-var _MenuUtils = require('./MenuUtils');
-
-var _MenuUtils2 = _interopRequireDefault(_MenuUtils);
-
 var creators = {};
 
 function getMenuEntryCreator(creator) {
