@@ -1,12 +1,8 @@
 'use strict';
 
-Object.defineProperty(exports, '__esModule', {
+Object.defineProperty(exports, "__esModule", {
     value: true
 });
-
-var _this = this;
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
 var _TemplateUtils = require('./TemplateUtils');
 
@@ -22,23 +18,26 @@ var _UfpMiddlewareHelperUtils = require('./UfpMiddlewareHelperUtils');
 
 var _UfpMiddlewareHelperUtils2 = _interopRequireDefault(_UfpMiddlewareHelperUtils);
 
-var ReactPropTypesCheck = _UfpMiddlewareHelperUtils2['default'].ReactPropTypesCheck;
-var PropTypesCheck = _UfpMiddlewareHelperUtils2['default'].PropTypesCheck;
-var getJSON = _UfpMiddlewareHelperUtils2['default'].getJSON;
-var isEmptyObject = _UfpMiddlewareHelperUtils2['default'].isEmptyObject;
-var errorToObject = _UfpMiddlewareHelperUtils2['default'].errorToObject;
-var validateStatus = _UfpMiddlewareHelperUtils2['default'].validateStatus;
-var mergeArrayOfObjects = _UfpMiddlewareHelperUtils2['default'].mergeArrayOfObjects;
-var createAxiosLikeErrorResponse = _UfpMiddlewareHelperUtils2['default'].createAxiosLikeErrorResponse;
-var addToArrayIfNotExist = _UfpMiddlewareHelperUtils2['default'].addToArrayIfNotExist;
-var createConfigDefault = _UfpMiddlewareHelperUtils2['default'].createConfigDefault;
-var infoLogger = _UfpMiddlewareHelperUtils2['default'].infoLogger;
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var ReactPropTypesCheck = _UfpMiddlewareHelperUtils2.default.ReactPropTypesCheck,
+    PropTypesCheck = _UfpMiddlewareHelperUtils2.default.PropTypesCheck,
+    getJSON = _UfpMiddlewareHelperUtils2.default.getJSON,
+    isEmptyObject = _UfpMiddlewareHelperUtils2.default.isEmptyObject,
+    errorToObject = _UfpMiddlewareHelperUtils2.default.errorToObject,
+    validateStatus = _UfpMiddlewareHelperUtils2.default.validateStatus,
+    mergeArrayOfObjects = _UfpMiddlewareHelperUtils2.default.mergeArrayOfObjects,
+    createAxiosLikeErrorResponse = _UfpMiddlewareHelperUtils2.default.createAxiosLikeErrorResponse,
+    addToArrayIfNotExist = _UfpMiddlewareHelperUtils2.default.addToArrayIfNotExist,
+    createConfigDefault = _UfpMiddlewareHelperUtils2.default.createConfigDefault,
+    infoLogger = _UfpMiddlewareHelperUtils2.default.infoLogger;
+
 
 var ufpMiddlewarePrepareConfig = function ufpMiddlewarePrepareConfig(ufpAction) {
-    var ufpDefinition = ufpAction.ufpDefinition;
-    var ufpData = ufpAction.ufpData;
-    var url = ufpDefinition.url;
-    var method = ufpDefinition.method;
+    var ufpDefinition = ufpAction.ufpDefinition,
+        ufpData = ufpAction.ufpData;
+    var url = ufpDefinition.url,
+        method = ufpDefinition.method;
 
     var config = {};
     config.method = method;
@@ -47,14 +46,14 @@ var ufpMiddlewarePrepareConfig = function ufpMiddlewarePrepareConfig(ufpAction) 
         config.data = ufpData.body;
     }
     if (ufpData) {
-        var urlParams = ufpData.urlParams;
-        var _queryParams = ufpData.queryParams;
+        var urlParams = ufpData.urlParams,
+            _queryParams = ufpData.queryParams;
 
         if (_queryParams && !isEmptyObject(_queryParams)) {
             config.params = _queryParams;
         }
         if (urlParams && !isEmptyObject(urlParams)) {
-            config.url = _TemplateUtils2['default'].urlParamsToUrl(url, urlParams);
+            config.url = _TemplateUtils2.default.urlParamsToUrl(url, urlParams);
         } else {
             config.url = url;
         }
@@ -93,8 +92,8 @@ var validateResultHandlerResult = function validateResultHandlerResult(handlerRe
 };
 
 var uniteActionResultTypes = function uniteActionResultTypes() {
-    var ufpTypes = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
-    var actionConstants = arguments.length <= 1 || arguments[1] === undefined ? {} : arguments[1];
+    var ufpTypes = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+    var actionConstants = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
 
     var target = {
         REQUEST: [],
@@ -169,74 +168,40 @@ var wrapDispatcher = function wrapDispatcher(dispatch /*, getState , ufpAction*/
     };
 };
 
-var handleResultHandlers = function handleResultHandlers(handlerArray, resultData) {
-    var ufpErrorHandlerResultPromiseArray;
-    return regeneratorRuntime.async(function handleResultHandlers$(context$1$0) {
-        while (1) switch (context$1$0.prev = context$1$0.next) {
-            case 0:
-                ufpErrorHandlerResultPromiseArray = [];
-
-                handlerArray.map(function (handlerObject) {
-                    if (handlerObject.matcher(resultData)) {
-                        ufpErrorHandlerResultPromiseArray.push(handlerObject.handler(resultData));
-                    }
-                });
-                context$1$0.next = 4;
-                return regeneratorRuntime.awrap(Promise.all(ufpErrorHandlerResultPromiseArray));
-
-            case 4:
-                return context$1$0.abrupt('return', context$1$0.sent);
-
-            case 5:
-            case 'end':
-                return context$1$0.stop();
+var handleResultHandlers = async function handleResultHandlers(handlerArray, resultData) {
+    var ufpErrorHandlerResultPromiseArray = [];
+    handlerArray.map(function (handlerObject) {
+        if (handlerObject.matcher(resultData)) {
+            ufpErrorHandlerResultPromiseArray.push(handlerObject.handler(resultData));
         }
-    }, null, _this);
+    });
+    return await Promise.all(ufpErrorHandlerResultPromiseArray);
 };
 
-var handlePreHandlers = function handlePreHandlers(handlerArray, resultData) {
-    var result;
-    return regeneratorRuntime.async(function handlePreHandlers$(context$1$0) {
-        while (1) switch (context$1$0.prev = context$1$0.next) {
-            case 0:
-                if (!(handlerArray.length === 0)) {
-                    context$1$0.next = 2;
-                    break;
+var handlePreHandlers = async function handlePreHandlers(handlerArray, resultData) {
+    if (handlerArray.length === 0) {
+        return {
+            break: false,
+            handled: false
+        };
+    }
+    var result = await handlerArray.reduce(function (previousPromise, currentItem) {
+        return previousPromise.then(function (previousResult) {
+            if (!previousResult.handled) {
+                if (currentItem.matcher(resultData)) {
+                    return Promise.resolve(currentItem.handler(resultData));
+                } else {
+                    return Promise.resolve(previousResult);
                 }
-
-                return context$1$0.abrupt('return', {
-                    'break': false,
-                    handled: false
-                });
-
-            case 2:
-                context$1$0.next = 4;
-                return regeneratorRuntime.awrap(handlerArray.reduce(function (previousPromise, currentItem) {
-                    return previousPromise.then(function (previousResult) {
-                        if (!previousResult.handled) {
-                            if (currentItem.matcher(resultData)) {
-                                return Promise.resolve(currentItem.handler(resultData));
-                            } else {
-                                return Promise.resolve(previousResult);
-                            }
-                        } else {
-                            return Promise.resolve(previousResult);
-                        }
-                    });
-                }, Promise.resolve({
-                    'break': false,
-                    handled: false
-                })));
-
-            case 4:
-                result = context$1$0.sent;
-                return context$1$0.abrupt('return', result);
-
-            case 6:
-            case 'end':
-                return context$1$0.stop();
-        }
-    }, null, _this);
+            } else {
+                return Promise.resolve(previousResult);
+            }
+        });
+    }, Promise.resolve({
+        break: false,
+        handled: false
+    }));
+    return result;
 };
 
 function createFetchUrl(config, queryParams) {
@@ -244,87 +209,41 @@ function createFetchUrl(config, queryParams) {
     config.fetchUrl += typeof config.paramsSerializer === 'function' ? config.paramsSerializer(config.params) : queryParams(config.params);
 }
 
-var ufpMiddlewareRequest = function ufpMiddlewareRequest(options, config) {
-    var requestResponse, isResolve, responseClone;
-    return regeneratorRuntime.async(function ufpMiddlewareRequest$(context$1$0) {
-        while (1) switch (context$1$0.prev = context$1$0.next) {
-            case 0:
-                if (!options.useAxios) {
-                    context$1$0.next = 10;
-                    break;
-                }
+var ufpMiddlewareRequest = async function ufpMiddlewareRequest(options, config) {
 
-                if (!(typeof options.axiosInstance === 'function' && typeof options.axiosInstance.request === 'function')) {
-                    context$1$0.next = 7;
-                    break;
-                }
-
-                context$1$0.next = 4;
-                return regeneratorRuntime.awrap(options.axiosInstance.request(config).then(function (response) {
-                    return response;
-                }, function (response) {
-                    return response;
-                }));
-
-            case 4:
-                requestResponse = context$1$0.sent;
-                context$1$0.next = 8;
-                break;
-
-            case 7:
-                throw new Error('UFP Middleware Error: if you use the middleware with useAxios=true please provide a property axiosInstance in the options');
-
-            case 8:
-                context$1$0.next = 23;
-                break;
-
-            case 10:
-                if (config.params && !config.fetchUrl) {
-                    createFetchUrl(config, _queryParams3['default']);
-                }
-
-                context$1$0.next = 13;
-                return regeneratorRuntime.awrap(fetch(config.fetchUrl, {
-                    method: config.method,
-                    body: config.data,
-                    credentials: config.credentials,
-                    headers: config.headers || {}
-                }));
-
-            case 13:
-                requestResponse = context$1$0.sent;
-                isResolve = typeof config.validateStatus === 'function' ? config.validateStatus(requestResponse.status) : validateStatus(requestResponse.status);
-
-                if (isResolve) {
-                    context$1$0.next = 20;
-                    break;
-                }
-
-                responseClone = requestResponse.clone();
-                context$1$0.next = 19;
-                return regeneratorRuntime.awrap(createAxiosLikeErrorResponse(config, responseClone.status, responseClone));
-
-            case 19:
-                return context$1$0.abrupt('return', context$1$0.sent);
-
-            case 20:
-                context$1$0.next = 22;
-                return regeneratorRuntime.awrap(getJSON(requestResponse));
-
-            case 22:
-                requestResponse.data = context$1$0.sent;
-
-            case 23:
-                return context$1$0.abrupt('return', requestResponse);
-
-            case 24:
-            case 'end':
-                return context$1$0.stop();
+    var requestResponse;
+    if (options.useAxios) {
+        if (typeof options.axiosInstance === 'function' && typeof options.axiosInstance.request === 'function') {
+            requestResponse = await options.axiosInstance.request(config).then(function (response) {
+                return response;
+            }, function (response) {
+                return response;
+            });
+        } else {
+            throw new Error('UFP Middleware Error: if you use the middleware with useAxios=true please provide a property axiosInstance in the options');
         }
-    }, null, _this);
+    } else {
+        if (config.params && !config.fetchUrl) {
+            createFetchUrl(config, _queryParams3.default);
+        }
+
+        requestResponse = await fetch(config.fetchUrl, {
+            method: config.method,
+            body: config.data,
+            credentials: config.credentials,
+            headers: config.headers || {}
+        });
+        var isResolve = typeof config.validateStatus === 'function' ? config.validateStatus(requestResponse.status) : validateStatus(requestResponse.status);
+        if (!isResolve) {
+            var responseClone = requestResponse.clone();
+            return await createAxiosLikeErrorResponse(config, responseClone.status, responseClone);
+        }
+        requestResponse.data = await getJSON(requestResponse);
+    }
+    return requestResponse;
 };
 
-exports['default'] = {
+exports.default = {
     ReactPropTypesCheck: ReactPropTypesCheck,
     PropTypesCheck: PropTypesCheck,
     getJSON: getJSON,
@@ -337,7 +256,7 @@ exports['default'] = {
     createConfigDefault: createConfigDefault,
     infoLogger: infoLogger,
 
-    queryParams: _queryParams3['default'],
+    queryParams: _queryParams3.default,
 
     ufpMiddlewarePrepareConfig: ufpMiddlewarePrepareConfig,
     validateResultHandlerResult: validateResultHandlerResult,
@@ -348,4 +267,3 @@ exports['default'] = {
     createFetchUrl: createFetchUrl,
     ufpMiddlewareRequest: ufpMiddlewareRequest
 };
-module.exports = exports['default'];

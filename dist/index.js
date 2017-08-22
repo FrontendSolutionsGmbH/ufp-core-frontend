@@ -1,38 +1,41 @@
 'use strict';
 
-Object.defineProperty(exports, '__esModule', {
+Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports.UFPMenu = exports.UFPMiddleware = exports.UFPStartup = exports.UFPUtils = exports.ConfigureEpics = undefined;
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+var _index = require('./ufpmiddleware/index.js');
 
-var _ufpmiddlewareIndexJs = require('./ufpmiddleware/index.js');
+var _index2 = _interopRequireDefault(_index);
 
-var _ufpmiddlewareIndexJs2 = _interopRequireDefault(_ufpmiddlewareIndexJs);
+var _index3 = require('./utils/index.js');
 
-var _utilsIndexJs = require('./utils/index.js');
+var _index4 = _interopRequireDefault(_index3);
 
-var _utilsIndexJs2 = _interopRequireDefault(_utilsIndexJs);
+var _ConfigureEpics2 = require('./epic/ConfigureEpics.js');
 
-var _epicConfigureEpicsJs = require('./epic/ConfigureEpics.js');
+var _ConfigureEpics3 = _interopRequireDefault(_ConfigureEpics2);
 
-var _epicConfigureEpicsJs2 = _interopRequireDefault(_epicConfigureEpicsJs);
+var _index5 = require('./startup/index.js');
 
-var _startupIndexJs = require('./startup/index.js');
+var _index6 = _interopRequireDefault(_index5);
 
-var _startupIndexJs2 = _interopRequireDefault(_startupIndexJs);
+var _index7 = require('./menu/index.js');
 
-var ConfigureEpics = _epicConfigureEpicsJs2['default'];
-exports.ConfigureEpics = ConfigureEpics;
-var UFPUtils = _utilsIndexJs2['default'];
-exports.UFPUtils = UFPUtils;
-var UFPStartup = _startupIndexJs2['default'];
-exports.UFPStartup = UFPStartup;
-var UFPMiddleware = _ufpmiddlewareIndexJs2['default'];
-exports.UFPMiddleware = UFPMiddleware;
-exports['default'] = {
-  UFPMiddleware: _ufpmiddlewareIndexJs2['default'],
-  UFPUtils: _utilsIndexJs2['default'],
-  UFPStartup: _startupIndexJs2['default'],
-  ConfigureEpics: _epicConfigureEpicsJs2['default']
+var _index8 = _interopRequireDefault(_index7);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var ConfigureEpics = exports.ConfigureEpics = _ConfigureEpics3.default;
+var UFPUtils = exports.UFPUtils = _index4.default;
+var UFPStartup = exports.UFPStartup = _index6.default;
+var UFPMiddleware = exports.UFPMiddleware = _index2.default;
+var UFPMenu = exports.UFPMenu = _index8.default;
+exports.default = {
+  UFPMiddleware: _index2.default,
+  UFPUtils: _index4.default,
+  UFPStartup: _index6.default,
+  ConfigureEpics: _ConfigureEpics3.default,
+  UFPMenu: _index8.default
 };

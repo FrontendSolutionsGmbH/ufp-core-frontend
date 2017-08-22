@@ -1,10 +1,8 @@
 'use strict';
 
-Object.defineProperty(exports, '__esModule', {
+Object.defineProperty(exports, "__esModule", {
     value: true
 });
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
 var _UfpMiddleware = require('./UfpMiddleware');
 
@@ -24,14 +22,15 @@ var _TemplateUtils = require('./TemplateUtils');
 
 var _TemplateUtils2 = _interopRequireDefault(_TemplateUtils);
 
-exports['default'] = {
-    TemplateUtils: _TemplateUtils2['default'],
-    createUFPMiddleware: _UfpMiddleware2['default'],
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = {
+    TemplateUtils: _TemplateUtils2.default,
+    createUFPMiddleware: _UfpMiddleware2.default,
     PreHandlerResult: _UfpHandlerUtils.PreHandlerResult,
     ResultHandlerResult: _UfpHandlerUtils.ResultHandlerResult,
-    createActionCreatorForDefinition: _UfpMiddlewareActionCreator2['default'].createActionCreatorForDefinition,
-    registerResultHandler: _UfpMiddlewareConfiguration2['default'].registerResultHandler,
-    registerUnhandledHandler: _UfpMiddlewareConfiguration2['default'].registerUnhandledHandler,
-    setCreateConfig: _UfpMiddlewareConfiguration2['default'].setCreateConfig
+    createActionCreatorForDefinition: _UfpMiddlewareActionCreator2.default.createActionCreatorForDefinition,
+    registerResultHandler: _UfpMiddlewareConfiguration2.default.registerResultHandler,
+    registerUnhandledHandler: _UfpMiddlewareConfiguration2.default.registerUnhandledHandler,
+    setCreateConfig: _UfpMiddlewareConfiguration2.default.setCreateConfig
 };
-module.exports = exports['default'];

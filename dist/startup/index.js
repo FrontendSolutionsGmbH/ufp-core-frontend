@@ -1,10 +1,8 @@
 'use strict';
 
-Object.defineProperty(exports, '__esModule', {
+Object.defineProperty(exports, "__esModule", {
     value: true
 });
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
 var _StartupActionCreators = require('./StartupActionCreators');
 
@@ -30,12 +28,13 @@ var _StartupReducerName = require('./StartupReducerName');
 
 var _StartupReducerName2 = _interopRequireDefault(_StartupReducerName);
 
-exports['default'] = {
-    initialiseApplication: _StartupActionCreators2['default'].initialiseApplication,
-    StartupConfiguration: _StartupConfiguration2['default'],
-    StartupConstants: _StartupConstants2['default'],
-    StartupReducer: _StartupReducer2['default'],
-    StartupReducerName: _StartupReducerName2['default'],
-    StartupSelectors: _StartupSelectors2['default']
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = {
+    initialiseApplication: _StartupActionCreators2.default.initialiseApplication,
+    StartupConfiguration: _StartupConfiguration2.default,
+    StartupConstants: _StartupConstants2.default,
+    StartupReducer: _StartupReducer2.default,
+    StartupReducerName: _StartupReducerName2.default,
+    StartupSelectors: _StartupSelectors2.default
 };
-module.exports = exports['default'];

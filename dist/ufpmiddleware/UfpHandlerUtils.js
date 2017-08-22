@@ -6,13 +6,13 @@ Object.defineProperty(exports, "__esModule", {
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var ResultHandlerResult = function ResultHandlerResult() {
-  var success = arguments.length <= 0 || arguments[0] === undefined ? false : arguments[0];
+var ResultHandlerResult = exports.ResultHandlerResult = function ResultHandlerResult() {
+  var success = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
 
   var _this = this;
 
-  var handled = arguments.length <= 1 || arguments[1] === undefined ? false : arguments[1];
-  var retry = arguments.length <= 2 || arguments[2] === undefined ? false : arguments[2];
+  var handled = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
+  var retry = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
 
   _classCallCheck(this, ResultHandlerResult);
 
@@ -26,16 +26,12 @@ var ResultHandlerResult = function ResultHandlerResult() {
   this.retry = retry;
 };
 
-exports.ResultHandlerResult = ResultHandlerResult;
-
-var PreHandlerResult = function PreHandlerResult() {
-  var breakVal = arguments.length <= 0 || arguments[0] === undefined ? false : arguments[0];
-  var handled = arguments.length <= 1 || arguments[1] === undefined ? false : arguments[1];
+var PreHandlerResult = exports.PreHandlerResult = function PreHandlerResult() {
+  var breakVal = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
+  var handled = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
 
   _classCallCheck(this, PreHandlerResult);
 
-  this["break"] = breakVal;
+  this.break = breakVal;
   this.handled = handled;
 };
-
-exports.PreHandlerResult = PreHandlerResult;

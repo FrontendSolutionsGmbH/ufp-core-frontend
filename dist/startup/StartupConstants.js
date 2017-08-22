@@ -1,6 +1,6 @@
 'use strict';
 
-Object.defineProperty(exports, '__esModule', {
+Object.defineProperty(exports, "__esModule", {
     value: true
 });
 var ActionConstants = {
@@ -16,8 +16,7 @@ var LoadingStateEnum = {
     'FAILURE': 'failure'
 };
 
-exports['default'] = {
+exports.default = {
     ActionConstants: ActionConstants,
     LoadingStateEnum: LoadingStateEnum
 };
-module.exports = exports['default'];

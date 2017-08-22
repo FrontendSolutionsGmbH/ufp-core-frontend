@@ -1,12 +1,9 @@
 'use strict';
 
-Object.defineProperty(exports, '__esModule', {
+Object.defineProperty(exports, "__esModule", {
     value: true
 });
-
-var _this = this;
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+exports.getJSON = undefined;
 
 var _checkPropTypes = require('check-prop-types');
 
@@ -20,9 +17,11 @@ var _deepmerge = require('deepmerge');
 
 var _deepmerge2 = _interopRequireDefault(_deepmerge);
 
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 function ReactPropTypesCheck(object, propTypes, _throw) {
     // const stringJSON = JSON.stringify(object)
-    var errorString = (0, _checkPropTypes2['default'])(propTypes, object, 'prop');
+    var errorString = (0, _checkPropTypes2.default)(propTypes, object, 'prop');
     if (errorString) {
         if (_throw) {
             throw new Error(errorString);
@@ -48,32 +47,17 @@ function PropTypesCheck(data, propTypes) {
  * @param {object} res - A raw response object
  * @returns {promise|undefined}
  */
-var getJSON = function getJSON(res) {
-    var contentType, emptyCodes;
-    return regeneratorRuntime.async(function getJSON$(context$1$0) {
-        while (1) switch (context$1$0.prev = context$1$0.next) {
-            case 0:
-                contentType = res.headers.get('Content-Type');
-                emptyCodes = [204, 205];
+var getJSON = exports.getJSON = async function getJSON(res) {
+    var contentType = res.headers.get('Content-Type');
+    var emptyCodes = [204, 205];
 
-                if (!(! ~emptyCodes.indexOf(res.status) && contentType && ~contentType.indexOf('json'))) {
-                    context$1$0.next = 6;
-                    break;
-                }
-
-                return context$1$0.abrupt('return', res.json());
-
-            case 6:
-                return context$1$0.abrupt('return', Promise.resolve({}));
-
-            case 7:
-            case 'end':
-                return context$1$0.stop();
-        }
-    }, null, _this);
+    if (!~emptyCodes.indexOf(res.status) && contentType && ~contentType.indexOf('json')) {
+        return res.json();
+    } else {
+        return Promise.resolve({});
+    }
 };
 
-exports.getJSON = getJSON;
 function isEmptyObject(obj) {
     for (var prop in obj) {
         if (obj.hasOwnProperty(prop)) return false;
@@ -113,38 +97,23 @@ function validateStatus(status) {
 }
 
 var mergeArrayOfObjects = function mergeArrayOfObjects(arr) {
-    var selector = arguments.length <= 1 || arguments[1] === undefined ? function (t) {
+    var selector = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : function (t) {
         return t;
-    } : arguments[1];
+    };
 
     return arr.reduce(function (acc, curr) {
-        return (0, _deepmerge2['default'])(acc, selector(curr) || {});
+        return (0, _deepmerge2.default)(acc, selector(curr) || {});
     }, {});
 };
-var createAxiosLikeErrorResponse = function createAxiosLikeErrorResponse(config, code, response) {
-    var err;
-    return regeneratorRuntime.async(function createAxiosLikeErrorResponse$(context$1$0) {
-        while (1) switch (context$1$0.prev = context$1$0.next) {
-            case 0:
-                err = new Error('Request failed with status code ' + response.status);
-
-                err.config = config;
-                if (code) {
-                    err.code = code;
-                }
-                err.response = response;
-                context$1$0.next = 6;
-                return regeneratorRuntime.awrap(getJSON(response));
-
-            case 6:
-                err.response.data = context$1$0.sent;
-                return context$1$0.abrupt('return', err);
-
-            case 8:
-            case 'end':
-                return context$1$0.stop();
-        }
-    }, null, _this);
+var createAxiosLikeErrorResponse = async function createAxiosLikeErrorResponse(config, code, response) {
+    var err = new Error('Request failed with status code ' + response.status);
+    err.config = config;
+    if (code) {
+        err.code = code;
+    }
+    err.response = response;
+    err.response.data = await getJSON(response);
+    return err;
 };
 
 var addToArrayIfNotExist = function addToArrayIfNotExist(arr, item) {
@@ -164,7 +133,7 @@ function infoLogger() {
     console.log.apply(console, arguments);
 }
 
-exports['default'] = {
+exports.default = {
     ReactPropTypesCheck: ReactPropTypesCheck,
     PropTypesCheck: PropTypesCheck,
     getJSON: getJSON,
