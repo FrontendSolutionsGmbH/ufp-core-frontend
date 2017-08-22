@@ -34,8 +34,8 @@ var UFPMiddleware = exports.UFPMiddleware = _index2.default;
 var UFPMenu = exports.UFPMenu = _index8.default;
 exports.default = {
   UFPMiddleware: _index2.default,
-  UFPUtils: _index4.default,
+  UFPUtils: UFPUtils,
   UFPStartup: _index6.default,
-  ConfigureEpics: _ConfigureEpics3.default,
+  ConfigureEpics: ConfigureEpics,
   UFPMenu: _index8.default
 };
