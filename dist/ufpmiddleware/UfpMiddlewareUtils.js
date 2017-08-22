@@ -209,8 +209,12 @@ var handlePreHandlers = async function handlePreHandlers(handlerArray, resultDat
 };
 
 function createFetchUrl(config, queryParams) {
-    config.fetchUrl = config.url + (config.url.indexOf('?') === -1 ? '?' : '&');
-    config.fetchUrl += typeof config.paramsSerializer === 'function' ? config.paramsSerializer(config.params) : queryParams(config.params);
+    if (config.params && !config.fetchUrl) {
+        config.fetchUrl = config.url + (config.url.indexOf('?') === -1 ? '?' : '&');
+        config.fetchUrl += typeof config.paramsSerializer === 'function' ? config.paramsSerializer(config.params) : queryParams(config.params);
+    } else {
+        config.fetchUrl = config.url;
+    }
 }
 
 var ufpMiddlewareRequest = async function ufpMiddlewareRequest(options, config) {
@@ -227,11 +231,7 @@ var ufpMiddlewareRequest = async function ufpMiddlewareRequest(options, config) 
             throw new Error('UFP Middleware Error: if you use the middleware with useAxios=true please provide a property axiosInstance in the options');
         }
     } else {
-        if (config.params && !config.fetchUrl) {
-            createFetchUrl(config, _queryParams3.default);
-        } else {
-            config.fetchUrl = config.url;
-        }
+        createFetchUrl(config, _queryParams3.default);
 
         requestResponse = await fetch(config.fetchUrl, {
             method: config.method.toUpperCase(),

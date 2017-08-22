@@ -168,8 +168,12 @@ const handlePreHandlers= async(handlerArray, resultData) => {
 }
 
 function createFetchUrl(config, queryParams) {
-    config.fetchUrl = config.url + (config.url.indexOf('?') === -1 ? '?' : '&')
-    config.fetchUrl += typeof config.paramsSerializer === 'function' ? config.paramsSerializer(config.params) : queryParams(config.params)
+    if (config.params && !config.fetchUrl) {
+        config.fetchUrl = config.url + (config.url.indexOf('?') === -1 ? '?' : '&')
+        config.fetchUrl += typeof config.paramsSerializer === 'function' ? config.paramsSerializer(config.params) : queryParams(config.params)
+    } else {
+        config.fetchUrl=config.url
+    }
 }
 
 const ufpMiddlewareRequest= async(options, config) => {
@@ -183,11 +187,8 @@ const ufpMiddlewareRequest= async(options, config) => {
         }
 
     } else {
-        if (config.params && !config.fetchUrl) {
-            createFetchUrl(config, queryParams)
-        } else {
-            config.fetchUrl=config.url
-        }
+        createFetchUrl(config, queryParams)
+
 
         requestResponse = await fetch(config.fetchUrl, {
             method: config.method.toUpperCase(),
