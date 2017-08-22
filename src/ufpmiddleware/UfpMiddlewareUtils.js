@@ -185,24 +185,28 @@ const ufpMiddlewareRequest= async(options, config) => {
     } else {
         if (config.params && !config.fetchUrl) {
             createFetchUrl(config, queryParams)
+        } else {
+            config.fetchUrl=config.url
         }
 
         requestResponse = await fetch(config.fetchUrl, {
-            method: config.method,
+            method: config.method.toUpperCase(),
             body: config.data,
             credentials: config.credentials,
             headers: config.headers || {}
         })
         var isResolve =(typeof config.validateStatus === 'function')? config.validateStatus(requestResponse.status) : validateStatus(requestResponse.status)
+
+        requestResponse.data = await getJSON(requestResponse)
+        requestResponse.config=config
         if(!isResolve) {
             var responseClone=requestResponse.clone()
+            responseClone.data=requestResponse.data
             return await createAxiosLikeErrorResponse(config, responseClone.status, responseClone)
         }
-        requestResponse.data = await getJSON(requestResponse)
     }
     return requestResponse
 }
-
 export default {
     ReactPropTypesCheck,
     PropTypesCheck,
