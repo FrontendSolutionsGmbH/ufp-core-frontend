@@ -5,6 +5,18 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.getJSON = undefined;
 
+var _keys = require('babel-runtime/core-js/object/keys');
+
+var _keys2 = _interopRequireDefault(_keys);
+
+var _stringify = require('babel-runtime/core-js/json/stringify');
+
+var _stringify2 = _interopRequireDefault(_stringify);
+
+var _promise = require('babel-runtime/core-js/promise');
+
+var _promise2 = _interopRequireDefault(_promise);
+
 var _checkPropTypes = require('check-prop-types');
 
 var _checkPropTypes2 = _interopRequireDefault(_checkPropTypes);
@@ -54,7 +66,7 @@ var getJSON = exports.getJSON = async function getJSON(res) {
     if (!~emptyCodes.indexOf(res.status) && contentType && ~contentType.indexOf('json')) {
         return res.json();
     } else {
-        return Promise.resolve({});
+        return _promise2.default.resolve({});
     }
 };
 
@@ -62,7 +74,7 @@ function isEmptyObject(obj) {
     for (var prop in obj) {
         if (obj.hasOwnProperty(prop)) return false;
     }
-    return JSON.stringify(obj) === JSON.stringify({});
+    return (0, _stringify2.default)(obj) === (0, _stringify2.default)({});
 }
 
 function errorToObject(err) {
@@ -81,12 +93,12 @@ function errorToObject(err) {
         out.code = err.code;
     }
     // Any enumerable properties...
-    keys = Object.keys(err);
+    keys = (0, _keys2.default)(err);
     for (var i = 0; i < keys.length; i++) {
         if (err[keys[i]] instanceof Response) {
             out[keys[i]] = err[keys[i]];
         } else {
-            out[keys[i]] = JSON.parse(JSON.stringify(err[keys[i]]));
+            out[keys[i]] = JSON.parse((0, _stringify2.default)(err[keys[i]]));
         }
     }
     return out;

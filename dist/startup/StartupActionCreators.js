@@ -4,6 +4,10 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
+var _keys = require('babel-runtime/core-js/object/keys');
+
+var _keys2 = _interopRequireDefault(_keys);
+
 var _StartupConstants = require('./StartupConstants');
 
 var _StartupConstants2 = _interopRequireDefault(_StartupConstants);
@@ -23,7 +27,7 @@ var loadStage = function loadStage(stageIndex) {
 
         var stageDefinition = _StartupSelectors2.default.StageDefinitionSelector(getState());
         //console.log('LOAD STAGE ', stageDefinition)
-        var stages = Object.keys(stageDefinition).sort();
+        var stages = (0, _keys2.default)(stageDefinition).sort();
         //console.log('LOAD STAGE ', stageIndex, stageDefinition[stages[stageIndex]], getState())
 
         if (stages.length > 0) {

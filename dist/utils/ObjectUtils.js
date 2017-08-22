@@ -4,9 +4,15 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+var _defineProperty2 = require('babel-runtime/helpers/defineProperty');
 
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+var _defineProperty3 = _interopRequireDefault(_defineProperty2);
+
+var _typeof2 = require('babel-runtime/helpers/typeof');
+
+var _typeof3 = _interopRequireDefault(_typeof2);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var flattenObject = function flattenObject(target, object) {
     var path = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : '';
@@ -16,7 +22,7 @@ var flattenObject = function flattenObject(target, object) {
             if (object[i] !== undefined) {
                 if (object[i] !== null) {
                     if (object[i] !== '') {
-                        if (_typeof(object[i]) === 'object') {
+                        if ((0, _typeof3.default)(object[i]) === 'object') {
                             flattenObject(target, object[i], path === '' ? i : path + '.' + i);
                         } else if (Array.isArray(object[i])) {
                             // flatten array as comma separated list ?
@@ -45,9 +51,9 @@ var buildUpdateObjectSetValue = function buildUpdateObjectSetValue(path, newValu
         //console.log('buildUpdateObject checking value 3', i, elems[i])
         var item = elems[i];
         if (i === 0) {
-            current = _defineProperty({}, item, { $set: newValue });
+            current = (0, _defineProperty3.default)({}, item, { $set: newValue });
         } else {
-            current = _defineProperty({}, item, current);
+            current = (0, _defineProperty3.default)({}, item, current);
         }
     }
 

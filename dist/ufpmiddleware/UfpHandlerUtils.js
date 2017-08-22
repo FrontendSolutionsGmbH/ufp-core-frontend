@@ -3,8 +3,13 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports.PreHandlerResult = exports.ResultHandlerResult = undefined;
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+var _classCallCheck2 = require("babel-runtime/helpers/classCallCheck");
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var ResultHandlerResult = exports.ResultHandlerResult = function ResultHandlerResult() {
   var success = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
@@ -13,8 +18,7 @@ var ResultHandlerResult = exports.ResultHandlerResult = function ResultHandlerRe
 
   var handled = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
   var retry = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
-
-  _classCallCheck(this, ResultHandlerResult);
+  (0, _classCallCheck3.default)(this, ResultHandlerResult);
 
   this.addPayload = function (data) {
     _this.additionalPayload = data;
@@ -29,8 +33,7 @@ var ResultHandlerResult = exports.ResultHandlerResult = function ResultHandlerRe
 var PreHandlerResult = exports.PreHandlerResult = function PreHandlerResult() {
   var breakVal = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
   var handled = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
-
-  _classCallCheck(this, PreHandlerResult);
+  (0, _classCallCheck3.default)(this, PreHandlerResult);
 
   this.break = breakVal;
   this.handled = handled;

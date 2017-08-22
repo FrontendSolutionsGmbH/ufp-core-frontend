@@ -4,13 +4,15 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
+var _defineProperty2 = require('babel-runtime/helpers/defineProperty');
+
+var _defineProperty3 = _interopRequireDefault(_defineProperty2);
+
 var _UfpRequestActions = require('./UfpRequestActions');
 
 var _UfpRequestActions2 = _interopRequireDefault(_UfpRequestActions);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 var createActionCreatorForDefinition = function createActionCreatorForDefinition(definition) {
     var ufpPrehandler = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : [];
@@ -32,7 +34,7 @@ var createActionCreatorForDefinition = function createActionCreatorForDefinition
             ufpPayload = _ref$ufpPayload === undefined ? {} : _ref$ufpPayload;
 
         // console.log('Executing automaticly generated action from definition ', UFPRequestActions, definition)
-        var result = _defineProperty({}, _UfpRequestActions2.default.UFP_REQUEST_ACTION, {
+        var result = (0, _defineProperty3.default)({}, _UfpRequestActions2.default.UFP_REQUEST_ACTION, {
             ufpDefinition: definition,
             ufpData: {
                 urlParams: urlParams,

@@ -5,7 +5,13 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.validateUFPAction = exports.isUFPAction = undefined;
 
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+var _typeof2 = require('babel-runtime/helpers/typeof');
+
+var _typeof3 = _interopRequireDefault(_typeof2);
+
+var _defineProperty2 = require('babel-runtime/helpers/defineProperty');
+
+var _defineProperty3 = _interopRequireDefault(_defineProperty2);
 
 var _UfpRequestActions = require('./UfpRequestActions');
 
@@ -21,15 +27,13 @@ var _UfpMiddlewareUtils2 = _interopRequireDefault(_UfpMiddlewareUtils);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
 var UFPTypes = _propTypes2.default.shape({
     END: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.arrayOf(_propTypes2.default.string)]).isRequired,
     FAILURE: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.arrayOf(_propTypes2.default.string)]).isRequired,
     REQUEST: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.arrayOf(_propTypes2.default.string)]).isRequired,
     SUCCESS: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.arrayOf(_propTypes2.default.string)]).isRequired
 }).isRequired;
-var UFPActionPropTypes = _defineProperty({}, _UfpRequestActions2.default.UFP_REQUEST_ACTION, _propTypes2.default.shape({
+var UFPActionPropTypes = (0, _defineProperty3.default)({}, _UfpRequestActions2.default.UFP_REQUEST_ACTION, _propTypes2.default.shape({
     ufpDefinition: _propTypes2.default.shape({
         url: _propTypes2.default.string.isRequired,
         method: _propTypes2.default.oneOf(['get', 'post', 'delete', 'put', 'patch']).isRequired,
@@ -53,7 +57,7 @@ var UFPActionPropTypes = _defineProperty({}, _UfpRequestActions2.default.UFP_REQ
         handler: _propTypes2.default.func.isRequired
     })).isRequired
 }));
-var UFPTypesPropTypes = _defineProperty({}, _UfpRequestActions2.default.UFP_REQUEST_ACTION, _propTypes2.default.oneOfType([_propTypes2.default.shape({
+var UFPTypesPropTypes = (0, _defineProperty3.default)({}, _UfpRequestActions2.default.UFP_REQUEST_ACTION, _propTypes2.default.oneOfType([_propTypes2.default.shape({
     ufpTypes: UFPTypes
 }), _propTypes2.default.shape({
     ufpDefinition: _propTypes2.default.shape({ actionConstants: UFPTypes
@@ -61,7 +65,7 @@ var UFPTypesPropTypes = _defineProperty({}, _UfpRequestActions2.default.UFP_REQU
 })]));
 
 var isUFPAction = function isUFPAction(action) {
-    return (typeof action === 'undefined' ? 'undefined' : _typeof(action)) === 'object' && action.hasOwnProperty(_UfpRequestActions2.default.UFP_REQUEST_ACTION);
+    return (typeof action === 'undefined' ? 'undefined' : (0, _typeof3.default)(action)) === 'object' && action.hasOwnProperty(_UfpRequestActions2.default.UFP_REQUEST_ACTION);
 };
 
 /**

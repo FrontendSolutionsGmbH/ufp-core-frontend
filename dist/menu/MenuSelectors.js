@@ -5,6 +5,10 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.MenuDeferedActionsSelector = exports.MenuSubAreaSelector = exports.MenuSubAreasSortedSelector = exports.MenuDataSelector = exports.MenuDefinitionSelector = exports.MenuState = undefined;
 
+var _keys = require('babel-runtime/core-js/object/keys');
+
+var _keys2 = _interopRequireDefault(_keys);
+
 var _MenuReducerName = require('./MenuReducerName');
 
 var _MenuReducerName2 = _interopRequireDefault(_MenuReducerName);
@@ -26,7 +30,7 @@ var MenuSubAreasSortedSelector = exports.MenuSubAreasSortedSelector = function M
     var data = MenuDataSelector(state);
     var keysSorted;
     if (props.menuAreaName !== undefined && data !== undefined && data[props.menuAreaName] !== undefined) {
-        keysSorted = Object.keys(data[props.menuAreaName]).sort(function (a, b) {
+        keysSorted = (0, _keys2.default)(data[props.menuAreaName]).sort(function (a, b) {
             if (data[props.menuAreaName][a].sortIndex !== -1 && data[props.menuAreaName][b].sortIndex !== -1) {
                 return data[props.menuAreaName][a].sortIndex - data[props.menuAreaName][b].sortIndex;
             } else {

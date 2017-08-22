@@ -4,6 +4,10 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
+var _promise = require('babel-runtime/core-js/promise');
+
+var _promise2 = _interopRequireDefault(_promise);
+
 var _TemplateUtils = require('./TemplateUtils');
 
 var _TemplateUtils2 = _interopRequireDefault(_TemplateUtils);
@@ -175,7 +179,7 @@ var handleResultHandlers = async function handleResultHandlers(handlerArray, res
             ufpErrorHandlerResultPromiseArray.push(handlerObject.handler(resultData));
         }
     });
-    return await Promise.all(ufpErrorHandlerResultPromiseArray);
+    return await _promise2.default.all(ufpErrorHandlerResultPromiseArray);
 };
 
 var handlePreHandlers = async function handlePreHandlers(handlerArray, resultData) {
@@ -189,15 +193,15 @@ var handlePreHandlers = async function handlePreHandlers(handlerArray, resultDat
         return previousPromise.then(function (previousResult) {
             if (!previousResult.handled) {
                 if (currentItem.matcher(resultData)) {
-                    return Promise.resolve(currentItem.handler(resultData));
+                    return _promise2.default.resolve(currentItem.handler(resultData));
                 } else {
-                    return Promise.resolve(previousResult);
+                    return _promise2.default.resolve(previousResult);
                 }
             } else {
-                return Promise.resolve(previousResult);
+                return _promise2.default.resolve(previousResult);
             }
         });
-    }, Promise.resolve({
+    }, _promise2.default.resolve({
         break: false,
         handled: false
     }));

@@ -4,6 +4,10 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
+var _promise = require('babel-runtime/core-js/promise');
+
+var _promise2 = _interopRequireDefault(_promise);
+
 var _MenuConstants = require('./MenuConstants');
 
 var _MenuConstants2 = _interopRequireDefault(_MenuConstants);
@@ -19,7 +23,7 @@ var menuClick = function menuClick(menuEntry, pushActionCreator) {
                 dispatch: dispatch,
                 globalState: getState()
             });
-            return Promise.resolve();
+            return _promise2.default.resolve();
         }
     };
 };
