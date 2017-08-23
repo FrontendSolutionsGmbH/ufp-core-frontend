@@ -1,16 +1,17 @@
 
 class StartupReducerName {
+
     constructor() {
         this.setCalled=false
         Object.defineProperty(this, 'reducerNameOriginal', {
             value: 'ufpStartup',
             writable: false
         })
-        this.reducerName = 'ufpStartup';
+        this.reducerName = 'ufpStartup'
     }
 
     set=(newName) => {
-        if(this.setCalled) {
+        if (this.setCalled) {
             return this.reducerName
         } else {
             this.setCalled=true
@@ -22,10 +23,11 @@ class StartupReducerName {
         return this.reducerName
     }
     reset=() => {
-        this.reducerName = this.reducerNameOriginal;
+        this.reducerName = this.reducerNameOriginal
         this.setCalled=false
         return this.reducerName
     }
+
 }
 
 export default new StartupReducerName()

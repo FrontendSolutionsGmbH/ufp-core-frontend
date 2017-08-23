@@ -1,6 +1,7 @@
 import UFPRequestActions from './UfpRequestActions'
 
-const createActionCreatorForDefinition = (definition, ufpPrehandler = [], ufpResultHandler = []) => ({urlParams = {}, queryParams = {}, body = undefined, ufpPayload= {}}={
+const createActionCreatorForDefinition = (definition, ufpPrehandler = [], ufpResultHandler = []) =>
+  ({urlParams = {}, queryParams = {}, body = undefined, ufpPayload= {}}={
     urlParams: {},
     queryParams: {},
     body: undefined,
