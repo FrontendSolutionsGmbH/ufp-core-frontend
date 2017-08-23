@@ -4,9 +4,21 @@
 # -----
 # You can specify a custom docker image from Docker Hub as your build environment.
 # image: docker-image:tag
+image: node:8.0.0
 
 pipelines:
-  default:
+  install:
     - step:
         script:
-          - echo "Everything is awesome!"
+          - npm install
+          - npm test
+  test:
+    - step:
+        script:
+          - npm install
+          - npm test
+  lint:
+    - step:
+        script:
+          - npm install
+          - npm lint
