@@ -1,8 +1,11 @@
 # Ufp Core
 
+
 this repository contains the ufp-core npm js module
 
 Ufp's aim is to reduce application develop to the bare minimum
+
+[CHANGELOG](CHANGELOG.md)
 
 ## Installation
 
