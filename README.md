@@ -2,15 +2,34 @@
 
 this repository contains the ufp-core npm js module
 
-# Usage
+Ufp's aim is to reduce application develop to the bare minimum
 
-  npm install --save [src_modules/ufp-core]
+## Installation
 
-#
+Clone this repo to a local folder
+
+    NOTE: Installation is adding a npm module to your project, for now
+
+it has to be manually without directly linking a git repo
+
+     git clone [checkoutDir]
+
+after cloning execute
+
+    npm install
+    npm run compile
+
+for building the project, then you can execute
+
+  npm install --save [checkoutDir]
+
+to install the npm module into your project
 
 
-## Why use this?
 
-Create JS Frontend Applications at ease
+## Usage
+
+
+
 
 
