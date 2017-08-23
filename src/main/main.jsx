@@ -22,7 +22,7 @@ const startup = ({htmlroot = 'root', App = null, routes = []}) => {
 // ------------------------------------
   const MOUNT_NODE = document.getElementById(htmlroot)
 
-  const render = () => {
+  var render = () => {
     const history = syncHistoryWithStore(hashHistory, store, {
       selectLocationState: (state) => state.router
     })
