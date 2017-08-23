@@ -6,7 +6,7 @@ function encode(val) {
     .replace(/%2C/gi, ',')
     .replace(/%20/g, '+')
     .replace(/%5B/gi, '[')
-    .replace(/%5D/gi, ']');
+    .replace(/%5D/gi, ']')
 }
 
 var toString = Object.prototype.toString
@@ -47,18 +47,18 @@ export function isDate(val) {
  *
  */
 function QueryParams(params) {
-  var parts = [];
+  var parts = []
   Object.keys(params)
         .map((k) => {
           var value = params[k]
           var key = k
           if (value === null || typeof value === 'undefined') {
-            return;
+            return
           }
           if (isArray(value)) {
-            key = key + '[]';
+            key = key + '[]'
           } else {
-            value = [value];
+            value = [value]
           }
           value.map((v) => {
             if (isDate(v)) {
@@ -68,7 +68,6 @@ function QueryParams(params) {
             }
             parts.push(encode(key) + '=' + encode(v))
           })
-          return
         })
   return parts.join('&')
 }

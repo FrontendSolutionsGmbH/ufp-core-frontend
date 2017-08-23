@@ -24,6 +24,7 @@ class InvalidUFPAction extends Error {
  * @param {string} message - the error message
  */
 class UfpMiddlewareRequestCancelledError extends Error {
+
   constructor() {
     super()
     this.name = 'UfpMiddlewareRequestCancelledError'
@@ -39,11 +40,13 @@ class UfpMiddlewareRequestCancelledError extends Error {
  * @access public
  */
 class UfpMiddlewareMaxRetryReachedError extends Error {
+
   constructor() {
     super()
     this.name = 'UfpMiddlewareMaxRetryReachedError'
     this.message = 'UfpMiddleware reached the maxRetryCount'
   }
+
 }
 
 /**
@@ -53,11 +56,13 @@ class UfpMiddlewareMaxRetryReachedError extends Error {
  * @access public
  */
 class UfpMiddlewareResulthandlerMoreThenOneSuccessError extends Error {
+
   constructor() {
     super()
     this.name = 'UfpMiddlewareResulthandlerMoreThenOneSuccessError'
     this.message = 'UfpMiddlewareResulthandlerMoreThenOneSuccessError'
   }
+
 }
 /**
  * Error class for a custom `payload` or `meta` function throwing
@@ -123,6 +128,7 @@ class ResultParserError extends Error {
     this.name = 'ResultParserError'
     this.message = message
   }
+
 }
 
 export {

@@ -1,5 +1,5 @@
 import TemplateUtils from './TemplateUtils'
-import queryParams from './QQueryParams'
+import queryParams from './QueryParams'
 import {UfpMiddlewareResulthandlerMoreThenOneSuccessError} from './Errors'
 
 import UfpMiddlewareHelperUtils from './UfpMiddlewareHelperUtils'

@@ -7,7 +7,6 @@ const storeConfig = {
 }
 
 const registerReducer = (reducer) => {
-
   logger.log('UFP Store Configt')
 
   storeConfig.reducersRegistered.push(reducer)

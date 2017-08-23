@@ -6,10 +6,10 @@ import StartupSelectors from './StartupSelectors'
 import StartupReducerName from './StartupReducerName'
 
 export default {
-    initialiseApplication:StartupActionCreators.initialiseApplication,
+    initialiseApplication: StartupActionCreators.initialiseApplication,
     StartupConfiguration: StartupConfiguration,
     StartupConstants: StartupConstants,
     StartupReducer: StartupReducer,
     StartupReducerName: StartupReducerName,
-    StartupSelectors:StartupSelectors
+    StartupSelectors: StartupSelectors
 }

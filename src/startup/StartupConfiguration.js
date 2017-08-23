@@ -26,7 +26,7 @@ class StartupConfiguration {
             name: name,
             required: required,
             actionCreator: actionCreator,
-            actionCreatorParams:actionCreatorParams,
+            actionCreatorParams: actionCreatorParams,
             actionNameSuccess: actionNameSuccess,
             actionNameFailure: actionNameFailure
         })
@@ -68,5 +68,6 @@ class StartupConfiguration {
     reset = () => {
         this.StartupStages={}
     }
+
 }
 export default new StartupConfiguration()

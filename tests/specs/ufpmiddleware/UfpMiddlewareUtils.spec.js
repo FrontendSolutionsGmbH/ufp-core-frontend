@@ -1,5 +1,5 @@
 import UfpMiddlewareUtils from 'ufpmiddleware/UfpMiddlewareUtils.js'
-import queryParams from 'ufpmiddleware/QQueryParams.js'
+import queryParams from 'ufpmiddleware/QueryParams.js'
 
 import MockAdapter from 'axios-mock-adapter'
 import axios from 'axios'

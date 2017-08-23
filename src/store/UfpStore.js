@@ -2,12 +2,12 @@ import {applyMiddleware, compose, createStore as createReduxStore} from 'redux'
 import thunk from 'redux-thunk'
 import RootReducer from './RootReducer'
 import {routerMiddleware} from 'react-router-redux'
-import {UFPMiddleware} from 'ufp-core'
-import {getConfig}  from './StoreConfig'
+import {getConfig} from './StoreConfig'
 import logger from 'redux-logger'
 import axios from 'axios'
+import {ConfigureEpics, UFPMiddleware} from 'ufp-core'
+
 export const axiosInstance = axios.create()
-import {ConfigureEpics} from 'ufp-core'
 
 /*const createStore = (middlewares= [],initialState = {}, history) => {
  }*/
@@ -36,7 +36,7 @@ const createStore = (initialState = {}, history) => {
   // Store Enhancers
   // ======================================================
   const enhancers = []
-  let composeEnhancers = compose
+  var composeEnhancers = compose
 
   if (__DEV__) {
     if (typeof window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ === 'function') {
