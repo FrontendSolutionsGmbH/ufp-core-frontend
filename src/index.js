@@ -5,7 +5,7 @@ import _Startup from './startup/index.js'
 import _UfpStoreConfig from './store/StoreConfig'
 
 import _Menu from './menu/index.js'
-import UFPMain from './main/main.js'
+import UFPMain from './main/main.jsx'
 
 export const ConfigureEpics = _ConfigureEpics
 export const UFPUtils = _Utils
