@@ -4,6 +4,7 @@
   "description": "UFP Core - build frontend applications at ease",
   "main": "dist/index.js",
   "scripts": {
+    "prepublish": "npm run compile",
     "dev": "babel-node src/index.js",
     "lint": "eslint --fix src/**/*.js",
     "compile": "npm run lint && babel --stage 0 --plugins transform-object-rest-spread -d dist/ src/",
@@ -59,7 +60,6 @@
     "eslint-plugin-import": "^2.7.0",
     "eslint-plugin-jsx": "0.0.2",
     "eslint-plugin-new-with-error": "^1.1.0",
-    "eslint-plugin-no-empty-blocks": "0.0.2",
     "eslint-plugin-no-inferred-method-name": "^1.0.2",
     "eslint-plugin-no-use-extend-native": "^0.3.12",
     "eslint-plugin-promise": "^3.5.0",
