@@ -3,12 +3,13 @@ const ThrowParam = (string) => {
 }
 
 function pad(pad, str, padRight) {
-  if (typeof str === 'undefined')
-    return pad;
+  if (typeof str === 'undefined') {
+    return pad
+  }
   if (padRight) {
-    return (str + pad).substring(0, pad.length);
+    return (str + pad).substring(0, pad.length)
   } else {
-    return (pad + str).slice(-pad.length);
+    return (pad + str).slice(-pad.length)
   }
 }
 
@@ -16,13 +17,13 @@ const factorMethodSkalarArray = (fn) => {
   return (param) => {
     if (Array.isArray(param)) {
       // if is array call method for each array item
-      data.map(item => {
-        fn.call(null, item)
+      param.map((item) => {
+        fn(item)
       })
     }
     else {
       // if is no array call method as normal
-      fn.call(null, data)
+      fn(param)
     }
   }
 }

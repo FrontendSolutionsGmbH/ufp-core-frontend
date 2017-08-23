@@ -1,6 +1,5 @@
-
 export default{
-    ActionConstants: {
-        UFP_ACTION_ERROR: 'UFP_ACTION_ERROR'
-    }
+  ActionConstants: {
+    UFP_ACTION_ERROR: 'UFP_ACTION_ERROR'
+  }
 }

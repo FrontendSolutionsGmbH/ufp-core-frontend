@@ -7,7 +7,6 @@ const identity = (t) => {
     return t
 }
 
-
 /**
  * retrieves the first particular node from an object with the keyname===nodeName
  * @param nodeName  key name to search for
@@ -84,7 +83,8 @@ const createActionCreator = (type, actionCreator, metaCreator) => {
 }
 
 /**
- * creates a reducer from initialstate and action handlers, actions are then mapped through the action handles associative array to obtain the current action handler
+ * creates a reducer from initialstate and action handlers, actions are then mapped through
+ * the action handles associative array to obtain the current action handler
  *./
  * @param initialState the initial state of the reducer
  * @param handlers object notated action handlers
@@ -98,7 +98,8 @@ const createReducer = (initialState, handlers) => {
     }
 }
 /**
- * this helper method is designed to execute actionhandlers from reducers to be combined with the current actionhandlings
+ * this helper method is designed to execute actionhandlers from reducers to be combined
+ * with the current actionhandlings
  * @param initialState
  * @param handlers
  * @param reducers

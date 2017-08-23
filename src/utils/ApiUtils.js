@@ -6,38 +6,40 @@ import ChangeCaseUtils from './ChangeCaseUtils'
  * @returns {{REQUEST: string, SUCCESS: string, FAILURE: string, END: string}}
  */
 const createAsyncResponseActionNames = (apiDefinitionPath) => {
-    return {
-        REQUEST: apiDefinitionPath.toUpperCase() + '_REQUEST',
-        SUCCESS: apiDefinitionPath.toUpperCase() + '_SUCCESS',
-        END: apiDefinitionPath.toUpperCase() + '_END',
-        FAILURE: apiDefinitionPath.toUpperCase() + '_FAILURE'
-    }
+  return {
+    REQUEST: apiDefinitionPath.toUpperCase() + '_REQUEST',
+    SUCCESS: apiDefinitionPath.toUpperCase() + '_SUCCESS',
+    END: apiDefinitionPath.toUpperCase() + '_END',
+    FAILURE: apiDefinitionPath.toUpperCase() + '_FAILURE'
+  }
 }
 const traverseDefinition = (obj, callback, path) => {
-    // // console.log('traversinng ', obj, path)
-    path = path || []
-    if (typeof obj === 'object' && obj.url === undefined) {
-        Object.keys(obj).forEach((key) => {
-            var value = obj[key]
-            traverseDefinition(value, callback, path.concat(key))
-        })
-    } else {
-        callback.call(obj, path, obj)
-    }
+  // // console.log('traversinng ', obj, path)
+  path = path || []
+  if (typeof obj === 'object' && obj.url === undefined) {
+    Object.keys(obj).forEach((key) => {
+      var value = obj[key]
+      traverseDefinition(value, callback, path.concat(key))
+    })
+  } else {
+    callback.call(obj, path, obj)
+  }
 }
 
 const createActionConstantsForApiDefinitions = (ApiDefinitionsObject) => {
-    var newApiDefinitionsObject={}
-    traverseDefinition(ApiDefinitionsObject, (path, definition) =>{
-        set(newApiDefinitionsObject, path,
-            Object.assign({actionConstants:createAsyncResponseActionNames(
-                ChangeCaseUtils.toSnakeCaseUpperCase(path.join('_')))}, definition))
-    })
-    return newApiDefinitionsObject
+  var newApiDefinitionsObject = {}
+  traverseDefinition(ApiDefinitionsObject, (path, definition) => {
+    set(newApiDefinitionsObject, path,
+      Object.assign({
+        actionConstants: createAsyncResponseActionNames(
+          ChangeCaseUtils.toSnakeCaseUpperCase(path.join('_')))
+      }, definition))
+  })
+  return newApiDefinitionsObject
 }
 
 export default {
-    createActionConstantsForApiDefinitions,
-    traverseDefinition,
-    createAsyncResponseActionNames
+  createActionConstantsForApiDefinitions,
+  traverseDefinition,
+  createAsyncResponseActionNames
 }
