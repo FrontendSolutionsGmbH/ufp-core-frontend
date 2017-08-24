@@ -9,6 +9,7 @@ export const setConfigValueAction = {
 
 export default{
     reducerName: 'config',
+    description: 'willi wonka',
     actions: [
         setConfigValueAction
     ]
