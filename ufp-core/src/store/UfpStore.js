@@ -1,7 +1,6 @@
 import {applyMiddleware, compose, createStore as createReduxStore} from 'redux'
 import thunk from 'redux-thunk'
 import RootReducer from './RootReducer'
-import {routerMiddleware} from 'react-router-redux'
 import {getConfig} from './StoreConfig'
 import logger from 'redux-logger'
 import axios from 'axios'
@@ -12,11 +11,11 @@ export const axiosInstance = axios.create()
 /*const createStore = (middlewares= [],initialState = {}, history) => {
  }*/
 
-const createStore = (initialState = {}, history) => {
+const createStore = (initialState = {}) => {
   // ======================================================
   // Middleware Configuration
   // ======================================================
-  const routeMiddleware = routerMiddleware(history)
+
   //{debug:true, useAxios:true, axiosInstance}
   const middleware = [
 
@@ -25,7 +24,6 @@ const createStore = (initialState = {}, history) => {
       useAxios: true,
       axiosInstance
     }),
-    routeMiddleware,
     ConfigureEpics.createEpicMiddleware(),
     thunk,
     logger

@@ -93,7 +93,7 @@
     "check-prop-types": "^1.1.1",
     "deepmerge": "^1.5.0",
     "no-case": "^2.3.1",
-    "path-to-regexp": "^1.7.0",
+    "path-to-regexp": "^2.0.0",
     "prop-types": "^15.5.10",
     "react-addons-update": "^15.6.0",
     "redux": "^3.7.2",
