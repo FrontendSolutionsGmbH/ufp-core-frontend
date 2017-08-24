@@ -1,10 +1,10 @@
 import ConfigActionHandlers from './ConfigActionHandlers'
-import {UFPUtils} from 'ufp-core'
+import {UFPUtils} from '../../utils'
 // ------------------------------------
 // Reducer
 // ------------------------------------
 const initialState = {
-   data: {}
+    data: {}
 }
 
 export default UFPUtils.ReduxUtils.createReducer(initialState, ConfigActionHandlers)

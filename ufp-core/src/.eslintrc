@@ -1,18 +1,16 @@
 {
   "parser": "babel-eslint",
   "extends": [
-    "standard",
-    "standard-react"
+    "standard"
   ],
   "plugins": [
-    "jsx",
-    "react",
     "filenames",
     "flowtype",
     "flowtype",
     "import",
     "promise",
     "babel",
+    "transform-runtime",
     "immutable",
     "no-use-extend-native",
     "no-inferred-method-name"
@@ -71,10 +69,6 @@
       2,
       "single"
     ],
-    "jsx-quotes": [
-      2,
-      "prefer-double"
-    ],
     "no-undef": [
       2
     ],
@@ -101,12 +95,6 @@
 
       "pascal"
     ],
-    "jsx/uses-factory": [
-      1,
-      {
-        "pragma": "JSX"
-      }
-    ],
     "prefer-const": [
       2,
       {
@@ -114,12 +102,10 @@
         "ignoreReadBeforeAssign": false
       }
     ],
-    "jsx/mark-used-vars": 1,
     "object-curly-spacing": [
       2,
       "never"
     ],
-    "jsx/no-undef": 2,
     "no-duplicate-imports": 0,
     "no-unsafe-finally": 0,
     "no-useless-computed-key": 0,
@@ -132,129 +118,9 @@
     "indent": 0,
     "spaced-comment": 0,
     "rest-spread-spacing": 0,
-    "react/display-name": 2,
-    "react/forbid-component-props": 2,
-    /** for now proptypes object and such are allowed, will be activated seperately at a later stage for whole project */
-    "react/forbid-prop-types": 0,
-    "react/no-array-index-key": 2,
-    "react/no-children-prop": 2,
-    "react/no-danger": 2,
-    "react/no-danger-with-children": 2,
-    "react/no-deprecated": 2,
-    "react/no-did-mount-set-state": 2,
-    "react/no-did-update-set-state": 2,
-    "react/no-direct-mutation-state": 2,
-    "react/no-find-dom-node": 2,
-    "react/no-is-mounted": 2,
-    "react/no-multi-comp": 2,
-    "react/no-render-return-value": 2,
-    "react/no-set-state": 0,
-    "react/no-string-refs": 2,
-    "react/no-unescaped-entities": 2,
-    "react/no-unknown-property": 2,
-    "react/no-unused-prop-types": 2,
-    "react/prefer-es6-class": 2,
-    "react/prefer-stateless-function": [
-      // struggles with complaining about redux wrapped purecomponents hence disabling it for now ...
-      0,
-      {
-        "ignorePureComponents": true
-      }
-    ],
-    //Enforce stateless React Components to be written as a pure function
-    "react/prop-types": 2,
-    //Prevent missing props validation in a React component definition
-    "react/react-in-jsx-scope": 2,
-    //Prevent missing React when using JSX
-    "react/require-default-props": 2,
-    //Enforce a defaultProps definition for every prop that is not a required prop
-    "react/require-optimization": 0,
-    // Enforce React components to have a shouldComponentUpdate method
-    "react/require-render-return": 2,
-    //Enforce ES5 or ES6 class for returning value in render function
-    //Prevent extra closing tags for components without children (fixable)
-    "react/sort-comp": 2,
-    //Enforce component methods order
-    "react/sort-prop-types": 2,
-    // Enforce propTypes declarations alphabetical sorting
-    "react/style-prop-object": 2,
-    //Enforce style prop value being an object
-
-
-    "react/jsx-indent": 0,
-    "react/self-closing-comp": 2,
-    "react/jsx-boolean-value": 0,
-    //Enforce boolean attributes notation in JSX (fixable)
-    "react/jsx-closing-bracket-location": 0,
-    //Validate closing bracket location in JSX (fixable)
-    "react/jsx-curly-spacing": 2,
-    //Enforce or disallow spaces inside of curly braces in JSX attributes (fixable)
-    "react/jsx-equals-spacing": 2,
-    //Enforce or disallow spaces around equal signs in JSX attributes (fixable)
-    "react/jsx-filename-extension": 2,
-    //Restrict file extensions that may contain JSX
-    // "react/jsx-first-prop-new-line": 2,
-    //Enforce position of the first prop in JSX (fixable)
-    "react/jsx-handler-names": 2,
-    //Enforce event handler naming conventions in JSX
-    //Validate JSX indentation (fixable)
-    "react/jsx-indent-props": 0,
-    // Validate props indentation in JSX (fixable)
-    "react/jsx-key": 2,
-    //Validate JSX has key prop when in array or iterator
-    "react/jsx-max-props-per-line": 2,
-    //Limit maximum of props on a single line in JSX
-    "react/jsx-no-comment-textnodes": 2,
-    //Prevent comments from being inserted as text nodes
-    "react/jsx-no-duplicate-props": 2,
-    //Prevent duplicate props in JSX
-    "react/jsx-no-literals": 0,
-    //Prevent usage of unwrapped JSX strings
-    "react/jsx-no-target-blank": 2,
-    //Prevent usage of unsafe target='_blank'
-    "react/jsx-no-undef": 2,
-    //Disallow undeclared variables in JSX
-    "react/jsx-pascal-case": 2,
-    //Enforce PascalCase for user-defined JSX components
-    "react/jsx-sort-props": 2,
-    //Enforce props alphabetical sorting
-    // "react/jsx-space-before-closing": 2,
-    //Validate spacing before closing bracket in JSX (fixable)
-    "react/jsx-tag-spacing": 2,
-    //Validate whitespace in and around the JSX opening and closing brackets (fixable)
-    "react/jsx-uses-react": 2,
-    //Prevent React to be incorrectly marked as unused
-    "react/jsx-uses-vars": 2,
-    //Prevent variables used in JSX to be incorrectly marked as unused
-    "react/jsx-wrap-multilines": 2,
-    //Prevent missing parentheses around multilines JSX (fixable)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     // fixme: include vars on top
     "vars-on-top": 0,
     // "complexity": [1, 10],
     "complexity": 0,
-    // WARNING TIME CRITICAL LINT OPTIONS DISABLED SHALL BE SET TO ACTIVE AS SOON AS POSSIBLE
-    "react/jsx-no-bind": [
-      1,
-      {
-        "ignoreRefs": true,
-        "allowArrowFunctions": true,
-        "allowBind": true
-      }
-    ]
   }
 }
