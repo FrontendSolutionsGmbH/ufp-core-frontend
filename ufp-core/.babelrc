@@ -4,6 +4,12 @@
   ],
   "plugins": [
     "transform-class-properties",
-    "transform-runtime"
+    ["transform-runtime",
+      {
+        "helpers": true,
+        "polyfill": false, // we polyfill needed features in src/normalize.js
+        "regenerator": true,
+      }
+    ]
   ]
 }
