@@ -6,10 +6,17 @@
   "scripts": {
     "webpack": "node build/scripts/compile",
     "prepublish": "npm run compile",
+    "prepare": "echo prepare",
+    "prepublishOnly": "echo prepublishOnly",
+    "prepack": "echo prepack",
+    "postpack": "echo postpack",
+    "preinstall": "echo preinstall",
+    "postinstall": "echo postinstall",
+    "preversion": "echo postinstall",
     "dev": "babel-node src/index.js",
     "lint": "eslint src/**/*.js",
     "lint:fix": "npm run lint -- --fix ",
-    "compile": "npm run lint && babel -d lib/ src/",
+    "compile": "npm run lint:fix && babel -d lib/ src/",
     "test": "cross-env NODE_ENV=test karma start build/karma.config"
   },
   "repository": {
@@ -94,8 +101,6 @@
   "dependencies": {
     "check-prop-types": "^1.1.1",
     "deepmerge": "^1.5.0",
-    "no-case": "^2.3.1",
-    "path-to-regexp": "^2.0.0",
     "prop-types": "^15.5.10",
     "react-addons-update": "^15.6.0",
     "redux": "^3.7.2",

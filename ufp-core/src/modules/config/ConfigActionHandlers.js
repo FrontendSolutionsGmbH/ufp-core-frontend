@@ -1,4 +1,4 @@
-import {setConfigValueAction} from 'Manifest'
+import {setConfigValueAction} from './Manifest'
 import update from 'react-addons-update'
 
 export default {

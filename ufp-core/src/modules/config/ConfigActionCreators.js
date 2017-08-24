@@ -1,7 +1,7 @@
 // import update from 'react-addons-update'
 // import ApiDefinition from 'api/ApiDefinition'
 import {ThrowParam} from '../../utils/JSUtils'
-import {setConfigValueAction} from 'Manifest'
+import {setConfigValueAction} from './Manifest'
 
 export default {
 

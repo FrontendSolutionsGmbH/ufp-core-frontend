@@ -1,6 +1,6 @@
 // @DEPRECATED severe deprecation path extration has to be done without external dep
 // import pathToRegexp from 'path-to-regexp'
-import JsUtils from '../utils/JsUtils'
+import JsUtils from '../utils/JSUtils'
 
 // function urlParamsToUrl(templateUrl, urlParams) {
 //     var toPath = pathToRegexp.compile(templateUrl)
