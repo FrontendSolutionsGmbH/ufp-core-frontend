@@ -1,5 +1,5 @@
 import ConfigActionHandlers from './ConfigActionHandlers'
-import {UFPUtils} from '../../utils'
+import ReduxUtils from '../../utils/ReduxUtils'
 // ------------------------------------
 // Reducer
 // ------------------------------------
@@ -7,4 +7,4 @@ const initialState = {
     data: {}
 }
 
-export default UFPUtils.ReduxUtils.createReducer(initialState, ConfigActionHandlers)
+export default ReduxUtils.createReducer(initialState, ConfigActionHandlers)

@@ -5,7 +5,6 @@ import _Startup from './startup/index.js'
 import _UfpStoreConfig from './store/StoreConfig'
 
 import _Menu from './menu/index.js'
-import UFPMain from './main/main.jsx'
 
 export const ConfigureEpics = _ConfigureEpics
 export const UFPUtils = _Utils
@@ -15,12 +14,10 @@ export const UFPMiddleware = _UFPMiddleware
 // export const UFPMenu = _Menu
 export default{
 
-  UFPMain,
-
-  UFPMiddleware: _UFPMiddleware,
-  UFPUtils: UFPUtils,
-  UFPStartup: _Startup,
-  UfpStoreConfig,
-  ConfigureEpics: ConfigureEpics,
-  UFPMenu: _Menu
+    UFPMiddleware: _UFPMiddleware,
+    UFPUtils: UFPUtils,
+    UFPStartup: _Startup,
+    UfpStoreConfig,
+    ConfigureEpics: ConfigureEpics,
+    UFPMenu: _Menu
 }
