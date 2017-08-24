@@ -1,4 +1,4 @@
-const ThrowParam = (string) => {
+export const ThrowParam = (string) => {
   throw new Error(string)
 }
 

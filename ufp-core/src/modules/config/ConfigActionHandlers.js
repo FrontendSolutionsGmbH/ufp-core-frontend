@@ -1,11 +1,32 @@
+import {setConfigValueAction} from 'Manifest'
 import update from 'react-addons-update'
-import ApiDefinition from 'api/ApiDefinition'
+// import ApiDefinition from 'api/ApiDefinition'
 
 export default {
-    [ApiDefinition.getGlobals.actionConstants.SUCCESS]: (state, action) => {
-        //console.log('response', action.payload)
+
+    [setConfigValueAction.name]: (state, action) => {
+        console.log('Config Reducer Setting config value', action.payload)
+
+        //initialise main data container
+        if (state.data === undefined) {
+            state = update(state, {
+                data: {$set: {}}
+            })
+        }
+        //initialise area data container
+        if (state.data[action.payload.area] === undefined) {
+            state = update(state, {
+                data: {[action.payload.area]: {$set: {}}}
+            })
+        }
+
+        // and set final value
         return update(state, {
-            data: {$set: action.payload.data.result}
+            data: {
+                [action.payload.area]: {
+                    [action.payload.key]: {$set: action.payload.value}
+                }
+            }
         })
     }
 }
