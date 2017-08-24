@@ -55,7 +55,6 @@
     "eslint-config-volox": "^2.1.1",
     "eslint-plugin-babel": "^4.1.2",
     "eslint-plugin-filenames": "^1.2.0",
-    "eslint-plugin-flow-vars": "^0.5.0",
     "eslint-plugin-flowtype": "^2.35.0",
     "eslint-plugin-immutable": "^1.0.0",
     "eslint-plugin-import": "^2.7.0",
@@ -104,6 +103,7 @@
     "path-to-regexp": "^1.7.0",
     "prop-types": "^15.5.10",
     "react-addons-update": "^15.6.0",
+    "redux": "^3.7.2",
     "redux-observable": "^0.16.0",
     "rxjs": "^5.2.0"
   }

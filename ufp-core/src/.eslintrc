@@ -6,9 +6,11 @@
   ],
   "plugins": [
     "jsx",
-    "flow-vars",
     "react",
     "filenames",
+    "flowtype",
+    "flowtype",
+    "import",
     "promise",
     "babel",
     "immutable",
@@ -113,10 +115,11 @@
       }
     ],
     "jsx/mark-used-vars": 1,
-    "object-curly-spacing": [2,"never"],
+    "object-curly-spacing": [
+      2,
+      "never"
+    ],
     "jsx/no-undef": 2,
-    "flow-vars/define-flow-type": 1,
-    "flow-vars/use-flow-type": 1,
     "no-duplicate-imports": 0,
     "no-unsafe-finally": 0,
     "no-useless-computed-key": 0,
