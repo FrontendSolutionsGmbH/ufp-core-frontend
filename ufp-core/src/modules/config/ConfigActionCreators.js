@@ -19,17 +19,6 @@ export default {
                 area
             }
         }
-    },
-
-    getConfigValue: ({
-        key = ThrowParam('Config Key has to be set'),
-        area = 'default'
-    }) => {
-        return {
-            key,
-            area,
-            value: 'WILLIWALUE'
-        }
     }
 
 }

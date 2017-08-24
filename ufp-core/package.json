@@ -4,6 +4,7 @@
   "description": "UFP Core - build frontend applications at ease",
   "main": "dist/index.js",
   "scripts": {
+    "webpack": "node build/scripts/compile",
     "prepublish": "npm run compile",
     "dev": "babel-node src/index.js",
     "lint": "eslint src/**/*.js",
