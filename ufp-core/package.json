@@ -7,7 +7,7 @@
     "prepublish": "npm run compile",
     "dev": "babel-node src/index.js",
     "lint": "eslint src/**/*.js",
-    "lint:fix": "npm run lint -- --fix",
+    "lint:fix": "eslint src/**/*.js --fix ",
     "compile": "npm run lint && babel --stage 0 --plugins transform-object-rest-spread -d dist/ src/",
     "test": "cross-env NODE_ENV=test karma start build/karma.config"
   },
@@ -99,6 +99,7 @@
     "eslint-config-standard": "^10.2.1",
     "eslint-config-standard-react": "^5.0.0",
     "eslint-plugin-node": "^5.1.1",
+    "logger": "0.0.1",
     "no-case": "^2.3.1",
     "path-to-regexp": "^1.7.0",
     "prop-types": "^15.5.10",

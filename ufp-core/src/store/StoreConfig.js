@@ -1,15 +1,12 @@
-import Logger from '../logger/Logger'
-
-const logger = Logger.factorLogger('StoreConfig')
 
 const storeConfig = {
-  reducersRegistered: []
+    reducersRegistered: []
 }
 
 const registerReducer = (reducer) => {
-  logger.log('UFP Store Configt')
+    console.log('UFP Store Configt')
 
-  storeConfig.reducersRegistered.push(reducer)
+    storeConfig.reducersRegistered.push(reducer)
 }
 
 /**
@@ -17,9 +14,9 @@ const registerReducer = (reducer) => {
  * @returns {{reducersRegistered: Array}}
  */
 export const getConfig = () => {
-  return storeConfig
+    return storeConfig
 }
 
 export default {
-  registerReducer
+    registerReducer
 }
