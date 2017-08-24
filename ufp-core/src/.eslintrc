@@ -13,7 +13,6 @@
     "babel",
     "immutable",
     "no-use-extend-native",
-    "no-empty-blocks",
     "no-inferred-method-name"
   ],
   "env": {
