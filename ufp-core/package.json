@@ -1,6 +1,6 @@
 {
   "name": "ufp-core",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "UFP Core - build frontend applications at ease",
   "main": "dist/index.js",
   "scripts": {
@@ -8,7 +8,7 @@
     "dev": "babel-node src/index.js",
     "lint": "eslint src/**/*.js",
     "lint:fix": "npm run lint -- --fix ",
-    "compile": "npm run lint && babel -d dist/ src/",
+    "compile": "npm run lint && babel -d lib/ src/",
     "test": "cross-env NODE_ENV=test karma start build/karma.config"
   },
   "repository": {
