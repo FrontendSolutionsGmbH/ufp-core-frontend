@@ -6,11 +6,9 @@
   "plugins": [
     "filenames",
     "flowtype",
-    "flowtype",
     "import",
     "promise",
     "babel",
-    "transform-runtime",
     "immutable",
     "no-use-extend-native",
     "no-inferred-method-name"
