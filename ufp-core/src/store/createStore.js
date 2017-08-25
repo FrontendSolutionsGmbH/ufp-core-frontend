@@ -1,7 +1,7 @@
 import {applyMiddleware, compose, createStore as createReduxStore} from 'redux'
-import thunk from 'redux-thunk'
 import makeRootReducer from './reducers'
 import logger from 'redux-logger'
+import thunk from 'redux-thunk'
 import UFPMiddleware from '../middleware/UfpMiddleware'
 
 /* const createStore = (middlewares= [],initialState = {}, history) => {

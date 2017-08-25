@@ -25,7 +25,8 @@
 // the redux store
 import {ThrowParam} from '../utils/JSUtils'
 import UfpSetup from './UfpSetup'
-import {compose, createStore} from 'redux'
+import AdditionsManifest from './addition/Manifest'
+import {compose, createStore, combineReducers} from 'redux'
 var store = null
 
 /**
@@ -38,20 +39,31 @@ var store = null
 var startedUp = false
 var applicationName
 
+export const makeRootReducer = (reducers) => {
+    return combineReducers({...reducers})
+}
 const registerReducer = ({
     id = ThrowParam('Id Required for registerReducer'),
     reducer = ThrowParam('RreducerRequired for registerReducer')
 
 }) => {
     checkStarted()
-    UfpSetup.reducers[id] = reducer
+    UfpSetup.reducers.push({
+        id: id,
+        reducer
+    })
 }
 const registerMiddleware = ({
     id = ThrowParam('Id Required for registerMiddleware'),
     middleware = ThrowParam('middleware Required for registerMiddleware')
 
-}) => {
+})
+    => {
     checkStarted()
+    UfpSetup.middleware.push({
+        id: id,
+        middleware
+    })
 }
 const registerEnhancer = ({
     id = ThrowParam('Id Required for registerEnhancer'),
@@ -59,6 +71,11 @@ const registerEnhancer = ({
 
 }) => {
     checkStarted()
+    UfpSetup.enhancers.push({
+        id: id,
+        enhancer
+    })
+
 }
 
 const registerReducerCreator = ({
@@ -67,6 +84,11 @@ const registerReducerCreator = ({
 
 }) => {
     checkStarted()
+    UfpSetup.reducerCreators.push({
+        id,
+        reducerCreatorFunction
+    })
+
 }
 const registerMiddlewareCreator = ({
     id = ThrowParam('Id Required for registerMiddlewareCreator'),
@@ -74,6 +96,10 @@ const registerMiddlewareCreator = ({
 
 }) => {
     checkStarted()
+    UfpSetup.middlewareCreators.push({
+        id,
+        middlewareCreatorFunction
+    })
 }
 const registerEnhancerCreator = ({
     id = ThrowParam('Id Required for registerEnhancerCreator'),
@@ -81,14 +107,19 @@ const registerEnhancerCreator = ({
 
 }) => {
     checkStarted()
+    UfpSetup.reducers.push({
+        id,
+        enhancerCreatorFunction
+    })
 }
 const checkStarted = () => {
     if (startedUp) {
-        JsUtils.ThrowParam('Ufp Application already started registering no longer possible')
+        ThrowParam('Ufp Application already started registering no longer possible')
     }
 }
 const registerManifest = () => {
     checkStarted()
+
 }
 
 /**
@@ -98,17 +129,29 @@ const registerManifest = () => {
  */
 const startup = (applicationNameIn = 'Ufp Application') => {
     checkStarted()
+
+    AdditionsManifest.register()
+
     startedUp = true
     applicationName = applicationNameIn
 
-    const middleware = [
-        thunk,
-        logger]
+    const reducers = UfpSetup.reducers
+    UfpSetup.reducerCreators.map((item) => {
+        reducers.push(item.reducerCreatorFunction())
+    })
+
+    const middleware = UfpSetup.middlewares
+    UfpSetup.middlewareCreators.map((item) => {
+        middleware.push(item.middlewareCreatorFunction())
+    })
 
     // ======================================================
     // Store Enhancers
     // ======================================================
-    const enhancers = []
+    const enhancers = UfpSetup.enhancers
+    UfpSetup.middlewareCreators.map((item) => {
+        enhancers.push(item.enhancerCreatorFunction())
+    })
 
     var composeEnhancers = compose
 
