@@ -6,8 +6,12 @@ this repository contains UFP npm modules
 
 Ufp's aim is to reduce application develop to the bare minimum
 
-[CHANGELOG](CHANGELOG.md)
+
 [DOCS](docs/README.md)
+
+
+[CHANGELOG](CHANGELOG.md)
+
 
 ## Installation
 
