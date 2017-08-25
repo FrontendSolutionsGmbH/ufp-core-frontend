@@ -205,7 +205,7 @@ const startup = (applicationNameIn = 'Ufp Application') => {
     UfpSetup.manifests.map((manifest) => {
 
         var boundSelectors = bindSelectors(manifest.selectors)
-        var boundActionCreators = bindSelectors(manifest.actionCreators)
+        var boundActionCreators = bindActionCreators(manifest.actionCreators)
         Object.keys(boundSelectors).map((key) => {
             // extend js object of incoming manifest
             // yes its brutal, but convenient
