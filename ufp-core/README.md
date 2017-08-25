@@ -43,19 +43,29 @@ to install the npm module into your project
 
 #### Config Reducer enabled
 
-    import UfpCore from 'ufp-core'
-    import UfpConfig from 'ufp-core/lib/modules/config/Manifest'   
+the following example uses the config reducer to store default values upon registration, sets them inside the redux store using a redux action and prints out its current value using the ufpAutoConfigured selector to retrieve a value from it
+
+ 
+    import UfpCore from 'ufp-core/lib'
+    import UfpConfig from 'ufp-core/lib/modules/config/Manifest'
     
-    // declarative registration
-    UfpConfig.register({foo:'bar'})
-    // register can be called multiple times data will get joined
-    UfpConfig.register({bar::'foo'})
-        
-    // redux store creation and startup
+    UfpConfig.register({foo: 'bar'})
+    UfpConfig.register({bar: 'foo'})
+    
     UfpCore.startup()
     
-    UfpConfig.getConfigValue({key:'bar'})
+    UfpConfig.setConfigValue({
+      key: 'bar',
+      value: 'willi'
+    })
     
+    UfpConfig.setConfigValue({
+      key: 'hoschi',
+      value: 'willi'
+    })
+    
+    console.log('DEMO Retrieve Config', UfpConfig.getConfigValue({key: 'bar'}))
+
     
     
 
