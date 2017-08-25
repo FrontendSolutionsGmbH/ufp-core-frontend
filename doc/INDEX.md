@@ -1,1 +1,0 @@
-# Ufp Core Documentation
