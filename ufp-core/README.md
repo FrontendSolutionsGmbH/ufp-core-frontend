@@ -47,8 +47,10 @@ to install the npm module into your project
     import UfpConfig from 'ufp-core/lib/modules/config/Manifest'   
     
     // declarative registration
-    UfpConfig.register()
-    
+    UfpConfig.register({foo:'bar'})
+    // register can be called multiple times data will get joined
+    UfpConfig.register({bar::'foo'})
+        
     // redux store creation and startup
     UfpCore.startup()
     

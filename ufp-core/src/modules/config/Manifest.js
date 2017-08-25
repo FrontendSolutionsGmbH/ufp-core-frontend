@@ -10,6 +10,15 @@ export const setConfigValueAction = {
     name: 'SET_CONFIG_VALUE'
 }
 
+var data = {}
+
+const reducerCreatorFunction = () => {
+    /**
+     * create reducer here, containing all the assigned data in data variable
+     */
+    return ConfigReducer(data)
+}
+
 export default{
     type: UfpCoreConstants.Manifest.REDUCER_TYPE,
     name: 'ConfigReducer',
@@ -17,9 +26,14 @@ export default{
     actions: [
         setConfigValueAction
     ],
+    register: (initialState) => {
 
-    register: () => {
-        UfpCore.registerReducer(ConfigReducer)
+        data = Object.assign(data, initialState)
+
+        UfpCore.registerReducerCreator({
+            id: 'ConfigReducer',
+            reducerCreatorFunction: reducerCreatorFunction
+        })
     }
 
 }

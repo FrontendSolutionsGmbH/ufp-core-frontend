@@ -23,7 +23,8 @@
 // }
 // index.js is evil
 // the redux store
-import JsUtils from 'utils/JSUtils'
+import {ThrowParam} from '../utils/JSUtils'
+import UfpSetup from './UfpSetup'
 import {compose, createStore} from 'redux'
 var store = null
 
@@ -37,13 +38,48 @@ var store = null
 var startedUp = false
 var applicationName
 
-const registerReducer = () => {
+const registerReducer = ({
+    id = ThrowParam('Id Required for registerReducer'),
+    reducer = ThrowParam('RreducerRequired for registerReducer')
+
+}) => {
+    checkStarted()
+    UfpSetup.reducers[id] = reducer
+}
+const registerMiddleware = ({
+    id = ThrowParam('Id Required for registerMiddleware'),
+    middleware = ThrowParam('middleware Required for registerMiddleware')
+
+}) => {
     checkStarted()
 }
-const registerMiddleware = () => {
+const registerEnhancer = ({
+    id = ThrowParam('Id Required for registerEnhancer'),
+    enhancer = ThrowParam('enhancer Required for registerEnhancer')
+
+}) => {
     checkStarted()
 }
-const registerEnhancer = () => {
+
+const registerReducerCreator = ({
+    id = ThrowParam('Id Required for registerReducerCreator'),
+    reducerCreatorFunction = ThrowParam('reducerCreatorFunction Required for registerReducerCreator')
+
+}) => {
+    checkStarted()
+}
+const registerMiddlewareCreator = ({
+    id = ThrowParam('Id Required for registerMiddlewareCreator'),
+    middlewareCreatorFunction = ThrowParam('middlewareCreatorFunction Required for registerMiddlewareCreator')
+
+}) => {
+    checkStarted()
+}
+const registerEnhancerCreator = ({
+    id = ThrowParam('Id Required for registerEnhancerCreator'),
+    enhancerCreatorFunction = ThrowParam('enhancerCreatorFunction Required for registerEnhancerCreator')
+
+}) => {
     checkStarted()
 }
 const checkStarted = () => {
@@ -100,6 +136,10 @@ export default {
     registerReducer,
     registerMiddleware,
     registerEnhancer,
+
+    registerReducerCreator,
+    registerMiddlewareCreator,
+    registerEnhancerCreator,
 
     registerManifest,
 
