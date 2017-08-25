@@ -1,7 +1,7 @@
 // import update from 'react-addons-update'
 // import ApiDefinition from 'api/ApiDefinition'
 import {ThrowParam} from '../../utils/JSUtils'
-import {setConfigValueAction} from './Manifest'
+import ConfigConstants from './ConfigConstants'
 
 export default {
 
@@ -9,10 +9,10 @@ export default {
 
         key = ThrowParam('Config Key has to be set'),
         value = ThrowParam('Config value has to be set'),
-        area = 'default'
+        area = ConfigConstants.DEFAULT_AREA
     }) => {
         return {
-            action: setConfigValueAction.name,
+            type: ConfigConstants.ACTION_NAMES.SET_CONFIG_VALUE,
             payload: {
                 key,
                 value,

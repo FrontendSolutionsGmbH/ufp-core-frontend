@@ -9,17 +9,14 @@ import thunk from 'redux-thunk'
 export default{
     name: 'Ufp Additions',
     description: 'Ufp Additions - logger and thunk are added as per default',
-    register: (initialState) => {
-
-        data = Object.assign(data, initialState)
-
+    register: () => {
         // add these middlewares to the ufp core
         UfpCore.registerMiddleware({
-            id: 'Thunk',
+            id: 'Redux-Thunk',
             middleware: thunk
         })
         UfpCore.registerMiddleware({
-            id: 'Thunk',
+            id: 'Redux-Logger',
             middleware: logger
         })
     }

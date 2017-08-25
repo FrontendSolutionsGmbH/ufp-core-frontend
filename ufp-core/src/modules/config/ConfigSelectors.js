@@ -1,20 +1,22 @@
 import {ThrowParam} from '../../utils/JSUtils'
 import Manifest from './Manifest'
+import ConfigConstants from './ConfigConstants'
+import UfpCoreSelectors from '../../core/UfpCoreSelectors'
 
-export const ConfigState = (state) => state[Manifest.name]
-export const ConfigDataSelector = (state) => ConfigState(state).data
+const getReducerState = (state) => UfpCoreSelectors.getUfpState(state)[Manifest.name]
 
 export default {
-    ConfigDataSelector,
-
     getConfigValue: (globalState, {
         key = ThrowParam('Config Key has to be set'),
-        area = 'default'
+        area = ConfigConstants.DEFAULT_AREA
     }) => {
-        return {
-            key,
-            area,
-            value: 'WILLIWALUE'
+        console.log('Retrieving config value', globalState, area, key)
+        const state = getReducerState(globalState).data
+        console.log('Retrieving config value', state, area, key)
+        if (state && state[area] && state[area][key]) {
+            return state[area][key]
+        } else {
+            return ConfigConstants.DEFAULT_VALUE
         }
     }
 }

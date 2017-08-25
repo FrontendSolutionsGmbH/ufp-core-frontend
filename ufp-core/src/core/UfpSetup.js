@@ -32,6 +32,6 @@ export default {
     enhancers: [],
     reducerCreators: [],
     middlewareCreators: [],
-    enhancerCreators: [],
+    enhancerCreators: []
 
 }

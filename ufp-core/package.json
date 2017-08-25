@@ -102,9 +102,13 @@
     "check-prop-types": "^1.1.1",
     "deepmerge": "^1.5.0",
     "prop-types": "^15.5.10",
+    "react": "^15.6.1",
     "react-addons-update": "^15.6.0",
+    "react-dom": "^15.6.1",
     "redux": "^3.7.2",
+    "redux-logger": "^3.0.6",
     "redux-observable": "^0.16.0",
+    "redux-thunk": "^2.2.0",
     "rxjs": "^5.2.0"
   }
 }

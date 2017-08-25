@@ -1,13 +1,18 @@
 {
   "presets": [
-    "es2015","es2016","stage-0"
+    "es2015",
+    "es2016",
+    "stage-0"
   ],
+  "sourceMaps": "true",
   "plugins": [
     "transform-class-properties",
-    ["transform-runtime",
+    [
+      "transform-runtime",
       {
         "helpers": true,
-        "polyfill": false, // we polyfill needed features in src/normalize.js
+        "polyfill": false,
+        // we polyfill needed features in src/normalize.js
         "regenerator": true,
       }
     ]

@@ -1,9 +1,9 @@
-import {setConfigValueAction} from './Manifest'
+import ConfigConstants from './ConfigConstants'
 import update from 'react-addons-update'
 
 export default {
 
-    [setConfigValueAction.name]: (state, action) => {
+    [ConfigConstants.ACTION_NAMES.SET_CONFIG_VALUE]: (state, action) => {
         console.log('Config Reducer Setting config value', action.payload)
 
         //initialise main data container
