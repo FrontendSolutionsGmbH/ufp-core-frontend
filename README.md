@@ -7,6 +7,14 @@ this repository is the development repo for ufp-modules, containing all availabl
 [DOCS](docs/README.md)
 
 
+## Contained NPM Packages
+
+### ufp-core
+
+The ufp core npm module, contains the redux only part of the ufp framework
+  
+[ufp-core](ufp-core/README.md)
+
 ## Remarks Developing
 
 ### Watch your includes './'
