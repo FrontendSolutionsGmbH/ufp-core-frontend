@@ -36,18 +36,21 @@ to install the npm module into your project
 
 
 
-### Quick Start
+## Quick Start
 
-#### Empty Application:
-
+### Empty Application:
+ 
+    // import main ufp-core 
     import UfpCore from 'ufp-core'
     
-    // redux store creation and startup
+    // startup which creates redux stores and bound Manifests
     UfpCore.startup()
 
-#### Config Reducer enabled
+### Config Reducer enabled
 
-the following example uses the config reducer to store default values upon registration, sets them inside the redux store using a redux action and prints out its current value using the ufpAutoConfigured selector to retrieve a value from it
+the following example uses the config reducer to store default values upon registration, 
+sets them inside the redux store using a redux action and prints out its current value 
+using the ufpAutoConfigured selector to retrieve a value from it
 
  
     import UfpCore from 'ufp-core/lib'
@@ -72,9 +75,7 @@ the following example uses the config reducer to store default values upon regis
 
     
     
-
-
-## Usage
+ 
 
 
 
