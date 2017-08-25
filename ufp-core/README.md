@@ -32,6 +32,32 @@ to install the npm module into your project
 
 
 
+### Quick Start
+
+#### Empty Application:
+
+    import UfpCore from 'ufp-core'
+    
+    // redux store creation and startup
+    UfpCore.startup()
+
+#### Config Reducer enabled
+
+    import UfpCore from 'ufp-core'
+    import UfpConfig from 'ufp-core/lib/modules/config/Manifest'   
+    
+    // declarative registration
+    UfpConfig.register()
+    
+    // redux store creation and startup
+    UfpCore.startup()
+    
+
+    
+    
+    
+
+
 ## Usage
 
 
