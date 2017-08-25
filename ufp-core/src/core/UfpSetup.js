@@ -26,6 +26,7 @@
 
 export default {
 
+    manifests: [],
     reducers: [],
     middlewares: [],
     enhancers: [],

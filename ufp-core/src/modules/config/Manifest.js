@@ -5,6 +5,8 @@
 import UfpCoreConstants from '../../core/UfpCoreConstants'
 import ConfigReducer from './ConfigReducer'
 import UfpCore from '../../core/UfpCore'
+import ConfigActionCreators from './ConfigActionCreators'
+import ConfigSelectors from './ConfigSelectors'
 
 export const setConfigValueAction = {
     name: 'SET_CONFIG_VALUE'
@@ -19,21 +21,26 @@ const reducerCreatorFunction = () => {
     return ConfigReducer(data)
 }
 
-export default{
+const Manifest = {
     type: UfpCoreConstants.Manifest.REDUCER_TYPE,
     name: 'ConfigReducer',
     description: 'Ufp Config Reducer - property storage',
-    actions: [
-        setConfigValueAction
-    ],
+    actionsCreators: ConfigActionCreators,
+    selectors: ConfigSelectors,
+
     register: (initialState) => {
 
         data = Object.assign(data, initialState)
 
+        // Manifest registering enables rewriting of this Manifest to bound actionCreators and bound selectors
+        UfpCore.registerManifest(Manifest)
+
         UfpCore.registerReducerCreator({
-            id: 'ConfigReducer',
+            id: Manifest.name,
             reducerCreatorFunction: reducerCreatorFunction
         })
     }
 
 }
+
+export default Manifest

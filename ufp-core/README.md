@@ -54,7 +54,7 @@ to install the npm module into your project
     // redux store creation and startup
     UfpCore.startup()
     
-
+    UfpConfig.getConfigValue({key:'bar'})
     
     
     

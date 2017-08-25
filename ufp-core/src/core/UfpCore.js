@@ -39,6 +39,26 @@ var store = null
 var startedUp = false
 var applicationName
 
+export const bindSelectors = (selectors) => {
+    result = {}
+    Object.keys(selectors).map((key) => {
+        result[key] = (...params) => {
+            return selectors[key](store.getState(), ...params)
+        }
+    })
+
+}
+
+export const bindActionCreators = (actionCreators) => {
+    result = {}
+    Object.keys(actionCreators).map((key) => {
+        result[key] = (...params) => {
+            return store.dispatch(actionCreators[key](...params))
+        }
+    })
+
+}
+
 export const makeRootReducer = (reducers) => {
     return combineReducers({...reducers})
 }
@@ -117,9 +137,17 @@ const checkStarted = () => {
         ThrowParam('Ufp Application already started registering no longer possible')
     }
 }
-const registerManifest = () => {
+const registerManifest = ({
+    id = ThrowParam('Id Required for registerManifest'),
+    actionCreators = ThrowParam('actionCreators Required for registerManifest'),
+    selectors = ThrowParam('selectors Required for registerManifest')
+}) => {
     checkStarted()
-
+    UfpSetup.reducers.manifests({
+        id: id,
+        actionCreators,
+        selectors
+    })
 }
 
 /**
@@ -172,6 +200,25 @@ const startup = (applicationNameIn = 'Ufp Application') => {
         )
     )
 
+    // after we created the store, provide bound actioncreators and selectors for ease of use later on
+    // we achieve this by iterating over all registered manifest
+    UfpSetup.manifests.map((manifest) => {
+
+        var boundSelectors = bindSelectors(manifest.selectors)
+        var boundActionCreators = bindSelectors(manifest.actionCreators)
+        Object.keys(boundSelectors).map((key) => {
+            // extend js object of incoming manifest
+            // yes its brutal, but convenient
+            manifest[key] = boundSelectors[key]
+        })
+
+        Object.keys(boundActionCreators).map((key) => {
+            // extend js object of incoming manifest
+            // yes its brutal, but convenient
+            manifest[key] = boundActionCreators[key]
+        })
+
+    })
 }
 
 export default {
