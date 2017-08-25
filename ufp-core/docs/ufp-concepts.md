@@ -47,3 +47,10 @@ Its feature to even create Native Android/Ios code with the same code base is wh
 
 
 
+### (React) Prop Types
+
+Type checking in JS is always something to tinker about. It can be done at compile time using transpiler like babel with typescript, or media runtime like just use it for development but not production
+
+Type checking is crucial, and the ufp ecosystem relies on type checking for user interface setup
+
+so, whats all the fuzz then? its about making it contained in the program, syntaktical type checking is done at runtime for various purposes utilising the ReactPropTypes module for defining possible semantics on types

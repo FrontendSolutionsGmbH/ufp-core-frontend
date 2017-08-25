@@ -1,7 +1,7 @@
-import ConfigConstants from './ConfigConstants'
 import {ThrowParam} from '../../utils/JSUtils'
+import Manifest from './Manifest'
 
-export const ConfigState = (state) => state[ConfigConstants.reducerName]
+export const ConfigState = (state) => state[Manifest.name]
 export const ConfigDataSelector = (state) => ConfigState(state).data
 
 export default {

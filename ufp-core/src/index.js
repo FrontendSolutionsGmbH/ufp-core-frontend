@@ -21,7 +21,21 @@
 //     ConfigureEpics: ConfigureEpics,
 //     UFPMenu: _Menu
 // }
-
 // index.js is evil
+// the redux store
+import UfpCore from 'core/UfpCore'
+/**
+ * the startup method ultimately calls up the application and puts everything in place
+ * and creates the required redux store ...
+ * @param applicationNameIn
+ */
+const startup = (applicationNameIn = 'Ufp Application') => {
+    startedUp = true
+    applicationName = applicationNameIn
+}
 
-export default {}
+export default {
+
+    ...UfpCore
+
+}

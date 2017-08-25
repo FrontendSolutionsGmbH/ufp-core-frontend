@@ -1,10 +1,15 @@
-
 const storeConfig = {
-    reducersRegistered: []
+    reducersRegistered: [],
+    middlewaresRegistered: []
 }
 
 const registerReducer = (reducer) => {
-    console.log('UFP Store Configt')
+    console.log('UFP Store Configt registerReducer')
+
+    storeConfig.reducersRegistered.push(reducer)
+}
+const registerMiddleWare = (reducer) => {
+    console.log('UFP Store Configt registerMiddleWare')
 
     storeConfig.reducersRegistered.push(reducer)
 }
@@ -18,5 +23,6 @@ export const getConfig = () => {
 }
 
 export default {
+    registerMiddleWare,
     registerReducer
 }
