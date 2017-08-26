@@ -2,32 +2,27 @@
  * the manifest.js defines the properties of the ufp-module
  * @type {{name: string}}
  */
-import UfpCoreConstants from '../../core/UfpCoreConstants'
+import UfpCoreConstants from '../core/UfpCoreConstants'
 import UfpCore from '../core/UfpCore'
 import UfpMiddleware from './UfpMiddleware'
 
-export const setConfigValueAction = {
-    name: 'SET_CONFIG_VALUE'
-}
-
-export default{
+const Manifest = {
     type: UfpCoreConstants.Manifest.REDUCER_TYPE,
-    reducerName: 'config',
-    description: 'willi wonka',
-    actions: [
-        setConfigValueAction
-    ],
-    initialiser: () => {
+    name: 'Ufp Redux Middleware',
+    id: 'Ufp Redux Middleware',
+    description: 'Handles asyncronous actions with intercept hooks',
 
-    },
-
-    register: ({debug = true}) => {
+    register: ({debug = true}={debug: true}) => {
         UfpCore.registerMiddleware(
-            UfpMiddleware({
-                debug: debug,
-                useAxios: false
-            })
+            {
+                id: Manifest.name,
+                middleware: UfpMiddleware({
+                    debug: debug,
+                    useAxios: false
+                })
+            }
         )
     }
 
 }
+export default Manifest

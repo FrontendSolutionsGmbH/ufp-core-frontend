@@ -88,7 +88,7 @@ const registerReducer = ({
 }
 
 const registerMiddleware = ({
-    id = ThrowParam('Id Required for registerEnhancer'),
+    id = ThrowParam('Id Required for registerMiddleware'),
     middleware = ThrowParam('middleware Required for registerEnhancer')
 
 }) => {
