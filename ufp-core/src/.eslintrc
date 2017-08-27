@@ -48,6 +48,7 @@
     "immutable/no-this": 0,
     "immutable/no-mutation": 0,
     "promise/always-return": 2,
+    "no-webpack-loader-syntax": 0,
     "promise/no-return-wrap": 2,
     "promise/param-names": 2,
     "promise/catch-or-return": 0,

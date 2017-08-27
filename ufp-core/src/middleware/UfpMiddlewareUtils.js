@@ -1,6 +1,7 @@
 import queryParams from './QueryParams'
 import {UfpMiddlewareResulthandlerMoreThenOneSuccessError} from './Errors'
 import UfpMiddlewareHelperUtils from './UfpMiddlewareHelperUtils'
+import StringUtils from '../utils/StringUtils'
 const {
     ReactPropTypesCheck,
     PropTypesCheck,
@@ -16,29 +17,34 @@ const {
 }=UfpMiddlewareHelperUtils
 
 const ufpMiddlewarePrepareConfig = (ufpAction) => {
+    console.log(' ufpMiddlewarePrepareConfig ', JSON.parse(JSON.stringify(ufpAction)))
+
     const {ufpDefinition, ufpData} = ufpAction
     const {url, method} =ufpDefinition
     const config = {}
+
     config.method = method
     config.timeout = 15000
+
     if (ufpData && ufpData.body) {
         config.data = ufpData.body
     }
     if (ufpData) {
         const {urlParams, queryParams} = ufpData
+
         if (queryParams && !isEmptyObject(queryParams)) {
-            config.params = queryParams
-        }
-        if (urlParams && !isEmptyObject(urlParams)) {
-            config.url = url + '?' + Object.keys(urlParams).map((item) => {
-                    return item + '=' + urlParams[item]
+            config.url = url + '?' + Object.keys(queryParams).map((item) => {
+                    return item + '=' + queryParams[item]
                 }).join('&')
         } else {
             config.url = url
         }
+
+        config.url = StringUtils.replaceTemplateVar(config.url, urlParams)
     } else {
         config.url = url
     }
+    console.log('ufpMiddlewarePrepareConfig ', JSON.parse(JSON.stringify(config)))
     return config
 }
 
@@ -167,53 +173,35 @@ const handlePreHandlers = async(handlerArray, resultData) => {
     return result
 }
 
-function createFetchUrl(config, queryParams) {
-    config.fetchUrl = config.url + (config.url.indexOf('?') === -1 ? '?' : '&')
-    config.fetchUrl += typeof config.paramsSerializer === 'function' ?
-        config.paramsSerializer(config.params) : queryParams(config.params)
-}
+const ufpMiddlewareRequest = async(config) => {
+    console.log('ufpMiddlewareRequest', JSON.parse(JSON.stringify(config)))
 
-const ufpMiddlewareRequest = async(options, config) => {
     var requestResponse
-    if (options.useAxios) {
-        if (typeof options.axiosInstance === 'function' && typeof options.axiosInstance.request === 'function') {
-            requestResponse = await options.axiosInstance.request(config).then((response) => response, (response) => response)
-        } else {
-            throw new Error('UFP Middleware Error: if you use the middleware with useAxios=true ' +
-                'please provide a property axiosInstance in the options')
-        }
-    } else {
-        if (config.params && !config.fetchUrl) {
-            createFetchUrl(config, queryParams)
-        }
-        requestResponse = await fetch(config.fetchUrl, {
-            method: config.method,
-            body: config.data,
-            credentials: config.credentials,
-            headers: config.headers || {}
-        })
-        var isResolve = (typeof config.validateStatus === 'function') ?
-            config.validateStatus(requestResponse.status) : validateStatus(requestResponse.status)
-        if (!isResolve) {
-            const responseClone = requestResponse.clone()
-            const result = await createAxiosLikeErrorResponse(config, responseClone.status, responseClone)
-            return result
-        }
-        requestResponse.data = await getJSON(requestResponse)
+
+    requestResponse = await fetch(config.url, {
+        method: config.method,
+        body: config.data,
+        credentials: config.credentials,
+        headers: config.headers || {}
+    })
+    var isResolve = validateStatus(requestResponse.status)
+    if (!isResolve) {
+        // in case of error retrieve content this way
+        const responseClone = requestResponse.clone()
+        const result = await createAxiosLikeErrorResponse(config, responseClone.status, responseClone)
+        return result
     }
+    requestResponse.data = await getJSON(requestResponse)
+
     return requestResponse
 }
 
 export default {
     ReactPropTypesCheck,
     PropTypesCheck,
-    getJSON,
     isEmptyObject,
     errorToObject,
     validateStatus,
-    mergeArrayOfObjects,
-    createAxiosLikeErrorResponse,
-    addToArrayIfNotExist,
     createConfigDefault,
     infoLogger,
     queryParams,
@@ -223,6 +211,5 @@ export default {
     wrapDispatcher,
     handleResultHandlers,
     handlePreHandlers,
-    createFetchUrl,
     ufpMiddlewareRequest
 }

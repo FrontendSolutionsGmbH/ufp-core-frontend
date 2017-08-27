@@ -208,7 +208,12 @@ const startup = (applicationNameIn = 'Ufp Application') => {
     // check dev environment
     if (__DEV__) {
         if (typeof window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ === 'function') {
-            composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
+            composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
+                name: 'UFP ' + applicationNameIn,
+                shouldCatchErrors: true,
+                actionCreators: UfpSetup.getAllActionCreators()
+
+            })
         }
     }
 
@@ -263,6 +268,20 @@ export default {
 
     registerManifest,
 
-    startup
+    startup,
+
+    // wrapping of redux store
+    getState: () => {
+        return store.getState()
+    },
+    dispatch: (action) => {
+        return store.dispatch(action)
+    },
+    subscribe: (listener) => {
+        return store.subscribe(listener)
+    },
+    replaceReducer: (nextReducer) => {
+        return store.replaceReducer(nextReducer)
+    }
 
 }
