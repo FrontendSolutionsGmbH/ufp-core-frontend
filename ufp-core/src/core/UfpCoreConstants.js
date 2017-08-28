@@ -5,7 +5,7 @@ export default{
         MIDDLEWARE_TYPE: 'REDUCER_TYPE'
     },
 
-    ActionNames: {
+    ACTION_NAMES: {
 
         STARTUP: 'STARTUP'
 
