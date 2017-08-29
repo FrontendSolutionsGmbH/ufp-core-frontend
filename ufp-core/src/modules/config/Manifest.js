@@ -4,10 +4,10 @@
  */
 import UfpCoreConstants from '../../core/UfpCoreConstants'
 import ConfigReducer from './ConfigReducer'
-import UfpCore from '../../core/UfpCore'
 import ConfigActionCreators from './ConfigActionCreators'
 import ConfigConstants from './ConfigConstants'
 import ConfigSelectors from './ConfigSelectors'
+import {ThrowParam} from '../../utils/JSUtils'
 
 export const setConfigValueAction = {
     name: 'SET_CONFIG_VALUE'
@@ -33,8 +33,16 @@ const Manifest = {
         data[area] = Object.assign(data[area] || {}, initialState)
 
         // Manifest registering enables rewriting of this Manifest to bound actionCreators and bound selectors
-        UfpCore.registerManifest(Manifest)
+        // old ufp v0.2.0 way ...
+        // UfpCore.registerManifest(Manifest)
+        //
+        // UfpCore.registerReducerCreator({
+        //     id: Manifest.name,
+        //     reducerCreatorFunction: reducerCreatorFunction
+        // })
+    },
 
+    onRegistered({UfpCore = ThrowParam('UfpCore Instance Required')}) {
         UfpCore.registerReducerCreator({
             id: Manifest.name,
             reducerCreatorFunction: reducerCreatorFunction

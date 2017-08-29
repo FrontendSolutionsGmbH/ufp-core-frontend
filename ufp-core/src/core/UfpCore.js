@@ -158,6 +158,10 @@ const checkStarted = () => {
 }
 const registerManifest = (manifest) => {
     checkStarted()
+
+    if (manifest.onRegistered) {
+        manifest.onRegistered({UfpCore})
+    }
     UfpSetup.manifests.push(manifest)
 }
 
@@ -166,7 +170,7 @@ const registerManifest = (manifest) => {
  * and creates the required redux store ...
  * @param applicationNameIn
  */
-const startup = (applicationNameIn = 'Ufp Application') => {
+const startup = ({applicationNameIn = 'Ufp Application'}) => {
     checkStarted()
 
     AdditionsManifest.register()
@@ -269,7 +273,7 @@ const startup = (applicationNameIn = 'Ufp Application') => {
     BaseManifest.startupAction()
 }
 
-export default {
+const UfpCore = {
 
     registerReducer,
     registerMiddleware,
@@ -301,3 +305,4 @@ export default {
     }
 
 }
+export default UfpCore
