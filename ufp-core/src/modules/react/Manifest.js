@@ -16,7 +16,7 @@ const reducerCreatorFunction = () => {
             console.log('Reducer Called ufp-react', _RootNode, _ReactApp)
             const Item = _ReactApp
             ReactDOM.render(
-              <Provider store={UfpCore.getStore()}><Item /></Provider>, _RootNode
+                <Provider store={UfpCore.getStore()}><Item /></Provider>, _RootNode
             )
         }
         return state
@@ -36,12 +36,14 @@ const Manifest = {
         console.log('ufp-react root:', rootNode)
         console.log('ufp-react app:', app)
 
+    },
+    onRegistered: ({UfpCore}) => {
         UfpCore.registerReducerCreator({
             id: 'ufp-react Initialiser',
             reducerCreatorFunction
         })
-    }
 
+    }
 }
 
 export default Manifest

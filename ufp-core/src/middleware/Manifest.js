@@ -3,7 +3,6 @@
  * @type {{name: string}}
  */
 import UfpCoreConstants from '../core/UfpCoreConstants'
-import UfpCore from '../core/UfpCore'
 import UfpMiddleware from './UfpMiddleware'
 import UfpMiddlewareConfiguration from './UfpMiddlewareConfiguration'
 
@@ -21,7 +20,7 @@ const Manifest = {
     id: 'Ufp Redux Middleware',
     description: 'Handles asyncronous actions with intercept hooks',
 
-    register: () => {
+    onRegistered: ({UfpCore}) => {
         UfpCore.registerMiddleware(
             {
                 id: Manifest.name,
