@@ -204,13 +204,14 @@ const startup = ({applicationNameIn = 'Ufp Application'}={applicationNameIn: 'Uf
 
     // ======================================================
     // Store Enhancers
+
     // ======================================================
     const enhancers = []
-    UfpSetup.middlewareCreators.map((item) => {
+    UfpSetup.enhancers.map((item) => {
         enhancers.push(item.enhancer)
     })
 
-    UfpSetup.middlewareCreators.map((item) => {
+    UfpSetup.enhancerCreators.map((item) => {
         enhancers.push(item.enhancerCreatorFunction())
     })
 
@@ -231,8 +232,8 @@ const startup = ({applicationNameIn = 'Ufp Application'}={applicationNameIn: 'Uf
     // debug
 
     const rootReducer = makeRootReducer(reducers)
-    console.log('Reducers are: ', rootReducer)
-    console.log('middleware are:', middleware)
+    console.log('Reducers are:', rootReducer)
+    console.log('middleware are: ', middleware)
     console.log('enhancers are:', enhancers)
 
     store = createStore(
@@ -268,6 +269,14 @@ const startup = ({applicationNameIn = 'Ufp Application'}={applicationNameIn: 'Uf
               })
     })
 
+    // iterate over all manifests an call 'onPreStartup'
+    Object.keys(UfpSetup.manifests)
+          .map((key) => {
+              if (UfpSetup.manifests[key] && UfpSetup.manifests[key].onPreStartup) {
+                  UfpSetup.manifests[key].onPreStartup({UfpCore})
+              }
+          })
+
     /**
      * dispatch init actionasd
      */
@@ -282,6 +291,7 @@ const UfpCore = {
 
     registerReducerCreator,
     registerMiddlewareCreator,
+
     registerEnhancerCreator,
 
     registerManifest,
@@ -292,12 +302,15 @@ const UfpCore = {
     getState: () => {
         return store.getState()
     },
+
     dispatch: (action) => {
         return store.dispatch(action)
     },
+
     subscribe: (listener) => {
         return store.subscribe(listener)
     },
+
     replaceReducer: (nextReducer) => {
         return store.replaceReducer(nextReducer)
     },

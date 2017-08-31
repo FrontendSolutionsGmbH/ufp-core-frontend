@@ -1,6 +1,5 @@
 import {ThrowParam} from '../../utils/JSUtils'
-import UfpCoreConstants from '../../core/UfpCoreConstants'
-import UfpCore from '../../core/UfpCore'
+
 import ReactDOM from 'react-dom'
 import {Provider} from 'react-redux'
 import React from 'react'
@@ -8,42 +7,35 @@ import React from 'react'
 console.log('dummy for eslint without standard-react usage of Provider import', Provider)
 var _RootNode = null
 var _ReactApp = null
-
-const reducerCreatorFunction = () => {
-    return (state = {}, action) => {
-        if (action.type === UfpCoreConstants.ACTION_NAMES.STARTUP) {
-            console.log('Reducer Called ufp-react', state, action)
-            console.log('Reducer Called ufp-react', _RootNode, _ReactApp)
-            const Item = _ReactApp
-            ReactDOM.render(
-                <Provider store={UfpCore.getStore()}><Item /></Provider>, _RootNode
-            )
-        }
-        return state
-    }
-}
+var _ReactAppCreatorFunction = null
 
 const Manifest = {
     name: 'ufp-react',
     description: 'Ufp React Manifest ',
 
     register: ({
-        rootNode = ThrowParam('HTML RootNode required for initialisation of ufp-react'),
-        app = ThrowParam('JSX Root Component required for initialisation of ufp-react')
+        rootNode = ThrowParam('HTML RootNode required for initialisation of ufp-react '),
+        appCreatorFunction = ThrowParam('JSX Root Component appCreatorFunction required for initialisation of ufp-react')
     }) => {
         _RootNode = rootNode
-        _ReactApp = app
+        _ReactAppCreatorFunction = appCreatorFunction
         console.log('ufp-react root:', rootNode)
-        console.log('ufp-react app:', app)
-
+        console.log('ufp-react aappCreatorFunctionpp:', appCreatorFunction)
     },
-    onRegistered: ({UfpCore}) => {
-        UfpCore.registerReducerCreator({
-            id: 'ufp-react Initialiser',
-            reducerCreatorFunction
-        })
 
+    onPreStartup: ({UfpCore}) => {
+        console.log('onPreStartup called React ', UfpCore)
+        _ReactApp = _ReactAppCreatorFunction({UfpCore})
+
+        console.log('ufp-react', _RootNode, _ReactApp)
+        const Item = _ReactApp
+        ReactDOM.render(
+          <Provider store={UfpCore.getStore()}><Item /></Provider>, _RootNode
+        )
     }
 }
+
+// configure is the new register
+Manifest.configure = Manifest.register
 
 export default Manifest

@@ -103,6 +103,8 @@
     "whatwg-fetch": "^2.0.3"
   },
   "dependencies": {
+    "react-router": "^3.0.0",
+    "react-router-redux": "^4.0.8",
     "check-prop-types": "^1.1.1",
     "deepmerge": "^1.5.1",
     "prop-types": "^15.5.10",
