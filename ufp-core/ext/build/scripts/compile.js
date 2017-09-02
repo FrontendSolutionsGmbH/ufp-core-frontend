@@ -1,18 +1,11 @@
 
-console.log('1')
 const fs = require(process.cwd() + '/node_modules/fs-extra')
-console.log('2')
 const path = require('path')
 const chalk = require('chalk')
-console.log('3')
 const webpack = require('webpack')
-console.log('4')
 const logger = require('./logger')
-console.log('5')
 const webpackConfig = require('../webpack.config.js')
-console.log('6')
 const project = require('../../project.config')
-console.log('7')
 
 const runWebpackCompiler = (webpackConfig) =>
   new Promise((resolve, reject) => {
