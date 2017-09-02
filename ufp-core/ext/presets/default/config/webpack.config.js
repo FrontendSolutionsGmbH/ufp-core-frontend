@@ -78,7 +78,7 @@ const folders = [
     ]
 // and create copy plugin entries if folders exist in project structure
 folders.map((folderData) => {
-    if (fs.existsSync(path.join(process.cwd(), folderData.from))) {
+        if (fs.existsSync(path.join(process.cwd(), folderData.from))) {
             config.plugins.push(
                 CopyWebpackPlugin([
                     {
@@ -105,6 +105,7 @@ config.module.rules.push({
             plugins: [
                 'babel-plugin-transform-class-properties',
                 'babel-plugin-syntax-dynamic-import',
+                'babel-plugin-transform-react-jsx',
                 [
                     'babel-plugin-transform-runtime',
                     {
@@ -122,7 +123,7 @@ config.module.rules.push({
             ],
             presets: [
                 // use this for es5 transpile target
-                ['babel-preset-es2015']
+                ['babel-preset-es2015', 'babel-preset-react']
 
                 // modern way of declaring transpile targets
                 // ['babel-preset-env', {
@@ -147,7 +148,7 @@ const extractStyles = new ExtractTextPlugin({
 })
 
 config.module.rules.push({
-    test: /\.(sass|scss)$/,
+    test: /\.(sass|scss|css)$/,
     loader: extractStyles.extract({
         fallback: 'style-loader',
         use: [
