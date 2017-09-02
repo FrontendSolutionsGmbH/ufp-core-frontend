@@ -20,7 +20,7 @@ exports.filterObjectKeys = (object, regex) => {
     const result = {}
     const re = new RegExp(regex)
     Object.keys(object).map((key) => {
-        if (key.matches(re)) {
+        if (re.test(key)) {
             result[key] = object[key]
         }
     })
@@ -29,6 +29,14 @@ exports.filterObjectKeys = (object, regex) => {
 }
 
 exports.defaultMerge = (targetValue, defaultValue) => {
+
+    if (!targetValue) {
+        targetValue = {}
+    }
+    if (!defaultValue) {
+        defaultValue = {}
+    }
+
     const result = {}
     // first transfer all incoming target values to result
     Object.keys(targetValue).map((key) => {
