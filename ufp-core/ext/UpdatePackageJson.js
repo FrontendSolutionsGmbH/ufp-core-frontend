@@ -66,8 +66,6 @@ fs.readFile(packageSrc, 'utf8', function (err, data) {
             JSONDest.devDependencies,
             JSONSrc.dependencies
         )
-        JSONDest.devDependencies['//'] = 'devDependencies created using ufp-core regenerate using ufp-update '
-        // remove devDependencies
 
         // save json then as if nothing happened
         fs.writeFile(packageDes, JSON.stringify(JSONDest, null, 4), (err) => {
