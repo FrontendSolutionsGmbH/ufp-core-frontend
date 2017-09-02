@@ -4,7 +4,7 @@ module.exports = {
     /** The environment to use when building the project */
     env: NODE_ENV,
     /** The full path to the project's root directory */
-    basePath: __dirname,
+    basePath: process.cwd(),
     /** The name of the directory containing the application source code */
     srcDir: 'src',
     /** The file name of the application's entry point */
@@ -22,6 +22,5 @@ module.exports = {
     /** Whether to enable verbose logging */
     verbose: false,
     /** The list of modules to bundle separately from the core application code */
-    vendors: [
-    ],
+    vendors: []
 }
