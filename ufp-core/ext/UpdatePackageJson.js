@@ -50,15 +50,23 @@ fs.readFile(packageSrc, 'utf8', function (err, data) {
             JSONDest.devDependencies
         )
 
+        Object.keys(JSONSrc.dependencies).map((key) => {
+
+            // we have to remove it from 'normal' dependencies since ours overrides it completely
+            if (JSONDest.dependencies[key]) {
+
+                logger.warn('REMOVE project dependency', key, JSONSrc.dependencies[key])
+                delete JSONDest.dependencies [key]
+            }
+
+        })
+
         // then add src dependencies
-        JSONDest.dependencies = UFP.defaultMerge(
-            JSONDest.dependencies,
+        JSONDest.devDependencies = UFP.defaultMerge(
+            JSONDest.devDependencies,
             JSONSrc.dependencies
         )
-
-
-
-
+        JSONDest.devDependencies['//'] = 'devDependencies created using ufp-core regenerate using ufp-update '
         // remove devDependencies
 
         // save json then as if nothing happened
