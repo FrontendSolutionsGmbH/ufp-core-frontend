@@ -72,6 +72,9 @@ const folders = [
             /**
              * the src static is copied to root of project, used to create main
              * folders accesible in production
+             *
+             * please note that /res is taken from project root whereas /src/static is taken
+             * from project src
              */
             from: 'src/static',
             to: ''
@@ -79,8 +82,11 @@ const folders = [
         {
             /**
              * the res default folder is exported 'as is' to the subfolder /res in production
+             *
+             * please note that /res is taken from project root whereas /src/static is taken
+             * from project src
              */
-            from: 'src/res',
+            from: 'res',
             to: 'res'
         }
     ]
