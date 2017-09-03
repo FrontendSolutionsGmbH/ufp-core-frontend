@@ -61,3 +61,39 @@ exports.defaultMerge = (targetValue, defaultValue) => {
 
     return result
 }
+
+exports.writeFileWithBackup = (destFilename, content, prefix = 'default') => {
+
+    logger.info('Writing into file ')
+    logger.info(destFilename)
+
+    const backupFilename = destFilename + '.' + prefix + '.backup'
+
+    if (fs.existsSync(destFilename)) {
+
+        logger.info('File is existing, check for backup... ')
+
+        if (fs.existsSync(backupFilename)) {
+
+            logger.info('Backup file exists for target ')
+            logger.info(destFilename)
+
+        } else {
+
+            logger.info('No Backup file for target exists, create one ')
+            logger.info(backupFilename)
+
+            fs.writeFileSync(backupFilename, fs.readFileSync(destFilename));
+
+        }
+    }
+
+    // save json then as if nothing happened
+    fs.writeFile(destFilename,content, (err) => {
+        if (err) {
+            return logger.error(err)
+        }
+
+        logger.log(destFilename + ' updated')
+    })
+}

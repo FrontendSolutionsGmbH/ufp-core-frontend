@@ -36,12 +36,6 @@ fs.readFile(packageSrc, 'utf8', function (err, data) {
         // console.log(JSON.parse(dataDest))
         const JSONDest = JSON.parse(dataDest)
 
-        // loop over all src dependencies
-        JSONDest.scripts = UFP.defaultMerge(
-            JSONDest.scripts,
-            UFP.filterObjectKeys(JSONSrc.scripts, 'ufp-')
-        )
-
         /**
          we use devDependencies to inject our ufp deps
          */
@@ -67,14 +61,7 @@ fs.readFile(packageSrc, 'utf8', function (err, data) {
             JSONSrc.dependencies
         )
 
-        // save json then as if nothing happened
-        fs.writeFile(packageDes, JSON.stringify(JSONDest, null, 4), (err) => {
-            if (err) {
-                return logger.error(err)
-            }
+        UFP.writeFileWithBackup(packageDes, JSON.stringify(JSONDest, null, 2), 'dependencies')
 
-            logger.log('package.json updated')
-            logger.log(packageDes)
-        })
     })
 })
