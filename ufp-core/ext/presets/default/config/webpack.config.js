@@ -69,11 +69,11 @@ const config = {
 const folders = [
         {
             from: 'src/static',
-            to: ''
+            to: 'static'
         },
         {
             from: 'src/res',
-            to: ''
+            to: 'res'
         }
     ]
 // and create copy plugin entries if folders exist in project structure

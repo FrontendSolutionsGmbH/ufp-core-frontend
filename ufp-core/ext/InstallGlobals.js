@@ -1,3 +1,11 @@
+/**
+ * warning: thesee are ufp-projectr scripts to be executed in project context, not
+ * used for any ufp-core processes
+ *
+ * this particular script sahould deal with installing npm global packages
+ * to be available in dev environment TBD
+ *
+ */
 var watch = require('node-watch')
 const path = require('path')
 const fs = require('fs')

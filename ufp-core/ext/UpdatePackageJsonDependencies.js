@@ -1,3 +1,7 @@
+/**
+ * warning: thesee are ufp-projectr scripts to be executed in project context, not
+ * used for any ufp-core processes
+ */
 const fs = require('fs')
 const path = require('path')
 const UFP = require('./build/lib/ufp')

@@ -1,3 +1,8 @@
+/**
+ * warning: thesee are ufp-projectr scripts to be executed in project context, not
+ * used for any ufp-core processes
+ */
+
 const fs = require('fs')
 const path = require('path')
 const UFP = require('./build/lib/ufp')
@@ -7,7 +12,8 @@ const logger = require('./build/lib/logger')
 
 logger.info('Updating package.json from ufp-core')
 
-const ls = exec('npm run ufp-update-dependencies && npm ufp-update-scripts');
+const ls = exec('node node_modules/ufp-core/ext/UpdatePackageJsonDependencies && ' +
+    ' node node_modules/ufp-core/ext/UpdatePackageJsonScripts');
 
 ls.stdout.on('data', (data) => {
     console.log(`${data}`);
