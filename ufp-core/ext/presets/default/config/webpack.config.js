@@ -232,36 +232,6 @@ config.plugins.push(new HtmlWebpackPlugin({
     }
 }))
 
-// global always plugins
-config.plugins.push(
-    new webpack.optimize.ModuleConcatenationPlugin(),
-    new StatsPlugin('stats.json', {
-        chunkModules: true,
-        exclude: [/node_modules[\\\/]react/]
-    }),
-    new VisualizerPlugin({
-        filename: './stats.html'
-    }),
-    new CompressionPlugin({
-        asset: '[path].gz[query]',
-        algorithm: 'gzip',
-        test: /\.(js|html)$/,
-        threshold: 10240,
-        minRatio: 0.8
-    }),
-    // new ZopfliPlugin({
-    //   asset: "[path].gz[query]",
-    //   algorithm: "zopfli",
-    //   test: /\.(js|html)$/,
-    //   threshold: 10240,
-    //   minRatio: 0.8
-    // }),
-    new PurifyCSSPlugin({
-        // Give paths to parse for rules. These should be absolute!
-        paths: glob.sync(path.join(__dirname, 'dist/*.html'))
-    })
-)
-
 // Development Tools
 // ------------------------------------
 if (__DEV__) {
@@ -296,6 +266,35 @@ if (__PROD__) {
         })
     )
 
+    //   stats plugins they take too long in dev setup
+    config.plugins.push(
+        new webpack.optimize.ModuleConcatenationPlugin(),
+        new StatsPlugin('stats.json', {
+            chunkModules: true,
+            exclude: [/node_modules[\\\/]react/]
+        }),
+        new VisualizerPlugin({
+            filename: './stats.html'
+        }),
+        new CompressionPlugin({
+            asset: '[path].gz[query]',
+            algorithm: 'gzip',
+            test: /\.(js|html|svg)$/,
+            threshold: 10240,
+            minRatio: 0.8
+        }),
+        // new ZopfliPlugin({
+        //   asset: "[path].gz[query]",
+        //   algorithm: "zopfli",
+        //   test: /\.(js|html)$/,
+        //   threshold: 10240,
+        //   minRatio: 0.8
+        // }),
+        new PurifyCSSPlugin({
+            // Give paths to parse for rules. These should be absolute!
+            paths: glob.sync(path.join(__dirname, 'dist/*.html'))
+        })
+    )
     config.plugins.push(new webpack.optimize.UglifyJsPlugin({
         sourceMap: !!config.devtool,
         compress: {
