@@ -67,11 +67,19 @@ const config = {
  */
     // static file copy presets, this is ufp configuration default
 const folders = [
+
         {
+            /**
+             * the src static is copied to root of project, used to create main
+             * folders accesible in production
+             */
             from: 'src/static',
-            to: 'static'
+            to: ''
         },
         {
+            /**
+             * the res default folder is exported 'as is' to the subfolder /res in production
+             */
             from: 'src/res',
             to: 'res'
         }
