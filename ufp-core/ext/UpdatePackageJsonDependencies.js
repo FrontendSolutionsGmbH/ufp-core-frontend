@@ -49,14 +49,11 @@ fs.readFile(packageSrc, 'utf8', function (err, data) {
         )
 
         Object.keys(JSONSrc.dependencies).map((key) => {
-
             // we have to remove it from 'normal' dependencies since ours overrides it completely
             if (JSONDest.dependencies[key]) {
-
                 logger.warn('REMOVE project dependency', key, JSONSrc.dependencies[key])
-                delete JSONDest.dependencies [key]
+                delete JSONDest.dependencies[key]
             }
-
         })
 
         // then add src dependencies
@@ -66,6 +63,5 @@ fs.readFile(packageSrc, 'utf8', function (err, data) {
         )
 
         UFP.writeFileWithBackup(packageDes, JSON.stringify(JSONDest, null, 2), 'dependencies')
-
     })
 })

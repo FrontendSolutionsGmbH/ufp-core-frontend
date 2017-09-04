@@ -7,30 +7,18 @@
  *
  */
 var watch = require('node-watch')
-const path = require('path')
-const fs = require('fs')
-const prompt = require('../lib/prompt')
+var path = require('path')
 
 const exec = require('child_process').exec
 
 console.log('Preparing UFP Infrastructure')
 console.log('Global packages are required to run ufp-core smoothly on your system')
 
-const globalPackages = [
-    'jshint',
-    'node-gyp',
-    'npm'
-
-]
-
-var running = false
-
 // console.log(themesDir);
-watch(__dirname + '/../src', function (filename) {
+watch(path.join(__dirname, '/../src'), function (filename) {
     // if (running) {
     //     return;
     // }
-    running = true
     console.log(filename, ' changed.')
     const ls = exec('npm run compile')
 
@@ -44,5 +32,4 @@ watch(__dirname + '/../src', function (filename) {
     ls.on('close', (code) => {
         console.log(`child process exited with code ${code}`)
     })
-    running = false
-});
+})

@@ -46,9 +46,6 @@ fs.readFile(packageSrc, 'utf8', function (err, data) {
             UFP.filterObjectKeys(JSONSrc.scripts, 'ufp-')
         )
 
-
-
-
-        UFP.writeFileWithBackup(packageDes,JSON.stringify(JSONDest, null, 2),'scripts')
+        UFP.writeFileWithBackup(packageDes, JSON.stringify(JSONDest, null, 2), 'scripts')
     })
 })
