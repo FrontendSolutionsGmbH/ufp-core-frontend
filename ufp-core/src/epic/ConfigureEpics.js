@@ -8,28 +8,24 @@ import {ThrowParam} from '../utils/JSUtils.js'
 /**
  * Singleton Epic Configuration, use this class to register epics
  */
+
+var epics = []
+
 class ConfigureEpics {
 
-  epics = []
+    registerEpic({epic = ThrowParam('epic has to be provided')}=
+        {epic: ThrowParam('epic has to be provided')}) {
+        //logger.debug('ConfigureEpics.registerEpic', epic)
+        epics.push(epic)
+    }
 
-  registerEpic({epic = ThrowParam('epic has to be provided')}=
-    {epic: ThrowParam('epic has to be provided')}) {
-    //logger.debug('ConfigureEpics.registerEpic', epic)
-    this.epics.push(epic)
-  }
+    createEpicMiddleware() {
+        return createEpicMiddleware(combineEpics(...epics))
+    }
 
-  getEpics() {
-    //logger.debug('ConfigureEpics.getEpics', this)
-    return this.epics
-  }
-
-  createEpicMiddleware() {
-    return createEpicMiddleware(combineEpics(...this.getEpics()))
-  }
-
-  reset() {
-    this.epics = []
-  }
+    reset() {
+        epics = []
+    }
 
 }
 
