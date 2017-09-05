@@ -9,8 +9,9 @@ const logger = require('./build/lib/logger')
 
 logger.info('Updating package.json from ufp-core')
 
-const ls = exec('node node_modules/ufp-core/ext/UpdatePackageJsonDependencies && ' +
-    ' node node_modules/ufp-core/ext/UpdatePackageJsonScripts')
+const ls = exec('' +
+    'node node_modules/ufp-core/ext/UpdatePackageJsonDependencies && ' +
+    'node node_modules/ufp-core/ext/UpdatePackageJsonScripts')
 
 ls.stdout.on('data', (data) => {
     console.log(`${data}`)
@@ -19,6 +20,7 @@ ls.stdout.on('data', (data) => {
 ls.stderr.on('data', (data) => {
     console.log(`stderr: ${data}`)
 })
+
 ls.on('close', (code) => {
     console.log(`child process exited with code ${code}`)
 })
