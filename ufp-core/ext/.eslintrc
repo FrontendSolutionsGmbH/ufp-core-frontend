@@ -81,7 +81,7 @@
       }
     ],
     "filenames/match-exported": [
-      2,
+      1,
       /*
       // path for eslint-filenames to allow camelcase first letter up, replace the next code in eslint plugin
      replace

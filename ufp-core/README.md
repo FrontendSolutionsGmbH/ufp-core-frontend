@@ -38,8 +38,34 @@ to install the npm module into your project
 
 ## Quick Start
 
+### Project Setup
+
+1. Install ufp-core using npm
+
+        :// npm install --save ufp-core
+    
+Execute ufp specific package.json project update for putting everything in place
+
+        :// node node_modules/ufp-core/ext/UpdatePackageJson
+    
+2. Execute npm install for retrieving all dependencies
+
+        :// npm install
+    
+3. Development folder setup 
+
+        src/main.js
+        src/index.html
+        ...
+    
+4. Run development server using ufp- prepared npm script 
+
+        //: npm run ufp-start
+    
+
 ### Empty Application:
  
+    // main.js
     // import main ufp-core 
     import UfpCore from 'ufp-core'
     
@@ -52,7 +78,7 @@ the following example uses the config reducer to store default values upon regis
 sets them inside the redux store using a redux action and prints out its current value 
 using the ufpAutoConfigured selector to retrieve a value from it
 
- 
+    // main.js
     import UfpCore from 'ufp-core/lib'
     import UfpConfig from 'ufp-core/lib/modules/config/Manifest'
     
