@@ -1,6 +1,6 @@
-import StartupReducerName from './StartupReducerName'
+import StartupManifest from './Manifest'
 
-export const StartupState = (state) => state[StartupReducerName.get()]
+export const StartupState = (state) => state[StartupManifest.name]
 export const GetStatusSelector = (state) => StartupState(state).status
 export const StepStatusSelector = (state) => StartupState(state).stepStatus
 export const StageStatusSelector = (state) => StartupState(state).stageStatus

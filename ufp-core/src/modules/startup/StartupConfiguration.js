@@ -6,6 +6,7 @@ class StartupConfiguration {
     StartupStages = {}
 
     init() {
+        ConfigureEpics.registerEpic({epic: StartupEpic.startupInit})
         ConfigureEpics.registerEpic({epic: StartupEpic.startupStep})
         ConfigureEpics.registerEpic({epic: StartupEpic.startupFinish})
     }

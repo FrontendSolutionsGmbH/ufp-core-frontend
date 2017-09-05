@@ -24,6 +24,8 @@ class ConfigureEpics {
     }
 
     createEpicMiddleware() {
+        console.log('Creating Epic Middleware', epics)
+
         return createEpicMiddleware(combineEpics(...epics))
     }
 

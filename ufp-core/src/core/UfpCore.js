@@ -61,9 +61,10 @@ const registerReducer = ({
 }) => {
     checkStarted()
 
-    if (UfpSetup.reducers[id]) {
-        ThrowParam('Reducer already registered ... ', id)
-    }
+    // allow multi registration, last one wins though
+    // if (UfpSetup.reducers[id]) {
+    //     ThrowParam('Reducer already registered ... ', id, UfpSetup.reducers)
+    // }s
 
     console.log('Registering Reducer ', id, reducer)
     UfpSetup.reducers[id] = {
@@ -141,11 +142,12 @@ const checkStarted = () => {
 const registerManifest = (manifest) => {
     checkStarted()
 
+    // call onRegistered only if explicit
     if (manifest.onRegistered) {
         console.log('Calling onRegistered on manifest', UfpCore)
         manifest.onRegistered({UfpCore})
     }
-    UfpSetup.manifests.push(manifest)
+     UfpSetup.manifests.push(manifest)
 }
 
 /**

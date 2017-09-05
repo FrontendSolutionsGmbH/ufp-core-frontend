@@ -8,7 +8,7 @@ console.log('Watching UFP Src', __filename, __dirname)
 var running = false
 
 // console.log(themesDir);
-watch(__dirname + '/../src', function (filename) {
+watch(__dirname + '/../src', {recursive: true}, function (filename) {
     // if (running) {
     //     return;
     // }
