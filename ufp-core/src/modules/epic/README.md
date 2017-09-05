@@ -1,6 +1,12 @@
 # UFP Core Epics (redux-rxjs)
 
-Ufp Core provides the rxjs redux interface
+Ufp Core provides the rxjs redux-observable
+
+https://redux-observable.js.org/
+
+which uses in turn the rxjs stream library
+
+https://github.com/Reactive-Extensions/RxJS
 
 # Usage
 

@@ -1,24 +1,26 @@
 import ConfigureEpics from '../epic/ConfigureEpics'
 import StartupEpic from './StartupEpic'
-import JSUtils from '../utils/JSUtils'
+import JSUtils from '../../utils/JSUtils'
 class StartupConfiguration {
 
-    StartupStages={}
+    StartupStages = {}
+
     init() {
         ConfigureEpics.registerEpic({epic: StartupEpic.startupStep})
         ConfigureEpics.registerEpic({epic: StartupEpic.startupFinish})
     }
-    registerStagedResource ({
+
+    registerStagedResource({
         stage,
         name,
         actionCreator,
-        actionCreatorParams=[],
+        actionCreatorParams = [],
         required = true,
         actionNameSuccess,
         actionNameFailure
 
     }) {
-        var stageString=JSUtils.pad('000', stage) //for lexicographically sort
+        var stageString = JSUtils.pad('000', stage) //for lexicographically sort
         if (!this.StartupStages['stage' + stageString]) {
             this.StartupStages['stage' + stageString] = []
         }
@@ -31,6 +33,7 @@ class StartupConfiguration {
             actionNameFailure: actionNameFailure
         })
     }
+
     registerStage0Resource({
         name,
         actionCreator,
@@ -47,6 +50,7 @@ class StartupConfiguration {
             actionNameFailure: actionNameFailure
         })
     }
+
     registerStage1Resource({
         name,
         actionCreator,
@@ -66,7 +70,7 @@ class StartupConfiguration {
 
     get = () => this.StartupStages
     reset = () => {
-        this.StartupStages={}
+        this.StartupStages = {}
     }
 
 }

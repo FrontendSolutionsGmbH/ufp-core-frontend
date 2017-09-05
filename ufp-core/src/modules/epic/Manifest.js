@@ -1,4 +1,4 @@
-import {ThrowParam} from '../utils/JSUtils'
+import {ThrowParam} from '../../utils/JSUtils'
 
 import ConfigureEpics from './ConfigureEpics'
 

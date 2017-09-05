@@ -1,26 +1,27 @@
 import MenuConstants from './MenuConstants'
 import ConfigureEpics from '../epic/ConfigureEpics'
 import MenuActionEpicCreator from './epics/MenuActionEpicCreator'
-import JSUtils from '../utils/JSUtils'
+import JSUtils from '../../utils/JSUtils'
 import MenuInternalUtils from './MenuInternalUtils'
-const EmptyFunc =() => {}
+const EmptyFunc = () => {
+}
 
 class MenuConfigurationInternal {
 
-    MenuDefinition=[]
-    MenuData={}
+    MenuDefinition = []
+    MenuData = {}
+
     createMenuEntry({
         open = false,
         sortIndex = 0,
-        component=JSUtils.ThrowParam('react component has to be set'),
+        component = JSUtils.ThrowParam('react component has to be set'),
         href,
         styleClass,
         hash,
         highLight,
         callback = EmptyFunc,
         children = []
-    })
-    {
+    }) {
         return {
             id: MenuInternalUtils.createRandomId(),
             hash,
@@ -34,7 +35,8 @@ class MenuConfigurationInternal {
             children
         }
     }
-    registerMenuReducer= ({
+
+    registerMenuReducer = ({
         area = 'main',
         sortIndex = -1,
         subArea,
@@ -44,14 +46,14 @@ class MenuConfigurationInternal {
         initialState = []
     }) => {
         //console.log('MenuConfigurator registerMenuReducer', arguments)
-         //console.log('MenuConfigurator registerMenuReducer', area, actionNames,
-      // actionHandler, initialState)
+        //console.log('MenuConfigurator registerMenuReducer', area, actionNames,
+        // actionHandler, initialState)
 
         if (!subArea) {
             throw new Error('UFP Menu Configuration SubArea needs to be defined')
         }
         // // console.log('Register Menu Reducer called ', area, actionNames,
-      // actionHandler, actionName)
+        // actionHandler, actionName)
 
         // create an empty place for the menu reducer to live in
         if (!this.MenuData[area]) {
@@ -73,20 +75,20 @@ class MenuConfigurationInternal {
             actionHandler
         })
         // append to menu definition hash using action name as key for quick access to
-      // the action handler
+        // the action handler
 
         //
 
         if (Array.isArray(actionNames)) {
             // for quick reference put all original action names into handled actions to be found
-          // easily by menureducer to defer its call to the ones renamed in the menu entry
+            // easily by menureducer to defer its call to the ones renamed in the menu entry
             actionNames.map((currentActionName) => {
                 // // console.log('Register Menu Reducer called adding item ', currentActionName)
                 if (this.MenuDefinition[currentActionName] === undefined) {
                     this.MenuDefinition[currentActionName] = []
                 }
                 this.MenuDefinition[currentActionName].push(Object.assign({}, menuDef,
-                  {actionName: currentActionName + MenuConstants.MENU_ACTION_SUFFIX}))
+                    {actionName: currentActionName + MenuConstants.MENU_ACTION_SUFFIX}))
                 /**
                  * create and register an epic of the form: action->action_Menu meaning that
                  * the list of actions is going to get
@@ -94,8 +96,9 @@ class MenuConfigurationInternal {
                  * is needed to watch over the state
                  *
                  */
-                ConfigureEpics.registerEpic({epic:
-                  MenuActionEpicCreator.createEpicTransformActionToMenuAction(currentActionName)})
+                ConfigureEpics.registerEpic({
+                    epic: MenuActionEpicCreator.createEpicTransformActionToMenuAction(currentActionName)
+                })
             })
         }
         if (actionName) {
@@ -104,14 +107,15 @@ class MenuConfigurationInternal {
                 this.MenuDefinition[actionName] = []
             }
             this.MenuDefinition[actionName].push(menuDef)
-            ConfigureEpics.registerEpic({epic:
-              MenuActionEpicCreator.createEpicTransformActionToMenuAction(actionName)})
+            ConfigureEpics.registerEpic({
+                epic: MenuActionEpicCreator.createEpicTransformActionToMenuAction(actionName)
+            })
         }
     }
-    getMenuData=() => {
+    getMenuData = () => {
         return this.MenuData
     }
-    getMenuDefinition=() => {
+    getMenuDefinition = () => {
         return this.MenuDefinition
     }
 

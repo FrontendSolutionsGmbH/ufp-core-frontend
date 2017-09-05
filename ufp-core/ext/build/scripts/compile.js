@@ -1,4 +1,4 @@
-const fs = require(process.cwd() + '/node_modules/fs-extra')
+// const fs = require(process.cwd() + '/node_modules/fs-extra')
 const path = require('path')
 const chalk = require('chalk')
 const webpack = require('webpack')
@@ -39,14 +39,14 @@ const compile = () => Promise.resolve()
     .then(() => logger.info('Starting compiler...'))
     .then(() => logger.info('Target application environment: ' + chalk.bold(project.env)))
     .then(() => runWebpackCompiler(webpackConfig))
-    .then((stats) => {
-        logger.info(`Copying static assets from ./public to ./${project.outDir}.`)
-        fs.copySync(
-            path.resolve(project.basePath, 'public'),
-            path.resolve(project.basePath, project.outDir)
-        )
-        return stats
-    })
+    // .then((stats) => {
+    //     logger.info(`Copying static assets from ./public to ./${project.outDir}.`)
+    //     fs.copySync(
+    //         path.resolve(project.basePath, 'public'),
+    //         path.resolve(project.basePath, project.outDir)
+    //     )
+    //     return stats
+    // })
     .then((stats) => {
         if (project.verbose) {
             logger.log(stats.toString({
