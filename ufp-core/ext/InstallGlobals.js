@@ -16,9 +16,6 @@ console.log('Global packages are required to run ufp-core smoothly on your syste
 
 // console.log(themesDir);
 watch(path.join(__dirname, '/../src'), function (filename) {
-    // if (running) {
-    //     return;
-    // }
     console.log(filename, ' changed.')
     const ls = exec('npm run compile')
 
