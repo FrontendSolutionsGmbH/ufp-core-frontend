@@ -1,7 +1,6 @@
 const argv = require('yargs').argv
 const webpackConfig = require('./webpack.config.js')
-asd
-asd
+
 const TEST_BUNDLER = require('../tests/test-bundler.js')
 const karmaConfig = {
     basePath: '../',

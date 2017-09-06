@@ -4,7 +4,7 @@ import {InvalidUFPAction, UfpMiddlewareRequestCancelledError, UfpMiddlewareMaxRe
 import UFPMiddlewareUtils from './UfpMiddlewareUtils'
 import UFPMiddlewareConstants from './UfpMiddlewareConstants'
 import UFPMiddlewareConfiguration from './UfpMiddlewareConfiguration'
-console.log('FOOOOssssssOOOOOOOOOOOOK')
+console.log('UfpMiddleware imported ')
 function UfpMiddleware(options = {}) {
     return ({getState, dispatch}) => {
         return (next) => async(action) => {
@@ -13,7 +13,7 @@ function UfpMiddleware(options = {}) {
             }
 
             console.log('UfpMiddleware Ufp Action Detected ', UFPMiddlewareConfiguration, action)
-             const dispatchPromise = new Promise(async(resolve /*, reject */) => {
+            const dispatchPromise = new Promise(async(resolve /*, reject */) => {
                 /**
                  *  Do not process actions without a [UFP_ACTION] property
                  * Try to dispatch an error request FSA for invalid UFPAction's

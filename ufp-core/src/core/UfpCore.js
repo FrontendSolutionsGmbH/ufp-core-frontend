@@ -275,7 +275,6 @@ const UfpCore = {
 
     registerReducerCreator,
     registerMiddlewareCreator,
-
     registerEnhancerCreator,
 
     registerManifest,

@@ -2,7 +2,6 @@
  * the manifest.js defines the properties of the ufp-module
  * @type {{name: string}}
  */
-
 import StartupActionCreators from './StartupActionCreators'
 import StartupSelectors from './StartupSelectors'
 import StartupConfiguration from './StartupConfiguration'
@@ -29,6 +28,7 @@ const Manifest = {
             reducer: StartupReducer
         })
 
+        // register epics for us
         StartupConfiguration.init()
     }
 }

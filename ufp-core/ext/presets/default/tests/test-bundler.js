@@ -9,7 +9,7 @@ const chaiEnzyme = require('chai-enzyme')
 require('whatwg-fetch')
 // Mocha / Chai
 // ------------------------------------
-var Promise = require('native-promise-only')
+// var Promise = require('native-promise-only')
 mocha.setup({ui: 'bdd'})
 chai.should()
 
@@ -36,9 +36,9 @@ const testsContext = require.context('./specs/', true, /\.spec\.js$/)
 //const testsToRun = testsContext.keys().filter(inManifest)
 //    ;(testsToRun.length ? testsToRun : testsContext.keys()).forEach(testsContext)
 testsContext.keys()
-            .forEach(testsContext)
+    .forEach(testsContext)
 // require all `src/**/*.js` except for `main.jsx` (for isparta coverage reporting)
 
 const componentsContext = require.context(process.cwd(), '/src/', true, /^((?!(main|test-bundler)).)*\.(js|jsx)$/)
 componentsContext.keys()
-                 .forEach(componentsContext)
+    .forEach(componentsContext)
