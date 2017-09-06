@@ -1,9 +1,11 @@
+import UfpCore from 'core/UfpCore'
+sdfsdfsdfsdf
 describe('(Internal Module) Location', () => {
 
     it('Should export a constant LOCATION_CHANGE.', () => {
-        expect(1)
+        expect(UfpCore)
             .to
-            .equal(1)
+            .equal('LOCATION_CHANGE')
     })
 
 })
