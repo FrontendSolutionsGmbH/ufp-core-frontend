@@ -2,9 +2,10 @@ import MenuConstants from './MenuConstants'
 
 const menuClick = (menuEntry, pushActionCreator) => (dispatch, getState) => {
     if (menuEntry.hash) {
-          return dispatch(pushActionCreator(menuEntry.hash))
+        return dispatch(pushActionCreator(menuEntry.hash))
     } else if (menuEntry.callback) {
         menuEntry.callback({
+            menuEntry,
             dispatch: dispatch,
             globalState: getState()
         })

@@ -1,21 +1,6 @@
 import MenuConfigurationInternal from './MenuConfigurationInternal'
 import update from 'react-addons-update'
 
-var creators = {}
-
-function getMenuEntryCreator(creator) {
-    if (creators[creator] !== undefined) {
-        return creators[creator]
-    }
-    return function createEntry() {
-        return []
-    }
-}
-
-function registerCreator(creatorName, creator) {
-    creators[creatorName] = creator
-}
-
 function uniqueActionNames(actionNamesUnique, actionNamesArray) {
     // TODO: FIXME: merge instead of rewrite ....
     if (Array.isArray(actionNamesArray)) {
@@ -46,15 +31,7 @@ function createMenu(MenuConfig, actionNamesArray) {
                 var children = []
                 if (item.children !== undefined) {
                     item.children.map((child) => {
-                        var result = []
-                        if (child.creator !== undefined) {
-                            //console.log('createGenericMenu call creator')
-                            result = getMenuEntryCreator(child.creator)(child, data)
-                            // console.log('createGenericMenu2', result)
-                        } else {
-                            //console.log('createGenericMenu call createEntry')
-                            result = createEntry(child)
-                        }
+                        var result = createEntry(child)
                         result.map((entry) => {
                             children.push(entry)
                         })
@@ -106,14 +83,9 @@ function createMenu(MenuConfig, actionNamesArray) {
             //     return update(data.state, {$set: menuAuthenticated})
             // } else {
             //console.log('GENERICMENU ACTION HANDLER CREATING UNAUTHENTICATED MENU')
-            var menuUnauthenticated = []
+            const menuUnauthenticated = []
             MenuConfig.unauthenticated.map((item) => {
-                var result = []
-                if (item.creator !== undefined) {
-                    result = getMenuEntryCreator(item.creator)(item, data)
-                } else {
-                    result = createEntry(item)
-                }
+                const result = createEntry(item)
                 result.map((entry) => {
                     menuUnauthenticated.push(entry)
                 })
@@ -127,6 +99,5 @@ function createMenu(MenuConfig, actionNamesArray) {
 
 export default {
     createMenuEntry: MenuConfigurationInternal.createMenuEntry,
-    createMenu,
-    registerCreator
+    createMenu
 }

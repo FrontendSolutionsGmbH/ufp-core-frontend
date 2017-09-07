@@ -10,7 +10,7 @@ import EpicManifest from './../epic/Manifest'
 import {ThrowParam} from '../../utils/JSUtils'
 
 const Manifest = {
-    name: 'Ufp Menu',
+    name: 'ufp-menu',
     description: 'Ufp Menu - provides menu management functionality',
     actionCreators: MenuActionCreators,
     selectors: MenuSelectors,
