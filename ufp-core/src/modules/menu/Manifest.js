@@ -6,6 +6,7 @@
 import MenuActionCreators from './MenuActionCreators'
 import MenuSelectors from './MenuSelectors'
 import MenuReducer from './MenuReducer'
+import EpicManifest from './../epic/Manifest'
 import {ThrowParam} from '../../utils/JSUtils'
 
 const Manifest = {
@@ -15,6 +16,8 @@ const Manifest = {
     selectors: MenuSelectors,
 
     onRegistered({UfpCore = ThrowParam('UfpCore Instance Required')}) {
+        UfpCore.registerManifest(EpicManifest)
+
         UfpCore.registerReducer({
             id: Manifest.name,
             reducer: MenuReducer

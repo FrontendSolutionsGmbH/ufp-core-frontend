@@ -1,6 +1,6 @@
-import MenuReducerName from './MenuReducerName'
+import MenuManifest from './Manifest'
 
-export const MenuState = (state) => state[MenuReducerName.get()]
+export const MenuState = (state) => state[MenuManifest.name]
 
 export const MenuDefinitionSelector = (state) => MenuState(state).MenuDefinition
 export const MenuDataSelector = (state) => MenuState(state).MenuData
@@ -9,19 +9,20 @@ export const MenuSubAreasSortedSelector = (state, props) => {
     var data = MenuDataSelector(state)
     var keysSorted
     if (props.menuAreaName !== undefined && data !== undefined && data[props.menuAreaName] !== undefined) {
-        keysSorted = Object.keys(data[props.menuAreaName]).sort((a, b) => {
-            if (data[props.menuAreaName][a].sortIndex !== -1 && data[props.menuAreaName][b].sortIndex !== -1) {
-                return data[props.menuAreaName][a].sortIndex - data[props.menuAreaName][b].sortIndex
-            } else {
-                if (data[props.menuAreaName][a].sortIndex === -1 && data[props.menuAreaName][a].sortIndex === -1) {
-                    return 0
-                } else if (data[props.menuAreaName][a].sortIndex === -1) {
-                    return -1
-                } else {
-                    return 1
-                }
-            }
-        })
+        keysSorted = Object.keys(data[props.menuAreaName])
+                           .sort((a, b) => {
+                               if (data[props.menuAreaName][a].sortIndex !== -1 && data[props.menuAreaName][b].sortIndex !== -1) {
+                                   return data[props.menuAreaName][a].sortIndex - data[props.menuAreaName][b].sortIndex
+                               } else {
+                                   if (data[props.menuAreaName][a].sortIndex === -1 && data[props.menuAreaName][a].sortIndex === -1) {
+                                       return 0
+                                   } else if (data[props.menuAreaName][a].sortIndex === -1) {
+                                       return -1
+                                   } else {
+                                       return 1
+                                   }
+                               }
+                           })
     } else {
         keysSorted = []
     }

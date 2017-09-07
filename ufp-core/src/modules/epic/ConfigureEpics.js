@@ -15,24 +15,27 @@ import {ThrowParam} from '../../utils/JSUtils.js'
 
 var epics = []
 
-class ConfigureEpics {
-
-    registerEpic({epic = ThrowParam('epic has to be provided')}=
-        {epic: ThrowParam('epic has to be provided')}) {
+const ConfigureEpics = {
+    registerEpic: ({epic = ThrowParam('epic has to be provided')}=
+        {epic: ThrowParam('epic has to be provided')}) => {
         //logger.debug('ConfigureEpics.registerEpic', epic)
         epics.push(epic)
-    }
+    },
 
-    createEpicMiddleware() {
+    createEpicMiddleware: () => {
         console.log('Creating Epic Middleware', epics)
 
         return createEpicMiddleware(combineEpics(...epics))
-    }
+    },
 
-    reset() {
+    reset: () => {
         epics = []
+    },
+
+    getEpics: () => {
+        return epics
     }
 
 }
 
-export default new ConfigureEpics() //same instance everytime
+export default ConfigureEpics

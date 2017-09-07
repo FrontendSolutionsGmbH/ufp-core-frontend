@@ -19,13 +19,13 @@ const Manifest = {
             middlewareCreatorFunction: ConfigureEpics.createEpicMiddleware
         })
 
-        // UfpCore.registerReducer({
-        //         id: Manifest.name,
-        //         reducer: (state = ConfigureEpics.epics) => {
-        //             return state
-        //         }
-        //     }
-        // )
+        UfpCore.registerReducer({
+                id: Manifest.name,
+            reducer: (state = ConfigureEpics.getEpics()) => {
+                    return state
+                }
+            }
+        )
     },
     registerEpic: (epic) => {
         ConfigureEpics.registerEpic({epic})
