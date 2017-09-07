@@ -1,12 +1,18 @@
 import {ThrowParam} from '../../utils/JSUtils'
 
-import ConfigureEpics from './ConfigureEpics'
+import IntlReducer from './IntlReducer'
+import IntlActionCreators from './IntlActionCreators'
+import IntlSelectors from './IntlSelectors'
 
 var onceRegistered = false
 
 const Manifest = {
     name: 'ufp-intl',
     description: 'Ufp Internationalisation Manifest',
+
+    actionCreators: IntlActionCreators,
+
+    selectors: IntlSelectors,
 
     onRegistered({UfpCore = ThrowParam('UfpCore Instance Required')}) {
         if (onceRegistered) {
@@ -15,21 +21,11 @@ const Manifest = {
         }
         onceRegistered = true
 
-        UfpCore.registerMiddlewareCreator({
-            id: Manifest.name,
-            middlewareCreatorFunction: ConfigureEpics.createEpicMiddleware
-        })
-
         UfpCore.registerReducer({
                 id: Manifest.name,
-                reducer: (state = ConfigureEpics.getEpics()) => {
-                    return state
-                }
+                reducer: IntlReducer
             }
         )
-    },
-    registerEpic: (epic) => {
-        ConfigureEpics.registerEpic({epic})
     }
 }
 
