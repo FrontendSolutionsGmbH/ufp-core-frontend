@@ -1,24 +1,27 @@
 import MenuConfigurationInternal from './MenuConfigurationInternal'
 import update from 'react-addons-update'
 
-function uniqueActionNames(actionNamesUnique, actionNamesArray) {
-    // TODO: FIXME: merge instead of rewrite ....
-    if (Array.isArray(actionNamesArray)) {
-        actionNamesArray.map((actionName) => {
-            if (actionNamesUnique.indexOf(actionName) === -1) {
-                actionNamesUnique.push(actionName)
-            }
-        })
-    }
-}
-
-function createMenu(MenuConfig, actionNamesArray) {
+function createMenu(MenuConfig) {
     var actionNames = [
         //AuthConstants.ActionConstants.AUTHENTICATED,
         //AuthConstants.ActionConstants.UNAUTHENTICATED
     ]
-    uniqueActionNames(actionNames, actionNamesArray)
-    console.log('GENERICMENU createGenericMenu', MenuConfig)
+    //uniqueActionNames(actionNames, actionNamesArray)
+
+    // take actions from config and assign them, instead of submitting them separately
+    // the actions are what triggers either the update of the menu area, either by using
+    // a static menu def or a localised menu reducer
+    if (MenuConfig.actions) {
+        console.log('Initialising menu, checking actions')
+
+        Object.keys(MenuConfig.actions)
+              .map((key) => {
+                  console.log('Initialising menu, checking actions', key)
+                  actionNames.push(key)
+              })
+    }
+
+    console.log('GENERICMENU createGenericMenu ', MenuConfig)
     console.log('GENERICMENU createGenericMenu', actionNames)
     MenuConfigurationInternal.registerMenuReducer({
         area: MenuConfig.settings.area || 'main',
@@ -83,13 +86,32 @@ function createMenu(MenuConfig, actionNamesArray) {
             //     return update(data.state, {$set: menuAuthenticated})
             // } else {
             //console.log('GENERICMENU ACTION HANDLER CREATING UNAUTHENTICATED MENU')
-            const menuUnauthenticated = []
-            MenuConfig.unauthenticated.map((item) => {
-                const result = createEntry(item)
-                result.map((entry) => {
-                    menuUnauthenticated.push(entry)
+
+            var currentDef = MenuConfig.unauthenticated
+            console.log('xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx', MenuConfig, data.action.type.substr(-5))
+            // remove menu suffix from action and check if in menu definition exists an entry for that
+            if (MenuConfig.actions[data.action.type.substr(0, data.action.type.length - 5)]) {
+                currentDef = MenuConfig.actions[data.action.type.substr(0, data.action.type.length - 5)]
+            }
+
+            var menuUnauthenticated = []
+
+            if (typeof currentDef === 'function') {
+                currentDef = currentDef({
+                    globalState: data.action.payload.getState(),
+                    action: data.action
                 })
-            })
+            }
+            console.log('xxxxxxxxxxxxxxxmenu def is then ', currentDef)
+
+            if (Array.isArray(currentDef)) {
+                currentDef.map((item) => {
+                    const result = createEntry(item)
+                    result.map((entry) => {
+                        menuUnauthenticated.push(entry)
+                    })
+                })
+            }
             console.log('menuUnauthenticated', menuUnauthenticated)
             return update(data.state, {$set: menuUnauthenticated})
         },

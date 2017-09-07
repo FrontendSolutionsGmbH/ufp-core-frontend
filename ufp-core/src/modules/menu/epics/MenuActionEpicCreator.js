@@ -7,13 +7,14 @@ import MenuConstants from '../MenuConstants'
 const createEpicTransformActionToMenuAction = (actionName) => (action$, storeLite) => {
     // console.log('MenuActionEpic Action called ', action$)
     return action$.filter((action) => action.type === actionName)
-        .mapTo({
-            type: actionName + MenuConstants.MENU_ACTION_SUFFIX,
-            payload: {
-               // getState: storeLite.getState
-                getState: storeLite.getState
-            }
-        })
+                  .mapTo({
+                      type: actionName + MenuConstants.MENU_ACTION_SUFFIX,
+                      payload: {
+                          // getState: storeLite.getState
+                          getState: storeLite.getState,
+                          originalPayload: action.payload
+                      }
+                  })
 }
 
 export default {
