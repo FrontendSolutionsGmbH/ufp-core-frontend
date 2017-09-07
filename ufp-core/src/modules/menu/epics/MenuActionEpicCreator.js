@@ -11,8 +11,7 @@ const createEpicTransformActionToMenuAction = (actionName) => (action$, storeLit
                       type: actionName + MenuConstants.MENU_ACTION_SUFFIX,
                       payload: {
                           // getState: storeLite.getState
-                          getState: storeLite.getState,
-                          originalPayload: action.payload
+                          getState: storeLite.getState
                       }
                   })
 }
