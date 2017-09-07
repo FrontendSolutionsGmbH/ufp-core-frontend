@@ -11,7 +11,7 @@ const hashHistory = useRouterHistory(createHashHistory)({
 })
 
 const Manifest = {
-    name: 'Example Router',
+    name: 'ufp-react-redux-router3',
     description: 'React Redux Hash Router3',
 
     register: () => {
@@ -25,7 +25,7 @@ const Manifest = {
         })
 
         UfpCore.registerReducer({
-            id: 'React Router3',
+            id: Manifest.name,
             reducer: routerReducer3
         })
 
@@ -37,7 +37,8 @@ const Manifest = {
      */
     syncHistoryWithStore: (store) => {
         return syncHistoryWithStore(hashHistory, store, {
-            selectLocationState: (state) => state.ufp['React Router3']
+
+            selectLocationState: (state) => state[Manifest.name]
         })
     }
 
