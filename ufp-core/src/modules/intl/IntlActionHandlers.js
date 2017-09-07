@@ -1,7 +1,6 @@
 import update from 'react-addons-update'
 import IntlConstants from './IntlConstants'
 import StorageReal from 'core/utils/storage/StorageReal'
-import ApiDefinitions from 'core/api/ApiDefinitionNew'
 
 export default {
     [IntlConstants.SET_LANGUAGES]: (state, action) => {
