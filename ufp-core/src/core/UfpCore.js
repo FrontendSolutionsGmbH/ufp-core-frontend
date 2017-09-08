@@ -262,7 +262,7 @@ const startup = ({applicationNameIn = 'Ufp Application'}={applicationNameIn: 'Uf
           })
 
     /**
-     * dispatch init actionasd
+     * dispatch init action
      */
     BaseManifest.startupAction()
 }
