@@ -1,5 +1,5 @@
 import IntlConstants from './IntlConstants'
-import UfpRequestActions from 'core/api/ufpmiddleware/UfpRequestActions'
+import UfpRequestActions from '../../middleware/UfpRequestActions'
 import ApiDefinitionNew from './ApiDefinitionNew'
 
 const setActiveLanguages = (languages = []) => (dispatch) => dispatch({
@@ -44,16 +44,16 @@ const setLanguage = (lang) => (dispatch, getState) => {
 }
 
 const initSetLanguage = () => (dispatch, getState) => {
-    console.log('Setting Language', getState().apiConfig)
-    var promise = dispatch(
-        setLanguage(getState().apiConfig.defaultLanguage)
-    )
-    dispatch({
-        types: IntlConstants.SET_INIT_LANGUAGE.ARRAY,
-        payload: {
-            response: promise
-        }
-    })
+    console.log('UFP Intl Setting Language', getState().apiConfig)
+    // var promise = dispatch(
+    //     setLanguage(getState().apiConfig.defaultLanguage)
+    // )
+    // dispatch({
+    //     types: IntlConstants.SET_INIT_LANGUAGE.ARRAY,
+    //     payload: {
+    //         response: promise
+    //     }
+    // })
 }
 
 const loadMessages = (lang) => (dispatch) => {

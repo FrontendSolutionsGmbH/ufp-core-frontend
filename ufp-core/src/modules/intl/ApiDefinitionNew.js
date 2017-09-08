@@ -1,6 +1,6 @@
 import UFPMiddlewareConstants from '../../middleware/UfpMiddlewareConstants'
-import ReduxUtils from 'core/utils/ReduxUtils'
-// // console.log('UFPMiddlewareConstants', UFPMiddlewareConstants)
+import ReduxUtils from '../../utils/ReduxUtils'
+import StringUtils from '../../utils/StringUtils'
 
 const ApiDefinition = {
 
@@ -19,7 +19,7 @@ const ApiDefinition = {
 // before returning enrich the apidefinition with default action handlers
 const ApiDefinitionNew = {}
 for (var i in ApiDefinition) {
-    ApiDefinitionNew[i] = Object.assign({actionConstants: ReduxUtils.createAsyncResponseActionNames(ReduxUtils.camelCaseToConstant(i))}, ApiDefinition[i])
+    ApiDefinitionNew[i] = Object.assign({actionConstants: ReduxUtils.createAsyncResponseActionNames(StringUtils.camelCaseToConstant(i))}, ApiDefinition[i])
 }
 // // console.log('Enriched Api Definition: ', ApiDefinitionEnriched)
 export default ApiDefinitionNew

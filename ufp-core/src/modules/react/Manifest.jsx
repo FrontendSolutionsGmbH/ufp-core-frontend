@@ -5,6 +5,7 @@ import {Provider} from 'react-redux'
 import React from 'react'
 // dummy for eslint without standard-react
 console.log('dummy for eslint without standard-react usage of Provider import', Provider)
+var _Providers = []
 var _RootNode = null
 var _ReactApp = null
 var _ReactAppCreatorFunction = null
@@ -23,14 +24,29 @@ const Manifest = {
         console.log('ufp-react aappCreatorFunctionpp:', appCreatorFunction)
     },
 
+    registerProvider: ({
+        component
+    }) => {
+        console.log('ufp-react proved:', component)
+        _Providers.push(component)
+    },
+
     onPreStartup: ({UfpCore}) => {
         console.log('onPreStartup called React ', UfpCore)
         _ReactApp = _ReactAppCreatorFunction({UfpCore})
 
         console.log('ufp-react', _RootNode, _ReactApp)
-        const Item = _ReactApp
-        ReactDOM.render(
-          <Provider store={UfpCore.getStore()}><Item /></Provider>, _RootNode
+
+        const App = _ReactApp
+
+        var currentRootComponent = (<App />)
+        _Providers.map((item) => {
+            const Component = item
+            currentRootComponent = (<Component>{currentRootComponent}</Component>)
+
+        })
+
+        ReactDOM.render(<Provider store={UfpCore.getStore()}>{currentRootComponent}</Provider>, _RootNode
         )
     }
 }
