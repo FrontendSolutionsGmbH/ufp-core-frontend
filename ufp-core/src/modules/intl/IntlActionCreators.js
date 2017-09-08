@@ -1,4 +1,5 @@
 import IntlConstants from './IntlConstants'
+import IntlSelectors from './IntlSelectors'
 import UfpRequestActions from '../../middleware/UfpRequestActions'
 import ApiDefinitionNew from './ApiDefinitionNew'
 
@@ -10,7 +11,10 @@ const setActiveLanguages = (languages = []) => (dispatch) => dispatch({
 })
 
 const setLanguage = (lang) => (dispatch, getState) => {
-    if (!getState().intl.allMessages[lang]) {
+    console.log('SetLanguage called ', dispatch, getState)
+    console.log('SetLanguage called ', getState())
+
+    if (!IntlSelectors.AllMessagesSelector(getState())[lang]) {
         dispatch({
             type: IntlConstants.SET_LANGUAGE_REQUEST,
             payload: {lang: lang}

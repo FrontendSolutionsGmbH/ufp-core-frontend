@@ -12,6 +12,7 @@ export default {
     [IntlConstants.SET_LANGUAGE]: (state, action) => {
         if (action.payload.lang && state.currentLanguage !== action.payload.lang) {
             return update(state, {
+                randomKey: {$set: Math.random()},
                 currentLanguage: {$set: action.payload.lang}
             })
         }
