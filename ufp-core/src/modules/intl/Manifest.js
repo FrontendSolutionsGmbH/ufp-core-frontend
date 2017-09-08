@@ -3,6 +3,8 @@ import {ThrowParam} from '../../utils/JSUtils'
 import IntlReducer from './IntlReducer'
 import IntlActionCreators from './IntlActionCreators'
 import IntlSelectors from './IntlSelectors'
+import ReactManifest from '../react/Manifest'
+import IntlProvider from './components/IntlProvider'
 
 var onceRegistered = false
 
@@ -20,7 +22,7 @@ const Manifest = {
             return
         }
         onceRegistered = true
-
+        ReactManifest.registerProvider({component: IntlProvider})
         UfpCore.registerReducer({
                 id: Manifest.name,
                 reducer: IntlReducer
