@@ -51,7 +51,5 @@ const Manifest = {
     }
 }
 
-// configure is the new register
-Manifest.configure = Manifest.register
 
 export default Manifest

@@ -3,9 +3,8 @@ import {connect} from 'react-redux'
 import {IntlProvider} from 'react-intl'
 import React from 'react'
 import IntlSelectors from '../IntlSelectors'
-import {FormattedMessage} from 'react-intl'
 
-const UfpIntlProvider = ({ randomKey, locale, messages, children}) => {
+const UfpIntlProvider = ({randomKey, locale, messages, children}) => {
     console.log('Intl Provider rendering', locale, messages, randomKey)
     return (
 
@@ -13,16 +12,7 @@ const UfpIntlProvider = ({ randomKey, locale, messages, children}) => {
                       locale={locale}
                       messages={messages}
         >
-            <div>
-                HALLO INTL <FormattedMessage
-
-                id="welcome"
-                defaultMessage="none"
-
-            />
-
-                {children}
-            </div>
+            {children}
         </IntlProvider>
     )
 }
