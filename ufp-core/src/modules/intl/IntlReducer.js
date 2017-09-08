@@ -19,14 +19,14 @@ const initialState = {
     nextLanguage: null,
     allMessages: {
         en: {
-                'welcome': 'Welcome'
+            welcome: 'Welcome'
         },
         de: {
-            'welcome': 'Willkommen'
+            welcome: 'Willkommen'
         }
 
     },
-    languages: ['en']
+    languages: ['en', 'de']
 }
 
 export default ReduxUtils.createReducer(initialState, IntlActionHandlers)
