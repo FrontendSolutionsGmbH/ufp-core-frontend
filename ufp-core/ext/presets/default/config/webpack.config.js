@@ -150,7 +150,13 @@ config.module.rules.push({
                 // }],
             ]
         }
-    }]
+    },
+        {
+            loader: 'preprocess-loader'
+
+        }
+
+    ]
 })
 
 // Styles
@@ -195,7 +201,12 @@ config.module.rules.push({
                         inProjectSrc('styles')
                     ]
                 }
+            },
+            {
+                loader: 'preprocess-loader'
+
             }
+
         ]
     })
 })
