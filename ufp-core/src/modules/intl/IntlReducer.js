@@ -4,6 +4,7 @@ import IntlConstants from './IntlConstants'
 import IntlActionHandlers from './IntlActionHandlers'
 // import StartupConfigurator from '../startup/StartupConfiguration'
 import StorageReal from '../../utils/storage/StorageReal'
+import IntlConfig from './IntlConfig'
 
 // StartupConfigurator.registerStagedResource({
 //     stage: '1',
@@ -17,6 +18,7 @@ const initialState = {
     currentLanguage: StorageReal.getItem(IntlConstants.STORAGE_KEY, 'en'),
     randomKey: Math.random(),
     nextLanguage: null,
+    locales: IntlConfig.getLocales(),
     allMessages: {
         en: {
             welcome: 'Welcome'
@@ -24,9 +26,8 @@ const initialState = {
         de: {
             welcome: 'Willkommen'
         }
-
     },
-    languages: ['en', 'de']
+    languages: IntlConfig.getLanguages()
 }
 
 export default ReduxUtils.createReducer(initialState, IntlActionHandlers)

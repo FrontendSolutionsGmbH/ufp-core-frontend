@@ -1,12 +1,12 @@
 import {ThrowParam} from '../../utils/JSUtils'
 
+import IntlConfig from './IntlConfig'
 import IntlReducer from './IntlReducer'
 import IntlActionCreators from './IntlActionCreators'
 import IntlSelectors from './IntlSelectors'
 import ReactManifest from '../react/Manifest'
 import UfpIntlProvider from './components/UfpIntlProvider'
 
-import deLocaleData from 'react-intl/locale-data/de'
 import {addLocaleData} from 'react-intl'
 var onceRegistered = false
 
@@ -18,16 +18,39 @@ const Manifest = {
 
     selectors: IntlSelectors,
 
+    /**
+     * returns a list of the distinct parent locales
+     * @private
+     */
+
+    configure: ({
+        locales = ThrowParam('At least one locale should be provided'),
+        languages = ThrowParam('At least one language should be provided')
+
+    }) => {
+        console.log('Registering locale', locales)
+
+        IntlConfig.locales.push(...locales)
+        IntlConfig.languages.push(...languages)
+    },
+
+    addLocaleData: (locale) => {
+        /**
+         * wrapper method to allow adding locales at runtime
+         */
+        addLocaleData(locale)
+    },
     onRegistered({UfpCore = ThrowParam('UfpCore Instance Required')}) {
         console.log('INTL Manifest is ', this)
 
         if (onceRegistered) {
-            // todo: fixme: move verification of call thismethod once to core
-            return
+            ThrowParam('UfpCore Already registered ')
         }
 
-        console.log('Initialising intl ', deLocaleData)
-        addLocaleData(deLocaleData)
+        // register provided locales (en is always present)
+        IntlConfig.locales.map((locale) => {
+            addLocaleData(locale)
+        })
 
         onceRegistered = true
         ReactManifest.registerProvider({component: UfpIntlProvider})
@@ -38,8 +61,5 @@ const Manifest = {
         )
     }
 }
-
-// configure is the new register
-Manifest.configure = Manifest.register
 
 export default Manifest
