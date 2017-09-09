@@ -11,7 +11,7 @@ import {ThrowParam} from '../../utils/JSUtils'
 var onceRegistered = false
 
 const Manifest = {
-    name: 'Ufp Startup',
+    name: 'ufp-startup',
     description: 'Ufp Startup - manages sequentially execution of actions for initialisation',
     actionCreators: StartupActionCreators,
     selectors: StartupSelectors,

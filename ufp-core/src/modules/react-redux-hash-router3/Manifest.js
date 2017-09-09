@@ -17,6 +17,8 @@ const Manifest = {
     selectors: RouterSelectors,
 
     onRegistered: ({UfpCore}) => {
+        console.log('ROUTER REGISTERED CALLED ')
+
         UfpCore.registerMiddleware({
             id: 'router-middleware',
             middleware: routerMiddleware(hashHistory)

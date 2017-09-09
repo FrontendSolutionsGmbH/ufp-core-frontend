@@ -4,6 +4,7 @@ import {set} from './DeepGetSet'
  * @param apiDefinitionPath the prefix for the action names
  * @returns {{REQUEST: string, SUCCESS: string, FAILURE: string, END: string}}
  */
+
 const createAsyncResponseActionNames = (apiDefinitionPath) => {
     return {
         REQUEST: apiDefinitionPath.toUpperCase() + '_REQUEST',
@@ -39,6 +40,5 @@ const createActionConstantsForApiDefinitions = (ApiDefinitionsObject) => {
 
 export default {
     createActionConstantsForApiDefinitions,
-    traverseDefinition,
     createAsyncResponseActionNames
 }

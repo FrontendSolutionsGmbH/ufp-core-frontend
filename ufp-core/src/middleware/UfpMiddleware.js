@@ -47,13 +47,15 @@ function UfpMiddleware(options = {}) {
                     const {
                         ufpDefinition,
                         ufpPayload,
+                        ufpData,
                         ufpResultHandler,
                         ufpPreHandler,
                         ufpTypes
                     } = ufpAction
                     const additionalPayload = {
-                        getState: getState,
-                        globalState: getState()
+
+                        // getState: getState,
+                        // globalState: getState()
                     }
                     const thePayload = Object.assign({}, ufpPayload, additionalPayload)
                     // Object.assign({}, ufpDefinition.actionConstants || {}, ufpAction.ufpTypes || {})
@@ -68,6 +70,8 @@ function UfpMiddleware(options = {}) {
                     var requestResponse = null
                     const resultContainerForPreHandler = {
                         ufpAction: {
+                            wixi: 'buxi',
+                            ufpData,
                             ufpDefinition,
                             ufpPayload: thePayload,
                             ufpResultHandler,
@@ -103,7 +107,17 @@ function UfpMiddleware(options = {}) {
                         console.log('UFP MIDDLEWARE config', config)
                         dispatchWrapper({
                             type: ufpTypesUnited.REQUEST,
-                            payload: thePayload
+                            payload: {
+                                action: action,
+                                config: configPrepared
+                            }
+                        })
+                        dispatchWrapper({
+                            type: 'MIDDLEWARE_REQUEST',
+                            payload: {
+                                action: action,
+                                config: configPrepared
+                            }
                         })
                         while (retry && retryCount < MAX_RETRY_COUNT) {
                             validateResult = undefined
@@ -124,6 +138,7 @@ function UfpMiddleware(options = {}) {
 
                             const resultContainerForHandler = {
                                 ufpAction: {
+                                    ufpData,
                                     ufpDefinition,
                                     ufpPayload: thePayload,
                                     ufpResultHandler,
@@ -181,14 +196,16 @@ function UfpMiddleware(options = {}) {
                                 try {
                                     console.log('genericResultHandler', promiseAll1)
                                     validateResult = UFPMiddlewareUtils.validateResultHandlerResult(promiseAll1)
+
                                     if (validateResult.handled && validateResult.success) {
                                         dispatchWrapper({
-                                            type: ufpTypesUnited.SUCCESS,
-                                            payload: Object.assign(
-                                                Object.assign({},
-                                                    {data: requestResponse.data},
-                                                    ufpAction.ufpPayload),
-                                                {additionalPayload: validateResult.additionalPayload})
+                                            type: 'MIDDLEWARE_SUCCESS',
+                                            payload: {
+                                                data: requestResponse.data,
+
+                                                ufpAction: ufpAction,
+                                                config: configPrepared
+                                            }
                                         })
                                     }
                                 }
@@ -297,7 +314,10 @@ function UfpMiddleware(options = {}) {
                     //console.log('xxxxx middleware looping4', ufpTypesUnited.END)
                     dispatchWrapper({
                         type: ufpTypesUnited.END,
-                        payload: thePayload
+                        payload: {
+                            ufpAction: ufpAction,
+                            config: configPrepared
+                        }
                     })
                     // // // console.log('xxxxx middleware end5')
                     // console.warn('UFPMiddleware END finish: ')
