@@ -8,11 +8,28 @@ const setActiveLanguages = (languages = []) => (dispatch) => dispatch({
     }
 })
 
+/**
+ * set messages actually sets a message
+ * config for a language
+ * @param lang
+ * @param messages
+ */
+const setMessages = ({
+    lang,
+    messages
+}) => ({
+    type: IntlConstants.UPDATE_MESSAGES,
+    payload: {
+        lang,
+        messages
+    }
+})
+
 const setLanguage = (lang) => (dispatch, getState) => {
     console.log('SetLanguage called ', dispatch, getState)
     console.log('SetLanguage called ', getState())
 
-    if (!IntlSelectors.AllMessagesSelector(getState())[lang]) {
+    if (IntlSelectors.AllMessagesSelector(getState())[lang]) {
         dispatch({
             type: IntlConstants.SET_LANGUAGE_REQUEST,
             payload: {lang: lang}
@@ -41,7 +58,6 @@ const setLanguage = (lang) => (dispatch, getState) => {
             type: IntlConstants.SET_LANGUAGE,
             payload: {lang: lang}
         })
-        return Promise.resolve()
     }
 }
 
@@ -94,6 +110,7 @@ const initSetLanguage = () => (dispatch, getState) => {
 // }
 
 export default {
+    setMessages,
     setActiveLanguages,
     initSetLanguage,
     setLanguage

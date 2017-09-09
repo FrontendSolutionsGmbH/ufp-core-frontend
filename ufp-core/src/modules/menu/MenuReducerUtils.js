@@ -15,9 +15,9 @@ export const getInitialState = () => {
 }
 
 const MenuActionListReducer = (state, action) => {
-    console.log('MenuReducer Called', state, action)
+    // console.log('MenuReducer Called', state, action)
     var menuEntryAll = state.MenuDefinition[action.type]
-    console.log('MenuReducer Called menudef entry is ', menuEntryAll)
+    // console.log('MenuReducer Called menudef entry is ', menuEntryAll)
 
     if (menuEntryAll !== undefined) {
         var pushedalread = {}

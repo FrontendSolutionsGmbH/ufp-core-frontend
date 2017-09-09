@@ -4,6 +4,9 @@ export default{
     },
     RequestMethodConstants: {
         GET: 'get',
+        DELETE: 'delete',
+        PUT: 'put',
+        PATCH: 'patch',
         POST: 'post'
     }
 }
