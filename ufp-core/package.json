@@ -27,7 +27,7 @@
     "dev": "babel-node src/index.js",
     "lint": "eslint src/**/*.js --fix && eslint ext/**/*.js --fix",
     "lint:fix": "npm run lint -- --fix ",
-    "compile": "npm run lint:fix && babel -d lib/ src/",
+    "compile": "npm run lint:fix && babel -d lib/ src/ --copy-files",
     "test": "cross-env NODE_ENV=test karma start build/karma.config",
     "watch": "node bin/watchSrc"
   },

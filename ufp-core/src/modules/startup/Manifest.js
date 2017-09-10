@@ -4,6 +4,7 @@
  */
 import StartupActionCreators from './StartupActionCreators'
 import StartupSelectors from './StartupSelectors'
+
 import StartupConfiguration from './StartupConfiguration'
 import StartupReducer from './StartupReducer'
 import {ThrowParam} from '../../utils/JSUtils'
@@ -27,7 +28,6 @@ const Manifest = {
             id: Manifest.name,
             reducer: StartupReducer
         })
-
         // register epics for us
         StartupConfiguration.init()
     }
