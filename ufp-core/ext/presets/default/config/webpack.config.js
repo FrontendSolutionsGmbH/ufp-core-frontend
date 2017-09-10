@@ -163,7 +163,7 @@ config.module.rules.push({
 // ------------------------------------
 const extractStyles = new ExtractTextPlugin({
     filename: 'styles/[name].[contenthash].css',
-    allChunks: true,
+    allChunks: true
     // disable: __DEV__
 })
 
