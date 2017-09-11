@@ -150,15 +150,21 @@ config.module.rules.push({
                 // }],
             ]
         }
-    }]
+    },
+        {
+            loader: 'preprocess-loader'
+
+        }
+
+    ]
 })
 
 // Styles
 // ------------------------------------
 const extractStyles = new ExtractTextPlugin({
     filename: 'styles/[name].[contenthash].css',
-    allChunks: true,
-    disable: __DEV__
+    allChunks: true
+    // disable: __DEV__
 })
 
 config.module.rules.push({
@@ -195,7 +201,12 @@ config.module.rules.push({
                         inProjectSrc('styles')
                     ]
                 }
+            },
+            {
+                loader: 'preprocess-loader'
+
             }
+
         ]
     })
 })

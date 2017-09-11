@@ -120,6 +120,20 @@ const createReducerWithChildReducers = (initialState, handlers, reducers) => {
     }
 }
 /**
+ * helper method to create the 3 action names request,success,fail to be used by async middleware
+ * @param resourceName the prefix for the action names
+ * @returns {{REQUEST: string, SUCCESS: string, FAIL: string}}
+ */
+const createAsyncResponseActionNames = (resourceName) => {
+    return {
+        REQUEST: resourceName.toUpperCase() + '_REQUEST',
+        SUCCESS: resourceName.toUpperCase() + '_SUCCESS',
+        END: resourceName.toUpperCase() + '_END',
+        FAIL: resourceName.toUpperCase() + '_FAIL',
+        ARRAY: [resourceName.toUpperCase() + '_REQUEST', resourceName.toUpperCase() + '_SUCCESS', resourceName.toUpperCase() + '_FAIL']
+    }
+}
+/**
  * his helper method creates a action with parameter already bound
  * @param actionCreator
  * @param dispatch
@@ -131,6 +145,7 @@ const bindActionCreatorAndParams = (actionCreator, dispatch, ...params) => {
 }
 
 export default{
+    createAsyncResponseActionNames,
     createLocalSelector,
     bindActionCreatorAndParams,
     createReducer,
