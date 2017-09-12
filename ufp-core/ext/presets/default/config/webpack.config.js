@@ -14,6 +14,8 @@ const StatsPlugin = require('stats-webpack-plugin')
 const VisualizerPlugin = require('webpack-visualizer-plugin')
 const CompressionPlugin = require('compression-webpack-plugin')
 const PurifyCSSPlugin = require('purifycss-webpack')
+const DuplicatePackageCheckerWebpackPlugin = require(process.cwd() + '/node_modules/duplicate-package-checker-webpack-plugin')
+const CircularDependencyPlugin = require(process.cwd() + '/node_modules/circular-dependency-plugin')
 
 const inProject = path.resolve.bind(path, project.basePath)
 const inProjectSrc = (file) => inProject(project.srcDir, file)
@@ -28,6 +30,12 @@ const config = {
             inProjectSrc(project.main)
         ]
     },
+    stats: {
+        colors: true,
+        modules: true,
+        reasons: true,
+        errorDetails: true
+    },
     devtool: project.sourcemaps ? 'source-map' : false,
     output: {
         path: inProject(project.outDir),
@@ -35,14 +43,19 @@ const config = {
         publicPath: project.publicPath
     },
     resolve: {
-        "alias": {
-            "react": "preact-compat",
-            "react-dom": "preact-compat"    ,
+        // enforce no-symlinking for module resolving, required when using modules from filesystem (e.g. ufp-core)
+        symlinks: false,
+        'alias': {
+            // preact setup
+            'react': 'preact-compat',
+            'react-dom': 'preact-compat',
+            // required preact adjustment for react-router3
             'create-react-class': 'preact-compat/lib/create-react-class'
-        } ,
+        },
+
         modules: [
             inProject(project.srcDir),
-            'node_modules'
+            inProject('node_modules')
         ],
         extensions: ['*', '.js', '.jsx', '.json']
     },
@@ -66,7 +79,7 @@ const config = {
         }, project.globals))
     ]
 }
-
+console.log('Config is ', config)
 /**
  * start of ufp static folders copywebpackplugin config
  */
@@ -128,9 +141,9 @@ config.module.rules.push({
                 [
                     'babel-plugin-transform-runtime',
                     {
-                        helpers: true,
+                        helpers: false,
                         polyfill: false, // we polyfill needed features in src/normalize.js
-                        regenerator: true
+                        regenerator: false
                     }
                 ],
                 [
@@ -157,8 +170,10 @@ config.module.rules.push({
         }
     },
         {
-            loader: 'preprocess-loader'
-
+            loader: 'preprocess-loader',
+            query: {
+                NODE_ENV: project.env
+            }
         }
 
     ]
@@ -286,13 +301,18 @@ if (!__TEST__) {
     config.plugins.push(new webpack.optimize.CommonsChunkPlugin({names: bundles}))
 }
 
+// ignoring/externalize modules
+// config.plugins.push(new webpack.IgnorePlugin(/core-js/) )
+config.plugins.push(new DuplicatePackageCheckerWebpackPlugin())
+config.plugins.push(new CircularDependencyPlugin())
+
 // Production Optimizations
 // ------------------------------------
 if (__PROD__) {
     config.plugins.push(
         new webpack.LoaderOptionsPlugin({
             minimize: true,
-            debug: false
+            debug: true
         })
     )
 

@@ -5,6 +5,7 @@
 import {useRouterHistory} from 'react-router'
 import createHashHistory from 'history/lib/createHashHistory'
 import RouterSelectors from './RouterSelectors'
+import RouterConstants from './RouterConstants'
 import {routerMiddleware, syncHistoryWithStore, routerReducer as routerReducer3} from 'react-router-redux'
 
 const hashHistory = useRouterHistory(createHashHistory)({
@@ -12,7 +13,7 @@ const hashHistory = useRouterHistory(createHashHistory)({
 })
 
 const Manifest = {
-    name: 'ufp-react-redux-router3',
+    name: RouterConstants.NAME,
     description: 'React Redux Hash Router3',
     selectors: RouterSelectors,
 

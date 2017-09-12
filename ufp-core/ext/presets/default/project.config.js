@@ -11,6 +11,9 @@ module.exports = {
     main: 'main',
     /** The name of the directory in which to emit compiled assets */
     outDir: 'dist',
+    ignoreModules: [
+
+    ],
     /** The base path for all projects assets (relative to the website root) */
     publicPath: '',
     /** Whether to generate sourcemaps */
@@ -22,5 +25,16 @@ module.exports = {
     /** Whether to enable verbose logging */
     verbose: true,
     /** The list of modules to bundle separately from the core application code */
-    vendors: []
+    vendors: [
+        // 'ufp-core'
+        // 'react',
+        // 'react-dom',
+        // 'preact',
+        // 'preact-compat',
+        // 'react-redux',
+        // 'react-router',
+        // 'redux',
+        // 'history'
+
+    ]
 }

@@ -2,7 +2,6 @@
  * the manifest.js defines the properties of the ufp-module
  * @type {{name: string}}
  */
-
 import ConfigReducer from './ConfigReducer'
 import ConfigActionCreators from './ConfigActionCreators'
 import ConfigConstants from './ConfigConstants'
@@ -23,7 +22,7 @@ const reducerCreatorFunction = () => {
 }
 
 const Manifest = {
-    name: 'ConfigReducer',
+    name: ConfigConstants.NAME,
     description: 'Ufp Config Reducer - property storage',
     actionCreators: ConfigActionCreators,
     selectors: ConfigSelectors,
