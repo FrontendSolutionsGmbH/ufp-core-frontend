@@ -26,11 +26,7 @@ const config = {
         filename: __DEV__ ? '[name].js' : '[name].[chunkhash].js',
         publicPath: project.publicPath,
     },
-    resolve: {               s
-        "alias": {
-            "react": "preact-compat",
-            "react-dom": "preact-compat"
-        } ,
+    resolve: {
         modules: [
             inProject(project.srcDir),
             'node_modules',
@@ -53,7 +49,7 @@ const config = {
             __TEST__,
             __PROD__,
         }, project.globals))
-    ],
+    ]
 }
 
 // JavaScript

@@ -35,6 +35,11 @@ const config = {
         publicPath: project.publicPath
     },
     resolve: {
+        "alias": {
+            "react": "preact-compat",
+            "react-dom": "preact-compat"    ,
+            'create-react-class': 'preact-compat/lib/create-react-class'
+        } ,
         modules: [
             inProject(project.srcDir),
             'node_modules'
