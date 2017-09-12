@@ -26,7 +26,11 @@ const config = {
         filename: __DEV__ ? '[name].js' : '[name].[chunkhash].js',
         publicPath: project.publicPath,
     },
-    resolve: {
+    resolve: {               s
+        "alias": {
+            "react": "preact-compat",
+            "react-dom": "preact-compat"
+        } ,
         modules: [
             inProject(project.srcDir),
             'node_modules',
