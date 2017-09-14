@@ -181,13 +181,13 @@ config.module.rules.push(
                 ]
             }
         }
-        ,
+            ,
             {
-            loader: "eslint-loader",
-            options: {
-                configFile: path.join(__dirname, '../../../../src/.eslintrc')
+                loader: "eslint-loader",
+                options: {
+                    configFile: path.join(__dirname, '../../../../src/.eslintrc')
+                }
             }
-        }
 
         ]
     })
@@ -329,7 +329,8 @@ if (!__TEST__) {
 // config.plugins.push(new webpack.IgnorePlugin(/core-js/) )
 config.plugins.push(new DuplicatePackageCheckerWebpackPlugin())
 config.plugins.push(new CircularDependencyPlugin())
-config.plugins.push(new webpack.optimize.AggressiveSplittingPlugin())
+//
+// config.plugins.push(new webpack.optimize.AggressiveSplittingPlugin())
 
 // Production Optimizations
 // ------------------------------------
