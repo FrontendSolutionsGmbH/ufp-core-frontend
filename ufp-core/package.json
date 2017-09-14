@@ -46,7 +46,7 @@
     "tape",
     "istanbul"
   ],
-  "author": "Vinnie Garcia <vinnie@coev.co>",
+  "author": "Christian Kleinhuis <ck@froso.de>",
   "license": "MIT",
   "dependencies": {
     "argg": "^0.0.2",
