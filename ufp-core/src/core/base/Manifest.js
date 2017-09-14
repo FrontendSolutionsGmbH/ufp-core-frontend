@@ -3,14 +3,12 @@
  * @type {{name: string}}
  */
 import UfpCoreActionCreators from './UfpCoreActionCreators'
-import UfpCore from '../../core/UfpCore'
+
 const Manifest = {
     name: 'Ufp Base',
-    description: 'Ufp Base ',
-    actionCreators: UfpCoreActionCreators,
-    register: () => {
-        UfpCore.registerManifest(Manifest)
-    }
+    description: 'Ufp Base',
+    actionCreators: UfpCoreActionCreators
+
 }
 
 export default Manifest

@@ -1,9 +1,8 @@
 import {ThrowParam} from '../../utils/JSUtils'
-import Manifest from './Manifest'
 import ConfigConstants from './ConfigConstants'
 import UfpCoreSelectors from '../../core/UfpCoreSelectors'
 
-const getReducerState = (state) => UfpCoreSelectors.getUfpState(state)[Manifest.name]
+const getReducerState = (state) => UfpCoreSelectors.getUfpState(state)[ConfigConstants.NAME]
 
 export default {
     getConfigValue: (globalState, {

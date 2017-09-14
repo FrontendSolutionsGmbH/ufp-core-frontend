@@ -12,8 +12,10 @@ const project = UFP.requireDefault(
 )
 const StatsPlugin = require('stats-webpack-plugin')
 const VisualizerPlugin = require('webpack-visualizer-plugin')
-const CompressionPlugin = require('compression-webpack-plugin')
+// const CompressionPlugin = require('compression-webpack-plugin')
 const PurifyCSSPlugin = require('purifycss-webpack')
+const DuplicatePackageCheckerWebpackPlugin = require('duplicate-package-checker-webpack-plugin')
+const CircularDependencyPlugin = require('circular-dependency-plugin')
 
 const inProject = path.resolve.bind(path, project.basePath)
 const inProjectSrc = (file) => inProject(project.srcDir, file)
@@ -28,6 +30,12 @@ const config = {
             inProjectSrc(project.main)
         ]
     },
+    stats: {
+        colors: true,
+        modules: true,
+        reasons: true,
+        errorDetails: true
+    },
     devtool: project.sourcemaps ? 'source-map' : false,
     output: {
         path: inProject(project.outDir),
@@ -35,9 +43,19 @@ const config = {
         publicPath: project.publicPath
     },
     resolve: {
+        // enforce no-symlinking for module resolving, required when using modules from filesystem (e.g. ufp-core)
+        symlinks: false,
+        'alias': {
+            // preact setup
+            'react': 'preact-compat',
+            'react-dom': 'preact-compat',
+            // required preact adjustment for react-router3
+            'create-react-class': 'preact-compat/lib/create-react-class'
+        },
+
         modules: [
             inProject(project.srcDir),
-            'node_modules'
+            inProject('node_modules')
         ],
         extensions: ['*', '.js', '.jsx', '.json']
     },
@@ -61,7 +79,7 @@ const config = {
         }, project.globals))
     ]
 }
-
+console.log('Config is ', config)
 /**
  * start of ufp static folders copywebpackplugin config
  */
@@ -109,55 +127,62 @@ folders.map((folderData) => {
 
 // JavaScript
 // ------------------------------------
-config.module.rules.push({
-    test: /\.(js|jsx)$/,
-    exclude: /node_modules/,
-    use: [{
-        loader: 'babel-loader',
-        query: {
-            cacheDirectory: true,
-            plugins: [
-                'babel-plugin-transform-class-properties',
-                'babel-plugin-syntax-dynamic-import',
-                'babel-plugin-transform-react-jsx',
-                [
-                    'babel-plugin-transform-runtime',
-                    {
-                        helpers: true,
-                        polyfill: false, // we polyfill needed features in src/normalize.js
-                        regenerator: true
-                    }
-                ],
-                [
-                    'babel-plugin-transform-object-rest-spread',
-                    {
-                        useBuiltIns: false // we polyfill Object.assign in src/normalize.js
-                    }
-                ]
-            ],
-            presets: [
-                // use this for es5 transpile target
-                ['babel-preset-es2015', 'babel-preset-react']
-
-                // modern way of declaring transpile targets
-                // ['babel-preset-env', {
-                //   modules: false,
-                //   targets: {
-                //     chrome: "60",
-                //   },
-                //   uglify: true,
-                //
-                // }],
-            ]
-        }
+config.module.rules.push(
+    {
+        test: /\.(js|jsx)$/,
+        use: [{
+            loader: 'preprocess-loader',
+            query: {
+                NODE_ENV: project.env
+            }
+        }]
     },
-        {
-            loader: 'preprocess-loader'
 
+    {
+        test: /\.(js|jsx)$/,
+        exclude: /node_modules/,
+        use: [{
+            loader: 'babel-loader',
+            query: {
+                cacheDirectory: true,
+                plugins: [
+                    'babel-plugin-transform-class-properties',
+                    'babel-plugin-syntax-dynamic-import',
+                    'babel-plugin-transform-react-jsx',
+                    [
+                        'babel-plugin-transform-runtime',
+                        {
+                            helpers: false,
+                            polyfill: false, // we polyfill needed features in src/normalize.js
+                            regenerator: false
+                        }
+                    ],
+                    [
+                        'babel-plugin-transform-object-rest-spread',
+                        {
+                            useBuiltIns: false // we polyfill Object.assign in src/normalize.js
+                        }
+                    ]
+                ],
+                presets: [
+                    // use this for es5 transpile target
+                    ['es2015', {'modules': false}], ['react']
+
+                    // modern way of declaring transpile targets
+                    // ['babel-preset-env', {
+                    //   modules: false,
+                    //   targets: {
+                    //     chrome: "60",
+                    //   },
+                    //   uglify: true,
+                    //
+                    // }],
+                ]
+            }
         }
 
-    ]
-})
+        ]
+    })
 
 // Styles
 // ------------------------------------
@@ -281,13 +306,18 @@ if (!__TEST__) {
     config.plugins.push(new webpack.optimize.CommonsChunkPlugin({names: bundles}))
 }
 
+// ignoring/externalize modules
+// config.plugins.push(new webpack.IgnorePlugin(/core-js/) )
+config.plugins.push(new DuplicatePackageCheckerWebpackPlugin())
+config.plugins.push(new CircularDependencyPlugin())
+
 // Production Optimizations
 // ------------------------------------
 if (__PROD__) {
     config.plugins.push(
         new webpack.LoaderOptionsPlugin({
             minimize: true,
-            debug: false
+            debug: true
         })
     )
 
@@ -301,13 +331,13 @@ if (__PROD__) {
         new VisualizerPlugin({
             filename: './stats.html'
         }),
-        new CompressionPlugin({
-            asset: '[path].gz[query]',
-            algorithm: 'gzip',
-            test: /\.(js|html|svg)$/,
-            threshold: 10240,
-            minRatio: 0.8
-        }),
+        // new CompressionPlugin({
+        //     asset: '[path].gz[query]',
+        //     algorithm: 'gzip',
+        //     test: /\.(js|html|svg)$/,
+        //     threshold: 10240,
+        //     minRatio: 0.8
+        // }),
         // new ZopfliPlugin({
         //   asset: "[path].gz[query]",
         //   algorithm: "zopfli",
@@ -320,23 +350,27 @@ if (__PROD__) {
             paths: glob.sync(path.join(__dirname, 'dist/*.html'))
         })
     )
-    config.plugins.push(new webpack.optimize.UglifyJsPlugin({
-        sourceMap: !!config.devtool,
-        compress: {
-            warnings: false,
-            screw_ie8: true,
-            hoist_vars: true,
-            hoist_funs: true,
-            conditionals: true,
-            unused: true,
-            comparisons: true,
-            sequences: true,
-            dead_code: true,
-            evaluate: true,
-            if_return: true,
-            join_vars: true
-        }
-    }))
+    // config.plugins.push(new webpack.optimize.UglifyJsPlugin({
+    //     sourceMap: !!config.devtool,
+    //     mangle: true,
+    //     compress: {
+    //         passes: 3,
+    //         warnings: false,
+    //         screw_ie8: true,
+    //         drop_console: true,
+    //         hoist_vars: true,
+    //         hoist_funs: true,
+    //         conditionals: true,
+    //         unused: true,
+    //         unsafe: true,
+    //         comparisons: true,
+    //         sequences: true,
+    //         dead_code: true,
+    //         evaluate: true,
+    //         if_return: true,
+    //         join_vars: true
+    //     }
+    // }))
 }
 
 module.exports = config

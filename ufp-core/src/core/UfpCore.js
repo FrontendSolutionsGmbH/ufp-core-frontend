@@ -2,8 +2,11 @@ import {ThrowParam} from '../utils/JSUtils'
 import UfpSetup from './UfpSetup'
 // import UfpCoreConstants from './UfpCoreConstants'
 import AdditionsManifest from './addition/Manifest'
+
 import BaseManifest from './base/Manifest'
+
 import {applyMiddleware, compose, combineReducers, createStore} from 'redux'
+
 var store = null
 
 /**
@@ -147,7 +150,7 @@ const registerManifest = (manifest) => {
         console.log('Calling onRegistered on manifest', UfpCore)
         manifest.onRegistered({UfpCore})
     }
-     UfpSetup.manifests.push(manifest)
+    UfpSetup.manifests.push(manifest)
 }
 
 /**
@@ -158,8 +161,16 @@ const registerManifest = (manifest) => {
 const startup = ({applicationNameIn = 'Ufp Application'}={applicationNameIn: 'Ufp Application'}) => {
     checkStarted()
 
-    AdditionsManifest.register()
-    BaseManifest.register()
+    registerManifest(AdditionsManifest)
+    registerManifest(BaseManifest)
+
+    // @if NODE_ENV=='develop'
+
+    const DebugManifest = require('./debug/Manifest')
+
+    registerManifest(DebugManifest)
+
+    // @endif
 
     startedUp = true
     applicationName = applicationNameIn

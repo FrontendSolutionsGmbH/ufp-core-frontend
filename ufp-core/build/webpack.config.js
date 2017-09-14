@@ -49,7 +49,7 @@ const config = {
             __TEST__,
             __PROD__,
         }, project.globals))
-    ],
+    ]
 }
 
 // JavaScript

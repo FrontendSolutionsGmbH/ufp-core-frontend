@@ -1,6 +1,6 @@
-import RouterManifest from './Manifest'
+import RouterConstants from './RouterConstants'
 
-const routerState = (state) => state[RouterManifest.name]
+const routerState = (state) => state[RouterConstants.name]
 const getLocation = (state) => routerState(state)['locationBeforeTransitions']
 const getPathName = (state) => getLocation(state).pathname
 const getSearch = (state) => getLocation(state).search

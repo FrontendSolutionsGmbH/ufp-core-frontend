@@ -1,4 +1,4 @@
-import 'rxjs/add/observable/of'
+
 import 'rxjs/add/operator/mapTo'
 import 'rxjs/add/operator/count'
 import 'rxjs/add/operator/delay'
