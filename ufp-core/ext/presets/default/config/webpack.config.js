@@ -135,13 +135,7 @@ config.module.rules.push(
             query: {
                 NODE_ENV: project.env
             }
-        },
-            {
-                loader: "eslint-loader",
-                options: {
-                    configFile: path.join(__dirname, '../../../../src/.eslintrc')
-                }
-            }
+        }
         ]
     },
 
@@ -185,6 +179,13 @@ config.module.rules.push(
                     //
                     // }],
                 ]
+            }
+        }
+        ,
+            {
+            loader: "eslint-loader",
+            options: {
+                configFile: path.join(__dirname, '../../../../src/.eslintrc')
             }
         }
 

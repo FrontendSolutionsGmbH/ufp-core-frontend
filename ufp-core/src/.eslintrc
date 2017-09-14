@@ -82,8 +82,6 @@
     ],
     "filenames/match-exported": [
       2,
-
-
       "pascal"
     ],
     "prefer-const": [
@@ -96,6 +94,14 @@
     "object-curly-spacing": [
       2,
       "never"
+    ],
+    "react/jsx-indent": [
+      2,
+      4
+    ],
+    "jsx-quotes": [
+      2,
+      "prefer-double"
     ],
     "no-duplicate-imports": 0,
     "no-unsafe-finally": 0,
