@@ -32,6 +32,7 @@ module.exports = {
         // 'react-redux',
         // 'react-router',
         // 'redux',
+        // 'rxjs',
         // 'history'
 
     ]
