@@ -317,11 +317,10 @@ if (__PROD__) {
     config.plugins.push(
         new webpack.LoaderOptionsPlugin({
             minimize: true,
-            debug: true
+            debug: false
         })
     )
 
-    //   stats plugins they take too long in dev setup
     config.plugins.push(
         new webpack.optimize.ModuleConcatenationPlugin(),
         new StatsPlugin('stats.json', {
@@ -350,27 +349,27 @@ if (__PROD__) {
             paths: glob.sync(path.join(__dirname, 'dist/*.html'))
         })
     )
-    // config.plugins.push(new webpack.optimize.UglifyJsPlugin({
-    //     sourceMap: !!config.devtool,
-    //     mangle: true,
-    //     compress: {
-    //         passes: 3,
-    //         warnings: false,
-    //         screw_ie8: true,
-    //         drop_console: true,
-    //         hoist_vars: true,
-    //         hoist_funs: true,
-    //         conditionals: true,
-    //         unused: true,
-    //         unsafe: true,
-    //         comparisons: true,
-    //         sequences: true,
-    //         dead_code: true,
-    //         evaluate: true,
-    //         if_return: true,
-    //         join_vars: true
-    //     }
-    // }))
+    config.plugins.push(new webpack.optimize.UglifyJsPlugin({
+        sourceMap: !!config.devtool,
+        mangle: true,
+        compress: {
+            passes: 3,
+            warnings: false,
+            screw_ie8: true,
+            drop_console: true,
+            hoist_vars: true,
+            hoist_funs: true,
+            conditionals: true,
+            unused: true,
+            unsafe: true,
+            comparisons: true,
+            sequences: true,
+            dead_code: true,
+            evaluate: true,
+            if_return: true,
+            join_vars: true
+        }
+    }))
 }
 
 module.exports = config

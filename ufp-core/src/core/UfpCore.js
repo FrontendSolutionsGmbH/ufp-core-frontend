@@ -2,9 +2,7 @@ import {ThrowParam} from '../utils/JSUtils'
 import UfpSetup from './UfpSetup'
 // import UfpCoreConstants from './UfpCoreConstants'
 import AdditionsManifest from './addition/Manifest'
-
 import BaseManifest from './base/Manifest'
-
 import {applyMiddleware, compose, combineReducers, createStore} from 'redux'
 
 var store = null
@@ -26,11 +24,11 @@ export const bindSelectors = (selectors) => {
 
     if (selectors) {
         Object.keys(selectors)
-              .map((key) => {
-                  result[key] = (...params) => {
-                      return selectors[key](store.getState(), ...params)
-                  }
-              })
+            .map((key) => {
+                result[key] = (...params) => {
+                    return selectors[key](store.getState(), ...params)
+                }
+            })
     }
 
     return result
@@ -40,11 +38,11 @@ export const bindActionCreators = (actionCreators) => {
     var result = {}
     if (actionCreators) {
         Object.keys(actionCreators)
-              .map((key) => {
-                  result[key] = (...params) => {
-                      return store.dispatch(actionCreators[key](...params))
-                  }
-              })
+            .map((key) => {
+                result[key] = (...params) => {
+                    return store.dispatch(actionCreators[key](...params))
+                }
+            })
     }
     return result
 }
@@ -150,6 +148,31 @@ const registerManifest = (manifest) => {
         console.log('Calling onRegistered on manifest', UfpCore)
         manifest.onRegistered({UfpCore})
     }
+
+    /*
+     fill in dummy bound functions for outputting error notifications
+     when used before startup() is called
+     */
+    // after we created the store, provide bound actioncreators and selectors for ease of use later on
+    // we achieve this by iterating over all registered manifest
+
+    if (manifest.actionCreators) {
+        Object.keys(manifest.actionCreators)
+            .map((key) => {
+                // extend js object with notification throw error when startup has not been called
+                // yes its brutal, but convenient
+                manifest[key] = () => ThrowParam(manifest.name + '.' + key + ' called before ufpCore.startup() ')
+            })
+    }
+
+    if (manifest.selectors) {
+        Object.keys(manifest.selectors)
+            .map((key) => {
+                // extend js object with notification throw error when startup has not been called
+                // yes its brutal, but convenient
+                manifest[key] = () => ThrowParam(manifest.name + '.' + key + ' called before ufpCore.startup() ')
+            })
+    }
     UfpSetup.manifests.push(manifest)
 }
 
@@ -177,17 +200,17 @@ const startup = ({applicationNameIn = 'Ufp Application'}={applicationNameIn: 'Uf
     console.log('UFP Application startup - ', applicationName)
     const reducers = []
     Object.keys(UfpSetup.reducers)
-          .map((key, index) => {
-              console.log('Creating Reducer From', key, index, UfpSetup.reducers[key])
-              reducers[key] = UfpSetup.reducers[key].reducer
-          })
+        .map((key, index) => {
+            console.log('Creating Reducer From', key, index, UfpSetup.reducers[key])
+            reducers[key] = UfpSetup.reducers[key].reducer
+        })
 
     Object.keys(UfpSetup.reducerCreators)
-          .map((key, index) => {
-              console.log('Creating Reducer From CreatorFunction', key, index)
-              // reducers.push(item.reducerCreatorFunction())
-              reducers[key] = UfpSetup.reducerCreators[key].reducerCreatorFunction()
-          })
+        .map((key, index) => {
+            console.log('Creating Reducer From CreatorFunction', key, index)
+            // reducers.push(item.reducerCreatorFunction())
+            reducers[key] = UfpSetup.reducerCreators[key].reducerCreatorFunction()
+        })
 
     const middleware = []
     UfpSetup.middlewares.map((item) => {
@@ -248,29 +271,29 @@ const startup = ({applicationNameIn = 'Ufp Application'}={applicationNameIn: 'Uf
         var boundSelectors = bindSelectors(manifest.selectors)
         var boundActionCreators = bindActionCreators(manifest.actionCreators)
         Object.keys(boundSelectors)
-              .map((key) => {
-                  // extend js object of incoming manifest
-                  // yes its brutal, but convenient
-                  console.log('boundSelectors : ', key, boundSelectors[key])
-                  manifest[key] = boundSelectors[key]
-              })
+            .map((key) => {
+                // extend js object of incoming manifest
+                // yes its brutal, but convenient
+                console.log('boundSelectors : ', key, boundSelectors[key])
+                manifest[key] = boundSelectors[key]
+            })
 
         Object.keys(boundActionCreators)
-              .map((key) => {
-                  // extend js object of incoming manifest
-                  // yes its brutal, but convenient
-                  console.log('boundActionCreators : ', key, boundActionCreators[key])
-                  manifest[key] = boundActionCreators[key]
-              })
+            .map((key) => {
+                // extend js object of incoming manifest
+                // yes its brutal, but convenient
+                console.log('boundActionCreators : ', key, boundActionCreators[key])
+                manifest[key] = boundActionCreators[key]
+            })
     })
 
     // iterate over all manifests an call 'onPreStartup'
     Object.keys(UfpSetup.manifests)
-          .map((key) => {
-              if (UfpSetup.manifests[key] && UfpSetup.manifests[key].onPreStartup) {
-                  UfpSetup.manifests[key].onPreStartup({UfpCore})
-              }
-          })
+        .map((key) => {
+            if (UfpSetup.manifests[key] && UfpSetup.manifests[key].onPreStartup) {
+                UfpSetup.manifests[key].onPreStartup({UfpCore})
+            }
+        })
 
     /**
      * dispatch init action
