@@ -7,10 +7,11 @@ import MenuActionCreators from './MenuActionCreators'
 import MenuSelectors from './MenuSelectors'
 import MenuReducer from './MenuReducer'
 import EpicManifest from './../epic/Manifest'
+import MenuContants from './MenuConstants'
 import {ThrowParam} from '../../utils/JSUtils'
 
 const Manifest = {
-    name: 'ufp-menu',
+    name: MenuContants.NAME,
     description: 'Ufp Menu - provides menu management functionality',
     actionCreators: MenuActionCreators,
     selectors: MenuSelectors,

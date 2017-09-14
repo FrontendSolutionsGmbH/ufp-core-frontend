@@ -2,7 +2,7 @@
  * Application Router
  * @type {{name: string}}
  */
-import {useRouterHistory} from 'react-router'
+import useRouterHistory from 'react-router/lib/useRouterHistory'
 import createHashHistory from 'history/lib/createHashHistory'
 import RouterSelectors from './RouterSelectors'
 import RouterConstants from './RouterConstants'

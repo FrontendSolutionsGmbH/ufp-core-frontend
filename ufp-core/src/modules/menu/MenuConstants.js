@@ -13,6 +13,7 @@ const MenuEntryTypeEnum ={
 }
 
 export default{
+    NAME: 'ufp-menu',
     MENU_ACTION_SUFFIX: '_MENU',
     ActionConstants,
     MenuStateEnum,

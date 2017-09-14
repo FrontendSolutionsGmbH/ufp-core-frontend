@@ -1,5 +1,5 @@
 import React from 'react'
-import {Router as ReactRouter} from 'react-router'
+import ReactRouter from 'react-router/lib/Router'
 
 const Router = (props) => (
     <ReactRouter history={props.history}
