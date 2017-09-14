@@ -35,7 +35,7 @@
   "rules": {
     "arrow-body-style": [
       0,
-      "as-needed",
+      "as-needed"
     ],
     "padded-blocks": [
       2,
@@ -82,16 +82,7 @@
     ],
     "filenames/match-exported": [
       2,
-      /*
-      // path for eslint-filenames to allow camelcase first letter up, replace the next code in eslint plugin
-     replace
-       camel: require('lodash.camelcase')
-      with:
-         camel: function (string){
-                                    return require('lodash.upperfirst')(require('lodash.camelcase')(string))
-                                  }
 
-      */
 
       "pascal"
     ],
@@ -118,9 +109,7 @@
     "indent": 0,
     "spaced-comment": 0,
     "rest-spread-spacing": 0,
-    // fixme: include vars on top
     "vars-on-top": 0,
-    // "complexity": [1, 10],
-    "complexity": 0,
+    "complexity": 0
   }
 }

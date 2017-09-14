@@ -8,12 +8,15 @@ const logger = require('../logger')
  * @param path
  * @param defaultPath
  */
-exports.requireDefault = (path, defaultPath) => {
+exports.chooseExistingPath = (path, defaultPath) => {
     if (fs.existsSync(path)) {
-        return require(path)
+        return path
     } else {
-        return require(defaultPath)
+        return defaultPath
     }
+}
+exports.requireDefault = (path, defaultPath) => {
+    return require(exports.chooseExistingPath(path, defaultPath))
 }
 
 exports.filterObjectKeys = (object, regex) => {
