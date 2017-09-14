@@ -11,13 +11,11 @@ module.exports = {
     main: 'main',
     /** The name of the directory in which to emit compiled assets */
     outDir: 'dist',
-    ignoreModules: [
-
-    ],
+    ignoreModules: [],
     /** The base path for all projects assets (relative to the website root) */
     publicPath: '',
     /** Whether to generate sourcemaps */
-    sourcemaps: true,
+    sourcemaps: NODE_ENV === 'development' ? true : false,
     /** A hash map of keys that the compiler should treat as external to the project */
     externals: {},
     /** A hash map of variables and their values to expose globally */

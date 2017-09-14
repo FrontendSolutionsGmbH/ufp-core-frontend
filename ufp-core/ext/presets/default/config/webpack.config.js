@@ -338,7 +338,7 @@ if (__PROD__) {
     config.plugins.push(
         new webpack.LoaderOptionsPlugin({
             minimize: true,
-            debug: false
+            debug: true
         })
     )
 
@@ -371,7 +371,7 @@ if (__PROD__) {
         // })
     )
     config.plugins.push(new webpack.optimize.UglifyJsPlugin({
-        sourceMap: !!config.devtool,
+        sourceMap: project.sourcemaps,
         mangle: true,
         compress: {
             passes: 3,
