@@ -80,7 +80,7 @@ const registerMiddleware = ({
 
 }) => {
     checkStarted()
-    console.log('Registering Middleware ', id, middleware)
+    // console.log('Registering Middleware ', id, middleware)
     UfpSetup.middlewares.push({
         id: id,
         middleware
@@ -145,7 +145,7 @@ const registerManifest = (manifest) => {
 
     // call onRegistered only if explicit
     if (manifest.onRegistered) {
-        console.log('Calling onRegistered on manifest', UfpCore)
+        // console.log('Calling onRegistered on manifest', UfpCore)
         manifest.onRegistered({UfpCore})
     }
 
@@ -188,27 +188,23 @@ const startup = ({applicationNameIn = 'Ufp Application'}={applicationNameIn: 'Uf
     registerManifest(BaseManifest)
 
     // @if NODE_ENV=='develop'
-
     const DebugManifest = require('./debug/Manifest')
-
     registerManifest(DebugManifest)
-
     // @endif
 
     startedUp = true
     applicationName = applicationNameIn
-    console.log('UFP Application startup - ', applicationName)
+    // console.log('UFP Application startup - ', applicationName)
     const reducers = []
     Object.keys(UfpSetup.reducers)
-        .map((key, index) => {
-            console.log('Creating Reducer From', key, index, UfpSetup.reducers[key])
+        .map((key) => {
+            // console.log('Creating Reducer From', key, index, UfpSetup.reducers[key])
             reducers[key] = UfpSetup.reducers[key].reducer
         })
 
     Object.keys(UfpSetup.reducerCreators)
-        .map((key, index) => {
-            console.log('Creating Reducer From CreatorFunction', key, index)
-            // reducers.push(item.reducerCreatorFunction())
+        .map((key) => {
+            // console.log('Creating Reducer From CreatorFunction', key, index)
             reducers[key] = UfpSetup.reducerCreators[key].reducerCreatorFunction()
         })
 
@@ -222,7 +218,6 @@ const startup = ({applicationNameIn = 'Ufp Application'}={applicationNameIn: 'Uf
 
     // ======================================================
     // Store Enhancers
-
     // ======================================================
     const enhancers = []
     UfpSetup.enhancers.map((item) => {
@@ -239,7 +234,7 @@ const startup = ({applicationNameIn = 'Ufp Application'}={applicationNameIn: 'Uf
     if (__DEV__) {
         if (typeof window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ === 'function') {
             composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
-                name: 'UFP ' + applicationNameIn,
+                name: 'UFP ' + applicationName,
                 shouldCatchErrors: true,
                 actionCreators: UfpSetup.getAllActionCreators()
 
@@ -250,9 +245,9 @@ const startup = ({applicationNameIn = 'Ufp Application'}={applicationNameIn: 'Uf
     // debug
 
     const rootReducer = makeRootReducer(reducers)
-    console.log('Reducers are:', rootReducer)
-    console.log('middleware are: ', middleware)
-    console.log('enhancers are:', enhancers)
+    // console.log('Reducers are:', rootReducer)
+    // console.log('middleware are: ', middleware)
+    // console.log('enhancers are:', enhancers)
 
     store = createStore(
         rootReducer,
@@ -267,14 +262,14 @@ const startup = ({applicationNameIn = 'Ufp Application'}={applicationNameIn: 'Uf
     // after we created the store, provide bound actioncreators and selectors for ease of use later on
     // we achieve this by iterating over all registered manifest
     UfpSetup.manifests.map((manifest) => {
-        console.log('Updating manifest')
+        // console.log('Updating manifest')
         var boundSelectors = bindSelectors(manifest.selectors)
         var boundActionCreators = bindActionCreators(manifest.actionCreators)
         Object.keys(boundSelectors)
             .map((key) => {
                 // extend js object of incoming manifest
                 // yes its brutal, but convenient
-                console.log('boundSelectors : ', key, boundSelectors[key])
+                // console.log('boundSelectors : ', key, boundSelectors[key])
                 manifest[key] = boundSelectors[key]
             })
 
@@ -282,7 +277,7 @@ const startup = ({applicationNameIn = 'Ufp Application'}={applicationNameIn: 'Uf
             .map((key) => {
                 // extend js object of incoming manifest
                 // yes its brutal, but convenient
-                console.log('boundActionCreators : ', key, boundActionCreators[key])
+                // console.log('boundActionCreators : ', key, boundActionCreators[key])
                 manifest[key] = boundActionCreators[key]
             })
     })

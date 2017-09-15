@@ -9,9 +9,9 @@ export default {
         key = ThrowParam('Config Key has to be set'),
         area = ConfigConstants.DEFAULT_AREA
     }) => {
-        console.log('Retrieving config value', globalState, area, key)
+        // console.log('Retrieving config value', globalState, area, key)
         const state = getReducerState(globalState).data
-        console.log('Retrieving config value', state, area, key)
+        // console.log('Retrieving config value', state, area, key)
         if (state && state[area] && state[area][key] !== undefined) {
             return state[area][key]
         } else {

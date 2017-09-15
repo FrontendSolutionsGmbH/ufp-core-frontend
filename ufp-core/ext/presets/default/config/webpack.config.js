@@ -133,8 +133,7 @@ config.module.rules.push(
         use: [{
             loader: 'preprocess-loader',
             query: {
-                NODE_ENV: project.env,
-                ppOptions: 'sdfsdf'
+                NODE_ENV: project.env
             }
         }
         ]
@@ -184,13 +183,13 @@ config.module.rules.push(
             // {
             //     loader: 'preprocessor-loader',
             //     query: {
-            //         config: path.join(__dirname, '../macrodefinition.json')
+            //         config: path.join(__dirname, '../macrodefinition'+project.env+'.json')
             //     }
             //
-            // }
+            // },
 
             {
-                loader: "eslint-loader",
+                loader: 'eslint-loader',
                 options: {
                     configFile: path.join(__dirname, '../../../../src/.eslintrc')
                 }
