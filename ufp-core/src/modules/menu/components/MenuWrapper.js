@@ -25,9 +25,9 @@ class MenuWrapper extends Component {
         console.log('Rendering Wrapped Menu ', this.props)
         const Component = this.props.menuRenderer
         return (
-          <Component menuAreaName={this.props.menuAreaName}
-            menuSubAreaName={this.props.menuSubAreaName}
-            menuArea={this.props.menuItems} />
+            <Component menuAreaName={this.props.menuAreaName}
+              menuSubAreaName={this.props.menuSubAreaName}
+              menuArea={this.props.menuItems} />
         )
     }
 
