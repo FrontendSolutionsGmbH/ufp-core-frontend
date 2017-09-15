@@ -1,12 +1,13 @@
-import MenuManifest from './Manifest'
+import MenuConstants from './MenuConstants'
 
-export const MenuState = (state) => state[MenuManifest.name]
+export const MenuState = (state) => state[MenuConstants.NAME]
 
 export const MenuDefinitionSelector = (state) => MenuState(state).MenuDefinition
 export const MenuDataSelector = (state) => MenuState(state).MenuData || {}
 
 export const MenuSubAreasSortedSelector = (state, props) => {
     var data = MenuDataSelector(state)
+
     var keysSorted
     if (props.menuAreaName !== undefined && data !== undefined && data[props.menuAreaName] !== undefined) {
         keysSorted = Object.keys(data[props.menuAreaName])

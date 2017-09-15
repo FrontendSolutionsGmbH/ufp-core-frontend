@@ -1,19 +1,19 @@
 const path = require('path')
 const fs = require('fs')
-const glob = require('glob')
+// const glob = require('glob')
 var UFP = require('../../../build/lib/ufp')
 const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const project = UFP.requireDefault(
-    path.join(process.cwd(), '/project.config'),
+    path.join(process.cwd(), '/project.config.js'),
     path.join(__dirname, '/../project.config.js')
 )
 const StatsPlugin = require('stats-webpack-plugin')
 const VisualizerPlugin = require('webpack-visualizer-plugin')
 // const CompressionPlugin = require('compression-webpack-plugin')
-const PurifyCSSPlugin = require('purifycss-webpack')
+// const PurifyCSSPlugin = require('purifycss-webpack')
 const DuplicatePackageCheckerWebpackPlugin = require('duplicate-package-checker-webpack-plugin')
 const CircularDependencyPlugin = require('circular-dependency-plugin')
 
@@ -133,11 +133,12 @@ config.module.rules.push(
         use: [{
             loader: 'preprocess-loader',
             query: {
-                NODE_ENV: project.env
+                NODE_ENV: project.env,
+                ppOptions: 'sdfsdf'
             }
-        }]
+        }
+        ]
     },
-
     {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
@@ -179,7 +180,22 @@ config.module.rules.push(
                     // }],
                 ]
             }
-        }
+        },
+            {
+                loader: 'preprocessor-loader',
+                query: {
+                    config: path.join(__dirname, '../macrodefinition.json')
+                }
+
+            }
+
+            // ,
+            // {
+            //     loader: "eslint-loader",
+            //     options: {
+            //         configFile: path.join(__dirname, '../../../../src/.eslintrc')
+            //     }
+            // }
 
         ]
     })
@@ -227,11 +243,21 @@ config.module.rules.push({
                     ]
                 }
             },
+            // {
+            //     loader: "postcss-loader",
+            //     options: {
+            //         config: {
+            //             path: UFP.requireDefault(
+            //                 path.join(process.cwd(), '/styles/postcss.config.js'),
+            //                 path.join(__dirname, '/../styles/postcss.config.js')
+            //             )
+            //         }
+            //     }
+            // },
             {
                 loader: 'preprocess-loader'
 
             }
-
         ]
     })
 })
@@ -310,6 +336,8 @@ if (!__TEST__) {
 // config.plugins.push(new webpack.IgnorePlugin(/core-js/) )
 config.plugins.push(new DuplicatePackageCheckerWebpackPlugin())
 config.plugins.push(new CircularDependencyPlugin())
+//
+// config.plugins.push(new webpack.optimize.AggressiveSplittingPlugin())
 
 // Production Optimizations
 // ------------------------------------
@@ -321,7 +349,6 @@ if (__PROD__) {
         })
     )
 
-    //   stats plugins they take too long in dev setup
     config.plugins.push(
         new webpack.optimize.ModuleConcatenationPlugin(),
         new StatsPlugin('stats.json', {
@@ -330,7 +357,7 @@ if (__PROD__) {
         }),
         new VisualizerPlugin({
             filename: './stats.html'
-        }),
+        })
         // new CompressionPlugin({
         //     asset: '[path].gz[query]',
         //     algorithm: 'gzip',
@@ -345,32 +372,32 @@ if (__PROD__) {
         //   threshold: 10240,
         //   minRatio: 0.8
         // }),
-        new PurifyCSSPlugin({
-            // Give paths to parse for rules. These should be absolute!
-            paths: glob.sync(path.join(__dirname, 'dist/*.html'))
-        })
+        // new PurifyCSSPlugin({
+        //     // Give paths to parse for rules. These should be absolute!
+        //     paths: glob.sync(path.join(__dirname, 'dist/*.html'))
+        // })
     )
-    // config.plugins.push(new webpack.optimize.UglifyJsPlugin({
-    //     sourceMap: !!config.devtool,
-    //     mangle: true,
-    //     compress: {
-    //         passes: 3,
-    //         warnings: false,
-    //         screw_ie8: true,
-    //         drop_console: true,
-    //         hoist_vars: true,
-    //         hoist_funs: true,
-    //         conditionals: true,
-    //         unused: true,
-    //         unsafe: true,
-    //         comparisons: true,
-    //         sequences: true,
-    //         dead_code: true,
-    //         evaluate: true,
-    //         if_return: true,
-    //         join_vars: true
-    //     }
-    // }))
+    config.plugins.push(new webpack.optimize.UglifyJsPlugin({
+        sourceMap: project.sourcemaps,
+        mangle: true,
+        compress: {
+            passes: 3,
+            warnings: false,
+            screw_ie8: true,
+            drop_console: true,
+            hoist_vars: true,
+            hoist_funs: true,
+            conditionals: true,
+            unused: true,
+            unsafe: true,
+            comparisons: true,
+            sequences: true,
+            dead_code: true,
+            evaluate: true,
+            if_return: true,
+            join_vars: true
+        }
+    }))
 }
 
 module.exports = config
