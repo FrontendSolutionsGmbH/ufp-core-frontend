@@ -100,8 +100,11 @@
       4
     ],
     "react/jsx-indent-props": [
-      2,
+      0,
       5
+    ],
+    "react/jsx-sort-props": [
+      2
     ],
     "jsx-quotes": [
       2,
