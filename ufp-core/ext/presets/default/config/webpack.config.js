@@ -189,13 +189,12 @@ config.module.rules.push(
             //
             // }
 
-            // ,
-            // {
-            //     loader: "eslint-loader",
-            //     options: {
-            //         configFile: path.join(__dirname, '../../../../src/.eslintrc')
-            //     }
-            // }
+            {
+                loader: "eslint-loader",
+                options: {
+                    configFile: path.join(__dirname, '../../../../src/.eslintrc')
+                }
+            }
 
         ]
     })
