@@ -181,13 +181,13 @@ config.module.rules.push(
                 ]
             }
         },
-            {
-                loader: 'preprocessor-loader',
-                query: {
-                    config: path.join(__dirname, '../macrodefinition.json')
-                }
-
-            }
+            // {
+            //     loader: 'preprocessor-loader',
+            //     query: {
+            //         config: path.join(__dirname, '../macrodefinition.json')
+            //     }
+            //
+            // }
 
             // ,
             // {
