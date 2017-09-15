@@ -161,7 +161,7 @@
     "sinon-chai": "^2.13.0",
     "stats-webpack-plugin": "^0.6.1",
     "style-loader": "^0.18.2",
-    "ufp-optimizer": "^0.9.5",
+    "ufp-optimizer": "^0.9.7",
     "uglifyjs-webpack-plugin": "^0.4.6",
     "uid-number": "^0.0.6",
     "underscore-template-loader": "^0.8.0",
