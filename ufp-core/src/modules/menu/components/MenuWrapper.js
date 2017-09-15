@@ -26,8 +26,8 @@ class MenuWrapper extends Component {
         const Component = this.props.menuRenderer
         return (
             <Component menuAreaName={this.props.menuAreaName}
-              menuSubAreaName={this.props.menuSubAreaName}
-              menuArea={this.props.menuItems} />
+                 menuSubAreaName={this.props.menuSubAreaName}
+                 menuArea={this.props.menuItems} />
         )
     }
 

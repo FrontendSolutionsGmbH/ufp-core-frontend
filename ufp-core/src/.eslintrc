@@ -99,6 +99,10 @@
       2,
       4
     ],
+    "react/jsx-indent-props": [
+      2,
+      5
+    ],
     "jsx-quotes": [
       2,
       "prefer-double"

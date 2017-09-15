@@ -12,10 +12,6 @@ export default {
         // console.log('Retrieving config value', globalState, area, key)
         const state = getReducerState(globalState).data
         // console.log('Retrieving config value', state, area, key)
-        if (state && state[area] && state[area][key] !== undefined) {
-            return state[area][key]
-        } else {
-            return ConfigConstants.DEFAULT_VALUE
-        }
+        return (state && state[area] && state[area][key]) || undefined
     }
 }

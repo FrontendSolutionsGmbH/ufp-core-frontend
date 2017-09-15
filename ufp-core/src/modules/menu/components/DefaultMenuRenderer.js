@@ -13,7 +13,7 @@ class DefaultMenuRenderer extends Component {
     render() {
         console.log('Rendering Default Menu ', this.props)
         return (<UfpList data={this.props.data.children}
-          component={DefaultMenuItemRenderer} />
+             component={DefaultMenuItemRenderer} />
         )
     }
 
