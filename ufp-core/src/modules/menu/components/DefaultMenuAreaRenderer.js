@@ -6,7 +6,7 @@ import DefaultMenuRenderer from './DefaultMenuRenderer'
 class DefaultMenuAreaRenderer extends Component {
 
     static propTypes = {
-        menuArea: PropTypes.array.iRequired
+        menuArea: PropTypes.array.isRequired
     }
     static defaultProps = {}
 

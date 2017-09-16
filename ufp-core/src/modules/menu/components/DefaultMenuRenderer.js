@@ -6,14 +6,16 @@ import DefaultMenuItemRenderer from './DefaultMenuItemRenderer'
 class DefaultMenuRenderer extends Component {
 
     static propTypes = {
-        data: PropTypes.array.isRequired
+        data: PropTypes.shape({
+            children: PropTypes.array
+        }).isRequired
     }
     static defaultProps = {}
 
     render() {
         console.log('Rendering Default Menu ', this.props)
         return (<UfpList component={DefaultMenuItemRenderer}
-             data={this.props.data.children} />
+                         data={this.props.data.children} />
         )
     }
 
