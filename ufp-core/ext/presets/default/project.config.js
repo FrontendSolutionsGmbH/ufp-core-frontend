@@ -18,6 +18,7 @@ module.exports = {
     sourcemaps: NODE_ENV === 'development',
     /** A hash map of keys that the compiler should treat as external to the project */
     externals: {},
+    chunkFolder: 'gen',
     /** A hash map of variables and their values to expose globally */
     globals: {},
     /** Whether to enable verbose logging */
