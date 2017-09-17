@@ -14,7 +14,6 @@ const Manifest = {
             reducer: formReducer
         })
     }
-
 }
 
 export default Manifest

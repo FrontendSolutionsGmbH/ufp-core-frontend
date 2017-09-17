@@ -14,9 +14,10 @@ const StatsPlugin = require('stats-webpack-plugin')
 const VisualizerPlugin = require('webpack-visualizer-plugin')
 // const CompressionPlugin = require('compression-webpack-plugin')
 // const PurifyCSSPlugin = require('purifycss-webpack')
+const BabelMinifyPlugin = require("babel-minify-webpack-plugin");
 const DuplicatePackageCheckerWebpackPlugin = require('duplicate-package-checker-webpack-plugin')
 const CircularDependencyPlugin = require('circular-dependency-plugin')
-const ClosureCompilerPlugin = require('webpack-closure-compiler')
+// const ClosureCompilerPlugin = require('webpack-closure-compiler')
 
 const inProject = path.resolve.bind(path, project.basePath)
 const inProjectSrc = (file) => inProject(project.srcDir, file)
@@ -36,7 +37,11 @@ const config = {
         colors: true,
         modules: true,
         reasons: true,
-        errorDetails: true
+        errorDetails: true,
+        // Examine all modules
+        maxModules: 'Infinity',
+        // Display bailout reasons
+        optimizationBailout: true
     },
     devtool: project.sourcemaps ? 'source-map' : 'source-map',
     output: {
@@ -133,16 +138,6 @@ folders.map((folderData) => {
 config.module.rules.push(
     {
         test: /\.(js|jsx)$/,
-        use: [{
-            loader: 'preprocess-loader',
-            query: {
-                NODE_ENV: project.env
-            }
-        }
-        ]
-    },
-    {
-        test: /\.(js|jsx)$/,
         exclude: /node_modules/,
 
         use: [{
@@ -154,8 +149,7 @@ config.module.rules.push(
 
                     'babel-plugin-transform-class-properties',
                     'babel-plugin-syntax-dynamic-import',
-                    // 'transform-react-remove-prop-types',
-
+                  //  'transform-react-remove-prop-types',
                     'babel-plugin-transform-react-jsx',
                     [
                         'babel-plugin-transform-runtime',
@@ -189,13 +183,18 @@ config.module.rules.push(
             }
         },
             {
+                loader: 'preprocess-loader',
+                query: {
+                    NODE_ENV: project.env
+                }
+            },
+            {
                 loader: 'preprocessor-loader',
                 query: {
                     config: path.join(__dirname, '../macrodefinition-' + project.env + '.json')
                 }
 
             }
-
             // {
             //     loader: 'eslint-loader',
             //     options: {
@@ -204,7 +203,8 @@ config.module.rules.push(
             // }
 
         ]
-    })
+    }
+)
 
 // Styles
 // ------------------------------------
@@ -275,7 +275,7 @@ config.module.rules.push({
     test: /\.(png|jpg|gif)$/,
     loader: 'url-loader',
     options: {
-        name: path.join(project.chunkFolder, 'img/[name].[contenthash].[ext]'),
+        name: path.join(project.chunkFolder, 'img/[name].[ext]'),
         limit: 8192
     }
 })
@@ -387,6 +387,9 @@ if (__PROD__) {
         //     paths: glob.sync(path.join(__dirname, 'dist/*.html'))
         // })
     )
+    // config.plugins.push(
+    //     new BabelMinifyPlugin()
+    // )
     config.plugins.push(new webpack.optimize.UglifyJsPlugin({
         sourceMap: project.sourcemaps,
         mangle: true,
@@ -409,6 +412,7 @@ if (__PROD__) {
         }
     }))
 }
+
 //
 // config.plugins.push(new ClosureCompilerPlugin({
 //     compiler: {
@@ -420,5 +424,4 @@ if (__PROD__) {
 //     },
 //     concurrency: 3,
 // }))
-
 module.exports = config

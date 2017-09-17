@@ -1,4 +1,5 @@
 /** @externs */
+/* eslint-disable */
 
 /**
  * @param {!Array<number>} first
