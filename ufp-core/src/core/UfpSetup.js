@@ -45,14 +45,14 @@ export default {
         const result = []
         manifests.map((manifest) => {
             if (manifest.actionCreators) {
-                console.log('United Action pushing', manifest.actionCreators)
-                console.log('United Action pushing', ...manifest.actionCreators)
+                // console.log('United Action pushing', manifest.actionCreators)
+                // console.log('United Action pushing', ...manifest.actionCreators)
                 result.push(...manifest.actionCreators)
             }
         })
-        console.log('United Action manifests are', this)
-        console.log('United Action manifests are', manifests)
-        console.log('United Action Creators are', result)
+        // console.log('United Action manifests are', this)
+        // console.log('United Action manifests are', manifests)
+        // console.log('United Action Creators are', result)
         return result
     }
 

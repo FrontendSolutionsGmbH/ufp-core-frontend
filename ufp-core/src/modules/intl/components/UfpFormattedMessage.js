@@ -15,9 +15,9 @@ export class HomeView extends Component {
 
     render() {
         return (
-            <FormattedMessage id={this.props.id}
-              values={this.props.values}
-              defaultMessage={this.props.defaultMessage} />)
+            <FormattedMessage defaultMessage={this.props.defaultMessage}
+                 id={this.props.id}
+                 values={this.props.values} />)
     }
 
 }

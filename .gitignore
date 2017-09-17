@@ -1,2 +1,4 @@
 ufp-core/lib/
 *.backup
+*.lock
+ufp-core/package-lock.json

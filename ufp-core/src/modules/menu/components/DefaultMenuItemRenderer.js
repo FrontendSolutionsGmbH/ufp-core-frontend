@@ -6,6 +6,6 @@ const DefaultMenuItemRenderer = ({data}) =>
         data.component ? data.component : <div>{ data.name}</div>
     )
 DefaultMenuItemRenderer.propTypes = {
-    data: PropTypes.array.isRequired
+    data: PropTypes.object.isRequired
 }
 export default DefaultMenuItemRenderer

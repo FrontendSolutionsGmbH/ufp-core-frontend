@@ -14,8 +14,10 @@ const StatsPlugin = require('stats-webpack-plugin')
 const VisualizerPlugin = require('webpack-visualizer-plugin')
 // const CompressionPlugin = require('compression-webpack-plugin')
 // const PurifyCSSPlugin = require('purifycss-webpack')
+const BabelMinifyPlugin = require("babel-minify-webpack-plugin");
 const DuplicatePackageCheckerWebpackPlugin = require('duplicate-package-checker-webpack-plugin')
 const CircularDependencyPlugin = require('circular-dependency-plugin')
+// const ClosureCompilerPlugin = require('webpack-closure-compiler')
 
 const inProject = path.resolve.bind(path, project.basePath)
 const inProjectSrc = (file) => inProject(project.srcDir, file)
@@ -30,16 +32,22 @@ const config = {
             inProjectSrc(project.main)
         ]
     },
+
     stats: {
         colors: true,
         modules: true,
         reasons: true,
-        errorDetails: true
+        errorDetails: true,
+        // Examine all modules
+        maxModules: 'Infinity',
+        // Display bailout reasons
+        optimizationBailout: true
     },
-    devtool: project.sourcemaps ? 'source-map' : false,
+    devtool: project.sourcemaps ? 'source-map' : 'source-map',
     output: {
         path: inProject(project.outDir),
-        filename: __DEV__ ? '[name].js' : '[name].[chunkhash].js',
+        filename: __DEV__ ? path.join(project.chunkFolder, '[name].js') :
+            path.join(project.chunkFolder, 'js/[name].[chunkhash].js'),
         publicPath: project.publicPath
     },
     resolve: {
@@ -130,25 +138,18 @@ folders.map((folderData) => {
 config.module.rules.push(
     {
         test: /\.(js|jsx)$/,
-        use: [{
-            loader: 'preprocess-loader',
-            query: {
-                NODE_ENV: project.env,
-                ppOptions: 'sdfsdf'
-            }
-        }
-        ]
-    },
-    {
-        test: /\.(js|jsx)$/,
         exclude: /node_modules/,
+
         use: [{
             loader: 'babel-loader',
+
             query: {
                 cacheDirectory: true,
                 plugins: [
+
                     'babel-plugin-transform-class-properties',
                     'babel-plugin-syntax-dynamic-import',
+                  //  'transform-react-remove-prop-types',
                     'babel-plugin-transform-react-jsx',
                     [
                         'babel-plugin-transform-runtime',
@@ -181,28 +182,34 @@ config.module.rules.push(
                 ]
             }
         },
+            {
+                loader: 'preprocess-loader',
+                query: {
+                    NODE_ENV: project.env
+                }
+            },
+            {
+                loader: 'preprocessor-loader',
+                query: {
+                    config: path.join(__dirname, '../macrodefinition-' + project.env + '.json')
+                }
+
+            }
             // {
-            //     loader: 'preprocessor-loader',
-            //     query: {
-            //         config: path.join(__dirname, '../macrodefinition.json')
+            //     loader: 'eslint-loader',
+            //     options: {
+            //         configFile: path.join(__dirname, '../../../../src/.eslintrc')
             //     }
-            //
             // }
 
-            {
-                loader: "eslint-loader",
-                options: {
-                    configFile: path.join(__dirname, '../../../../src/.eslintrc')
-                }
-            }
-
         ]
-    })
+    }
+)
 
 // Styles
 // ------------------------------------
 const extractStyles = new ExtractTextPlugin({
-    filename: 'styles/[name].[contenthash].css',
+    filename: path.join(project.chunkFolder, 'styles/[name].[contenthash].css'),
     allChunks: true
     // disable: __DEV__
 })
@@ -268,6 +275,7 @@ config.module.rules.push({
     test: /\.(png|jpg|gif)$/,
     loader: 'url-loader',
     options: {
+        name: path.join(project.chunkFolder, 'img/[name].[ext]'),
         limit: 8192
     }
 })
@@ -290,7 +298,7 @@ config.module.rules.push({
         test: new RegExp(`\\.${extension}$`),
         loader: 'url-loader',
         options: {
-            name: 'fonts/[name].[ext]',
+            name: path.join(project.chunkFolder, 'fonts/[name].[ext]'),
             limit: 10000,
             mimetype
         }
@@ -328,7 +336,10 @@ if (!__TEST__) {
         bundles.unshift('vendor')
         config.entry.vendor = project.vendors
     }
-    config.plugins.push(new webpack.optimize.CommonsChunkPlugin({names: bundles}))
+    config.plugins.push(new webpack.optimize.CommonsChunkPlugin({
+        names: bundles,
+        filename: path.join(project.chunkFolder, 'manifest.js')
+    }))
 }
 
 // ignoring/externalize modules
@@ -376,6 +387,9 @@ if (__PROD__) {
         //     paths: glob.sync(path.join(__dirname, 'dist/*.html'))
         // })
     )
+    // config.plugins.push(
+    //     new BabelMinifyPlugin()
+    // )
     config.plugins.push(new webpack.optimize.UglifyJsPlugin({
         sourceMap: project.sourcemaps,
         mangle: true,
@@ -399,4 +413,15 @@ if (__PROD__) {
     }))
 }
 
+//
+// config.plugins.push(new ClosureCompilerPlugin({
+//     compiler: {
+//         //  jar: 'path/to/your/custom/compiler.jar' //optional
+//         language_in: 'ECMASCRIPT6',
+//         language_out: 'ECMASCRIPT5',
+//         compilation_level: 'ADVANCED',
+//         externs: [path.join(__dirname, './closure.externs.js')]
+//     },
+//     concurrency: 3,
+// }))
 module.exports = config
