@@ -50,6 +50,7 @@
   "author": "Christian Kleinhuis <ck@froso.de>",
   "license": "MIT",
   "dependencies": {
+    "abbrev": "^1.1.0",
     "argg": "^0.0.2",
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
