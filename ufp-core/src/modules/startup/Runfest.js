@@ -11,7 +11,7 @@ import {ThrowParam} from '../../utils/JSUtils'
 
 var onceRegistered = false
 
-const Manifest = {
+const Runfest = {
     name: 'ufp-startup',
     description: 'Ufp Startup - manages sequentially execution of actions for initialisation',
     actionCreators: StartupActionCreators,
@@ -25,7 +25,7 @@ const Manifest = {
         onceRegistered = true
 
         UfpCore.registerReducer({
-            id: Manifest.name,
+            id: Runfest.name,
             reducer: StartupReducer
         })
         // register epics for us
@@ -33,4 +33,4 @@ const Manifest = {
     }
 }
 
-export default Manifest
+export default Runfest

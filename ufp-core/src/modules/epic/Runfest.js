@@ -4,7 +4,7 @@ import ConfigureEpics from './ConfigureEpics'
 
 var onceRegistered = false
 
-const Manifest = {
+const Runfest = {
     name: 'ufp-redux-rxjs ',
     description: 'Ufp Redux RxJs Manifest',
 
@@ -15,12 +15,12 @@ const Manifest = {
         onceRegistered = true
 
         UfpCore.registerMiddlewareCreator({
-            id: Manifest.name,
+            id: Runfest.name,
             middlewareCreatorFunction: ConfigureEpics.createEpicMiddleware
         })
 
         UfpCore.registerReducer({
-                id: Manifest.name,
+                id: Runfest.name,
             reducer: (state = ConfigureEpics.getEpics()) => {
                     return state
                 }
@@ -32,4 +32,4 @@ const Manifest = {
     }
 }
 
-export default Manifest
+export default Runfest

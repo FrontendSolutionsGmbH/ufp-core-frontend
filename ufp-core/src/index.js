@@ -1,4 +1,4 @@
-import UfpCore from './core/UfpCore'
+import * as UfpCore from './core'
 export default {
 
     ...UfpCore

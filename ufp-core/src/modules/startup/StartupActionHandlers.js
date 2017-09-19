@@ -6,7 +6,7 @@ export default
 {
     [StartupConstants.ActionConstants.UFP_STARTUP_NEXT_STAGE]: (state) => {
         //   // console.log('StartupReducer next stage')
-       return update(state, {
+        return update(state, {
             status: {
                 loadingState: {$set: LoadingStateEnum.LOADING},
                 currentStageIndex: {$set: state.status.currentStageIndex + 1},
@@ -14,6 +14,7 @@ export default
             }
         })
     },
+
     [StartupConstants.ActionConstants.UFP_STARTUP_FINISHED]: (state) => {
         //  // console.log('StartupReducer finalizing ', state)
         return update(state, {

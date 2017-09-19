@@ -10,7 +10,7 @@ import EpicManifest from './../epic/Manifest'
 import MenuContants from './MenuConstants'
 import {ThrowParam} from '../../utils/JSUtils'
 
-const Manifest = {
+const Runfest = {
     name: MenuContants.NAME,
     description: 'Ufp Menu - provides menu management functionality',
     actionCreators: MenuActionCreators,
@@ -20,11 +20,11 @@ const Manifest = {
         UfpCore.registerRunfest(EpicManifest)
 
         UfpCore.registerReducer({
-            id: Manifest.name,
+            id: Runfest.name,
             reducer: MenuReducer
         })
     }
 
 }
 
-export default Manifest
+export default Runfest

@@ -24,6 +24,7 @@
 // index.js is evil
 // the redux store
 
+const initialStateCallbacks = []
 const manifests = []
 const reducers = []
 const middlewares = []
@@ -32,7 +33,7 @@ const reducerCreators = []
 const middlewareCreators = []
 const enhancerCreators = []
 export default {
-
+    initialStateCallbacks,
     manifests,
     reducers,
     middlewares,
