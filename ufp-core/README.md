@@ -2,37 +2,19 @@
 
 ## Summary
 
-this repository contains UFP npm modules
+Ufp-Core is a prefactured webpack build system and a redux-runtime for creating
+applications as easy as possible
 
-Ufp's aim is to reduce application develop to the bare minimum
-
-
+(Bitbucket Repo Only )
 [DOCS](docs/README.md)
 
-
+(Bitbucket Repo Only )
 [CHANGELOG](CHANGELOG.md)
 
+## Warning 0.2 will be deprecated in 0.3
 
-## Installation
-
-Clone this repo to a local folder
-
-    NOTE: Installation is adding a npm module to your project, for now
-
-it has to be manually without directly linking a git repo
-
-     git clone [checkoutDir]
-
-after cloning execute
-
-    npm install
-    npm run compile
-
-for building the project, then you can execute
-
-  npm install --save [checkoutDir]
-
-to install the npm module into your project
+This is the first released version of the module, next release will include
+breaking changes regarding module imports. Use at own Risk!
 
 
 
@@ -44,24 +26,25 @@ to install the npm module into your project
 
         :// npm install --save ufp-core
     
-Execute ufp specific package.json project update for putting everything in place
+Execute ufp specific package.json project update for putting everything in place (see above)
 
-        :// node node_modules/ufp-core/ext/UpdatePackageJson
-    
-2. Execute npm install for retrieving all dependencies
+        :// node node_modules/ufp-core/ext/Install
 
-        :// npm install
     
-3. Development folder setup 
+2. Development folder setup
 
         src/main.js
         src/index.html
         ...
     
-4. Run development server using ufp- prepared npm script 
+3. Run development server using ufp- prepared npm script
 
         //: npm run ufp-start
     
+3. Run production build into /dist folder using ufp- prepared npm script
+
+        //: npm run ufp-compile
+
 
 ### Empty Application:
  
@@ -74,7 +57,12 @@ Execute ufp specific package.json project update for putting everything in place
 
 ### Config Reducer enabled
 
-the following example uses the config reducer to store default values upon registration, 
+** WARNING **
+in v0.3 this example will use slightly different package naming, it is
+using a ufp-core build int module
+** WARNING **
+
+the following example uses the config reducer to store default values upon registration,
 sets them inside the redux store using a redux action and prints out its current value 
 using the ufpAutoConfigured selector to retrieve a value from it
 
