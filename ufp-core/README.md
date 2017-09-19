@@ -13,11 +13,17 @@ lazy loading macros
 additionally it ships with a runtime environment easing the process of writing
 packages for use with redux
 
-
 [DOCS](docs/README.md)
 
-
 [CHANGELOG](CHANGELOG.md)
+
+## Goals
+
+the core of the ufp framework is a commitment to various techniques that are bullet proof tested on their own. The ultimate module is the redux global state approach, providing standardisation of how to work with the state in terms of selectors and actioncreators. 
+
+ the ufp-middleware handles asyncronous actions and provide pre/post/fallback handler injection. 
+
+
 
 
 ## Installation
@@ -108,8 +114,7 @@ using the ufpAutoConfigured selector to retrieve a value from it
 
     
     
- 
-
+  
 
 
 
