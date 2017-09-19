@@ -24,7 +24,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 - Initial Release
 
-[Unreleased]: https://bitbucket.org/frontendsolutions/ufp-core/branches/compare/HEAD%0D0.2.0
+[Unreleased]: https://bitbucket.org/frontendsolutions/ufp-core/branches/compare/HEAD%0D0.2.1
+[0.2.1]: https://bitbucket.org/frontendsolutions/ufp-core/branches/compare/0.2.0%0D0.2.1
 [0.2.0]: https://bitbucket.org/frontendsolutions/ufp-core/branches/compare/v0.1.1%0D0.2.0
 [0.1.1]: https://bitbucket.org/frontendsolutions/ufp-core/branches/compare/v0.1.1%0Dv0.1.0
 [0.1.0]: https://bitbucket.org/frontendsolutions/ufp-core/commits/v0.1.0
