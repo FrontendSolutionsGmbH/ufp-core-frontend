@@ -17,7 +17,7 @@ const Manifest = {
     selectors: MenuSelectors,
 
     onRegistered({UfpCore = ThrowParam('UfpCore Instance Required')}) {
-        UfpCore.registerManifest(EpicManifest)
+        UfpCore.registerRunfest(EpicManifest)
 
         UfpCore.registerReducer({
             id: Manifest.name,

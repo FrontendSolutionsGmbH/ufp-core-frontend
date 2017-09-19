@@ -32,7 +32,7 @@ const Manifest = {
 
         // Manifest registering enables rewriting of this Manifest to bound actionCreators and bound selectors
         // old ufp v0.2.0 way ...
-        // UfpCore.registerManifest(Manifest)
+        // UfpCore.registerRunfest(Manifest)
         //
         // UfpCore.registerReducerCreator({
         //     id: Manifest.name,

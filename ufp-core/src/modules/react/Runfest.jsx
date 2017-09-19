@@ -6,6 +6,7 @@ import React from 'react'
 // dummy for eslint without standard-react
 console.log('dummy for eslint without standard-react usage of Provider import', Provider)
 var _Providers = []
+var _RootSibblings = []
 var _RootNode = null
 var _ReactApp = null
 var _ReactAppCreatorFunction = null
@@ -27,8 +28,15 @@ const Manifest = {
     registerProvider: ({
         component
     }) => {
-        console.log('ufp-react proved:', component)
+        console.log('ufp-react root provider registered:', component)
         _Providers.push(component)
+    },
+
+    registerRootSibbling: ({
+        component
+    }) => {
+        console.log('ufp-react root sibbling :', component)
+        _RootSibblings.push(component)
     },
 
     onPreStartup: ({UfpCore}) => {
@@ -40,9 +48,17 @@ const Manifest = {
         const App = _ReactApp
 
         var currentRootComponent = (<App />)
-        _Providers.map((item) => {
+
+        const sibblings = []
+        _RootSibblings.map((item, index) => {
             const Component = item
-            currentRootComponent = (<Component>{currentRootComponent}</Component>)
+            sibblings.push(<Component />)
+
+        })
+
+        _Providers.map((item, index) => {
+            const Component = item
+            currentRootComponent = (<Component>{currentRootComponent}{index == 0 ? sibblings : null}</Component>)
 
         })
 
@@ -50,6 +66,5 @@ const Manifest = {
         )
     }
 }
-
 
 export default Manifest
