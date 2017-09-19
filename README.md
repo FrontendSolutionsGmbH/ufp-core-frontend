@@ -1,33 +1,25 @@
-# Ufp Core
+# Ufp Core Module Repository
 
+this repository is the development repo for ufp-modules, containing all available npm modules as children
 
-this repository contains the ufp-core npm js module
-
-Ufp's aim is to reduce application develop to the bare minimum
 
 [CHANGELOG](CHANGELOG.md)
+[DOCS](docs/README.md)
 
-## Installation
 
-Clone this repo to a local folder
+## Contained NPM Packages
 
-    NOTE: Installation is adding a npm module to your project, for now
+### ufp-core
 
-it has to be manually without directly linking a git repo
+The ufp core npm module, contains the redux only part of the ufp framework
+  
+[ufp-core](ufp-core/README.md)
 
-     git clone [checkoutDir]
+## Remarks Developing
 
-after cloning execute
+### Watch your includes './'
 
-    npm install
-    npm run compile
-
-for building the project, then you can execute
-
-  npm install --save [checkoutDir]
-
-to install the npm module into your project
-
+use path referencing for imports since module development gets parsed to es5 node_modules folder so be aware of that
 
 
 ## Usage
