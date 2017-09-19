@@ -10,7 +10,7 @@ const logger = require('./build/lib/logger')
 logger.info('Updating package.json from ufp-core')
 
 const ls = exec('' +
-    'node node_modules/ufp-core/ext/UpdatePackageJsonDependencies && ' +
+//    'node node_modules/ufp-core/ext/UpdatePackageJsonDependencies && ' +
     'node node_modules/ufp-core/ext/UpdatePackageJsonScripts')
 
 ls.stdout.on('data', (data) => {
