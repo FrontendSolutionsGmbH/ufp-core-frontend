@@ -21,13 +21,17 @@ breaking changes regarding module imports. Use at own Risk!
 
 ### Project Setup
 
+0. Set up empty npm project
+
+        npm init
+
 1. Install ufp-core using npm
 
-        :// npm install ufp-core --save
+        > npm install ufp-core --save
     
 Execute ufp specific package.json project update for putting everything in place (see above)
 
-        :// node node_modules/ufp-core/ext/Install
+        > node node_modules/ufp-core/ext/Install
 
 2. Development folder setup
 
@@ -70,7 +74,9 @@ using the ufpAutoConfigured selector to retrieve a value from it
     
     UfpConfig.register({foo: 'bar'})
     UfpConfig.register({bar: 'foo'})
-    
+
+    UfpCore.registerManifest(UfpConfig)
+
     UfpCore.startup()
     
     UfpConfig.setConfigValue({
