@@ -50,6 +50,8 @@ const Manifest = {
         var currentRootComponent = (<App />)
 
         const sibblings = []
+        console.log('Root Sibblings are ', sibblings)
+
         _RootSibblings.map((item, index) => {
             const Component = item
             sibblings.push(<Component />)
@@ -58,9 +60,12 @@ const Manifest = {
 
         _Providers.map((item, index) => {
             const Component = item
-            currentRootComponent = (<Component>{currentRootComponent}{index == 0 ? sibblings : null}</Component>)
+            currentRootComponent = (
+                <Component>{index == 0 ?
+                    <div>{currentRootComponent}{sibblings}</div> : {currentRootComponent}}</Component>)
 
         })
+        console.log('RootComponent is  ', currentRootComponent)
 
         ReactDOM.render(<Provider store={UfpCore.getStore()}>{currentRootComponent}</Provider>, _RootNode
         )

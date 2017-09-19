@@ -1,17 +1,18 @@
 import {ThrowParam} from '../../utils/JSUtils'
 
 import IntlConfig from './IntlConfig'
+import IntlConstants from './IntlConstants'
 import IntlReducer from './IntlReducer'
 import IntlActionCreators from './IntlActionCreators'
 import IntlSelectors from './IntlSelectors'
-import ReactManifest from '../react/Manifest'
+import {registerRootProvider} from '../react'
 import UfpIntlProvider from './components/UfpIntlProvider'
 
 import {addLocaleData} from 'react-intl'
 var onceRegistered = false
 
-const Manifest = {
-    name: 'ufp-intl',
+const Runfest = {
+    name: IntlConstants.NAME,
     description: 'Ufp Internationalisation Manifest',
 
     actionCreators: IntlActionCreators,
@@ -37,6 +38,7 @@ const Manifest = {
     addLocaleData: (locale) => {
         /**
          * wrapper method to allow adding locales at runtime
+         *
          */
         addLocaleData(locale)
     },
@@ -53,13 +55,13 @@ const Manifest = {
         })
 
         onceRegistered = true
-        ReactManifest.registerProvider({component: UfpIntlProvider})
+        registerRootProvider({component: UfpIntlProvider})
         UfpCore.registerReducer({
-                id: Manifest.name,
+                id: Runfest.name,
                 reducer: IntlReducer
             }
         )
     }
 }
 
-export default Manifest
+export default Runfest

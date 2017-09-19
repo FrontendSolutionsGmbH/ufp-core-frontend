@@ -1,6 +1,6 @@
-import IntlManifest from './Manifest'
+import IntlConstants from './Runfest'
 
-export const IntlSelector = (state) => state[IntlManifest.name]
+export const IntlSelector = (state) => state[IntlConstants.name]
 export const CurrentLanguageSelector = (state) => (IntlSelector(state) && IntlSelector(state).currentLanguage) || 'en'
 export const randomIntlKey = (state) => (IntlSelector(state) && IntlSelector(state).randomKey) || 0
 export const AllMessagesSelector = (state) => (IntlSelector(state) && IntlSelector(state).allMessages) || {}

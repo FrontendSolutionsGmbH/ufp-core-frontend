@@ -190,6 +190,7 @@ const startup = ({applicationNameIn = 'Ufp Application'}={applicationNameIn: 'Uf
     // @if NODE_ENV=='develop'
     const DebugManifest = require('./debug/Manifest')
     registerRunfest(DebugManifest)
+
     // @endif
 
     startedUp = true
