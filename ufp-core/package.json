@@ -1,7 +1,7 @@
 {
   "name": "ufp-core",
-  "version": "0.2.2",
-  "description": "UFP Core - build frontend applications at ease",
+  "version": "0.2.0",
+  "description": "UFP Core - Build frontend applications at ease",
   "main": "lib/index.js",
   "scripts": {
     "ufp-install": "npm install && node node_modules/ufp-core/ext/Install",
@@ -33,21 +33,13 @@
     "test": "cross-env NODE_ENV=test karma start build/karma.config",
     "watch": "node bin/watchSrc"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://bitbucket.org/frontendsolutions/ufp-core"
-  },
+  "repository": "https://bitbucket.org/frontendsolutions/ufp-core.git",
   "keywords": [
-    "module",
-    "npm",
-    "starter",
-    "boilerplate",
-    "babel",
-    "es6",
-    "tape",
-    "istanbul"
+    "ufp",
+    "ultimate frontend platform",
+    "webpack"
   ],
-  "author": "Christian Kleinhuis <ck@froso.de>",
+  "author": "Frontend Solutions GmbH",
   "license": "MIT",
   "dependencies": {
     "abbrev": "^1.1.0",
