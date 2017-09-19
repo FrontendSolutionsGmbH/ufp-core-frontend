@@ -1,6 +1,5 @@
 import {ThrowParam} from '../../utils/JSUtils'
-
-import ConfigureEpics from './ConfigureEpics'
+import ConfigureEpicsInternal from './ConfigureEpicsInternal'
 
 var onceRegistered = false
 
@@ -16,19 +15,16 @@ const Runfest = {
 
         UfpCore.registerMiddlewareCreator({
             id: Runfest.name,
-            middlewareCreatorFunction: ConfigureEpics.createEpicMiddleware
+            middlewareCreatorFunction: ConfigureEpicsInternal.createEpicMiddleware
         })
 
         UfpCore.registerReducer({
                 id: Runfest.name,
-            reducer: (state = ConfigureEpics.getEpics()) => {
+            reducer: (state = ConfigureEpicsInternal.getEpics()) => {
                     return state
                 }
             }
         )
-    },
-    registerEpic: (epic) => {
-        ConfigureEpics.registerEpic({epic})
     }
 }
 

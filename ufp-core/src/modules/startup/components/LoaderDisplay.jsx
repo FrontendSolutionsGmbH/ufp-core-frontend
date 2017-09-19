@@ -25,7 +25,7 @@ export class LoaderDisplay extends Component {
 
     render() {
 
-        if (this.props.appInitialized ) {
+        if (this.props.appInitialized) {
             return (this.props.appComponent
             )
         } else {
@@ -33,18 +33,14 @@ export class LoaderDisplay extends Component {
             return (  <Component {...this.props} />
             )
         }
-
     }
-
 }
 
 const mapStateToProps = (state) => ({
-
     appInitialized: StartupSelectors.AppInitialisedSelector(state),
     totalPercentage: StartupSelectors.TotalPercentageSelector(state),
     stagePercentage: StartupSelectors.StagePercentageSelector(state),
     stepPercentage: StartupSelectors.StepPercentageSelector(state)
-
 })
 const mapDispatchToProps = {}
 export default connect(mapStateToProps, mapDispatchToProps)(LoaderDisplay)

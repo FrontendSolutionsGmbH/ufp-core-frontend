@@ -6,6 +6,13 @@ this repository contains UFP npm modules
 
 Ufp's aim is to reduce application develop to the bare minimum
 
+this is achieved by providing the build infrastructure using webpack as
+main build tool, configured for react, eslint, babel, scss, preprocessor,
+lazy loading macros 
+
+additionally it ships with a runtime environment easing the process of writing
+packages for use with redux
+
 
 [DOCS](docs/README.md)
 

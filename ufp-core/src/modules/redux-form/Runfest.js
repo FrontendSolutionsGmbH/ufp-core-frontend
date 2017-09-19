@@ -1,10 +1,10 @@
 /**
- * the manifest.js defines the properties of the ufp-module
+ * the runfest.js defines the properties of the ufp-module and serves as RUNtimemaniFEST
  * @type {{name: string}}
  */
 import {reducer as formReducer} from 'redux-form'
 
-const Manifest = {
+const Runfest = {
     name: 'ufp-redux-form',
     description: 'Ufp Redux Form Wrapper',
 
@@ -16,4 +16,4 @@ const Manifest = {
     }
 }
 
-export default Manifest
+export default Runfest

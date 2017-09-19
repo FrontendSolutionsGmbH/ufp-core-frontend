@@ -1,5 +1,5 @@
 /**
- * the manifest.js defines the properties of the ufp-module
+ * the runfest.js defines the properties of the ufp-module and serves as RUNtimemaniFEST
  * @type {{name: string}}
  */
 
@@ -14,7 +14,7 @@ const reducerCreatorFunction = () => {
         return state
     }
 }
-const Manifest = {
+const Runfest = {
     name: 'Ufp Redux Middleware',
     id: 'Ufp Redux Middleware',
     description: 'Handles asyncronous actions with intercept hooks',
@@ -22,16 +22,16 @@ const Manifest = {
     onRegistered: ({UfpCore}) => {
         UfpCore.registerMiddleware(
             {
-                id: Manifest.name,
+                id: Runfest.name,
                 middleware: UfpMiddleware()
             }
         )
 
         UfpCore.registerReducerCreator({
-            id: Manifest.name,
+            id: Runfest.name,
             reducerCreatorFunction: reducerCreatorFunction
         })
     }
 }
 
-export default Manifest
+export default Runfest

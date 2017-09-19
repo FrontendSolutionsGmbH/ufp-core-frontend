@@ -1,8 +1,8 @@
 import {ThrowParam} from '../utils/JSUtils'
 import UfpSetup from './UfpSetup'
 // import UfpCoreConstants from './UfpCoreConstants'
-import AdditionsManifest from './addition/Manifest'
-import BaseManifest from './base/Manifest'
+import AdditionsRunfest from './addition/Runfest'
+import BaseRunfest from './base/Runfest'
 import {applyMiddleware, compose, combineReducers, createStore} from 'redux'
 
 var store = null
@@ -204,12 +204,12 @@ const registerRunfest = (manifest) => {
 const startup = ({applicationNameIn = 'Ufp Application'}={applicationNameIn: 'Ufp Application'}) => {
     checkStarted()
 
-    registerRunfest(AdditionsManifest)
-    registerRunfest(BaseManifest)
+    registerRunfest(AdditionsRunfest)
+    registerRunfest(BaseRunfest)
 
     // @if NODE_ENV=='develop'
-    const DebugManifest = require('./debug/Manifest')
-    registerRunfest(DebugManifest)
+    const DebugRunfest = require('./debug/Runfest')
+    registerRunfest(DebugRunfest)
 
     // @endif
 
@@ -273,7 +273,7 @@ const startup = ({applicationNameIn = 'Ufp Application'}={applicationNameIn: 'Uf
     store = createStore(
         rootReducer,
         // initialstate shall be managed by reducers themselves no direct state initialisation foreseen
-        getInitialstate(),
+        getInitialState(),
         composeEnhancers(
             applyMiddleware(...middleware),
             ...enhancers
@@ -314,7 +314,7 @@ const startup = ({applicationNameIn = 'Ufp Application'}={applicationNameIn: 'Uf
     /**
      * dispatch init action
      */
-    BaseManifest.startupAction()
+    BaseRunfest.startupAction()
 }
 
 const registerInitialStateCallback = ({

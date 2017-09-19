@@ -1,5 +1,5 @@
 import _Runfest from './Runfest'
-import MenuConfiguration from './MenuConfiguration'
+import MenuConfiguration from './MenuConfigurationPublic'
 import _MenuSelectors from './MenuSelectors'
 import _MenuActionCreators from './MenuActionCreators'
 

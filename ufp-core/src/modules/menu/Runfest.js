@@ -1,12 +1,11 @@
 /**
- * the manifest.js defines the properties of the ufp-module
+ * the runfest.js defines the properties of the ufp-module RUNtimemaniFEST
  * @type {{name: string}}
  */
-
 import MenuActionCreators from './MenuActionCreators'
 import MenuSelectors from './MenuSelectors'
 import MenuReducer from './MenuReducer'
-import EpicManifest from './../epic/Manifest'
+import {EpicRunfest} from '../epic'
 import MenuContants from './MenuConstants'
 import {ThrowParam} from '../../utils/JSUtils'
 
@@ -17,10 +16,10 @@ const Runfest = {
     selectors: MenuSelectors,
 
     onRegistered({UfpCore = ThrowParam('UfpCore Instance Required')}) {
-        UfpCore.registerRunfest(EpicManifest)
+        UfpCore.registerRunfest(EpicRunfest)
 
         UfpCore.registerReducer({
-            id: Runfest.name,
+            id: MenuContants.NAME,
             reducer: MenuReducer
         })
     }

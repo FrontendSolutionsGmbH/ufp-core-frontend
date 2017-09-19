@@ -1,5 +1,4 @@
 import {ThrowParam} from '../../utils/JSUtils'
-
 import ReactDOM from 'react-dom'
 import {Provider} from 'react-redux'
 import React from 'react'
@@ -11,9 +10,9 @@ var _RootNode = null
 var _ReactApp = null
 var _ReactAppCreatorFunction = null
 
-const Manifest = {
+const Runfest = {
     name: 'ufp-react',
-    description: 'Ufp React Manifest ',
+    description: 'Ufp React Runfest ',
 
     register: ({
         rootNode = ThrowParam('HTML RootNode required for initialisation of ufp-react '),
@@ -62,14 +61,14 @@ const Manifest = {
             const Component = item
             currentRootComponent = (
                 <Component>{index == 0 ?
-                    <div>{currentRootComponent}{sibblings}</div> : {currentRootComponent}}</Component>)
+                    currentRootComponent : currentRootComponent }</Component>)
 
         })
         console.log('RootComponent is  ', currentRootComponent)
 
-        ReactDOM.render(<Provider store={UfpCore.getStore()}>{currentRootComponent}</Provider>, _RootNode
+        ReactDOM.render(<Provider store={UfpCore.getStore()} >{currentRootComponent}</Provider>, _RootNode
         )
     }
 }
 
-export default Manifest
+export default Runfest

@@ -4,11 +4,11 @@
  */
 import UfpCoreActionCreators from './UfpCoreActionCreators'
 
-const Manifest = {
+const Runfest = {
     name: 'Ufp Base',
     description: 'Ufp Base',
     actionCreators: UfpCoreActionCreators
 
 }
 
-export default Manifest
+export default Runfest

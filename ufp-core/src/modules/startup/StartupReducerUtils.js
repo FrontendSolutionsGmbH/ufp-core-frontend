@@ -11,9 +11,9 @@ const getInitialStatus = (StartupStageDefinition) => {
     for (var i in StartupStageDefinition) {
         var stage = StartupStageDefinition[i]
         Object.keys(stage)
-              .map(() => {
-                  totalSteps++
-              })
+            .map(() => {
+                totalSteps++
+            })
     }
     var result = {
         currentStageIndex: -1,
@@ -32,15 +32,15 @@ const getInitialStatus = (StartupStageDefinition) => {
 const getInitialStageStatus = (StartupStageDefinition) => {
     var obj = {}
     Object.keys(StartupStageDefinition)
-          .sort()
-          .map((StartupStageDefinitionName, index) => {
-              var stage = StartupStageDefinition[StartupStageDefinitionName]
-              obj[index] = {
-                  totalSteps: stage.length,
-                  successCount: 0,
-                  failureCount: 0
-              }
-          })
+        .sort()
+        .map((StartupStageDefinitionName, index) => {
+            var stage = StartupStageDefinition[StartupStageDefinitionName]
+            obj[index] = {
+                totalSteps: stage.length,
+                successCount: 0,
+                failureCount: 0
+            }
+        })
     return obj
 }
 
@@ -120,10 +120,12 @@ const stepReducer = (state, action) => {
 
     var currentStageIndex = state.status.currentStageIndex
     var stageKeys = Object.keys(state.stageDefinition)
-                          .sort()
+        .sort()
     //  // // console.log('StartupReducer ', currentStageIndex, stageKeys)
     // marker flag if any of the registered actions are incoming (dont update state otherwise)
     var currentStage = state.stageDefinition[stageKeys[currentStageIndex]]
+
+    console.log('Step Reducer Called Current Stage is', currentStage)
 
     currentStage.some((stepDef) => {
         // // console.log('StartupReducer checking', stepDef)
