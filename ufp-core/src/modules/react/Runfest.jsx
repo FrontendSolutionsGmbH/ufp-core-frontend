@@ -59,9 +59,14 @@ const Runfest = {
 
         _Providers.map((item, index) => {
             const Component = item
+            // remark: here the enclosing div is required because some root
+            // component providers rely on single child policy ... tsts even china got rid of it...
+            // trick here is summing up all providers as childs
             currentRootComponent = (
+
                 <Component>{index == 0 ?
-                    currentRootComponent : currentRootComponent }</Component>)
+                    (sibblings.length == 0 ? currentRootComponent :
+                        <div>{currentRootComponent}{sibblings}</div>) : currentRootComponent }</Component>)
 
         })
         console.log('RootComponent is  ', currentRootComponent)
