@@ -21,6 +21,10 @@ breaking changes regarding module imports. Use at own Risk!
 
 ### Project Setup
 
+0. Set up empty npm project
+
+        npm init
+
 1. Install ufp-core using npm
 
         :// npm install ufp-core --save
@@ -70,7 +74,9 @@ using the ufpAutoConfigured selector to retrieve a value from it
     
     UfpConfig.register({foo: 'bar'})
     UfpConfig.register({bar: 'foo'})
-    
+
+    UfpCore.registerManifest(UfpConfig)
+
     UfpCore.startup()
     
     UfpConfig.setConfigValue({
