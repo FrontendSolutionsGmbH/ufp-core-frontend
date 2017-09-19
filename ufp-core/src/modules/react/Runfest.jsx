@@ -33,7 +33,7 @@ const Manifest = {
     },
 
     registerRootSibbling: ({
-        component
+        component = ThrowParam('component Root sibbling has to be set')
     }) => {
         console.log('ufp-react root sibbling :', component)
         _RootSibblings.push(component)
