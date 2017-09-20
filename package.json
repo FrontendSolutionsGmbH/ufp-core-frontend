@@ -34,7 +34,7 @@
     "test": "cross-env NODE_ENV=test karma start build/karma.config",
     "watch": "node bin/watchSrc"
   },
-  "repository": "https://bitbucket.org/frontendsolutions/ufp-core.git",
+  "repository": "https://github.com/FrontendSolutionsGmbH/ufp-core-frontend.git",
   "keywords": [
     "ufp",
     "ultimate frontend platform",
