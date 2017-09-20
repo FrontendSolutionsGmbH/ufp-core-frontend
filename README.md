@@ -1,28 +1,99 @@
-# Ufp Core Module Repository
+# Ufp Core
 
-this repository is the development repo for ufp-modules, containing all available npm modules as children
+## Summary
 
+Ufp-Core is a prefactured webpack build system and a redux-runtime for creating
+applications as easy as possible
 
-[CHANGELOG](CHANGELOG.md)
+(Bitbucket Repo Only )
 [DOCS](docs/README.md)
 
+(Bitbucket Repo Only )
+[CHANGELOG](CHANGELOG.md)
 
-## Contained NPM Packages
+## Warning 0.2 will be deprecated in 0.3
 
-### ufp-core
-
-The ufp core npm module, contains the redux only part of the ufp framework
-  
-[ufp-core](ufp-core/README.md)
-
-## Remarks Developing
-
-### Watch your includes './'
-
-use path referencing for imports since module development gets parsed to es5 node_modules folder so be aware of that
+This is the first released version of the module, next release will include
+breaking changes regarding module imports. Use at own Risk!
 
 
-## Usage
+## Quick Start
+
+### Project Setup
+
+0. Set up empty npm project
+
+        npm init
+
+1. Install ufp-core using npm
+
+        > npm install ufp-core --save
+    
+Execute ufp specific package.json project update for putting everything in place (see above)
+
+        > node node_modules/ufp-core/ext/Install
+
+2. Development folder setup
+
+        src/main.js
+        src/index.html
+        ...
+    
+3. Run development server using ufp- prepared npm script
+
+        //: npm run ufp-start
+    
+3. Run production build into /dist folder using ufp- prepared npm script
+
+        //: npm run ufp-compile
+
+
+### Empty Application:
+ 
+    // main.js
+    // import main ufp-core 
+    import UfpCore from 'ufp-core'
+    
+    // startup which creates redux stores and bound Manifests
+    UfpCore.startup()
+
+### Config Reducer enabled
+
+** WARNING **
+in v0.3 this example will use slightly different package naming, it is
+using a ufp-core build int module
+** WARNING **
+
+the following example uses the config reducer to store default values upon registration,
+sets them inside the redux store using a redux action and prints out its current value 
+using the ufpAutoConfigured selector to retrieve a value from it
+
+    // main.js
+    import UfpCore from 'ufp-core'
+    import {ConfigRunfest, registerConfigDefault} from 'ufp-core/lib/modules/config'
+
+    registerConfigDefault({foo: 'bar'})
+    registerConfigDefault({bar: 'foo'})
+
+    UfpCore.registerManifest(ConfigRunfest)
+
+    UfpCore.startup()
+    
+    ConfigRunfest.setConfigValue({
+      key: 'bar',
+      value: 'willi'
+    })
+    
+    ConfigRunfest.setConfigValue({
+      key: 'hoschi',
+      value: 'willi'
+    })
+    
+    console.log('DEMO Retrieve Config', ConfigRunfest.getConfigValue({key: 'bar'}))
+
+    
+    
+ 
 
 
 
