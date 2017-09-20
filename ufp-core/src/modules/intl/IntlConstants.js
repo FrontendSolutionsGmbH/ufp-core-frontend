@@ -1,9 +1,0 @@
-export default {
-    'NAME': 'ufp-intl',
-    'STORAGE_KEY': 'intl',
-    'SET_LANGUAGE': 'SET_LANGUAGE',
-    'SET_LANGUAGE_REQUEST': 'SET_LANGUAGE_REQUEST',
-    'SET_LANGUAGES': 'SET_LANGUAGEs',
-    'UPDATE_MESSAGES': 'UPDATE_MESSAGES'
-
-}

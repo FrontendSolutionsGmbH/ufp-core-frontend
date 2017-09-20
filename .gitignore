@@ -3,3 +3,4 @@ ufp-core/lib/
 *.lock
 ufp-core/package-lock.json
 ufp-core/node_modules/
+node_modules/

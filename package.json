@@ -41,6 +41,18 @@
     "webpack"
   ],
   "author": "Frontend Solutions GmbH",
+  "contributors": [
+    {
+      "name": "Christian Kleinhuis",
+      "email": "ck@froso.de",
+      "url": "https://froso.de/"
+    },
+    {
+      "name": "Christian Kleinhuis",
+      "email": "ck@digitalgott.de",
+      "url": "http://digitalgott.de/"
+    }
+  ],
   "license": "MIT",
   "dependencies": {
     "abbrev": "^1.1.0",

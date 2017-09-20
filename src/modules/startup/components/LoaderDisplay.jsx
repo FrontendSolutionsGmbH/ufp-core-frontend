@@ -13,7 +13,7 @@ export class LoaderDisplay extends Component {
         stagePercentage: PropTypes.number.isRequired,
         stepPercentage: PropTypes.number.isRequired,
         appInitialized: PropTypes.bool.isRequired,
-        defaultMessage: PropTypes,
+        defaultMessage: PropTypes.string,
         values: PropTypes.object
     }
 

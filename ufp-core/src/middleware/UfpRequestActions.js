@@ -1,5 +1,0 @@
-const UFP_REQUEST_ACTION = 'UFPREQUESTACTION'
-
-export default {
-  UFP_REQUEST_ACTION
-}
