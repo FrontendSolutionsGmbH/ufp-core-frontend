@@ -55,7 +55,7 @@ Execute ufp specific package.json project update for putting everything in place
     import UfpCore from 'ufp-core'
     
     // startup which creates redux stores and bound Manifests
-    UfpCore.startup()
+    UfpCore.startupUfpCore()
 
 ### Config Reducer enabled
 
@@ -77,7 +77,7 @@ using the ufpAutoConfigured selector to retrieve a value from it
 
     UfpCore.registerManifest(ConfigRunfest)
 
-    UfpCore.startup()
+    UfpCore.startupUfpCore()
     
     ConfigRunfest.setConfigValue({
       key: 'bar',
