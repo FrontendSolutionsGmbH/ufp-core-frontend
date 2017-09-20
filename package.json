@@ -38,7 +38,9 @@
   "keywords": [
     "ufp",
     "ultimate frontend platform",
-    "webpack"
+    "webpack",
+    "rxjs",
+    "redux"
   ],
   "author": "Frontend Solutions GmbH",
   "contributors": [
