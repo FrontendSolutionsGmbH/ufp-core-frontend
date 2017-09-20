@@ -2,3 +2,4 @@ ufp-core/lib/
 *.backup
 *.lock
 ufp-core/package-lock.json
+ufp-core/node_modules/
