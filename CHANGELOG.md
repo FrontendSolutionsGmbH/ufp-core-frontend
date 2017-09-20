@@ -4,8 +4,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
+## [unreleased]
 
+## [0.3.2]
+
+- move from bitbucket to github
 
 ## [0.3.1] - 2017-09-19
 
@@ -39,7 +42,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 - Initial Release
 
-[Unreleased]: https://bitbucket.org/frontendsolutions/ufp-core/branches/compare/HEAD%0D0.3.1
+[Unreleased]: https://bitbucket.org/frontendsolutions/ufp-core/branches/compare/0.3.2...develop
+[0.3.2]: https://github.com/FrontendSolutionsGmbH/ufp-core-frontend/compare/0.3.1...0.3.2
 [0.3.1]: https://bitbucket.org/frontendsolutions/ufp-core/branches/compare/0.3.0%0D0.3.1
 [0.3.0]: https://bitbucket.org/frontendsolutions/ufp-core/branches/compare/0.2.2%0D0.3.0
 [0.2.2]: https://bitbucket.org/frontendsolutions/ufp-core/branches/compare/0.2.1%0D0.2.2
