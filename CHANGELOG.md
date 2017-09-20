@@ -13,8 +13,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - rename Manifest.js to Runfest.js abbreviation for RUNtimemaniFEST
 - disallow direct imports, enforce use of index.js of bundles
 
-
-
 ## [0.2.2] - 2017-09-19
 
 - remove update dependencies during installation
