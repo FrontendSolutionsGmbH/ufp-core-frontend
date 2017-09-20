@@ -45,7 +45,7 @@ please refer to minimal-null implementation for example usage of above
  
 ## Ufp Manifest Reference
 
-For now this is the definition what each ufp-module has to define in its Manifest.js file
+For now this is the definition what each ufp-module has to define in its Runfest.js file
 
 ### register()
 

@@ -4,7 +4,7 @@ const ActionConstants = {
     'UFP_STARTUP_NO_STEPS': 'UFP_STARTUP_NO_STEPS'
 }
 
-const LoadingStateEnum ={
+const LoadingStateEnum = {
     'UNINITIALISED': 'notLoaded',
     'SUCCESS': 'success',
     'LOADING': 'loading',
@@ -12,6 +12,7 @@ const LoadingStateEnum ={
 }
 
 export default{
+    NAME: 'ufp-startup',
     ActionConstants,
     LoadingStateEnum
 }

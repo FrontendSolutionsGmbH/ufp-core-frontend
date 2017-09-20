@@ -1,8 +1,8 @@
 import {ThrowParam} from '../utils/JSUtils'
 import UfpSetup from './UfpSetup'
 // import UfpCoreConstants from './UfpCoreConstants'
-import AdditionsManifest from './addition/Manifest'
-import BaseManifest from './base/Manifest'
+import AdditionsRunfest from './addition/Runfest'
+import BaseRunfest from './base/Runfest'
 import {applyMiddleware, compose, combineReducers, createStore} from 'redux'
 
 var store = null
@@ -19,7 +19,7 @@ var store = null
 var startedUp = false
 var applicationName
 
-export const bindSelectors = (selectors) => {
+const bindSelectors = (selectors) => {
     var result = {}
 
     if (selectors) {
@@ -34,7 +34,7 @@ export const bindSelectors = (selectors) => {
     return result
 }
 
-export const bindActionCreators = (actionCreators) => {
+const bindActionCreators = (actionCreators) => {
     var result = {}
     if (actionCreators) {
         Object.keys(actionCreators)
@@ -44,6 +44,26 @@ export const bindActionCreators = (actionCreators) => {
                 }
             })
     }
+    return result
+}
+
+/**
+ * here we iterate over all registered initalStateCallback() method,
+ * the return values get Object.assign'ed and form the ufp-core
+ * initial state
+ *
+ * warning: it is not meant for initialising reducers those
+ * are initialised like normal, it is mean for adjusting
+ * state via get params or persisting state in localstorage or
+ * whatever :)
+ */
+const getInitialState = () => {
+    var result = {}
+    UfpSetup.initialStateCallbacks.map((cb) => {
+        if (typeof cb === 'function') {
+            result = Object.assign(result, cb())
+        }
+    })
     return result
 }
 
@@ -140,7 +160,7 @@ const checkStarted = () => {
         ThrowParam('Ufp Application already started registering no longer possible')
     }
 }
-const registerManifest = (manifest) => {
+const registerRunfest = (manifest) => {
     checkStarted()
 
     // call onRegistered only if explicit
@@ -184,12 +204,13 @@ const registerManifest = (manifest) => {
 const startup = ({applicationNameIn = 'Ufp Application'}={applicationNameIn: 'Ufp Application'}) => {
     checkStarted()
 
-    registerManifest(AdditionsManifest)
-    registerManifest(BaseManifest)
+    registerRunfest(AdditionsRunfest)
+    registerRunfest(BaseRunfest)
 
     // @if NODE_ENV=='develop'
-    const DebugManifest = require('./debug/Manifest')
-    registerManifest(DebugManifest)
+    const DebugRunfest = require('./debug/Runfest')
+    registerRunfest(DebugRunfest)
+
     // @endif
 
     startedUp = true
@@ -252,7 +273,7 @@ const startup = ({applicationNameIn = 'Ufp Application'}={applicationNameIn: 'Uf
     store = createStore(
         rootReducer,
         // initialstate shall be managed by reducers themselves no direct state initialisation foreseen
-        {},
+        getInitialState(),
         composeEnhancers(
             applyMiddleware(...middleware),
             ...enhancers
@@ -293,11 +314,17 @@ const startup = ({applicationNameIn = 'Ufp Application'}={applicationNameIn: 'Uf
     /**
      * dispatch init action
      */
-    BaseManifest.startupAction()
+    BaseRunfest.startupAction()
+}
+
+const registerInitialStateCallback = ({
+    callback = ThrowParam('Callback has to be set for registerInitialStateCallback')
+}) => {
+    UfpSetup.initialStateCallbacks.push(callback)
 }
 
 const UfpCore = {
-
+    registerInitialStateCallback,
     registerReducer,
     registerMiddleware,
     registerEnhancer,
@@ -306,7 +333,7 @@ const UfpCore = {
     registerMiddlewareCreator,
     registerEnhancerCreator,
 
-    registerManifest,
+    registerRunfest,
 
     startup,
 

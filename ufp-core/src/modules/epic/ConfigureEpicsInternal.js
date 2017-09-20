@@ -16,7 +16,7 @@ import {ThrowParam} from '../../utils/JSUtils.js'
 
 var epics = []
 
-const ConfigureEpics = {
+const ConfigureEpicsInternal = {
     registerEpic: ({epic = ThrowParam('epic has to be provided')}=
         {epic: ThrowParam('epic has to be provided')}) => {
         //logger.debug('ConfigureEpics.registerEpic', epic)
@@ -39,4 +39,4 @@ const ConfigureEpics = {
 
 }
 
-export default ConfigureEpics
+export default ConfigureEpicsInternal

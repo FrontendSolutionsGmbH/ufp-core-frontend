@@ -1,4 +1,4 @@
-import ConfigureEpics from '../epic/ConfigureEpics'
+import {registerEpic} from '../epic'
 import StartupEpic from './StartupEpic'
 import JSUtils from '../../utils/JSUtils'
 class StartupConfiguration {
@@ -6,9 +6,9 @@ class StartupConfiguration {
     StartupStages = {}
 
     init() {
-        ConfigureEpics.registerEpic({epic: StartupEpic.startupInit})
-        ConfigureEpics.registerEpic({epic: StartupEpic.startupStep})
-        ConfigureEpics.registerEpic({epic: StartupEpic.startupFinish})
+        registerEpic({epic: StartupEpic.startupInit})
+        registerEpic({epic: StartupEpic.startupStep})
+        registerEpic({epic: StartupEpic.startupFinish})
     }
 
     registerStagedResource({

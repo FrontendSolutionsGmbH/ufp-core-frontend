@@ -4,15 +4,15 @@
  */
 import StartupActionCreators from './StartupActionCreators'
 import StartupSelectors from './StartupSelectors'
-
 import StartupConfiguration from './StartupConfiguration'
+import StartupConstants from './StartupConstants'
 import StartupReducer from './StartupReducer'
 import {ThrowParam} from '../../utils/JSUtils'
 
 var onceRegistered = false
 
-const Manifest = {
-    name: 'ufp-startup',
+const Runfest = {
+    name: StartupConstants.NAME,
     description: 'Ufp Startup - manages sequentially execution of actions for initialisation',
     actionCreators: StartupActionCreators,
     selectors: StartupSelectors,
@@ -25,7 +25,7 @@ const Manifest = {
         onceRegistered = true
 
         UfpCore.registerReducer({
-            id: Manifest.name,
+            id: StartupConstants.NAME,
             reducer: StartupReducer
         })
         // register epics for us
@@ -33,4 +33,4 @@ const Manifest = {
     }
 }
 
-export default Manifest
+export default Runfest

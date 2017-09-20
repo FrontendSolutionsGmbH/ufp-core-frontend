@@ -1,6 +1,6 @@
-import StartupManifest from './Manifest'
+import StartupConstants from './StartupConstants'
 
-export const StartupState = (state) => state[StartupManifest.name]
+export const StartupState = (state) => state[StartupConstants.NAME]
 export const GetStatusSelector = (state) => StartupState(state).status
 export const StepStatusSelector = (state) => StartupState(state).stepStatus
 export const StageStatusSelector = (state) => StartupState(state).stageStatus

@@ -14,7 +14,7 @@ register manifest to ufp-core application
 
 
     import UfpEpic from 'ufp-core/lib/epic/Manifest'
-    UfpCore.registerManifest(UfpEpic);
+    UfpCore.registerRunfest(UfpEpic);
 
 
 configure the epics using

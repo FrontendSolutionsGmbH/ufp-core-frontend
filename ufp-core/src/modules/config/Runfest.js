@@ -21,32 +21,23 @@ const reducerCreatorFunction = () => {
     return ConfigReducer({data: data})
 }
 
-const Manifest = {
+const Runfest = {
     name: ConfigConstants.NAME,
     description: 'Ufp Config Reducer - property storage',
     actionCreators: ConfigActionCreators,
     selectors: ConfigSelectors,
 
-    register: (initialState, area = ConfigConstants.DEFAULT_AREA) => {
+      registerConfigDefault: (initialState, area = ConfigConstants.DEFAULT_AREA) => {
         data[area] = Object.assign(data[area] || {}, initialState)
-
-        // Manifest registering enables rewriting of this Manifest to bound actionCreators and bound selectors
-        // old ufp v0.2.0 way ...
-        // UfpCore.registerManifest(Manifest)
-        //
-        // UfpCore.registerReducerCreator({
-        //     id: Manifest.name,
-        //     reducerCreatorFunction: reducerCreatorFunction
-        // })
     },
 
     onRegistered({UfpCore = ThrowParam('UfpCore Instance Required')}) {
         UfpCore.registerReducerCreator({
-            id: Manifest.name,
+            id: Runfest.name,
             reducerCreatorFunction: reducerCreatorFunction
         })
     }
 
 }
 
-export default Manifest
+export default Runfest

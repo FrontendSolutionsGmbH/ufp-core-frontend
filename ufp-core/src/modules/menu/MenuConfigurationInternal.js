@@ -1,5 +1,5 @@
 import MenuConstants from './MenuConstants'
-import ConfigureEpics from '../epic/ConfigureEpics'
+import {registerEpic} from '../epic'
 import MenuActionEpicCreator from './epics/MenuActionEpicCreator'
 import JSUtils from '../../utils/JSUtils'
 import MenuInternalUtils from './MenuInternalUtils'
@@ -96,7 +96,7 @@ class MenuConfigurationInternal {
                  * is needed to watch over the state
                  *
                  */
-                ConfigureEpics.registerEpic({
+                registerEpic({
                     epic: MenuActionEpicCreator.createEpicTransformActionToMenuAction(currentActionName)
                 })
             })
@@ -107,7 +107,7 @@ class MenuConfigurationInternal {
                 this.MenuDefinition[actionName] = []
             }
             this.MenuDefinition[actionName].push(menuDef)
-            ConfigureEpics.registerEpic({
+            registerEpic({
                 epic: MenuActionEpicCreator.createEpicTransformActionToMenuAction(actionName)
             })
         }

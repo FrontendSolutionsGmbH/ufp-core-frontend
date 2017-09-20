@@ -12,7 +12,7 @@ this reducer is a core ufp reducer since it is used for anything related to appl
 ### Usage
       
     import UfpCore from 'ufp-core/lib' 
-    import UfpConfig from 'ufp-core/lib/modules/config/Manifest'  
+    import UfpConfig from 'ufp-core/lib/modules/config/Runfest'  
        
     // register first
     UfpConfig.register({foo: 'bar'},'areaName)   
@@ -29,7 +29,7 @@ this reducer is a core ufp reducer since it is used for anything related to appl
 this method is used to activate the module and provide some initial data,
 note that this method is designed to be used by any module existant, all
 modules that use a dependency to this module will call their desired configuration
-values inside their own register() manifest methods
+values inside their own register() runfest methods
 
 ### Action Creators
 
@@ -47,10 +47,10 @@ sets the desired config value, signature and parameter defaults are:
      
 ##### Example
  
-ufp-core binds the actioncreators and selectors to the store in the main manifest,
+ufp-core binds the actioncreators and selectors to the store in the main runfest,
 unbounded and original actioncreator is retrieved like this:
     
-    import UfpConfig from 'ufp-core/lib/modules/config/Manifest'
+    import UfpConfig from 'ufp-core/lib/modules/config/Runfest'
       
     // Bound ActionCreator
     UfpConfig.setConfigValue
@@ -75,7 +75,7 @@ a stored config value is accessed using the selector providing key and optional 
     })
  
 
-ufp-core binds the actioncreators and selectors to the store in the main manifest,
+ufp-core binds the actioncreators and selectors to the store in the main runfest,
 unbounded and original actioncreator is retrieved like this:
      
     // Bound ActionCreator

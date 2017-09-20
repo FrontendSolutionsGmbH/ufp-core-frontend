@@ -26,6 +26,17 @@ const __DEV__ = project.env === 'development'
 const __TEST__ = project.env === 'test'
 const __PROD__ = project.env === 'production'
 
+console.log('ENVIRONMENT IS ', process.env)
+console.log('ENVIRONMENT IS ', process.env.UFP_VERSION)
+
+const UfpConfig = {
+
+    UFP_VERSION: process.env.UFP_VERSION || '0.0.0',
+    UFP_API_TYPE: process.env.UFP_API_TYPE || 'live',
+    UFP_THEME: process.env.UFP_THEME || 'defaultTheme',
+    UFP_NODE_ENV: process.env.NODE_ENV,
+}
+
 const config = {
     entry: {
         main: [
@@ -185,7 +196,9 @@ config.module.rules.push(
             {
                 loader: 'preprocess-loader',
                 query: {
-                    NODE_ENV: project.env
+                    NODE_ENV: project.env,
+
+                    ...UfpConfig
                 }
             },
             {
@@ -312,7 +325,9 @@ config.plugins.push(new HtmlWebpackPlugin({
     inject: true,
     minify: {
         collapseWhitespace: true
-    }
+    },
+    ...UfpConfig
+
 }))
 
 // Development Tools
