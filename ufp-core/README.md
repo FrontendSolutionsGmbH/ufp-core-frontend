@@ -69,27 +69,27 @@ sets them inside the redux store using a redux action and prints out its current
 using the ufpAutoConfigured selector to retrieve a value from it
 
     // main.js
-    import UfpCore from 'ufp-core/lib'
-    import UfpConfig from 'ufp-core/lib/modules/config/Manifest'
-    
-    UfpConfig.register({foo: 'bar'})
-    UfpConfig.register({bar: 'foo'})
+    import UfpCore from 'ufp-core'
+    import {ConfigRunfest, registerConfigDefault} from 'ufp-core/lib/modules/config'
 
-    UfpCore.registerManifest(UfpConfig)
+    registerConfigDefault({foo: 'bar'})
+    registerConfigDefault({bar: 'foo'})
+
+    UfpCore.registerManifest(ConfigRunfest)
 
     UfpCore.startup()
     
-    UfpConfig.setConfigValue({
+    ConfigRunfest.setConfigValue({
       key: 'bar',
       value: 'willi'
     })
     
-    UfpConfig.setConfigValue({
+    ConfigRunfest.setConfigValue({
       key: 'hoschi',
       value: 'willi'
     })
     
-    console.log('DEMO Retrieve Config', UfpConfig.getConfigValue({key: 'bar'}))
+    console.log('DEMO Retrieve Config', ConfigRunfest.getConfigValue({key: 'bar'}))
 
     
     
