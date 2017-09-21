@@ -9,7 +9,7 @@
   },
   "scripts": {
     "ufp-install": "npm install && node node_modules/ufp-core/ext/Install",
-    "ufp-install-new": "npm install ../../src_modules/ufp-root/ufp-core ",
+    "ufp-install-new": "npm install ../../src_modules/ufp-root",
     "ufp-update": "node node_modules/ufp-core/ext/UpdatePackageJson",
     "ufp-update-scripts": "node node_modules/ufp-core/ext/UpdatePackageJsonScripts",
     "ufp-update-dependencies": "node node_modules/ufp-core/ext/UpdatePackageJsonDependencies",
