@@ -3,6 +3,10 @@
   "version": "0.2.3",
   "description": "UFP Core - Build frontend applications at ease",
   "main": "lib/index.js",
+  "engines": {
+    "node": ">=8.4.0",
+    "npm": ">=5.4.1"
+  },
   "scripts": {
     "ufp-install": "npm install && node node_modules/ufp-core/ext/Install",
     "ufp-install-new": "npm install ../../src_modules/ufp-root/ufp-core ",
