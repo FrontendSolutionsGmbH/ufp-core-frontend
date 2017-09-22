@@ -9,7 +9,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [0.3.3]
 
 - remove ufp-optimizer as required dependency (too long install)
-- add babel dependency 6.x ( babel5 interferes otherwise)
 - include required minimal engine versions in package.json
 
 ## [0.3.2]
