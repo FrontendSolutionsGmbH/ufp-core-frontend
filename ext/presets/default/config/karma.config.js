@@ -1,10 +1,13 @@
 const argv = require('yargs').argv
 const webpackConfig = require('./webpack.config.js')
 
-const TEST_BUNDLER = require('../tests/test-bundler.js')
+const TEST_BUNDLER = './tests/test-bundler.js'
+
+console.log('testsContext ')
+console.log('testsContext ', process.cwd())
 const karmaConfig = {
-    basePath: '../',
-    browsers: ['PhantomJS'],
+    basePath: process.cwd(),
+    browsers: ['ChromeHeadless'],
     singleRun: !argv.watch,
     coverageReporter: {
         reporters: [
@@ -22,7 +25,7 @@ const karmaConfig = {
     preprocessors: {
         [TEST_BUNDLER]: ['webpack']
     },
-    logLevel: 'INFO',
+    logLevel: 'DEBUG',
     browserConsoleLogOptions: {
         terminal: true,
         format: '%b %T: %m',
@@ -34,7 +37,12 @@ const karmaConfig = {
         module: webpackConfig.module,
         plugins: webpackConfig.plugins,
         resolve: webpackConfig.resolve,
-        externals: {}
+        externals: {
+            'react/addons': 'react',
+            'react/lib/ExecutionEnvironment': 'react',
+            'react/lib/ReactContext': 'react',
+
+        }
     },
     webpackMiddleware: {
         stats: 'errors-only',
