@@ -65,11 +65,11 @@ const config = {
         // enforce no-symlinking for module resolving, required when using modules from filesystem (e.g. ufp-core)
         symlinks: false,
         'alias': {
-            // preact setup
-            'react': 'preact-compat',
-            'react-dom': 'preact-compat',
-            // required preact adjustment for react-router3
-            'create-react-class': 'preact-compat/lib/create-react-class'
+            // // preact setup
+            // 'react': 'preact-compat',
+            // 'react-dom': 'preact-compat',
+            // // required preact adjustment for react-router3
+            // 'create-react-class': 'preact-compat/lib/create-react-class'
         },
 
         modules: [
@@ -143,7 +143,6 @@ folders.map((folderData) => {
 /**
  * end of ufp static folders copywebpackplugin config
  */
-
 // JavaScript
 // ------------------------------------
 config.module.rules.push(
@@ -427,6 +426,16 @@ if (__PROD__) {
         }
     }))
 }
+
+config.plugins.push(function () {
+    this.plugin('done', function (stats) {
+        if (stats.compilation.errors && stats.compilation.errors.length && process.argv.indexOf('--watch') === -1) {
+            console.log(stats.compilation.errors)
+            //  process.exit(1); // or throw new Error('webpack build failed.');
+        }
+        // ...
+    })
+})
 
 //
 // config.plugins.push(new ClosureCompilerPlugin({
