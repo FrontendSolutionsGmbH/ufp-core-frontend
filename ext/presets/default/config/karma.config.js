@@ -10,9 +10,8 @@ const karmaConfig = {
     browsers: ['ChromeHeadless'],
     singleRun: !argv.watch,
     coverageReporter: {
-        reporters: [
-            {type: 'text-summary'}
-        ]
+        type: 'html',
+        dir: 'coverage/'
     },
     files: [{
         pattern: TEST_BUNDLER,
@@ -21,15 +20,21 @@ const karmaConfig = {
         included: true
     }],
     frameworks: ['mocha'],
-    reporters: ['mocha'],
+    reporters: ['mocha', 'junit', 'coverage'],
     preprocessors: {
-        [TEST_BUNDLER]: ['webpack']
+        [TEST_BUNDLER]: ['webpack', 'coverage']
     },
     logLevel: 'DEBUG',
     browserConsoleLogOptions: {
         terminal: true,
         format: '%b %T: %m',
         level: ''
+    },
+    junitReporter: {
+        outputDir: 'test-report', // results will be saved as $outputDir/$browserName.xml
+        outputFile: undefined, // if included, results will be saved as $outputDir/$browserName/$outputFile
+        useBrowserName: false, // add browser name to report and classes names
+        xmlVersion: null // use '1' if reporting to be per SonarQube 6.2 XML format
     },
     webpack: {
         entry: TEST_BUNDLER,

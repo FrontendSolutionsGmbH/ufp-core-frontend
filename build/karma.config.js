@@ -3,7 +3,7 @@ const TEST_BUNDLER = './tests/test-bundler.js'
 
 const karmaConfig = {
     basePath: '../',
-    browsers: ['PhantomJS'],
+    browsers: ['ChromeHeadless'],
     singleRun: true,
     coverageReporter: {
         reporters: [
@@ -16,13 +16,13 @@ const karmaConfig = {
         ],
     },
     files: [
-        './node_modules/phantomjs-polyfill/bind-polyfill.js',
         {
             pattern: TEST_BUNDLER,
             watched: false,
             served: true,
             included: true
-        }],
+        }
+    ],
     frameworks: ['mocha'],
     reporters: ['mocha', 'coverage'],
     logLevel: 'INFO',
@@ -32,7 +32,8 @@ const karmaConfig = {
         level: '',
     },
     preprocessors: {
-        'test-context.js': ['webpack']
+
+        [TEST_BUNDLER]: ['webpack', 'coverage']
     },
     webpack: {
         entry: TEST_BUNDLER,
