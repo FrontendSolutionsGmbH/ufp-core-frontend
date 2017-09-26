@@ -6,12 +6,28 @@ const karmaConfig = {
     browsers: ['ChromeHeadless'],
     singleRun: true,
     coverageReporter: {
+        dir: 'coveragexxx',
+        includeAllSources: true,
         reporters: [
-            {type: 'text-summary'},
+            {
+                type: 'text-summary',
+                dir: 'test-report1',
+                subdir: 'coverage'
+            },
+            {
+                type: 'clover',
+                dir: 'test-report2',
+                subdir: 'coverage'
+            },
             {
                 type: 'lcov',
-                dir: 'coverage',
-                subdir: '.'
+                dir: 'test-report3',
+                subdir: 'coverage'
+            },
+            {
+                type: 'html',
+                dir: 'test-report4',
+                subdir: 'coverage'
             }
         ],
     },

@@ -10,8 +10,28 @@ const karmaConfig = {
     browsers: ['ChromeHeadless'],
     singleRun: !argv.watch,
     coverageReporter: {
-        type: 'html',
-        dir: 'coverage/'
+        reporters: [
+            {
+                type: 'html',
+                dir: 'test-report/coverage',
+                subdir: 'html'
+            },
+            {
+                type: 'text-summary',
+                dir: 'test-report/coverage',
+                subdir: 'coverage'
+            },
+            {
+                type: 'clover',
+                dir: 'test-report/coverage',
+                subdir: 'clover'
+            },
+            {
+                type: 'lcov',
+                dir: 'test-report/coverage',
+                subdir: 'lcov'
+            }
+        ]
     },
     files: [{
         pattern: TEST_BUNDLER,
