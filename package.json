@@ -8,7 +8,7 @@
     "npm": ">=5.3.0"
   },
   "scripts": {
-    "ufp-make": "npm install && node node_modules/ufp-core/ext/build/scripts/make",
+    "ufp-make": "node node_modules/ufp-core/ext/build/scripts/make",
     "ufp-install": "npm install && node node_modules/ufp-core/ext/Install",
     "ufp-install-new": "npm install ../../src_modules/ufp-root",
     "ufp-update": "node node_modules/ufp-core/ext/UpdatePackageJson",
