@@ -30,7 +30,7 @@ const __PROD__ = project.env === 'production'
 
 console.log('ENVIRONMENT IS ', process.env)
 console.log('ENVIRONMENT IS ', process.env.UFP_VERSION)
-
+process.traceDeprecation = true
 const UfpConfig = {
 
     UFP_VERSION: process.env.UFP_VERSION || '0.0.0',
@@ -155,7 +155,7 @@ const javascriptConfig = {
         {
             loader: 'babel-loader',
 
-            query: {
+            options: {
                 cacheDirectory: true,
                 plugins: [
 
@@ -196,7 +196,7 @@ const javascriptConfig = {
         },
         {
             loader: 'preprocess-loader',
-            query: {
+            options: {
                 NODE_ENV: project.env,
 
                 ...UfpConfig
@@ -204,9 +204,7 @@ const javascriptConfig = {
         },
         {
             loader: 'preprocessor-loader',
-            query: {
-                config: path.join(__dirname, '../macrodefinition-' + project.env + '.json')
-            }
+            query: 'config=' + path.join(__dirname, '../macrodefinition-' + project.env + '.json')
 
         },
 

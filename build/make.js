@@ -22,6 +22,7 @@ logger.info('YARGS INPUT IS', JSON.stringify(yargs.argv))
 var {
     FORCE,
     CLEAN,
+    UFP_STEP,
     UFP_VERSION,
     UFP_API_TYPE,
     UFP_THEME,
@@ -43,6 +44,8 @@ UFP_API_TYPE = sanitizeInput(UFP_API_TYPE)
 UFP_NODE_ENV = sanitizeInput(UFP_NODE_ENV)
 
 logger.info('Ufp Make ')
+logger.info('cwd = ', process.cwd())
+logger.info('UFP_STEP = ', UFP_STEP)
 logger.info('CLEAN = ', CLEAN)
 logger.info('FORCE = ', FORCE)
 logger.info('UFP_VERSION = ', UFP_VERSION)
