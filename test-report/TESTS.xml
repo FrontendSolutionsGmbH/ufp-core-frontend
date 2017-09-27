@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<testsuite name="HeadlessChrome 0.0.0 (Windows 10 0.0.0)" package="" timestamp="2017-09-27T10:31:28" id="0" hostname="FROSO-CHRISTIAN" tests="1" errors="0" failures="0" time="0.001">
+  <properties>
+    <property name="browser.fullName" value="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/61.0.3163.100 Safari/537.36"/>
+  </properties>
+  <testcase name="Proof of Concept  1 should be 1" time="0.001" classname="Proof of Concept "/>
+  <system-out>
+    <![CDATA[HeadlessChrome 0.0.0 (Windows 10 0.0.0) LOG: 'TEST BUNDLER'
+,HeadlessChrome 0.0.0 (Windows 10 0.0.0) LOG: '/////////////////////////////////////////////////////////////////////'
+,HeadlessChrome 0.0.0 (Windows 10 0.0.0) LOG: function webpackContext(req){ ... }
+,HeadlessChrome 0.0.0 (Windows 10 0.0.0) LOG: '/////////////////////////////////////////////////////////////////////'
+
+]]>
+  </system-out>
+  <system-err/>
+</testsuite>

@@ -1,9 +1,10 @@
 const path = require('path')
 const fs = require('fs')
 const execSync = require('child_process').execSync
-const Constants = require('./constants')
-const logger = require('../lib/logger')
+const Constants = require('../ext/build/scripts/constants')
+const logger = require('../ext/build/lib/logger')
 const validator = require('validator')
+const rimraf = require('rimraf')
 /**
  * Parameter Parsing
  */
@@ -19,30 +20,18 @@ Object.keys(Constants.MAKE_OPTIONS)
 logger.info('YARGS INPUT IS', JSON.stringify(yargs.argv))
 
 var {
-    CLEAN,
     FORCE,
+    CLEAN,
     UFP_VERSION,
     UFP_API_TYPE,
     UFP_THEME,
     UFP_NODE_ENV
 }=yargs.argv
 
-const handleError = (err) => {
-    logger.error('Execution failed', err)
-    if (!FORCE) {
-        throw 'exiting, use --FORCE to continue on fail'
-    } else {
-
-        logger.warn('Continuing build although step failed!')
-
-    }
-
-}
-
 const sanitizeInput = (value) => {
     logger.info('sanitizing ', value)
     var result = value
-    result = validator.blacklist(value, '&|') //=> true
+    result = validator.blacklist(value, '&|'); //=> true
     return result
 }
 
@@ -61,6 +50,18 @@ logger.info('UFP_API_TYPE = ', UFP_API_TYPE)
 logger.info('UFP_THEME = ', UFP_THEME)
 logger.info('UFP_NODE_ENV = ', UFP_NODE_ENV)
 
+const handleError = (err) => {
+    logger.error('Execution failed', err)
+    if (!FORCE) {
+        throw 'exiting, use --FORCE to continue on fail'
+    } else {
+
+        logger.warn('Continuing build although step failed!')
+
+    }
+
+}
+
 /**
  * constants
  */
@@ -70,7 +71,9 @@ logger.info('UFP_NODE_ENV = ', UFP_NODE_ENV)
  * @param command
  */
 const executeCommand = (command) => {
+
     try {
+
         logger.log('Executing command ', command)
 
         execSync(command, {
@@ -78,16 +81,18 @@ const executeCommand = (command) => {
             stdio: 'inherit'
         })
     } catch (err) {
-        handleError(err)
-    }
-}
 
+        handleError(err)
+
+    }
+
+}
 logger.log('Execute Build')
 
 if (CLEAN) {
     logger.info('Cleaning build folders...')
-    rimraf(path.join(process.cwd, 'dist'), handleError)
-    rimraf(path.join(process.cwd, Constants.TEST_REPORT_FOLDER), handleError)
+    rimraf(path.join(process.cwd(), 'lib'), handleError)
+    rimraf(path.join(process.cwd(), Constants.TEST_REPORT_FOLDER), handleError)
     logger.info('.. finished')
 }
 
@@ -96,10 +101,10 @@ const postCommands = [
     'node node_modules/cross-env UFP_API_TYPE = ' + UFP_API_TYPE,
     'node node_modules/cross-env UFP_THEME = ' + UFP_THEME,
     'node node_modules/cross-env UFP_NODE_ENV = ' + UFP_NODE_ENV,
-    'npm run ufp-lint -- -f codeframe',
-    'npm run ufp-lint -- -f junit -o ' + path.join(Constants.TEST_REPORT_FOLDER, '/eslint/eslint-junit.xml'),
-    'npm run ufp-compile:bare',
-    'npm run ufp-test'
+    'npm run lint -- -f codeframe',
+    'npm run lint -- -f junit -o ' + path.join(Constants.TEST_REPORT_FOLDER, '/eslint/eslint-junit.xml'),
+    'npm run compile',
+    'npm run test'
 ]
 
 logger.info('postCommands', postCommands)
@@ -107,3 +112,4 @@ logger.info('postCommands', postCommands)
 postCommands.map(executeCommand)
 
 logger.info('Build finished ')
+

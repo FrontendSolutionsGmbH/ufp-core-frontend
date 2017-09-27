@@ -3,6 +3,7 @@ const UFP_VERSION = 'UFP_VERSION'
 const UFP_NODE_ENV = 'UFP_NODE_ENV'
 const UFP_THEME = 'UFP_THEME'
 const UFP_FORCE = 'FORCE'
+const UFP_CLEAN = 'CLEAN'
 
 const API_TYPES = ['live', 'mock']
 const NODE_ENVS = ['production', 'development', 'test']
@@ -12,8 +13,14 @@ module.exports = {
     MAKE_OPTIONS: {
         [UFP_FORCE]: {
             boolean: true,
-            describe: `allow fail of single steps`,
-            default: false,
+            describe: 'allow fail of single steps',
+            default: false
+
+        },
+        [UFP_CLEAN]: {
+            boolean: true,
+            describe: 'rimraf build folders before start',
+            default: false
 
         },
 

@@ -1,13 +1,10 @@
-import UfpCore from 'core/UfpCore'
+describe('Proof of Concept ', () => {
 
-describe('(UfpCore) Exists', () => {
+    it('1 should be 1', () => {
 
-    it('Should export a constant LOCATION_CHANGE.', () => {
-
-        console.log('UFPCore is ', UfpCore)
-        expect(UfpCore)
+        expect(1)
             .to
-            .equal('LOCATION_CHANGE')
+            .equal(1)
     })
 
 })
