@@ -208,13 +208,13 @@ config.module.rules.push(
                     config: path.join(__dirname, '../macrodefinition-' + project.env + '.json')
                 }
 
+            },
+            {
+                loader: 'eslint-loader',
+                options: {
+                    configFile: path.join(__dirname, '../../../../src/.eslintrc')
+                }
             }
-            // {
-            //     loader: 'eslint-loader',
-            //     options: {
-            //         configFile: path.join(__dirname, '../../../../src/.eslintrc')
-            //     }
-            // }
 
         ]
     }
