@@ -2,6 +2,9 @@ const path = require('path')
 const TEST_BUNDLER = './tests/test-bundler.js'
 
 const karmaConfig = {
+    browserDisconnectTimeout: 10000,
+    browserDisconnectTolerance: 1,
+    browserNoActivityTimeout: 60000,//by default 10000
     basePath: '../',
     browsers: ['ChromeHeadless'],
     singleRun: true,
