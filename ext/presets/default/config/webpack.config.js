@@ -147,12 +147,12 @@ folders.map((folderData) => {
  */
 // JavaScript
 // ------------------------------------
-config.module.rules.push(
-    {
-        test: /\.(js|jsx)$/,
-        exclude: /node_modules/,
+const javascriptConfig = {
+    test: /\.(js|jsx)$/,
+    exclude: /node_modules/,
 
-        use: [{
+    use: [
+        {
             loader: 'babel-loader',
 
             query: {
@@ -194,32 +194,39 @@ config.module.rules.push(
                 ]
             }
         },
-            {
-                loader: 'preprocess-loader',
-                query: {
-                    NODE_ENV: project.env,
+        {
+            loader: 'preprocess-loader',
+            query: {
+                NODE_ENV: project.env,
 
-                    ...UfpConfig
-                }
-            },
-            {
-                loader: 'preprocessor-loader',
-                query: {
-                    config: path.join(__dirname, '../macrodefinition-' + project.env + '.json')
-                }
-
-            },
-            {
-                loader: 'eslint-loader',
-                options: {
-                    configFile: path.join(__dirname, '../../../../src/.eslintrc')
-                }
+                ...UfpConfig
+            }
+        },
+        {
+            loader: 'preprocessor-loader',
+            query: {
+                config: path.join(__dirname, '../macrodefinition-' + project.env + '.json')
             }
 
-        ]
-    }
-)
+        },
 
+    ]
+}
+
+if (project.env !== 'test') {
+    /**
+     * disable linting for /test files
+     * todo: prepare lint config for tests
+     */
+    javascriptConfig.use.push({
+        loader: 'eslint-loader',
+        options: {
+            configFile: path.join(__dirname, '../../../../src/.eslintrc')
+        }
+    })
+}
+
+config.module.rules.push(javascriptConfig)
 // Styles
 // ------------------------------------
 const extractStyles = new ExtractTextPlugin({

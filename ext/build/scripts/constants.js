@@ -3,10 +3,12 @@ const UFP_VERSION = 'UFP_VERSION'
 const UFP_NODE_ENV = 'UFP_NODE_ENV'
 const UFP_THEME = 'UFP_THEME'
 const UFP_FORCE = 'FORCE'
+const UFP_STEP = 'UFP_STEP'
 const UFP_CLEAN = 'CLEAN'
 
 const API_TYPES = ['live', 'mock']
 const NODE_ENVS = ['production', 'development', 'test']
+const UFP_STEPS = ['all', 'validate', 'test', 'build']
 
 module.exports = {
     TEST_REPORT_FOLDER: 'test-report',
@@ -15,21 +17,22 @@ module.exports = {
             boolean: true,
             describe: 'allow fail of single steps',
             default: false
-
+        },
+        [UFP_STEP]: {
+            describe: 'build step ',
+            default: UFP_STEPS[0],
+            choices: UFP_STEPS
         },
         [UFP_CLEAN]: {
             boolean: true,
             describe: 'rimraf build folders before start',
             default: false
-
         },
-
         [UFP_VERSION]: {
             describe: `project specific version, 
         provided as UFP_VERSION environment variable
 `,
             default: 'ufp-version-default'
-
         },
         [UFP_API_TYPE]: {
             describe: `api type, 

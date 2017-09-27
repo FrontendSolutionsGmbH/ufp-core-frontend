@@ -22,6 +22,7 @@ var {
     CLEAN,
     FORCE,
     UFP_VERSION,
+    UFP_STEP,
     UFP_API_TYPE,
     UFP_THEME,
     UFP_NODE_ENV
@@ -51,6 +52,7 @@ UFP_API_TYPE = sanitizeInput(UFP_API_TYPE)
 UFP_NODE_ENV = sanitizeInput(UFP_NODE_ENV)
 
 logger.info('Ufp Make ')
+logger.info('UFP_STEP= ', UFP_STEP)
 logger.info('CLEAN = ', CLEAN)
 logger.info('FORCE = ', FORCE)
 logger.info('UFP_VERSION = ', UFP_VERSION)
@@ -88,19 +90,41 @@ if (CLEAN) {
     logger.info('.. finished')
 }
 
-const postCommands = [
+const initCommands = [
     'node node_modules/cross-env UFP_VERSION = ' + UFP_VERSION,
     'node node_modules/cross-env UFP_API_TYPE = ' + UFP_API_TYPE,
     'node node_modules/cross-env UFP_THEME = ' + UFP_THEME,
-    'node node_modules/cross-env UFP_NODE_ENV = ' + UFP_NODE_ENV,
+    'node node_modules/cross-env UFP_NODE_ENV = ' + UFP_NODE_ENV
+]
+const validateCommands = [
     'npm run ufp-lint -- -f codeframe',
     'npm run ufp-lint -- -f junit -o ' + path.join(Constants.TEST_REPORT_FOLDER, '/eslint/eslint-junit.xml'),
-    'npm run ufp-compile:bare',
+]
+const testCommands = [
     'npm run ufp-test'
 ]
+const buildCommands = [
+    'npm run ufp-compile:bare',
+]
 
-logger.info('postCommands', postCommands)
+// always exec init
+initCommands.map(executeCommand)
 
-postCommands.map(executeCommand)
+if (UFP_STEP === 'all' || UFP_STEP === 'validate') {
+    logger.info('validate')
+    validateCommands.map(executeCommand)
+}
+if (UFP_STEP === 'all' || UFP_STEP === 'test') {
+    logger.info('test')
+    try {
+        testCommands.map(executeCommand)
+    } catch (e) {
+        console.error('whatsuup??????', e)
+    }
+}
+if (UFP_STEP === 'all' || UFP_STEP === 'build') {
+    logger.info('build')
+    buildCommands.map(executeCommand)
+}
 
 logger.info('Build finished ')

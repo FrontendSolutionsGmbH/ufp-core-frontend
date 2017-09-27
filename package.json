@@ -22,7 +22,7 @@
     "webpack": "node build/scripts/compile",
     "ufp-lint": "eslint src --ext .jsx,.js --config node_modules/ufp-core/src/.eslintrc",
     "ufp-lint:fix": "npm run ufp-lint -- --fix",
-    "ufp-test": "cross-env NODE_ENV=test karma start node_modules/ufp-core/ext/presets/default/config/karma.config",
+    "ufp-test": "cross-env NODE_ENV=test karma start node_modules/ufp-core/ext/presets/default/config/karma.config --no-exit",
     "ufp-test:watch": "npm run ufp-test -- --watch",
     "prepublishOnly": "npm run compile",
     "prepublish": "npm run compile",
