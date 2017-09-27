@@ -6,6 +6,9 @@ const TEST_BUNDLER = './tests/test-bundler.js'
 console.log('testsContext ')
 console.log('testsContext ', process.cwd())
 const karmaConfig = {
+    browserDisconnectTimeout: 10000,
+    browserDisconnectTolerance: 1,
+    browserNoActivityTimeout: 60000,//by default 10000
     basePath: process.cwd(),
     browsers: ['ChromeHeadless'],
     singleRun: !argv.watch,
