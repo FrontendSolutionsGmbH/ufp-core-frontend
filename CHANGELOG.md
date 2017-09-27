@@ -6,6 +6,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [unreleased]
 
+## [0.3.4]
+
+- ufp-test script command providing karma test setup
+- ufp-make build command with lots of lint/test outputs for CI
+
 ## [0.3.3]
 
 - remove ufp-optimizer as required dependency (too long install)
