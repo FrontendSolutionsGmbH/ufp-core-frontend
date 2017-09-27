@@ -83,8 +83,8 @@ logger.log('Execute Build')
 
 if (CLEAN) {
     logger.info('Cleaning build folders...')
-    rimraf.sync(path.join(process.cwd, 'dist'), handleError)
-    rimraf.sync(path.join(process.cwd, Constants.TEST_REPORT_FOLDER), handleError)
+    rimraf.sync(path.join(process.cwd(), 'dist'), handleError)
+    rimraf.sync(path.join(process.cwd(), Constants.TEST_REPORT_FOLDER), handleError)
     logger.info('.. finished')
 }
 
