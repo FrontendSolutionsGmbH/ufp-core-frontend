@@ -1,3 +1,5 @@
+/* eslint filenames/match-exported: 0 */
+
 const path = require('path')
 const fs = require('fs')
 // const glob = require('glob')

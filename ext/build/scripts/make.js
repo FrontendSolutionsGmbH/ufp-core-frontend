@@ -1,8 +1,8 @@
 const path = require('path')
-const fs = require('fs')
 const execSync = require('child_process').execSync
 const Constants = require('./constants')
 const logger = require('../lib/logger')
+const rimraf = require('rimraf')
 const validator = require('validator')
 /**
  * Parameter Parsing
@@ -30,13 +30,10 @@ var {
 const handleError = (err) => {
     logger.error('Execution failed', err)
     if (!FORCE) {
-        throw 'exiting, use --FORCE to continue on fail'
+        throw new Error('exiting, use --FORCE to continue on fail')
     } else {
-
         logger.warn('Continuing build although step failed!')
-
     }
-
 }
 
 const sanitizeInput = (value) => {
