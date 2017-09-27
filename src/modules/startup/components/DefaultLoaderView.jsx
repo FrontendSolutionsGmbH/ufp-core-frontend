@@ -13,27 +13,27 @@ export class DefaultLoaderView extends Component {
     }
 
     render() {
-        return (  <div id="ufp-loader" >
+        return (<div id="ufp-loader" >
                 <div id="ufp-spinner" >
                     <div className="ufp-loader-bar"
                          style={
                              {
 
                                  height: this.props.totalPercentage + '%'
-                             }} ></div>
+                             }} />
                     <div className="ufp-loader-bar"
                          style={
                              {
 
                                  height: this.props.stepPercentage + '%'
-                             }} ></div>
+                             }} />
                     <div className="ufp-loader-bar"
                          style={
                              {
 
                                  height: this.props.stagePercentage + '%'
                              }
-                         } ></div>
+                         } />
                 </div>
             </div>
         )

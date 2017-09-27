@@ -54,7 +54,6 @@ const Runfest = {
         _RootSibblings.map((item, index) => {
             const Component = item
             sibblings.push(<Component />)
-
         })
 
         _Providers.map((item, index) => {
@@ -67,7 +66,6 @@ const Runfest = {
                 <Component>{index == 0 ?
                     (sibblings.length == 0 ? currentRootComponent :
                         <div>{currentRootComponent}{sibblings}</div>) : currentRootComponent }</Component>)
-
         })
         console.log('RootComponent is  ', currentRootComponent)
 

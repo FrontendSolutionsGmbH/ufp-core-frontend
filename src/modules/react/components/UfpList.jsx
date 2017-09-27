@@ -22,7 +22,6 @@ const UFPList = ({data, props, component, inputRef = undefined}) => {
         return null
     } else {
         return (<div>{content}</div>)
-
     }
 }
 
