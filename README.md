@@ -5,10 +5,8 @@
 Ufp-Core is a prefactured webpack build system and a redux-runtime for creating
 applications as easy as possible
 
-(Bitbucket Repo Only )
 [DOCS](docs/README.md)
 
-(Bitbucket Repo Only )
 [CHANGELOG](CHANGELOG.md)
 
 ## Quick Start
