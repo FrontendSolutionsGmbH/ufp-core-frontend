@@ -66,6 +66,7 @@ const karmaConfig = {
         plugins: webpackConfig.plugins,
         resolve: webpackConfig.resolve,
         externals: {
+            'browser': 'browser',
             'react/addons': 'react',
             'react/lib/ExecutionEnvironment': 'react',
             'react/lib/ReactContext': 'react'
