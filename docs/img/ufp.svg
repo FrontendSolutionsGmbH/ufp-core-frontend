@@ -4,12 +4,6 @@
      viewBox="-4 -4 22 22">
 
     <g id="ufp">
-        <path id="U"
-              d="M 4 7 h 7 v 4 H 4 "
-              fill="transparent"
-              stroke="darkblue"
-              stroke-width="2">
-        </path>
 
         <path id="F"
               d="M 1 14 V 1 h 9 M 1 9 h 9"
