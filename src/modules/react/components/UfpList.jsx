@@ -9,6 +9,7 @@ const UFPList = ({data, props, component, inputRef = undefined}) => {
             console.log('Rendering UFP ComponentNew', ComponentNew)
             content.push(
                 <ComponentNew data={item}
+                              inputRef={inputRef}
                               {...props}
                               key={'list-' + (item.id || item.name || index)} />
             )
@@ -18,11 +19,10 @@ const UFPList = ({data, props, component, inputRef = undefined}) => {
      * note:
      *  until react 16 is out we have to contain it in a wrapped <div> :(
      */
-    if (content.length == null) {
+    if (content.length === null) {
         return null
     } else {
         return (<div>{content}</div>)
-
     }
 }
 

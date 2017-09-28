@@ -1,3 +1,5 @@
+/* eslint filenames/match-exported: 0 */
+
 const path = require('path')
 const fs = require('fs')
 // const glob = require('glob')
@@ -28,7 +30,7 @@ const __PROD__ = project.env === 'production'
 
 console.log('ENVIRONMENT IS ', process.env)
 console.log('ENVIRONMENT IS ', process.env.UFP_VERSION)
-
+process.traceDeprecation = true
 const UfpConfig = {
 
     UFP_VERSION: process.env.UFP_VERSION || '0.0.0',
@@ -145,15 +147,15 @@ folders.map((folderData) => {
  */
 // JavaScript
 // ------------------------------------
-config.module.rules.push(
-    {
-        test: /\.(js|jsx)$/,
-        exclude: /node_modules/,
+const javascriptConfig = {
+    test: /\.(js|jsx)$/,
+    exclude: /node_modules/,
 
-        use: [{
+    use: [
+        {
             loader: 'babel-loader',
 
-            query: {
+            options: {
                 cacheDirectory: true,
                 plugins: [
 
@@ -192,32 +194,37 @@ config.module.rules.push(
                 ]
             }
         },
-            {
-                loader: 'preprocess-loader',
-                query: {
-                    NODE_ENV: project.env,
+        {
+            loader: 'preprocess-loader',
+            options: {
+                NODE_ENV: project.env,
 
-                    ...UfpConfig
-                }
-            },
-            {
-                loader: 'preprocessor-loader',
-                query: {
-                    config: path.join(__dirname, '../macrodefinition-' + project.env + '.json')
-                }
-
+                ...UfpConfig
             }
-            // {
-            //     loader: 'eslint-loader',
-            //     options: {
-            //         configFile: path.join(__dirname, '../../../../src/.eslintrc')
-            //     }
-            // }
+        },
+        {
+            loader: 'preprocessor-loader',
+            query: 'config=' + path.join(__dirname, '../macrodefinition-' + project.env + '.json')
 
-        ]
-    }
-)
+        },
 
+    ]
+}
+
+if (project.env !== 'test') {
+    /**
+     * disable linting for /test files
+     * todo: prepare lint config for tests
+     */
+    javascriptConfig.use.push({
+        loader: 'eslint-loader',
+        options: {
+            configFile: path.join(__dirname, '../../../../src/.eslintrc')
+        }
+    })
+}
+
+config.module.rules.push(javascriptConfig)
 // Styles
 // ------------------------------------
 const extractStyles = new ExtractTextPlugin({

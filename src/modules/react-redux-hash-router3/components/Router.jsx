@@ -1,9 +1,14 @@
 import React from 'react'
 import ReactRouter from 'react-router/lib/Router'
+import PropTypes from 'prop-types'
 
 const Router = (props) => (
-    <ReactRouter history={props.history}
-                 children={props.routes} />
+    <ReactRouter children={props.routes}
+                 history={props.history} />
 )
 
+Router.propTypes = {
+    routes: PropTypes.object,
+    history: PropTypes.object
+}
 export default Router

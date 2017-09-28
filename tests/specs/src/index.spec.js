@@ -1,11 +1,10 @@
-import UfpCore from 'core/UfpCore'
+describe('Proof of Concept ', () => {
 
-describe('(Internal Module) Location', () => {
+    it('1 should be 1', () => {
 
-    it('Should export a constant LOCATION_CHANGE.', () => {
-        expect(UfpCore)
+        expect(1)
             .to
-            .equal('LOCATION_CHANGE')
+            .equal(1)
     })
 
 })

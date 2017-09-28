@@ -1,3 +1,4 @@
+/* eslint filenames/match-exported: 0 */
 const argv = require('yargs').argv
 const webpackConfig = require('./webpack.config.js')
 
@@ -6,12 +7,34 @@ const TEST_BUNDLER = './tests/test-bundler.js'
 console.log('testsContext ')
 console.log('testsContext ', process.cwd())
 const karmaConfig = {
+    browserDisconnectTimeout: 10000,
+    browserDisconnectTolerance: 1,
+    browserNoActivityTimeout: 60000, //by default 10000
     basePath: process.cwd(),
     browsers: ['ChromeHeadless'],
     singleRun: !argv.watch,
     coverageReporter: {
         reporters: [
-            {type: 'text-summary'}
+            {
+                type: 'html',
+                dir: 'test-report/coverage',
+                subdir: 'html'
+            },
+            {
+                type: 'text-summary',
+                dir: 'test-report/coverage',
+                subdir: 'coverage'
+            },
+            {
+                type: 'clover',
+                dir: 'test-report/coverage',
+                subdir: 'clover'
+            },
+            {
+                type: 'lcov',
+                dir: 'test-report/coverage',
+                subdir: 'lcov'
+            }
         ]
     },
     files: [{
@@ -21,15 +44,21 @@ const karmaConfig = {
         included: true
     }],
     frameworks: ['mocha'],
-    reporters: ['mocha'],
+    reporters: ['mocha', 'junit', 'coverage'],
     preprocessors: {
-        [TEST_BUNDLER]: ['webpack']
+        [TEST_BUNDLER]: ['webpack', 'coverage']
     },
     logLevel: 'DEBUG',
     browserConsoleLogOptions: {
         terminal: true,
         format: '%b %T: %m',
         level: ''
+    },
+    junitReporter: {
+        outputDir: 'test-report', // results will be saved as $outputDir/$browserName.xml
+        outputFile: undefined, // if included, results will be saved as $outputDir/$browserName/$outputFile
+        useBrowserName: false, // add browser name to report and classes names
+        xmlVersion: null // use '1' if reporting to be per SonarQube 6.2 XML format
     },
     webpack: {
         entry: TEST_BUNDLER,
@@ -38,6 +67,7 @@ const karmaConfig = {
         plugins: webpackConfig.plugins,
         resolve: webpackConfig.resolve,
         externals: {
+            'browser': 'browser',
             'react/addons': 'react',
             'react/lib/ExecutionEnvironment': 'react',
             'react/lib/ReactContext': 'react'

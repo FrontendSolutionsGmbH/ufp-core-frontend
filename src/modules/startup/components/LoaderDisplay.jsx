@@ -24,16 +24,16 @@ export class LoaderDisplay extends Component {
     }
 
     render() {
-
         if (this.props.appInitialized) {
             return (this.props.appComponent
             )
         } else {
             const Component = this.props.loaderComponent
-            return (  <Component {...this.props} />
+            return (<Component {...this.props} />
             )
         }
     }
+
 }
 
 const mapStateToProps = (state) => ({

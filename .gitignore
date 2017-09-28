@@ -2,5 +2,8 @@ ufp-core/lib/
 *.backup
 *.lock
 ufp-core/package-lock.json
+test-report/
+lib/
 ufp-core/node_modules/
 node_modules/
+coverage/

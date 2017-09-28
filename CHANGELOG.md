@@ -6,6 +6,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [unreleased]
 
+
+## [0.3.4]
+
+- ufp-test script command providing karma test setup
+- ufp-make build command with lots of lint/test outputs for CI
+- release pipeline for ufp-core testing, linting, packaging with examples
+
 ## [0.3.3]
 
 - remove ufp-optimizer as required dependency (too long install)
@@ -47,7 +54,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 - Initial Release
 
-[Unreleased]: https://bitbucket.org/frontendsolutions/ufp-core/branches/compare/0.3.2...develop
+[Unreleased]: https://bitbucket.org/frontendsolutions/ufp-core/branches/compare/0.3.4...develop
+[0.3.4]: https://github.com/FrontendSolutionsGmbH/ufp-core-frontend/compare/0.3.4...0.3.4
+[0.3.3]: https://github.com/FrontendSolutionsGmbH/ufp-core-frontend/compare/0.3.2...0.3.3
 [0.3.2]: https://github.com/FrontendSolutionsGmbH/ufp-core-frontend/compare/0.3.1...0.3.2
 [0.3.1]: https://bitbucket.org/frontendsolutions/ufp-core/branches/compare/0.3.0%0D0.3.1
 [0.3.0]: https://bitbucket.org/frontendsolutions/ufp-core/branches/compare/0.2.2%0D0.3.0

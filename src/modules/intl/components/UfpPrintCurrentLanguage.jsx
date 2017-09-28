@@ -12,8 +12,8 @@ export class UfpPrintCurrentLanguage extends Component {
 
     render() {
         return (
-            <FormattedMessage id={'language_label_' + this.props.currentLanguage}
-                              defaultMessage={this.props.currentLanguage} />)
+            <FormattedMessage defaultMessage={this.props.currentLanguage}
+                              id={'language_label_' + this.props.currentLanguage} />)
     }
 
 }

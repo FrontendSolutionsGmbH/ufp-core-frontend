@@ -6,7 +6,7 @@ const logger = require('./logger')
 const rimraf = require('rimraf')
 const webpackConfig = require('../webpack.config.js')
 const project = require('../../project.config')
-rimraf(path.join(__dirname, lib))
+rimraf(path.join(__dirname, '../../lib'))
 const runWebpackCompiler = (webpackConfig) =>
     new Promise((resolve, reject) => {
         webpack(webpackConfig)
@@ -49,6 +49,7 @@ const compile = () => Promise.resolve()
                                      }))
                                  }
                                  logger.success(`Compiler finished successfully! See ./${project.outDir}.`)
+                                 return stats
                              })
                              .catch((err) => logger.error('Compiler encountered errors.', err))
 
