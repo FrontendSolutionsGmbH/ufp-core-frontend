@@ -11,8 +11,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - ufp-test script command providing karma test setup
 - ufp-make build command with lots of lint/test outputs for CI
-- 
-
+- release pipeline for ufp-core testing, linting, packaging with examples
 
 ## [0.3.3]
 
