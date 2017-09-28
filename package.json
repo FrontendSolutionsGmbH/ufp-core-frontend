@@ -35,7 +35,7 @@
     "preversion": "echo postinstall",
     "dev": "babel-node src/index.js",
     "make": "node build/make",
-    "lint": "eslint src/**/*.js* -c src/.eslintrc ",
+    "lint": "eslint src build ext  --ext .jsx,.js --config src/.eslintrc ",
     "lint:fix": "npm run lint -- --fix ",
     "compile": "babel -d lib/ src/ --copy-files",
     "test": "cross-env NODE_ENV=test karma start build/karma.config",
