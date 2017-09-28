@@ -51,7 +51,7 @@ const Runfest = {
         const sibblings = []
         console.log('Root Sibblings are ', sibblings)
 
-        _RootSibblings.map((item, index) => {
+        _RootSibblings.map((item) => {
             const Component = item
             sibblings.push(<Component />)
         })
@@ -63,13 +63,13 @@ const Runfest = {
             // trick here is summing up all providers as childs
             currentRootComponent = (
 
-                <Component>{index == 0 ?
-                    (sibblings.length == 0 ? currentRootComponent :
+                <Component>{index === 0 ?
+                    (sibblings.length === 0 ? currentRootComponent :
                         <div>{currentRootComponent}{sibblings}</div>) : currentRootComponent }</Component>)
         })
         console.log('RootComponent is  ', currentRootComponent)
 
-        ReactDOM.render(<Provider store={UfpCore.getStore()} >{currentRootComponent}</Provider>, _RootNode
+        ReactDOM.render(<Provider store={UfpCore.getStore()}>{currentRootComponent}</Provider>, _RootNode
         )
     }
 }
