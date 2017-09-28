@@ -1,5 +1,4 @@
 const path = require('path')
-const fs = require('fs')
 const execSync = require('child_process').execSync
 const Constants = require('../ext/build/scripts/constants')
 const logger = require('../ext/build/lib/logger')
@@ -32,7 +31,7 @@ var {
 const sanitizeInput = (value) => {
     logger.info('sanitizing ', value)
     var result = value
-    result = validator.blacklist(value, '&|'); //=> true
+    result = validator.blacklist(value, '&|') //=> true
     return result
 }
 
@@ -56,13 +55,10 @@ logger.info('UFP_NODE_ENV = ', UFP_NODE_ENV)
 const handleError = (err) => {
     logger.error('Execution failed', err)
     if (!FORCE) {
-        throw 'exiting, use --FORCE to continue on fail'
+        throw new Error('exiting, use --FORCE to continue on fail')
     } else {
-
         logger.warn('Continuing build although step failed!')
-
     }
-
 }
 
 /**
@@ -74,9 +70,7 @@ const handleError = (err) => {
  * @param command
  */
 const executeCommand = (command) => {
-
     try {
-
         logger.log('Executing command ', command)
 
         execSync(command, {
@@ -84,11 +78,8 @@ const executeCommand = (command) => {
             stdio: 'inherit'
         })
     } catch (err) {
-
         handleError(err)
-
     }
-
 }
 logger.log('Execute Build')
 
@@ -115,4 +106,3 @@ logger.info('postCommands', postCommands)
 postCommands.map(executeCommand)
 
 logger.info('Build finished ')
-

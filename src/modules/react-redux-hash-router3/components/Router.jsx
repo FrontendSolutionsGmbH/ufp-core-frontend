@@ -7,7 +7,7 @@ const Router = (props) => (
                  history={props.history} />
 )
 
-RouterThisIsATestForEslintCI.propTypes = {
+Router.propTypes = {
     routes: PropTypes.object,
     history: PropTypes.object
 }

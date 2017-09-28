@@ -1,3 +1,4 @@
+/* eslint filenames/match-exported: 0 */
 const argv = require('yargs').argv
 const webpackConfig = require('./webpack.config.js')
 
@@ -8,7 +9,7 @@ console.log('testsContext ', process.cwd())
 const karmaConfig = {
     browserDisconnectTimeout: 10000,
     browserDisconnectTolerance: 1,
-    browserNoActivityTimeout: 60000,//by default 10000
+    browserNoActivityTimeout: 60000, //by default 10000
     basePath: process.cwd(),
     browsers: ['ChromeHeadless'],
     singleRun: !argv.watch,

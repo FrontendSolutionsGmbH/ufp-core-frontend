@@ -39,7 +39,9 @@
     "lint:fix": "npm run lint -- --fix ",
     "compile": "babel -d lib/ src/ --copy-files",
     "test": "cross-env NODE_ENV=test karma start build/karma.config",
-    "watch": "node bin/watchSrc"
+    "watch": "node bin/watchSrc",
+    "cpd": "node node_modules/jscpd/bin/jscpd --path ./ --verbose --languages javascript  -e '**/node_modules/**'    ",
+    "mdl": "node node_modules/mdl/bin/mdl --help"
   },
   "bin": {
     "ufp-make": "ext/build/scripts/make.js"
@@ -132,6 +134,7 @@
     "inherits": "^2.0.3",
     "ini": "^1.3.4",
     "istanbul": "^0.4.5",
+    "jscpd": "^0.6.15",
     "karma": "^1.7.1",
     "karma-chai": "^0.1.0",
     "karma-chrome-launcher": "^2.2.0",
@@ -144,6 +147,7 @@
     "karma-sinon": "^1.0.5",
     "karma-webpack": "^2.0.4",
     "logger": "^0.0.1",
+    "mdl": "^0.1.1",
     "minimatch": "^3.0.4",
     "mocha": "^3.5.3",
     "native-promise-only": "^0.8.1",
