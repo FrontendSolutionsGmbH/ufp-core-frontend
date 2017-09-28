@@ -13,6 +13,12 @@ Ufp is built upon Redux, the configuration section contains information on how t
 redux modules and how to inject own redux modules into the system
 
 [UFP Configuration](ufp-configuration.md)
+## Ufp Script Commands
+
+Ufp provides npm script commands to be used by the project. These include the webpack dev
+server start, the testing, the linting, and the building of the project
+
+[UFP Script Commands](ufp-script-commands.md)
 
 ## Ufp Concepts
 
