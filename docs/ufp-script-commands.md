@@ -27,25 +27,79 @@ for manual triggering and reference, this command is executed
 
        node node_modules/ufp-core/ext/UpdatePackageJson
 
-#### ufp-make
+#### ufp-make [build]
 
-this command triggers a complete build of the project using the following parameters:
+this command is the main build command and features build specific
+environment variable configuration.
 
-    UFP_VERSION
-    UFP_API_TYPE
-    UFP_THEM,
-    UFP_NODE_ENV
+    Direct call
+    > node node_modules/ufp-core/ext/build/scripts/make [PARAMETERS]
+    Call using npm-script
+    > npm run ufp-make -- [PARAMETERS]
+    Call using npm linked cli command
+    > ufp-make [PARAMETERS]
+    
+Help output:
+    
+      > node node_modules/ufp-core/ext/build/scripts/make "--help"
+      
+      Options:
+        --help          Show help                                            [boolean]
+        --version       Show version number                                  [boolean]
+        --FORCE         allow fail of single steps          [boolean] [default: false]
+        --UFP_STEP      build step
+                        [choices: "all", "validate", "test", "build"] [default: "all"]
+        --CLEAN         rimraf build folders before start   [boolean] [default: false]
+        --UFP_VERSION   project specific version,
+                        provided as UFP_VERSION environment variable
+                                                      [default: "ufp-version-default"]
+        --UFP_API_TYPE  api type,
+                        provided as UFP_API_TYPE environment variable
+                                           [choices: "live", "mock"] [default: "live"]
+        --UFP_NODE_ENV  node environment value,
+                        provided as NODE_ENV environment variable
+                [choices: "production", "development", "test"] [default: "production"]
+        --UFP_THEME     theming ,
+                        provided as UFP_THEME environment variable
+                                                                  [default: "default"]
 
- "ufp-make": "npm install && node node_modules/ufp-core/ext/build/scripts/make",
 
-    "ufp-install": "npm install && node node_modules/ufp-core/ext/Install",
-    "ufp-update": "node node_modules/ufp-core/ext/UpdatePackageJson",
-    "ufp-start": "cross-env NODE_ENV=development node node_modules/ufp-core/ext/build/scripts/start",
-    "ufp-compile": "cross-env NODE_ENV=production node node_modules/ufp-core/ext/build/scripts/compile",
-    "ufp-compile:dev": "cross-env NODE_ENV=development node node_modules/ufp-core/ext/build/scripts/compile",
-    "ufp-compile:bare": "node node_modules/ufp-core/ext/build/scripts/compile",
-    "webpack": "node build/scripts/compile",
-    "ufp-lint": "eslint src --ext .jsx,.js --config node_modules/ufp-core/src/.eslintrc -f node_modules/eslint-bamboo-formatter/reporter.js",
-    "ufp-lint:fix": "npm run ufp-lint -- --fix",
-    "ufp-test": "cross-env NODE_ENV=test karma start node_modules/ufp-core/ext/presets/default/config/karma.config",
-    "ufp-test:watch": "npm run ufp-test -- --watch",
+###  ufp-update [setup]
+  
+This command loads the ufp-script commands into the local package.json. As of now
+this has to be done after updating to a new ufp-version due to changes/additions in 
+the provided command set of ufp. 
+
+    REMARK: only script commands documented in this document are officially supported
+   
+execution calls 
+  
+  Direct
+  > node node_modules/ufp-core/ext/UpdatePackageJson
+  Call using npm-script 
+  > npm run ufp-update 
+  
+
+### ufp-start [development]
+
+Starts the webpack dev server and provides the application under [http://localhost:3000](http://localhost:3000).
+    
+    tl;dr: the webpack configuration is setup for a /src folder in the project,
+    using ufp-runtime configuration objects to setup redux store application
+
+### ufp-lint:fix [development]
+
+Linting plays a special role in the ufp- setup, the linting is buildin to the webpack loader, so it will complain about various code style issues that are preconfigured in ufp-core. The ufp-lint script command is what makes it visible on commandline and using the :fix option most of the issues can be fixed easily. Nevertheless here is the documentation on how to perform on that area
+
+
+    Direct
+    [NO DIRECT CALL AVAILABLE]
+    Npm Script
+    npm run ufp-lint
+    
+ and appending the :fix option
+ 
+    npm run ufp-lint:fix
+    
+    
+

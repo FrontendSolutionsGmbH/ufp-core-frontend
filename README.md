@@ -1,9 +1,28 @@
-# Ufp Core
+# Ufp Core Frontend
 
-## Summary
+![UFP Logo Anim](docs/img/ufp.svg "UFP Logo Anim")
 
-Ufp-Core is a prefactured webpack build system and a redux-runtime for creating
-applications as easy as possible
+Ufp-Core-Frontend is a Webpack build system managing a side effect enabled Redux store using  ReduxThunk and ReduxObservable .   The Ufp-Middleware is designed to provide application wide interceptions for asyncronous operations. Ufp-Runfest is the Runtime Manifest definition to construct ufp-applications.
+
+build in modules:
+
+**ufp-startup** providers handling of application initialisation
+
+**ufp-menu** provides application menu handling
+
+**ufp-epic** provides RxJs ReduxObservable Epic registration
+
+**ufp-intl** provides managing of ReactIntl redux internationalisation handling, handling redux-intl provider
+
+**ufp-config** key/value store for application settings (see example)
+
+**ufp-react** react15.x react handling providing a global redux-provider
+
+**ufp-redux-form** ReduxForm Runfest registering Reducer and provides ReduxForms - as is
+
+
+
+
 
 [DOCS](docs/README.md)
 
