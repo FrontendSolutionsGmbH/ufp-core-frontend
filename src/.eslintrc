@@ -35,7 +35,8 @@
     "__NPMVERSION__": "1.0.13",
     "__DEFAULT_THEME__": "defaultTheme",
     "__SHOW_CONSOLE__": true,
-    "__APP__": "admin"
+    "__APP__": "admin",
+    "ROUTER3_DYNAMICINCLUDE"
   },
   "rules": {
     "arrow-body-style": [

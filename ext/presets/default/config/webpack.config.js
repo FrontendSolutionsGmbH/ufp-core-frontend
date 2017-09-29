@@ -145,71 +145,58 @@ folders.map((folderData) => {
 /**
  * end of ufp static folders copywebpackplugin config
  */
-// JavaScript
-// ------------------------------------
+    // JavaScript
+    // ------------------------------------
 const javascriptConfig = {
-    test: /\.(js|jsx)$/,
-    exclude: /node_modules/,
+        test: /\.(js|jsx)$/,
+        exclude: /node_modules/,
 
-    use: [
-        {
-            loader: 'babel-loader',
+        use: [
+            {
+                loader: 'babel-loader',
 
-            options: {
-                cacheDirectory: true,
-                plugins: [
+                options: {
+                    cacheDirectory: true,
+                    plugins: [
 
-                    'babel-plugin-transform-class-properties',
-                    'babel-plugin-syntax-dynamic-import',
-                    //  'transform-react-remove-prop-types',
-                    'babel-plugin-transform-react-jsx',
-                    [
-                        'babel-plugin-transform-runtime',
-                        {
-                            helpers: false,
-                            polyfill: false, // we polyfill needed features in src/normalize.js
-                            regenerator: false
-                        }
+                        'babel-plugin-transform-class-properties',
+                        'babel-plugin-syntax-dynamic-import',
+                        //  'transform-react-remove-prop-types',
+                        'babel-plugin-transform-react-jsx',
+                        [
+                            'babel-plugin-transform-runtime',
+                            {
+                                helpers: false,
+                                polyfill: false, // we polyfill needed features in src/normalize.js
+                                regenerator: false
+                            }
+                        ],
+                        [
+                            'babel-plugin-transform-object-rest-spread',
+                            {
+                                useBuiltIns: false // we polyfill Object.assign in src/normalize.js
+                            }
+                        ]
                     ],
-                    [
-                        'babel-plugin-transform-object-rest-spread',
-                        {
-                            useBuiltIns: false // we polyfill Object.assign in src/normalize.js
-                        }
+                    presets: [
+                        // use this for es5 transpile target
+                        ['es2015', {'modules': false}], ['react']
+
+                        // modern way of declaring transpile targets
+                        // ['babel-preset-env', {
+                        //   modules: false,
+                        //   targets: {
+                        //     chrome: "60",
+                        //   },
+                        //   uglify: true,
+                        //
+                        // }],
                     ]
-                ],
-                presets: [
-                    // use this for es5 transpile target
-                    ['es2015', {'modules': false}], ['react']
+                }
+            },
 
-                    // modern way of declaring transpile targets
-                    // ['babel-preset-env', {
-                    //   modules: false,
-                    //   targets: {
-                    //     chrome: "60",
-                    //   },
-                    //   uglify: true,
-                    //
-                    // }],
-                ]
-            }
-        },
-        {
-            loader: 'preprocess-loader',
-            options: {
-                NODE_ENV: project.env,
-
-                ...UfpConfig
-            }
-        },
-        {
-            loader: 'preprocessor-loader',
-            query: 'config=' + path.join(__dirname, '../macrodefinition-' + project.env + '.json')
-
-        },
-
-    ]
-}
+        ]
+    }
 
 if (project.env !== 'test') {
     /**
@@ -219,10 +206,26 @@ if (project.env !== 'test') {
     javascriptConfig.use.push({
         loader: 'eslint-loader',
         options: {
+            formatter: require("eslint/lib/formatters/codeframe"),
+
             configFile: path.join(__dirname, '../../../../src/.eslintrc')
         }
     })
 }
+
+javascriptConfig.use.push({
+        loader: 'preprocess-loader',
+        options: {
+            NODE_ENV: project.env,
+
+            ...UfpConfig
+        }
+    },
+    {
+        loader: 'preprocessor-loader',
+        query: 'config=' + path.join(__dirname, '../macrodefinition-' + project.env + '.json')
+
+    })
 
 config.module.rules.push(javascriptConfig)
 // Styles
