@@ -78,12 +78,60 @@ const karmaConfig = {
         },
 
         module: {
-            loaders: [
+            rules: [
                 {
                     test: /\.js$/,
                     exclude: /node_modules/,
-                    loader: 'babel-loader?presets[]=es2015'
+                    use: [{
+                        loader: 'babel-loader',
+
+                        options: {
+                            cacheDirectory: true,
+                            plugins: [
+
+                                'babel-plugin-transform-class-properties',
+                                'babel-plugin-syntax-dynamic-import',
+                                //  'transform-react-remove-prop-types',
+                                'babel-plugin-transform-react-jsx',
+                                [
+                                    'babel-plugin-transform-runtime',
+                                    {
+                                        helpers: false,
+                                        polyfill: false, // we polyfill needed features in src/normalize.js
+                                        regenerator: false
+                                    }
+                                ],
+                                [
+                                    'babel-plugin-transform-object-rest-spread',
+                                    {
+                                        useBuiltIns: false // we polyfill Object.assign in src/normalize.js
+                                    }
+                                ]
+                            ],
+                            presets: [
+                                // use this for es5 transpile target
+                                ['es2015', {'modules': false}], ['react']
+
+                                // modern way of declaring transpile targets
+                                // ['babel-preset-env', {
+                                //   modules: false,
+                                //   targets: {
+                                //     chrome: "60",
+                                //   },
+                                //   uglify: true,
+                                //
+                                // }],
+                            ]
+                        }
+                    }],
+                },
+
+                {
+                    test: /\.(sass|scss|css)$/,
+                    loader: 'sass-loader',
+
                 }
+
             ]
         },
         externals: {
