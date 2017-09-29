@@ -6,7 +6,7 @@ const karmaConfig = {
     browserNoActivityTimeout: 60000, //by default 10000
     basePath: '../',
     browsers: ['ChromeHeadless'],
-    singleRun: false,
+    singleRun: true,
     coverageReporter: {
         dir: 'coverage',
         includeAllSources: true,
