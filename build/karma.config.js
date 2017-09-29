@@ -6,9 +6,9 @@ const karmaConfig = {
     browserNoActivityTimeout: 60000, //by default 10000
     basePath: '../',
     browsers: ['ChromeHeadless'],
-    singleRun: true,
+    singleRun: false,
     coverageReporter: {
-        dir: 'coveragexxx',
+        dir: 'coverage',
         includeAllSources: true,
         reporters: [
             {
@@ -37,7 +37,7 @@ const karmaConfig = {
     files: [
         {
             pattern: TEST_BUNDLER,
-            watched: false,
+            watched: true,
             served: true,
             included: true
         }
@@ -62,7 +62,21 @@ const karmaConfig = {
         [TEST_BUNDLER]: ['webpack', 'coverage']
     },
     webpack: {
-        entry: TEST_BUNDLER,
+        entry: [
+            TEST_BUNDLER,
+            'src/index.js'
+        ],
+        resolve: {
+            // enforce no-symlinking for module resolving, required when using modules from filesystem (e.g. ufp-core)
+            symlinks: false,
+
+            modules: [
+                'lib',
+                'node_modules'
+            ],
+            extensions: ['*', '.js', '.jsx', '.json']
+        },
+
         module: {
             loaders: [
                 {

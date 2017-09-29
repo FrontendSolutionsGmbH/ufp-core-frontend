@@ -1,10 +1,8 @@
-describe('Proof of Concept ', () => {
+import * as index from 'index'
 
-    it('1 should be 1', () => {
-
-        expect(1)
-            .to
-            .equal(1)
+describe('Ufp-Core lib index.js exists ', () => {
+    it('Should Exist', () => {
+        expect(index).to.exist
     })
 
 })
