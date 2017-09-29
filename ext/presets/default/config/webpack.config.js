@@ -206,8 +206,7 @@ if (project.env !== 'test') {
     javascriptConfig.use.push({
         loader: 'eslint-loader',
         options: {
-            formatter: require("eslint/lib/formatters/codeframe"),
-
+            formatter: require('eslint/lib/formatters/codeframe'),
             configFile: path.join(__dirname, '../../../../src/.eslintrc')
         }
     })
