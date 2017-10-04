@@ -12,6 +12,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - react16 dependency
 - test setup utility
 
+- CHANGE: include the following in the test-bundler.js to accomodate enzyme-3.x compatibility until
+    a more convenient way is in place
+
+        import 'ufp-core/ext/presets/default/config/karma.setup.js'
+
 
 ## [0.3.5]
 
