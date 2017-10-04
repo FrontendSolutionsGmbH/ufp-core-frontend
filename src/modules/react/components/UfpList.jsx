@@ -22,7 +22,7 @@ const UFPList = ({data, props, component, inputRef = undefined}) => {
     if (content.length === null) {
         return null
     } else {
-        return (<div>{content}</div>)
+        return (content)
     }
 }
 
