@@ -1,4 +1,5 @@
 /* eslint filenames/match-exported: 0 */
+const path = require('path')
 const argv = require('yargs').argv
 const webpackConfig = require('./webpack.config.js')
 
@@ -37,12 +38,20 @@ const karmaConfig = {
             }
         ]
     },
-    files: [{
-        pattern: TEST_BUNDLER,
-        watched: false,
-        served: true,
-        included: true
-    }],
+    files: [
+
+        {
+            pattern: path.resolve(__dirname, 'karma.setup.js'),
+            watched: false,
+            served: true,
+            included: false
+        },
+        {
+            pattern: TEST_BUNDLER,
+            watched: false,
+            served: true,
+            included: true
+        }],
     frameworks: ['mocha'],
     reporters: ['mocha', 'junit', 'coverage'],
     preprocessors: {
