@@ -7,7 +7,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [unreleased]
 
 
+## [0.4.0]
+
+- react16 dependency
+- test setup utility
+
+
 ## [0.3.5]
+
 
 - fix: Macro handling eslint
     replace Macro: **@ROUTER3_DYNAMICINCLUDE** with **ROUTER3_DYNAMICINCLUDE** 

@@ -1,4 +1,3 @@
-
 // import 'normalize.js'
 import chai from 'chai'
 import sinon from 'sinon'
@@ -6,6 +5,10 @@ import dirtyChai from 'dirty-chai'
 import chaiAsPromised from 'chai-as-promised'
 import sinonChai from 'sinon-chai'
 import chaiEnzyme from 'chai-enzyme'
+import Enzyme from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
+
+Enzyme.configure({ adapter: new Adapter() });
 
 console.log('TEST BUNDLER')
 

@@ -59,7 +59,7 @@ const karmaConfig = {
 
     preprocessors: {
 
-        [TEST_BUNDLER]: ['webpack', 'coverage']
+        [TEST_BUNDLER]: ['webpack']
     },
     webpack: {
         entry: [
