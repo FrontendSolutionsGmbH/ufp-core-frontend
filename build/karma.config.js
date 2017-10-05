@@ -3,7 +3,7 @@ const TEST_BUNDLER = './tests/test-bundler.js'
 const argv = require('yargs')
     .boolean('watch').argv
 
-console.log('Argv is ', argv)
+// console.log('Argv is ', argv)
 
 const karmaConfig = {
     browserDisconnectTimeout: 10000,

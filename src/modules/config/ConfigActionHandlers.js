@@ -5,13 +5,13 @@ import ObjectUtils from '../../utils/ObjectUtils'
 export default {
 
     [ConfigConstants.ACTION_NAMES.SET_CONFIG_VALUE]: (state, action) => {
-        console.log('Config Reducer Setting config value', action.payload)
+        // console.log('Config Reducer Setting config value', action.payload)
 
         var updater = ObjectUtils.createUpdate(state,
             'data.' + action.payload.area + '.' + action.payload.key, action.payload.value)
 
-        console.log('yyyyyyyyyyCurrent state is ', JSON.stringify(state))
-        console.log('yyyyyyyyyyUpdate would be then ', JSON.stringify(updater))
+        // console.log('yyyyyyyyyyCurrent state is ', JSON.stringify(state))
+        // console.log('yyyyyyyyyyUpdate would be then ', JSON.stringify(updater))
         var result = update(state, updater)
         return result
         // //initialise main data container

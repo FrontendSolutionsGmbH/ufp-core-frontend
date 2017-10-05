@@ -25,7 +25,8 @@ exports.default = {
                     it('Should Exist', () => {
                         expect(${className}).to.exist
                     })
-                })`
+                })
+`
         if (className !== 'index') {
 
             return testFile

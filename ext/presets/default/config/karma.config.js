@@ -55,7 +55,7 @@ const karmaConfig = {
     frameworks: ['mocha'],
     reporters: ['mocha', 'junit', 'coverage'],
     preprocessors: {
-        [TEST_BUNDLER]: ['webpack', 'coverage']
+        [TEST_BUNDLER]: ['webpack']
     },
     logLevel: 'DEBUG',
     browserConsoleLogOptions: {

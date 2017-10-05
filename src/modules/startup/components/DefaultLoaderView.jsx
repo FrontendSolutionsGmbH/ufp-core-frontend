@@ -4,7 +4,7 @@ import './DefaultLoaderView.scss'
 
 export class DefaultLoaderView extends Component {
 
-    propTypes = {
+    static propTypes = {
 
         totalPercentage: PropTypes.number.isRequired,
         stagePercentage: PropTypes.number.isRequired,

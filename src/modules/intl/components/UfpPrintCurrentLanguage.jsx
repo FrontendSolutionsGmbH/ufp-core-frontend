@@ -6,7 +6,7 @@ import IntlSelectors from '../IntlSelectors'
 
 export class UfpPrintCurrentLanguage extends Component {
 
-    propTypes = {
+    static propTypes = {
         currentLanguage: PropTypes.string
     }
 

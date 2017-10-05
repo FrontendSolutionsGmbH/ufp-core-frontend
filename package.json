@@ -1,6 +1,6 @@
 {
   "name": "ufp-core",
-  "version": "0.3.5",
+  "version": "0.4.0-develop",
   "description": "UFP Core - Build frontend applications at ease",
   "main": "lib/index.js",
   "engines": {
@@ -8,6 +8,7 @@
     "npm": ">=5.3.0"
   },
   "scripts": {
+    "ufp-util:createTests": "node node_modules/ufp-core/bin/createTests",
     "ufp-make": "node node_modules/ufp-core/ext/build/scripts/make",
     "ufp-install": "npm install && node node_modules/ufp-core/ext/Install",
     "ufp-install-new": "npm install ../../src_modules/ufp-root",
@@ -25,8 +26,8 @@
     "ufp-lint:fix": "npm run ufp-lint -- --fix",
     "ufp-test": "cross-env NODE_ENV=test karma start node_modules/ufp-core/ext/presets/default/config/karma.config --no-exit",
     "ufp-test:watch": "npm run ufp-test -- --watch",
-    "prepublishOnly": "npm run compile",
-    "prepublish": "npm run compile",
+    "prepublishOnly": "echo prepublishonly",
+    "prepublish": "echo prepublish",
     "prepare": "echo prepare",
     "publish": "echo publish",
     "prepack": "echo prepack",
@@ -89,6 +90,8 @@
     "babel-preset-react": "6.24.1",
     "babel-preset-stage-0": "6.24.1",
     "babel-runtime": "6.26.0",
+    "cheerio": "^1.0.0-rc.2",
+    "lodash": "^4.17.4",
     "chai": "4.1.2",
     "chai-as-promised": "7.1.1",
     "chai-enzyme": "1.0.0-beta.0",

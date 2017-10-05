@@ -122,12 +122,10 @@ const createTests =
                                  * to create the target destination
                                  */
 
-
                                 const testFilename = path.resolve(targetDir, processor.name, fileName.replace('.js', '.spec.js'))
                                 logger.info('ccc file ', testFilename)
 
                                 if (processorResult !== null) {
-
                                     mkdirp(testFilename)
                                     fs.writeFile(testFilename, processorResult, function (err) {
                                         if (err) {

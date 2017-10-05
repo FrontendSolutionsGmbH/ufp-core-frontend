@@ -33,8 +33,8 @@ describe('Class ObjectUtils', () => {
                 .to
                 .equal('foobarvalue')
 
-            console.log('createUpdate Result is ', result)
-            console.log('createUpdate Result is Object ', newObject)
+            // console.log('createUpdate Result is ', result)
+            // console.log('createUpdate Result is Object ', newObject)
 
         })
 
