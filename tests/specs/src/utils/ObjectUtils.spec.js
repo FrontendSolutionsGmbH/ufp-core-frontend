@@ -42,9 +42,7 @@ describe('Class ObjectUtils', () => {
             let input = {foo: 'test'}
             let result = ObjectUtils.createUpdate(input, 'foo.bar.value', 'foobarvalue')
 
-            console.log('xxxxxxxxx createUpdate Result is ', result)
-            console.log('xxxxxxxxx createUpdate Result is ', result.foo)
-            console.log('xxxxxxxxx createUpdate Result is ', result.foo.$set)
+
             expect(result.foo).to.exist
             expect(result.foo.$set).to.exist
 
@@ -64,7 +62,6 @@ describe('Class ObjectUtils', () => {
             let input = {foo: {}}
             let result = ObjectUtils.createUpdate(input, 'foo.bar.value', 'foobarvalue')
 
-            console.log('xxxxxxxxx createUpdate Result is ', result)
             expect(result.foo).to.exist
             expect(result.foo.$set).to.exist
 
