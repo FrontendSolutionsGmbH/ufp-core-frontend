@@ -12,7 +12,7 @@ export default {
 
         console.log('yyyyyyyyyyCurrent state is ', JSON.stringify(state))
         console.log('yyyyyyyyyyUpdate would be then ', JSON.stringify(updater))
-        var result = update(state,  updater)
+        var result = update(state, updater)
         return result
         // //initialise main data container
         // if (state.data === undefined) {
