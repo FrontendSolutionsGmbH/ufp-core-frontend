@@ -2,7 +2,7 @@
  * the manifest.js defines the properties of the ufp-module
  * @type {{name: string}}
  */
-import ConfigReducer from './ConfigReducer'
+import ConfigReducer from './ConfigReducerCreatorFunction'
 import ConfigActionCreators from './ConfigActionCreators'
 import ConfigConstants from './ConfigConstants'
 import ConfigSelectors from './ConfigSelectors'
