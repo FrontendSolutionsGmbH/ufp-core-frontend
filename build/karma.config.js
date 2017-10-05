@@ -1,12 +1,17 @@
 const TEST_BUNDLER = './tests/test-bundler.js'
 
+const argv = require('yargs')
+    .boolean('watch').argv
+
+console.log('Argv is ', argv)
+
 const karmaConfig = {
     browserDisconnectTimeout: 10000,
     browserDisconnectTolerance: 1,
     browserNoActivityTimeout: 60000, //by default 10000
     basePath: '../',
     browsers: ['ChromeHeadless'],
-    singleRun: true,
+    singleRun: !argv.watch,
     coverageReporter: {
         dir: 'coverage',
         includeAllSources: true,
@@ -37,7 +42,7 @@ const karmaConfig = {
     files: [
         {
             pattern: TEST_BUNDLER,
-            watched: true,
+            watched: argv.watch,
             served: true,
             included: true
         }
@@ -63,8 +68,7 @@ const karmaConfig = {
     },
     webpack: {
         entry: [
-            TEST_BUNDLER,
-            'src/index.js'
+            TEST_BUNDLER
         ],
         resolve: {
             // enforce no-symlinking for module resolving, required when using modules from filesystem (e.g. ufp-core)
@@ -140,7 +144,7 @@ const karmaConfig = {
             'react/lib/ReactContext': 'react'
 
         },
-        watch: true
+        watch: argv.watch
     },
 
 }

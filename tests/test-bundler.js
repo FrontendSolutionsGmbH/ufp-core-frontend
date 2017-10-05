@@ -30,7 +30,7 @@ chai.use(sinonChai)
 // Using a regular JS variable is not statically analyzable so webpack will throw warnings.
 const testsContext = require.context('./', true, /\.(spec|test)\.(js|ts|tsx)$/)
 console.log('/////////////////////////////////////////////////////////////////////')
-console.log(testsContext)
+console.log(JSON.stringify(testsContext))
 console.log('/////////////////////////////////////////////////////////////////////')
 // When a test file changes, only rerun that spec file. If something outside of a
 // test file changed, rerun all tests.

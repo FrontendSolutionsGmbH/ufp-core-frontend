@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [0.4.0]
 
+- new: ConfigModule: deep object setting/getting
 - react16 dependency
 - test setup utility
 
