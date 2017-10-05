@@ -1,4 +1,5 @@
-const TEST_BUNDLER = './tests/test-bundler.js'
+// const TEST_BUNDLER = './tests/test-bundler.js'
+const TEST_BUNDLER = 'tests/**/*.spec.js'
 
 const argv = require('yargs')
     .boolean('watch').argv
@@ -47,7 +48,7 @@ const karmaConfig = {
             included: true
         }
     ],
-    frameworks: ['mocha'],
+    frameworks: ['mocha','chai'],
     reporters: ['mocha', 'junit', 'coverage'],
     logLevel: 'INFO',
     browserConsoleLogOptions: {
@@ -63,7 +64,6 @@ const karmaConfig = {
     },
 
     preprocessors: {
-
         [TEST_BUNDLER]: ['webpack']
     },
     webpack: {
