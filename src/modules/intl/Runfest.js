@@ -1,13 +1,11 @@
 import {ThrowParam} from '../../utils/JSUtils'
-
 import IntlConfig from './IntlConfig'
 import IntlConstants from './IntlConstants'
 import IntlReducer from './IntlReducer'
 import IntlActionCreators from './IntlActionCreators'
 import IntlSelectors from './IntlSelectors'
-import {registerRootProvider} from '../react'
+import {registerRootProvider} from '../ufp-react'
 import UfpIntlProvider from './components/UfpIntlProvider'
-
 import {addLocaleData} from 'react-intl'
 var onceRegistered = false
 
@@ -16,7 +14,6 @@ const Runfest = {
     description: 'Ufp Internationalisation Manifest',
 
     actionCreators: IntlActionCreators,
-
     selectors: IntlSelectors,
 
     /**

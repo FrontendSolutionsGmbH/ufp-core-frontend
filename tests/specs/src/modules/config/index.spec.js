@@ -2,7 +2,7 @@ import * as index from 'modules/config'
 
 describe('Module Ufp-Config ', () => {
 
-    console.log('index is', index)
+    // console.log('index is', index)
 
     it('Should Exist', () => {
         expect(index).to.exist

@@ -100,4 +100,4 @@ const validateUFPAction = (action) => {
     return []
 }
 
-export {isUFPAction, validateUFPAction}
+export default {isUFPAction, validateUFPAction}

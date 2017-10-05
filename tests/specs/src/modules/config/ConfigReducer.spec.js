@@ -76,7 +76,7 @@ describe('Module Ufp-Config ConfigReducer ', () => {
             area: 'areaTest'
         })
 
-        console.log('RESULccccTI IS ', result)
+        // console.log('RESULccccTI IS ', result)
 
         expect(result.data['areaTest']['foo']).to.exist
         expect(result.data['areaTest']['foo'])
@@ -92,7 +92,7 @@ describe('Module Ufp-Config ConfigReducer ', () => {
             area: 'areaTest'
         })
 
-        console.log('Result Deep Property  ', result)
+        // console.log('Result Deep Property  ', result)
 
         expect(result.data['areaTest']['foo']).to.exist
         expect(result.data['areaTest']['foo'])
