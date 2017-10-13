@@ -7,9 +7,11 @@ import IntlSelectors from './IntlSelectors'
 import {registerRootProvider} from '../ufp-react'
 import UfpIntlProvider from './components/UfpIntlProvider'
 import {addLocaleData} from 'react-intl'
+import StartupConfigurator from '../startup/StartupConfiguration'
 var onceRegistered = false
 
 const Runfest = {
+
     name: IntlConstants.NAME,
     description: 'Ufp Internationalisation Manifest',
 
@@ -41,6 +43,14 @@ const Runfest = {
     },
     onRegistered({UfpCore = ThrowParam('UfpCore Instance Required')}) {
         console.log('INTL Manifest is ', this)
+
+        StartupConfigurator.registerStagedResource({
+            stage: '1',
+            name: 'initSetLanguage',
+            actionCreator: IntlActionCreators.initSetLanguage,
+            actionNameSuccess: IntlConstants.UPDATE_MESSAGES
+            //    actionNameFail: IntlConstants.SET_INIT_LANGUAGE.FAIL
+        })
 
         if (onceRegistered) {
             ThrowParam('UfpCore Already registered ')
