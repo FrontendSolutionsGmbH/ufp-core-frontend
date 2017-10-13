@@ -1,6 +1,5 @@
 import ObjectUtils from 'utils/ObjectUtils'
-
-import update from 'immutability-helper';
+import update from 'immutability-helper'
 describe('Class ObjectUtils', () => {
 
     it('Should Exist', () => {
@@ -42,7 +41,6 @@ describe('Class ObjectUtils', () => {
             let input = {foo: 'test'}
             let result = ObjectUtils.createUpdate(input, 'foo.bar.value', 'foobarvalue')
 
-
             expect(result.foo).to.exist
             expect(result.foo.$set).to.exist
 
@@ -61,9 +59,10 @@ describe('Class ObjectUtils', () => {
 
             let input = {foo: {}}
             let result = ObjectUtils.createUpdate(input, 'foo.bar.value', 'foobarvalue')
-
+            console.log(result)
             expect(result.foo).to.exist
-            expect(result.foo.$set).to.exist
+            expect(result.foo.bar).to.exist
+            expect(result.foo.bar.$set).to.exist
 
             let newObject = update(input, result)
 

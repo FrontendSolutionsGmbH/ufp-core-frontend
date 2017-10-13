@@ -3,7 +3,8 @@ const path = require('path')
 const argv = require('yargs').argv
 const webpackConfig = require('./webpack.config.js')
 
-const TEST_BUNDLER = './tests/test-bundler.js'
+// const TEST_BUNDLER = './tests/test-bundler.js'
+const TEST_BUNDLER = 'tests/**/*.spec.js'
 
 console.log('testsContext ')
 console.log('testsContext ', process.cwd())
@@ -39,12 +40,11 @@ const karmaConfig = {
         ]
     },
     files: [
-
         {
             pattern: path.resolve(__dirname, 'karma.setup.js'),
             watched: false,
             served: true,
-            included: false
+            included: true
         },
         {
             pattern: TEST_BUNDLER,
@@ -52,9 +52,10 @@ const karmaConfig = {
             served: true,
             included: true
         }],
-    frameworks: ['mocha'],
+    frameworks: ['mocha', 'chai'],
     reporters: ['mocha', 'junit', 'coverage'],
     preprocessors: {
+        [path.resolve(__dirname, 'karma.setup.js')]: ['webpack'],
         [TEST_BUNDLER]: ['webpack']
     },
     logLevel: 'DEBUG',
@@ -71,7 +72,7 @@ const karmaConfig = {
     },
     webpack: {
         entry: TEST_BUNDLER,
-        devtool: 'cheap-module-source-map',
+        devtool: 'inline-source-map',
         module: webpackConfig.module,
         plugins: webpackConfig.plugins,
         resolve: webpackConfig.resolve,

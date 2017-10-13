@@ -1,8 +1,7 @@
+import UfpMiddleware from 'middleware/UfpMiddleware'
 
-                import UfpMiddleware from 'middleware/UfpMiddleware'
-
-                describe('Class UfpMiddleware', () => {
-                    it('Should Exist', () => {
-                        expect(UfpMiddleware).to.exist
-                    })
-                })
+describe('Class UfpMiddleware', () => {
+    it('Should Exist', () => {
+        expect(UfpMiddleware).to.exist
+    })
+})
