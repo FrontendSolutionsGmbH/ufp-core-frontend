@@ -8,16 +8,16 @@ import PropTypes from 'prop-types'
 export class HomeView extends Component {
 
     propTypes = {
-        id: PropTypes.string.isRequired,
         defaultMessage: PropTypes,
+        id: PropTypes.string.isRequired,
         values: PropTypes.object
     }
 
     render() {
         return (
             <FormattedMessage defaultMessage={this.props.defaultMessage}
-                 id={this.props.id}
-                 values={this.props.values} />)
+                              id={this.props.id}
+                              values={this.props.values} />)
     }
 
 }

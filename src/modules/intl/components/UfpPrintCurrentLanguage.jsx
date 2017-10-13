@@ -7,7 +7,7 @@ import IntlSelectors from '../IntlSelectors'
 export class UfpPrintCurrentLanguage extends Component {
 
     static propTypes = {
-        currentLanguage: PropTypes.string
+        currentLanguage: PropTypes.string.isRequired
     }
 
     render() {
@@ -21,5 +21,6 @@ export class UfpPrintCurrentLanguage extends Component {
 const mapStateToProps = (state) => ({
     currentLanguage: IntlSelectors.CurrentLanguageSelector(state)
 })
+
 const mapDispatchToProps = {}
 export default connect(mapStateToProps, mapDispatchToProps)(UfpPrintCurrentLanguage)

@@ -3,12 +3,11 @@ import ReactRouter from 'react-router/lib/Router'
 import PropTypes from 'prop-types'
 
 const Router = (props) => (
-    <ReactRouter children={props.routes}
-                 history={props.history} />
+    <ReactRouter history={props.history}>{props.routes}</ReactRouter>
 )
 
 Router.propTypes = {
-    routes: PropTypes.object,
-    history: PropTypes.object
+    history: PropTypes.object.isRequired,
+    routes: PropTypes.object.isRequired
 }
 export default Router

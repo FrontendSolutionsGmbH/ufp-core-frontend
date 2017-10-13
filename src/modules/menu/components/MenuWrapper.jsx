@@ -10,24 +10,24 @@ class MenuWrapper extends Component {
 
     static propTypes = {
         menuAreaName: PropTypes.string,
-        menuSubAreaName: PropTypes.string,
+        menuItems: PropTypes.array,
         menuRenderer: PropTypes.any,
-        menuItems: PropTypes.array
+        menuSubAreaName: PropTypes.string
     }
     static defaultProps = {
-
         menuAreaName: MenuConstants.DEFAULT_AREA,
         menuSubAreaName: MenuConstants.DEFAULT_SUBAREA,
-        menuRenderer: DefaultMenuAreaRenderer
+        menuRenderer: DefaultMenuAreaRenderer,
+        menuItems: [],
     }
 
     render() {
         console.log('Rendering Wrapped Menu ', this.props)
         const Component = this.props.menuRenderer
         return (
-            <Component menuArea={this.props.menuItems}
-                 menuAreaName={this.props.menuAreaName}
-                 menuSubAreaName={this.props.menuSubAreaName} />
+            <Component menuAreaName={this.props.menuAreaName}
+                       menuItems={this.props.menuItems}
+                       menuSubAreaName={this.props.menuSubAreaName} />
         )
     }
 

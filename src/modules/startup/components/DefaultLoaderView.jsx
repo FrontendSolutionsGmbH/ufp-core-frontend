@@ -6,15 +6,15 @@ export class DefaultLoaderView extends Component {
 
     static propTypes = {
 
-        totalPercentage: PropTypes.number.isRequired,
         stagePercentage: PropTypes.number.isRequired,
-        stepPercentage: PropTypes.number.isRequired
+        stepPercentage: PropTypes.number.isRequired,
+        totalPercentage: PropTypes.number.isRequired
 
     }
 
     render() {
-        return (<div id="ufp-loader" >
-                <div id="ufp-spinner" >
+        return (<div id="ufp-loader">
+                <div id="ufp-spinner">
                     <div className="ufp-loader-bar"
                          style={
                              {
