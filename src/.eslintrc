@@ -1,6 +1,8 @@
 {
   "parser": "babel-eslint",
   "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended",
     "standard",
     "standard-react"
   ],
@@ -51,6 +53,7 @@
         "switches": "never"
       }
     ],
+    "no-console": 0,
     "immutable/no-let": 2,
     "immutable/no-this": 0,
     "immutable/no-mutation": 0,
