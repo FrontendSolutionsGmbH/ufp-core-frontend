@@ -73,32 +73,31 @@ export const getObjectForPath = (path, newValue) => {
  * @param newValue the value to be set
  * @returns {*} the update() config
  */
-export const buildUpdateObjectSetValue = () => {
-    throw new Error('Deprecated buildUpdateObjectSetValue, use createUpdate() instead')
+export const buildUpdateObjectSetValue = (path, newValue) => {
     //console.log('buildUpdateObject 1 ', path, newValue)
-    /* deprecated    var elems = path.split('.')
-     var current
-     elems.reverse()
-     console.log('buildUpdateObject 2 ', elems, elems.length)
-     for (var i = 0; i < elems.length; i++) {
-     console.log('buildUpdateObject checking value 3', i, elems[i])
-     var item = elems[i]
-     if (i === 0) {
-     current = {
-     [item]: {
-     $set: newValue
-     }
-     }
-     } else {
-     current = {
-     [item]: current
-     }
-     }
-     }
+    var elems = path.split('.')
+    var current
+    elems.reverse()
+    console.log('buildUpdateObject 2 ', elems, elems.length)
+    for (var i = 0; i < elems.length; i++) {
+        console.log('buildUpdateObject checking value 3', i, elems[i])
+        var item = elems[i]
+        if (i === 0) {
+            current = {
+                [item]: {
+                    $set: newValue
+                }
+            }
+        } else {
+            current = {
+                [item]: current
+            }
+        }
+    }
 
-     //console.log('buildUpdateObject returning', current)
-     return current
-     */
+    //console.log('buildUpdateObject returning', current)
+    return current
+
 }
 
 export const createUpdate = (obj, path, value) => {

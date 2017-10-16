@@ -42,7 +42,12 @@ const Runfest = {
         addLocaleData(locale)
     },
     onRegistered({UfpCore = ThrowParam('UfpCore Instance Required')}) {
-        console.log('INTL Manifest is ', this)
+        console.log('INTL Runfest is ', this)
+
+        if (onceRegistered) {
+            ThrowParam('UfpCore Already registered ')
+        }
+        onceRegistered = true
 
         StartupConfigurator.registerStagedResource({
             stage: '1',
@@ -52,19 +57,15 @@ const Runfest = {
             //    actionNameFail: IntlConstants.SET_INIT_LANGUAGE.FAIL
         })
 
-        if (onceRegistered) {
-            ThrowParam('UfpCore Already registered ')
-        }
-
         // register provided locales (en is always present)
         IntlConfig.locales.map((locale) => {
             addLocaleData(locale)
         })
 
-        onceRegistered = true
         registerRootProvider({component: UfpIntlProvider})
+
         UfpCore.registerReducer({
-                id: Runfest.name,
+                id: IntlConstants.NAME,
                 reducer: IntlReducer
             }
         )
