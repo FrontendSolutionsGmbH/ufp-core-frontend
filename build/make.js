@@ -16,7 +16,7 @@ Object.keys(Constants.MAKE_OPTIONS)
           yargs.option(key, Constants.MAKE_OPTIONS[key])
       })
 
-logger.info('YARGS INPUT IS', JSON.stringify(yargs.argv))
+// logger.info('YARGS INPUT IS', JSON.stringify(yargs.argv))
 
 var {
     FORCE,

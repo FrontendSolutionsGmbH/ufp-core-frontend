@@ -40,6 +40,7 @@ const UfpConfig = {
 }
 
 const config = {
+    context: path.join(project.basePath),
     entry: {
         main: [
             inProjectSrc(project.main)
@@ -52,7 +53,7 @@ const config = {
         reasons: true,
         errorDetails: true,
         // Examine all modules
-        maxModules: 'Infinity',
+        // maxModules: 'Infinity',
         // Display bailout reasons
         optimizationBailout: true
     },
@@ -115,7 +116,7 @@ const folders = [
              * please note that /res is taken from project root whereas /src/static is taken
              * from project src
              */
-            from: 'src/static',
+            from: path.join(project.srcDir, 'static'),
             to: ''
         },
         {
@@ -129,6 +130,7 @@ const folders = [
             to: 'res'
         }
     ]
+console.info('FOLDER CONFIG IS ', folders)
 // and create copy plugin entries if folders exist in project structure
 folders.map((folderData) => {
         if (fs.existsSync(path.join(process.cwd(), folderData.from))) {
@@ -137,7 +139,7 @@ folders.map((folderData) => {
                     {
                         from: folderData.from,
                         to: folderData.to
-                    }])
+                    }], {debug: 'debug'})
             )
         }
     }
