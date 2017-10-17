@@ -78,9 +78,9 @@ export const buildUpdateObjectSetValue = (path, newValue) => {
     var elems = path.split('.')
     var current
     elems.reverse()
-    console.log('buildUpdateObject 2 ', elems, elems.length)
+    // console.log('buildUpdateObject 2 ', elems, elems.length)
     for (var i = 0; i < elems.length; i++) {
-        console.log('buildUpdateObject checking value 3', i, elems[i])
+        // console.log('buildUpdateObject checking value 3', i, elems[i])
         var item = elems[i]
         if (i === 0) {
             current = {

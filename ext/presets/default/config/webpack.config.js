@@ -28,8 +28,8 @@ const __DEV__ = project.env === 'development'
 const __TEST__ = project.env === 'test'
 const __PROD__ = project.env === 'production'
 
-console.log('ENVIRONMENT IS ', process.env)
-console.log('ENVIRONMENT IS ', process.env.UFP_VERSION)
+// console.log('ENVIRONMENT IS ', process.env)
+// console.log('ENVIRONMENT IS ', process.env.UFP_VERSION)
 process.traceDeprecation = true
 const UfpConfig = {
 
@@ -101,7 +101,7 @@ const config = {
         }, project.globals))
     ]
 }
-console.log('Config is ', config)
+// console.log('Config is ', config)
 /**
  * start of ufp static folders copywebpackplugin config
  */
@@ -130,7 +130,7 @@ const folders = [
             to: 'res'
         }
     ]
-console.info('FOLDER CONFIG IS ', folders)
+// console.info('FOLDER CONFIG IS ', folders)
 // and create copy plugin entries if folders exist in project structure
 folders.map((folderData) => {
         if (fs.existsSync(path.join(process.cwd(), folderData.from))) {

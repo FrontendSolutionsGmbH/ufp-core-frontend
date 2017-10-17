@@ -62,7 +62,7 @@ const karmaConfig = {
     ],
     frameworks: ['mocha', 'chai'],
     reporters: ['mocha', 'junit', 'coverage'],
-    logLevel: 'LOG_INFO',
+    logLevel: 'LOG_ERROR',
     browserConsoleLogOptions: {
         terminal: true,
         format: '%b %T: %m',

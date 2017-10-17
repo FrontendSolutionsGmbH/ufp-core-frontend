@@ -1,9 +1,10 @@
 import {registerEpic} from '../epic'
 import StartupEpic from './StartupEpic'
 import JSUtils from '../../utils/JSUtils'
-class StartupConfiguration {
 
-    StartupStages = {}
+var StartupStages = {}
+
+class StartupConfiguration {
 
     init() {
         registerEpic({epic: StartupEpic.startupInit})
@@ -22,10 +23,10 @@ class StartupConfiguration {
 
     }) {
         var stageString = JSUtils.pad('000', stage) //for lexicographically sort
-        if (!this.StartupStages['stage' + stageString]) {
-            this.StartupStages['stage' + stageString] = []
+        if (!StartupStages['stage' + stageString]) {
+            StartupStages['stage' + stageString] = []
         }
-        this.StartupStages['stage' + stageString].push({
+        StartupStages['stage' + stageString].push({
             name: name,
             required: required,
             actionCreator: actionCreator,
@@ -69,9 +70,9 @@ class StartupConfiguration {
         })
     }
 
-    get = () => this.StartupStages
+    get = () => StartupStages
     reset = () => {
-        this.StartupStages = {}
+        StartupStages = {}
     }
 
 }

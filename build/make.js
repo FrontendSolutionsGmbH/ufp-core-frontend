@@ -4,6 +4,8 @@ const Constants = require('../ext/build/scripts/constants')
 const logger = require('../ext/build/lib/logger')
 const validator = require('validator')
 const rimraf = require('rimraf')
+// var Table = require('cli-table')
+
 /**
  * Parameter Parsing
  */
@@ -29,7 +31,7 @@ var {
 }=yargs.argv
 
 const sanitizeInput = (value) => {
-    logger.info('sanitizing ', value)
+    // logger.info('sanitizing ', value)
     var result = value
     result = validator.blacklist(value, '&|') //=> true
     return result
@@ -100,8 +102,6 @@ const postCommands = [
     'npm run compile',
     'npm run test'
 ]
-
-logger.info('postCommands', postCommands)
 
 postCommands.map(executeCommand)
 
