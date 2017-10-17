@@ -5,10 +5,12 @@ const UFP_THEME = 'UFP_THEME'
 const UFP_FORCE = 'FORCE'
 const UFP_STEP = 'UFP_STEP'
 const UFP_CLEAN = 'CLEAN'
+const LOG_LEVEL = 'LOG_LEVEL'
 
 const API_TYPES = ['live', 'mock']
 const NODE_ENVS = ['production', 'development', 'test']
 const UFP_STEPS = ['all', 'validate', 'test', 'build']
+const LOG_LEVELS = ['ERROR', 'WARN', 'INFO', 'DEBUG', 'TRACE', 'ALL']
 
 module.exports = {
     TEST_REPORT_FOLDER: 'test-report',
@@ -53,6 +55,12 @@ module.exports = {
         provided as UFP_THEME environment variable
 `,
             default: 'default'
+        },
+        [LOG_LEVEL]: {
+            describe: 'Log Level following log4j, higher levels include lower onew',
+            choices: LOG_LEVELS,
+            default: LOG_LEVELS[0]
+
         }
     }
 }
