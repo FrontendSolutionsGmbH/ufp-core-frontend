@@ -104,6 +104,7 @@ describe('Class ObjectUtils', () => {
 
             expect(() => ObjectUtils.buildUpdateObjectSetValue('foo.bar.value', 'foobarvalue'))
                 .to
+                .not
                 .throw()
         })
     })
