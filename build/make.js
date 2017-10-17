@@ -1,7 +1,7 @@
 const path = require('path')
 const execSync = require('child_process').execSync
 const Constants = require('../ext/build/scripts/constants')
-const logger = require('../ext/build/lib/logger')
+const logger = require('../ext/build/lib/Logger')
 const validator = require('validator')
 const rimraf = require('rimraf')
 // var Table = require('cli-table')
@@ -14,9 +14,9 @@ const yargs = require('yargs')
 yargs.version('1.0.0')
 
 Object.keys(Constants.MAKE_OPTIONS)
-      .map((key) => {
-          yargs.option(key, Constants.MAKE_OPTIONS[key])
-      })
+    .map((key) => {
+        yargs.option(key, Constants.MAKE_OPTIONS[key])
+    })
 
 // logger.info('YARGS INPUT IS', JSON.stringify(yargs.argv))
 
@@ -55,7 +55,7 @@ logger.info('UFP_THEME = ', UFP_THEME)
 logger.info('UFP_NODE_ENV = ', UFP_NODE_ENV)
 
 const handleError = (err) => {
-    logger.error('Execution failed', err)
+    logger.error('Execution failed', err.error)
     if (!FORCE) {
         throw new Error('exiting, use --FORCE to continue on fail')
     } else {
@@ -73,18 +73,19 @@ const handleError = (err) => {
  */
 const executeCommand = (command) => {
     try {
-        logger.log('Executing command ', command)
+        logger.debug('Executing command ', command)
 
         execSync(command, {
             cwd: process.cwd(),
-            stdio: ['pipe', 'pipe', 'pipe']
+            stdio: ['inherit', 'inherit', 'inherit']
 
         })
-    } catch (err) {
+    }
+    catch (err) {
         handleError(err)
     }
 }
-logger.log('Execute Build')
+logger.info('Execute Build')
 
 if (CLEAN) {
     logger.info('Cleaning build folders...')
