@@ -77,7 +77,7 @@ const executeCommand = (command) => {
 
         execSync(command, {
             cwd: process.cwd(),
-            stdio: ['pipe','pipe','pipe']
+            stdio: ['pipe', 'pipe', 'pipe']
 
         })
     } catch (err) {
