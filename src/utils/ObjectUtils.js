@@ -97,7 +97,6 @@ export const buildUpdateObjectSetValue = (path, newValue) => {
 
     //console.log('buildUpdateObject returning', current)
     return current
-
 }
 
 export const createUpdate = (obj, path, value) => {
