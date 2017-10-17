@@ -53,6 +53,7 @@
         "switches": "never"
       }
     ],
+    "react/jsx-no-comment-textnodes": 0,
     "no-console": 0,
     "immutable/no-let": 2,
     "immutable/no-this": 0,
