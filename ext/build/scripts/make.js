@@ -1,7 +1,7 @@
 const path = require('path')
 const execSync = require('child_process').execSync
 const Constants = require('./constants')
-const logger = require('../lib/logger')
+const logger = require('../lib/Logger')('ufp-client')
 const rimraf = require('rimraf')
 const validator = require('validator')
 /**
@@ -70,7 +70,7 @@ logger.info('UFP_NODE_ENV = ', UFP_NODE_ENV)
  */
 const executeCommand = (command) => {
     try {
-        logger.log('Executing command ', command)
+        logger.mark('Executing command ', command)
 
         execSync(command, {
             cwd: process.cwd(),
@@ -81,7 +81,7 @@ const executeCommand = (command) => {
     }
 }
 
-logger.log('Execute Build')
+logger.mark('Execute Build')
 
 if (CLEAN) {
     logger.info('Cleaning build folders...')

@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="utf-8"?>
+<testsuites>
+<testsuite package="org.eslint" time="0" tests="0" errors="0" name="D:\ARBEIT\ufp-core-frontend-ADMIN\ufp-core-frontend\src\core\addition\Runfest.js">
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="0" errors="0" name="D:\ARBEIT\ufp-core-frontend-ADMIN\ufp-core-frontend\src\core\base\Runfest.js">
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="0" errors="0" name="D:\ARBEIT\ufp-core-frontend-ADMIN\ufp-core-frontend\src\core\base\UfpCoreActionCreators.js">
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="0" errors="0" name="D:\ARBEIT\ufp-core-frontend-ADMIN\ufp-core-frontend\src\core\debug\Runfest.js">
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="0" errors="0" name="D:\ARBEIT\ufp-core-frontend-ADMIN\ufp-core-frontend\src\core\index.js">
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="0" errors="0" name="D:\ARBEIT\ufp-core-frontend-ADMIN\ufp-core-frontend\src\core\UfpCore.js">
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="0" errors="0" name="D:\ARBEIT\ufp-core-frontend-ADMIN\ufp-core-frontend\src\core\UfpCoreConstants.js">
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="0" errors="0" name="D:\ARBEIT\ufp-core-frontend-ADMIN\ufp-core-frontend\src\core\UfpCoreSelectors.js">
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="0" errors="0" name="D:\ARBEIT\ufp-core-frontend-ADMIN\ufp-core-frontend\src\core\UfpManifest.js">
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="0" errors="0" name="D:\ARBEIT\ufp-core-frontend-ADMIN\ufp-core-frontend\src\core\UfpSetup.js">
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="0" errors="0" name="D:\ARBEIT\ufp-core-frontend-ADMIN\ufp-core-frontend\src\index.js">
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="0" errors="0" name="D:\ARBEIT\ufp-core-frontend-ADMIN\ufp-core-frontend\src\logger\Console.js">
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="0" errors="0" name="D:\ARBEIT\ufp-core-frontend-ADMIN\ufp-core-frontend\src\logger\Logger.js">
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="0" errors="0" name="D:\ARBEIT\ufp-core-frontend-ADMIN\ufp-core-frontend\src\middleware\Errors.js">
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="0" errors="0" name="D:\ARBEIT\ufp-core-frontend-ADMIN\ufp-core-frontend\src\middleware\index.js">
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="0" errors="0" name="D:\ARBEIT\ufp-core-frontend-ADMIN\ufp-core-frontend\src\middleware\QueryParams.js">
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="0" errors="0" name="D:\ARBEIT\ufp-core-frontend-ADMIN\ufp-core-frontend\src\middleware\request\FetchRequest.js">
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="0" errors="0" name="D:\ARBEIT\ufp-core-frontend-ADMIN\ufp-core-frontend\src\middleware\request\RequestFactory.js">
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="0" errors="0" name="D:\ARBEIT\ufp-core-frontend-ADMIN\ufp-core-frontend\src\middleware\resulthandler\index.js">
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="0" errors="0" name="D:\ARBEIT\ufp-core-frontend-ADMIN\ufp-core-frontend\src\middleware\resulthandler\ResultHandlerJson.js">
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="0" errors="0" name="D:\ARBEIT\ufp-core-frontend-ADMIN\ufp-core-frontend\src\middleware\Runfest.js">
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="0" errors="0" name="D:\ARBEIT\ufp-core-frontend-ADMIN\ufp-core-frontend\src\middleware\UfpMiddleware.js">
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="0" errors="0" name="D:\ARBEIT\ufp-core-frontend-ADMIN\ufp-core-frontend\src\middleware\UfpMiddlewareActionCreatorInternal.js">
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="0" errors="0" name="D:\ARBEIT\ufp-core-frontend-ADMIN\ufp-core-frontend\src\middleware\UfpMiddlewareConfiguration.js">
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="0" errors="0" name="D:\ARBEIT\ufp-core-frontend-ADMIN\ufp-core-frontend\src\middleware\UfpMiddlewareConstants.js">
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="0" errors="0" name="D:\ARBEIT\ufp-core-frontend-ADMIN\ufp-core-frontend\src\middleware\UfpMiddlewareHelperUtils.js">
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="0" errors="0" name="D:\ARBEIT\ufp-core-frontend-ADMIN\ufp-core-frontend\src\middleware\UfpMiddlewareUtils.js">
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="0" errors="0" name="D:\ARBEIT\ufp-core-frontend-ADMIN\ufp-core-frontend\src\middleware\UfpRequestActions.js">
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="0" errors="0" name="D:\ARBEIT\ufp-core-frontend-ADMIN\ufp-core-frontend\src\middleware\utils\PreHandlerResult.js">
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="0" errors="0" name="D:\ARBEIT\ufp-core-frontend-ADMIN\ufp-core-frontend\src\middleware\utils\ResultHandlerResult.js">
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="0" errors="0" name="D:\ARBEIT\ufp-core-frontend-ADMIN\ufp-core-frontend\src\middleware\Validation.js">
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="0" errors="0" name="D:\ARBEIT\ufp-core-frontend-ADMIN\ufp-core-frontend\src\modules\config\ConfigActionCreators.js">
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="0" errors="0" name="D:\ARBEIT\ufp-core-frontend-ADMIN\ufp-core-frontend\src\modules\config\ConfigActionHandlers.js">
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="0" errors="0" name="D:\ARBEIT\ufp-core-frontend-ADMIN\ufp-core-frontend\src\modules\config\ConfigConstants.js">
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="0" errors="0" name="D:\ARBEIT\ufp-core-frontend-ADMIN\ufp-core-frontend\src\modules\config\ConfigReducerCreatorFunction.js">
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="0" errors="0" name="D:\ARBEIT\ufp-core-frontend-ADMIN\ufp-core-frontend\src\modules\config\ConfigSelectors.js">
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="0" errors="0" name="D:\ARBEIT\ufp-core-frontend-ADMIN\ufp-core-frontend\src\modules\config\index.js">
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="0" errors="0" name="D:\ARBEIT\ufp-core-frontend-ADMIN\ufp-core-frontend\src\modules\config\Runfest.js">
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="0" errors="0" name="D:\ARBEIT\ufp-core-frontend-ADMIN\ufp-core-frontend\src\modules\epic\ConfigureEpicsInternal.js">
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="0" errors="0" name="D:\ARBEIT\ufp-core-frontend-ADMIN\ufp-core-frontend\src\modules\epic\index.js">
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="0" errors="0" name="D:\ARBEIT\ufp-core-frontend-ADMIN\ufp-core-frontend\src\modules\epic\Runfest.js">
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="0" errors="0" name="D:\ARBEIT\ufp-core-frontend-ADMIN\ufp-core-frontend\src\modules\intl\ApiDefinitionNew.js">
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="0" errors="0" name="D:\ARBEIT\ufp-core-frontend-ADMIN\ufp-core-frontend\src\modules\intl\components\index.js">
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="0" errors="0" name="D:\ARBEIT\ufp-core-frontend-ADMIN\ufp-core-frontend\src\modules\intl\components\UfpFormattedMessage.jsx">
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="0" errors="0" name="D:\ARBEIT\ufp-core-frontend-ADMIN\ufp-core-frontend\src\modules\intl\components\UfpIntlProvider.jsx">
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="0" errors="0" name="D:\ARBEIT\ufp-core-frontend-ADMIN\ufp-core-frontend\src\modules\intl\components\UfpPrintCurrentLanguage.jsx">
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="0" errors="0" name="D:\ARBEIT\ufp-core-frontend-ADMIN\ufp-core-frontend\src\modules\intl\index.js">
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="0" errors="0" name="D:\ARBEIT\ufp-core-frontend-ADMIN\ufp-core-frontend\src\modules\intl\IntlActionCreators.js">
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="0" errors="0" name="D:\ARBEIT\ufp-core-frontend-ADMIN\ufp-core-frontend\src\modules\intl\IntlActionHandlers.js">
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="0" errors="0" name="D:\ARBEIT\ufp-core-frontend-ADMIN\ufp-core-frontend\src\modules\intl\IntlConfig.js">
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="0" errors="0" name="D:\ARBEIT\ufp-core-frontend-ADMIN\ufp-core-frontend\src\modules\intl\IntlConstants.js">
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="0" errors="0" name="D:\ARBEIT\ufp-core-frontend-ADMIN\ufp-core-frontend\src\modules\intl\IntlReducer.js">
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="0" errors="0" name="D:\ARBEIT\ufp-core-frontend-ADMIN\ufp-core-frontend\src\modules\intl\IntlSelectors.js">
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="0" errors="0" name="D:\ARBEIT\ufp-core-frontend-ADMIN\ufp-core-frontend\src\modules\intl\Runfest.js">
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="0" errors="0" name="D:\ARBEIT\ufp-core-frontend-ADMIN\ufp-core-frontend\src\modules\menu\components\DefaultMenuAreaRenderer.jsx">
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="0" errors="0" name="D:\ARBEIT\ufp-core-frontend-ADMIN\ufp-core-frontend\src\modules\menu\components\DefaultMenuItemRenderer.jsx">
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="0" errors="0" name="D:\ARBEIT\ufp-core-frontend-ADMIN\ufp-core-frontend\src\modules\menu\components\DefaultMenuRenderer.jsx">
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="0" errors="0" name="D:\ARBEIT\ufp-core-frontend-ADMIN\ufp-core-frontend\src\modules\menu\components\index.js">
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="0" errors="0" name="D:\ARBEIT\ufp-core-frontend-ADMIN\ufp-core-frontend\src\modules\menu\components\MenuWrapper.jsx">
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="0" errors="0" name="D:\ARBEIT\ufp-core-frontend-ADMIN\ufp-core-frontend\src\modules\menu\epics\MenuActionEpicCreator.js">
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="0" errors="0" name="D:\ARBEIT\ufp-core-frontend-ADMIN\ufp-core-frontend\src\modules\menu\index.js">
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="0" errors="0" name="D:\ARBEIT\ufp-core-frontend-ADMIN\ufp-core-frontend\src\modules\menu\MenuActionCreators.js">
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="0" errors="0" name="D:\ARBEIT\ufp-core-frontend-ADMIN\ufp-core-frontend\src\modules\menu\MenuActionHandlers.js">
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="0" errors="0" name="D:\ARBEIT\ufp-core-frontend-ADMIN\ufp-core-frontend\src\modules\menu\MenuConfigurationInternal.js">
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="0" errors="0" name="D:\ARBEIT\ufp-core-frontend-ADMIN\ufp-core-frontend\src\modules\menu\MenuConfigurationPublic.js">
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="0" errors="0" name="D:\ARBEIT\ufp-core-frontend-ADMIN\ufp-core-frontend\src\modules\menu\MenuConstants.js">
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="0" errors="0" name="D:\ARBEIT\ufp-core-frontend-ADMIN\ufp-core-frontend\src\modules\menu\MenuInternalUtils.js">
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="0" errors="0" name="D:\ARBEIT\ufp-core-frontend-ADMIN\ufp-core-frontend\src\modules\menu\MenuReducer.js">
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="0" errors="0" name="D:\ARBEIT\ufp-core-frontend-ADMIN\ufp-core-frontend\src\modules\menu\MenuReducerUtils.js">
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="0" errors="0" name="D:\ARBEIT\ufp-core-frontend-ADMIN\ufp-core-frontend\src\modules\menu\MenuSelectors.js">
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="0" errors="0" name="D:\ARBEIT\ufp-core-frontend-ADMIN\ufp-core-frontend\src\modules\menu\Runfest.js">
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="0" errors="0" name="D:\ARBEIT\ufp-core-frontend-ADMIN\ufp-core-frontend\src\modules\react-redux-hash-router3\components\index.js">
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="0" errors="0" name="D:\ARBEIT\ufp-core-frontend-ADMIN\ufp-core-frontend\src\modules\react-redux-hash-router3\components\Link.js">
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="0" errors="0" name="D:\ARBEIT\ufp-core-frontend-ADMIN\ufp-core-frontend\src\modules\react-redux-hash-router3\components\Router.jsx">
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="0" errors="0" name="D:\ARBEIT\ufp-core-frontend-ADMIN\ufp-core-frontend\src\modules\react-redux-hash-router3\index.js">
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="0" errors="0" name="D:\ARBEIT\ufp-core-frontend-ADMIN\ufp-core-frontend\src\modules\react-redux-hash-router3\RouterConstants.js">
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="0" errors="0" name="D:\ARBEIT\ufp-core-frontend-ADMIN\ufp-core-frontend\src\modules\react-redux-hash-router3\RouterSelectors.js">
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="0" errors="0" name="D:\ARBEIT\ufp-core-frontend-ADMIN\ufp-core-frontend\src\modules\react-redux-hash-router3\Runfest.js">
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="0" errors="0" name="D:\ARBEIT\ufp-core-frontend-ADMIN\ufp-core-frontend\src\modules\react-redux-hash-router3\util\LazyRoute.js">
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="0" errors="0" name="D:\ARBEIT\ufp-core-frontend-ADMIN\ufp-core-frontend\src\modules\startup\components\DefaultLoaderView.jsx">
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="0" errors="0" name="D:\ARBEIT\ufp-core-frontend-ADMIN\ufp-core-frontend\src\modules\startup\components\index.js">
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="0" errors="0" name="D:\ARBEIT\ufp-core-frontend-ADMIN\ufp-core-frontend\src\modules\startup\components\LoaderDisplay.jsx">
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="0" errors="0" name="D:\ARBEIT\ufp-core-frontend-ADMIN\ufp-core-frontend\src\modules\startup\index.js">
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="0" errors="0" name="D:\ARBEIT\ufp-core-frontend-ADMIN\ufp-core-frontend\src\modules\startup\Runfest.js">
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="0" errors="0" name="D:\ARBEIT\ufp-core-frontend-ADMIN\ufp-core-frontend\src\modules\startup\StartupActionCreators.js">
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="0" errors="0" name="D:\ARBEIT\ufp-core-frontend-ADMIN\ufp-core-frontend\src\modules\startup\StartupActionHandlers.js">
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="0" errors="0" name="D:\ARBEIT\ufp-core-frontend-ADMIN\ufp-core-frontend\src\modules\startup\StartupConfiguration.js">
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="0" errors="0" name="D:\ARBEIT\ufp-core-frontend-ADMIN\ufp-core-frontend\src\modules\startup\StartupConstants.js">
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="0" errors="0" name="D:\ARBEIT\ufp-core-frontend-ADMIN\ufp-core-frontend\src\modules\startup\StartupEpic.js">
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="0" errors="0" name="D:\ARBEIT\ufp-core-frontend-ADMIN\ufp-core-frontend\src\modules\startup\StartupReducer.js">
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="0" errors="0" name="D:\ARBEIT\ufp-core-frontend-ADMIN\ufp-core-frontend\src\modules\startup\StartupReducerUtils.js">
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="0" errors="0" name="D:\ARBEIT\ufp-core-frontend-ADMIN\ufp-core-frontend\src\modules\startup\StartupSelectors.js">
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="0" errors="0" name="D:\ARBEIT\ufp-core-frontend-ADMIN\ufp-core-frontend\src\modules\ufp-react\components\index.js">
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="0" errors="0" name="D:\ARBEIT\ufp-core-frontend-ADMIN\ufp-core-frontend\src\modules\ufp-react\components\UfpList.jsx">
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="0" errors="0" name="D:\ARBEIT\ufp-core-frontend-ADMIN\ufp-core-frontend\src\modules\ufp-react\index.js">
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="0" errors="0" name="D:\ARBEIT\ufp-core-frontend-ADMIN\ufp-core-frontend\src\modules\ufp-react\Runfest.jsx">
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="0" errors="0" name="D:\ARBEIT\ufp-core-frontend-ADMIN\ufp-core-frontend\src\modules\ufp-redux-form\index.js">
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="0" errors="0" name="D:\ARBEIT\ufp-core-frontend-ADMIN\ufp-core-frontend\src\modules\ufp-redux-form\Runfest.js">
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="0" errors="0" name="D:\ARBEIT\ufp-core-frontend-ADMIN\ufp-core-frontend\src\utils\ApiUtils.js">
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="0" errors="0" name="D:\ARBEIT\ufp-core-frontend-ADMIN\ufp-core-frontend\src\utils\ArrayUtils.js">
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="0" errors="0" name="D:\ARBEIT\ufp-core-frontend-ADMIN\ufp-core-frontend\src\utils\DeepGetSet.js">
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="0" errors="0" name="D:\ARBEIT\ufp-core-frontend-ADMIN\ufp-core-frontend\src\utils\JSUtils.js">
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="0" errors="0" name="D:\ARBEIT\ufp-core-frontend-ADMIN\ufp-core-frontend\src\utils\ObjectUtils.js">
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="0" errors="0" name="D:\ARBEIT\ufp-core-frontend-ADMIN\ufp-core-frontend\src\utils\ReduxUtils.js">
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="0" errors="0" name="D:\ARBEIT\ufp-core-frontend-ADMIN\ufp-core-frontend\src\utils\storage\StorageBaseClass.js">
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="0" errors="0" name="D:\ARBEIT\ufp-core-frontend-ADMIN\ufp-core-frontend\src\utils\storage\StorageReal.js">
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="0" errors="0" name="D:\ARBEIT\ufp-core-frontend-ADMIN\ufp-core-frontend\src\utils\StringUtils.js">
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="0" errors="0" name="D:\ARBEIT\ufp-core-frontend-ADMIN\ufp-core-frontend\build\karma.config.js">
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="0" errors="0" name="D:\ARBEIT\ufp-core-frontend-ADMIN\ufp-core-frontend\build\make.js">
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="0" errors="0" name="D:\ARBEIT\ufp-core-frontend-ADMIN\ufp-core-frontend\build\scripts\compile.js">
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="0" errors="0" name="D:\ARBEIT\ufp-core-frontend-ADMIN\ufp-core-frontend\build\scripts\logger.js">
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="0" errors="0" name="D:\ARBEIT\ufp-core-frontend-ADMIN\ufp-core-frontend\build\scripts\start.js">
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="0" errors="0" name="D:\ARBEIT\ufp-core-frontend-ADMIN\ufp-core-frontend\ext\build\lib\JSUtils.js">
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="0" errors="0" name="D:\ARBEIT\ufp-core-frontend-ADMIN\ufp-core-frontend\ext\build\lib\Logger.js">
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="0" errors="0" name="D:\ARBEIT\ufp-core-frontend-ADMIN\ufp-core-frontend\ext\build\lib\ufp\index.js">
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="0" errors="0" name="D:\ARBEIT\ufp-core-frontend-ADMIN\ufp-core-frontend\ext\build\scripts\compile.js">
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="0" errors="0" name="D:\ARBEIT\ufp-core-frontend-ADMIN\ufp-core-frontend\ext\build\scripts\constants.js">
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="0" errors="0" name="D:\ARBEIT\ufp-core-frontend-ADMIN\ufp-core-frontend\ext\build\scripts\logger.js">
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="0" errors="0" name="D:\ARBEIT\ufp-core-frontend-ADMIN\ufp-core-frontend\ext\build\scripts\make.js">
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="0" errors="0" name="D:\ARBEIT\ufp-core-frontend-ADMIN\ufp-core-frontend\ext\build\scripts\start.js">
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="0" errors="0" name="D:\ARBEIT\ufp-core-frontend-ADMIN\ufp-core-frontend\ext\build\server\main.js">
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="0" errors="0" name="D:\ARBEIT\ufp-core-frontend-ADMIN\ufp-core-frontend\ext\Install.js">
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="0" errors="0" name="D:\ARBEIT\ufp-core-frontend-ADMIN\ufp-core-frontend\ext\InstallGlobals.js">
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="0" errors="0" name="D:\ARBEIT\ufp-core-frontend-ADMIN\ufp-core-frontend\ext\presets\default\config\closure.externs.js">
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="0" errors="0" name="D:\ARBEIT\ufp-core-frontend-ADMIN\ufp-core-frontend\ext\presets\default\config\karma.config.js">
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="0" errors="0" name="D:\ARBEIT\ufp-core-frontend-ADMIN\ufp-core-frontend\ext\presets\default\config\karma.setup.js">
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="0" errors="0" name="D:\ARBEIT\ufp-core-frontend-ADMIN\ufp-core-frontend\ext\presets\default\config\webpack.config.js">
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="0" errors="0" name="D:\ARBEIT\ufp-core-frontend-ADMIN\ufp-core-frontend\ext\presets\default\project.config.js">
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="0" errors="0" name="D:\ARBEIT\ufp-core-frontend-ADMIN\ufp-core-frontend\ext\UpdatePackageJson.js">
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="0" errors="0" name="D:\ARBEIT\ufp-core-frontend-ADMIN\ufp-core-frontend\ext\UpdatePackageJsonDependencies.js">
+</testsuite>
+<testsuite package="org.eslint" time="0" tests="0" errors="0" name="D:\ARBEIT\ufp-core-frontend-ADMIN\ufp-core-frontend\ext\UpdatePackageJsonScripts.js">
+</testsuite>
+</testsuites>
