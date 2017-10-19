@@ -1,5 +1,6 @@
 /* eslint filenames/match-exported: 0 */
 const path = require('path')
+const glob = require('glob')
 const argv = require('yargs').argv
 const webpackConfig = require('./webpack.config.js')
 
@@ -71,7 +72,8 @@ const karmaConfig = {
         xmlVersion: null // use '1' if reporting to be per SonarQube 6.2 XML format
     },
     webpack: {
-        entry: TEST_BUNDLER,
+        context: process.cwd(),
+        entry: [...glob.sync(TEST_BUNDLER, {cwd: process.cwd()})],
         devtool: 'inline-source-map',
         module: webpackConfig.module,
         plugins: webpackConfig.plugins,
