@@ -36,7 +36,7 @@
     "postinstall": "echo postinstall",
     "preversion": "echo postinstall",
     "dev": "babel-node src/index.js",
-    "make": "node build/make",
+    "make": "ufp-make",
     "lint": "eslint src build ext  --ext .jsx,.js --config src/.eslintrc ",
     "lint:fix": "npm run lint -- --fix ",
     "compile": "babel -d lib/ src/ --copy-files --source-maps",
@@ -44,9 +44,6 @@
     "test:watch": "cross-env NODE_ENV=test karma start build/karma.config --watch",
     "watch": "node bin/watchSrc",
     "cpd": "node node_modules/jscpd/bin/jscpd --path ./ --verbose --languages javascript  -e '**/node_modules/**'    "
-  },
-  "bin": {
-    "ufp-make": "bin/ufp-make.js"
   },
   "repository": "https://github.com/FrontendSolutionsGmbH/ufp-core-frontend.git",
   "keywords": [
@@ -117,7 +114,7 @@
     "eslint-plugin-filenames": "1.2.0",
     "eslint-plugin-flowtype": "2.39.1",
     "eslint-plugin-immutable": "1.0.0",
-    "eslint-plugin-import": "2.7.0",
+    "eslint-plugin-import": "2.8.0",
     "eslint-plugin-jsx": "0.0.2",
     "eslint-plugin-new-with-error": "1.1.0",
     "eslint-plugin-no-inferred-method-name": "1.0.2",
@@ -187,12 +184,13 @@
     "redux-thunk": "2.2.0",
     "requirejs": "^2.3.5",
     "rimraf": "2.6.2",
-    "rxjs": "5.4.3",
+    "rxjs": "5.5.0",
     "sass-loader": "6.0.6",
     "sinon": "4.0.1",
     "sinon-chai": "2.14.0",
     "stats-webpack-plugin": "0.6.1",
     "style-loader": "0.19.0",
+    "ufp-make": "^0.1.1",
     "uglifyjs-webpack-plugin": "1.0.0-beta.3",
     "uid-number": "0.0.6",
     "underscore-template-loader": "0.8.0",
