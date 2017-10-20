@@ -1,4 +1,4 @@
-const path=require('path')
+const path = require('path')
 const ufpMake = require('ufp-make')
 
 /**
@@ -6,5 +6,6 @@ const ufpMake = require('ufp-make')
  * default project config
  */
 
-
-ufpMake.make(path.join(__dirname,'../../presets/default/ufp-make.yml'))
+ufpMake.makeFile({
+    fileName: path.join(__dirname, '../../presets/default/ufp-make.yml')
+})

@@ -1,8 +1,5 @@
 import {FormattedMessage} from 'react-intl'
-import React, {
-    Component
-} from 'react'
-import {connect} from 'react-redux'
+import React from 'react'
 import PropTypes from 'prop-types'
 
 const UfpFormattedMessage = ({defaultMessage, id, values}) => (
