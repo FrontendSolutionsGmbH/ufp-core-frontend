@@ -1,7 +1,3 @@
 coverage/
-.coveralls.yml
-.travis.yml
-bin/
-build/
-.gitignore
-*.lock
+test-report/
+tests/
