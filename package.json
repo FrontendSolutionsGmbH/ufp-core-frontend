@@ -8,7 +8,7 @@
     "npm": ">=5.3.0"
   },
   "bin": {
-    "ufp-core": "bin/ufp-core"
+    "ufp-core": "bin/ufp-core.js"
   },
   "scripts": {
     "ufp-util:createTests": "node node_modules/ufp-core/bin/createTests",
