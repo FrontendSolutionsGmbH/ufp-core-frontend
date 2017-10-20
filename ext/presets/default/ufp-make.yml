@@ -1,0 +1,42 @@
+
+targets:
+  default:
+    - production
+  production:
+    - setup
+    - lint
+    - test
+    - build
+  development:
+    - setup
+    - build
+tasks:
+  setup:
+    - name: Environment Setup
+      description: used to configure environment variables used throughout the build
+      commands:
+        - node node_modules/cross-env UFP_VERSION = ${UFP_VERSION}
+        - node node_modules/cross-env UFP_API_TYPE = ${UFP_API_TYPE}
+        - node node_modules/cross-env UFP_THEME = ${UFP_THEME}
+        - node node_modules/cross-env UFP_NODE_ENV = ${UFP_NODE_ENV}
+  lint:
+    - name: Linting Sourcecode
+      description: ... performing static code analysis
+      commands:
+      - npm run ufp-lint -- -f codeframe
+      - npm run ufp-lint -- -f junit -o ${TEST_REPORT_FOLDER}/eslint/eslint-junit.xml
+
+  test:
+    - name: Testing
+      description: ... performs the unit tests
+      commands:
+      - npm run ufp-test
+  build:
+    - name: Building
+      allowedToFail: false
+      description: ... actually executing the build
+      commands:
+      - npm run ufp-compile
+
+
+

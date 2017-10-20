@@ -1,27 +1,21 @@
 import {FormattedMessage} from 'react-intl'
-import React, {
-    Component
-} from 'react'
-import {connect} from 'react-redux'
+import React from 'react'
 import PropTypes from 'prop-types'
 
-export class HomeView extends Component {
+const UfpFormattedMessage = ({defaultMessage, id, values}) => (
+    <FormattedMessage defaultMessage={defaultMessage}
+                      id={id}
+                      values={values} />)
 
-    propTypes = {
-        defaultMessage: PropTypes,
-        id: PropTypes.string.isRequired,
-        values: PropTypes.object
-    }
-
-    render() {
-        return (
-            <FormattedMessage defaultMessage={this.props.defaultMessage}
-                              id={this.props.id}
-                              values={this.props.values} />)
-    }
-
+UfpFormattedMessage.propTypes = {
+    defaultMessage: PropTypes.string,
+    id: PropTypes.string.isRequired,
+    values: PropTypes.object
 }
 
-const mapStateToProps = () => ({})
-const mapDispatchToProps = {}
-export default connect(mapStateToProps, mapDispatchToProps)(HomeView)
+UfpFormattedMessage.defaultProps = {
+    defaultMessage: '',
+    values: {}
+}
+
+export default UfpFormattedMessage
