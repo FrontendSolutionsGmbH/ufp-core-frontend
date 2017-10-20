@@ -24,7 +24,7 @@ tasks:
       description: ... performing static code analysis
       commands:
       - npm run ufp-lint -- -f codeframe
-      - npm run ufp-lint -- -f junit -o ${TEST_REPORT_FOLDER}/eslint/eslint-junit.xml
+      - npm run ufp-lint -- -f junit -o test-report/eslint/eslint-junit.xml
 
   test:
     - name: Testing
