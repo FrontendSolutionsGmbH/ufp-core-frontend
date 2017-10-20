@@ -6,7 +6,7 @@ const fs = require('fs')
 const path = require('path')
 const UFP = require('./build/lib/ufp')
 
-const logger = require('./build/lib/logger')
+const logger = require('./build/lib/logger')('update-dependencies')
 
 logger.info('Updating package.json from ufp-core refs')
 
@@ -48,13 +48,14 @@ fs.readFile(packageSrc, 'utf8', function (err, data) {
             JSONDest.devDependencies
         )
 
-        Object.keys(JSONSrc.dependencies).map((key) => {
-            // we have to remove it from 'normal' dependencies since ours overrides it completely
-            if (JSONDest.dependencies[key]) {
-                logger.warn('REMOVE project dependency', key, JSONSrc.dependencies[key])
-                delete JSONDest.dependencies[key]
-            }
-        })
+        Object.keys(JSONSrc.dependencies)
+              .map((key) => {
+                  // we have to remove it from 'normal' dependencies since ours overrides it completely
+                  if (JSONDest.dependencies[key]) {
+                      logger.warn('REMOVE project dependency', key, JSONSrc.dependencies[key])
+                      delete JSONDest.dependencies[key]
+                  }
+              })
 
         // then add src dependencies
         JSONDest.devDependencies = UFP.defaultMerge(

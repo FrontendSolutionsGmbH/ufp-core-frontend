@@ -6,7 +6,7 @@ const fs = require('fs')
 const path = require('path')
 const UFP = require('./build/lib/ufp')
 
-const logger = require('./build/lib/logger')
+const logger = require('./build/lib/logger')('update-package-json')
 
 logger.info('Updating package.json from ufp-core refs')
 

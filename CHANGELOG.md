@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [0.4.0]
 
+- updated scripts - execute 'npm run ufp-update'
 - internal change: build output controllable using log4js 
 - change: rename modules/rect to modules/ufp-react
 - change: rename modules/redux to modules/ufp-redux
