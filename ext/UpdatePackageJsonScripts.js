@@ -35,8 +35,8 @@ fs.readFile(packageSrc, 'utf8', function (err, data) {
         if (errDest) {
             logger.error(errDest)
         }
-        console.log(dataDest)
-        console.log(data)
+        logger.debug(dataDest)
+        logger.debug(data)
         //
         // console.log(JSON.parse(dataDest))
         const JSONDest = JSON.parse(dataDest)

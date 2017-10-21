@@ -71,6 +71,18 @@ const karmaConfig = {
         useBrowserName: false, // add browser name to report and classes names
         xmlVersion: null // use '1' if reporting to be per SonarQube 6.2 XML format
     },
+    plugins: [
+        'karma-chai',
+        'karma-chrome-launcher',
+        'karma-coverage',
+        'karma-junit-reporter',
+        'karma-mocha',
+        'karma-mocha-reporter',
+        'karma-requirejs',
+        'karma-sinon',
+        'karma-spec-reporter',
+        'karma-webpack'
+    ],
     webpack: {
         context: process.cwd(),
         entry: [...glob.sync(TEST_BUNDLER, {cwd: process.cwd()})],
