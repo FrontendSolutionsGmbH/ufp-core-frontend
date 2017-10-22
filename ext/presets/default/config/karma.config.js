@@ -7,8 +7,8 @@ const webpackConfig = require('./webpack.config.js')
 // const TEST_BUNDLER = './tests/test-bundler.js'
 const TEST_BUNDLER = './tests/**/*.spec.js'
 
-console.log('testsContext ')
-console.log('testsContext ', process.cwd())
+// console.log('testsContext ')
+// console.log('testsContext ', process.cwd())
 const karmaConfig = {
     browserDisconnectTimeout: 10000,
     browserDisconnectTolerance: 1,
