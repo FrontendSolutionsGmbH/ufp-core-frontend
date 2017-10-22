@@ -1,4 +1,4 @@
-const logger = require('../lib/logger')
+const logger = require('../lib/Logger')
 
 logger.info('Starting server...')
 require('../../server/main')

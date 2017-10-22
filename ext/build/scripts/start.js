@@ -1,4 +1,4 @@
-const logger = require('../lib/logger')('ufp-start')
+const logger = require('../lib/Logger')('ufp-start')
 
 logger.info('Starting server...')
 require('../server/main')

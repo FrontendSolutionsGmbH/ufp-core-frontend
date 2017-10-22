@@ -2,7 +2,7 @@
 const express = require('express')
 const path = require('path')
 var UFP = require('..//lib/ufp')
-const logger = require('../lib/logger')('ufp-server')
+const logger = require('../lib/Logger')('ufp-server')
 const webpack = require('webpack')
 
 const webpackConfig = UFP.requireDefault(
