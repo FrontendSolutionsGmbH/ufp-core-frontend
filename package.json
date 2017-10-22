@@ -36,7 +36,7 @@
     "prepack": "echo prepack",
     "postpack": "echo postpack",
     "preinstall": "echo preinstall",
-    "postinstall": "echo postinstall",
+    "postinstall": "node bin/ufp-core.js",
     "preversion": "echo postinstall",
     "dev": "babel-node src/index.js",
     "make": "ufp-make",
