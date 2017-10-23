@@ -1,6 +1,9 @@
 import queryParams from './QueryParams'
 import {UfpMiddlewareResulthandlerMoreThenOneSuccessError} from './Errors'
-import {
+import UfpMiddlewareHelperUtils from './UfpMiddlewareHelperUtils'
+import StringUtils from '../utils/StringUtils'
+
+const {
     ReactPropTypesCheck,
     PropTypesCheck,
     getJSON,
@@ -12,8 +15,7 @@ import {
     addToArrayIfNotExist,
     createConfigDefault,
     infoLogger
-} from './UfpMiddlewareHelperUtils'
-import StringUtils from '../utils/StringUtils'
+}=UfpMiddlewareHelperUtils
 
 const ufpMiddlewarePrepareConfig = (ufpAction) => {
     console.log(' ufpMiddlewarePrepareConfig ', JSON.parse(JSON.stringify(ufpAction)))

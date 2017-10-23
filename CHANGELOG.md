@@ -1,21 +1,23 @@
-# Changelog
-All notable changes to this project will be documented in this file.
+# Ufp-Core-Frontend Changelog
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [unreleased]
 
-
 ## [0.4.0]
 
+- introduction of promises for UfpCore methods
+- onConfigure for
 - updated scripts - execute 'npm run ufp-update'
 - internal change: build output controllable using log4js 
 - change: rename modules/rect to modules/ufp-react
 - change: rename modules/redux to modules/ufp-redux
-- new: ConfigModule: deep object setting/getting
+- new: UfpConfig: deep object setting/getting
 - react16 dependency
-- test setup utility
+- change: validate configuration objects using ReactPropTypes
+- test setup utility script command 'ufp-util:createTests'
+- UfpMiddlewareUtils
 
 - CHANGE: include the following in the test-bundler.js to accomodate enzyme-3.x compatibility until
     a more convenient way is in place
@@ -24,7 +26,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 
 ## [0.3.5]
-
 
 - fix: Macro handling eslint
     replace Macro: **@ROUTER3_DYNAMICINCLUDE** with **ROUTER3_DYNAMICINCLUDE** 
@@ -73,7 +74,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [0.1.0] - 2017-08-01
 
-### Added
 - Initial Release
 
 [Unreleased]: https://bitbucket.org/frontendsolutions/ufp-core/branches/compare/0.3.4...develop

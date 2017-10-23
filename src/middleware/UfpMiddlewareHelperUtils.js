@@ -1,5 +1,6 @@
 import merge from 'deepmerge'
 import {ReactPropTypesCheck} from '../utils/ReactPropTypesCheck'
+console.log('xxxxxxxxxxxxxxxxxxxxxxxxxx', ReactPropTypesCheck)
 
 function PropTypesCheck(data, propTypes) {
     try {
