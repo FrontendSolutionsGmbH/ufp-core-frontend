@@ -1,8 +1,6 @@
 import queryParams from './QueryParams'
 import {UfpMiddlewareResulthandlerMoreThenOneSuccessError} from './Errors'
-import UfpMiddlewareHelperUtils from './UfpMiddlewareHelperUtils'
-import StringUtils from '../utils/StringUtils'
-const {
+import {
     ReactPropTypesCheck,
     PropTypesCheck,
     getJSON,
@@ -14,7 +12,8 @@ const {
     addToArrayIfNotExist,
     createConfigDefault,
     infoLogger
-}=UfpMiddlewareHelperUtils
+} from './UfpMiddlewareHelperUtils'
+import StringUtils from '../utils/StringUtils'
 
 const ufpMiddlewarePrepareConfig = (ufpAction) => {
     console.log(' ufpMiddlewarePrepareConfig ', JSON.parse(JSON.stringify(ufpAction)))
@@ -33,9 +32,11 @@ const ufpMiddlewarePrepareConfig = (ufpAction) => {
         const {urlParams, queryParams} = ufpData
 
         if (queryParams && !isEmptyObject(queryParams)) {
-            config.url = url + '?' + Object.keys(queryParams).map((item) => {
-                    return item + '=' + queryParams[item]
-                }).join('&')
+            config.url = url + '?' + Object.keys(queryParams)
+                                           .map((item) => {
+                                               return item + '=' + queryParams[item]
+                                           })
+                                           .join('&')
         } else {
             config.url = url
         }
