@@ -209,7 +209,8 @@ if (project.env !== 'test') {
         loader: 'eslint-loader',
         options: {
             formatter: require('eslint/lib/formatters/codeframe'),
-            configFile: path.join(__dirname, '../../../../src/.eslintrc')
+
+            configFile: UFP.chooseExistingPath(inProject('.eslintrc'), path.join(__dirname, '../../../../src/.eslintrc'))
         }
     })
 }
