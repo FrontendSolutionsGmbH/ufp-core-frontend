@@ -10,10 +10,6 @@ import JsUtils from './JSUtils'
 export const ReactPropTypesCheck = (object, propTypes, _throw) => {
     console.warn('ReactPropTypesCheck is deprecated use CheckPropTypes() ')
     var propName
-    const stringJSON = JSON.stringify(object)
-
-    console.log('ReactPropTypesCheck', object, propTypes)
-    console.log('ReactPropTypesCheckxxx', propTypes.constructor.name)
 
     for (propName in propTypes) {
         if (propTypes.hasOwnProperty(propName)) {
@@ -45,10 +41,6 @@ export const CheckPropTypes = ({
     doThrow = false
 }) => {
     var propName
-    const stringJSON = JSON.stringify(object)
-
-    console.log('ReactPropTypesCheck', object, propTypes)
-    console.log('ReactPropTypesCheckxxx', propTypes.constructor.name)
 
     for (propName in propTypes) {
         if (propTypes.hasOwnProperty(propName)) {

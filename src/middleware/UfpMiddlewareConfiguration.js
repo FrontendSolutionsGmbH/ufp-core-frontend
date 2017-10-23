@@ -24,7 +24,6 @@ const UFPHandlerPropTypeDefinitionObject = {
 }
 
 const register = (array) => (handlers) => {
-
     console.log('UfpMiddlewareUtils', UfpMiddlewareUtils)
 
     if (Array.isArray(handlers)) {

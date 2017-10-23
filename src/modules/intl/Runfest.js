@@ -26,7 +26,6 @@ const Runfest = {
 
         IntlConfig.locales.push(...locales)
         IntlConfig.languages.push(...languages)
-
     },
 
     /**
@@ -48,7 +47,6 @@ const Runfest = {
                 }
             }
         })
-
     },
 
     addLocaleData: (locale) => {

@@ -220,8 +220,7 @@ const initRunfest = (runfest) => {
  * @param applicationNameIn
  */
 const startup = ({applicationNameIn = 'Ufp Application'}={applicationNameIn: 'Ufp Application'}) => {
-    return new Promise((resolve, reject) => {
-
+    return new Promise((resolve) => {
         checkStarted()
 
         registerRunfest(AdditionsRunfest)
@@ -302,19 +301,14 @@ const startup = ({applicationNameIn = 'Ufp Application'}={applicationNameIn: 'Uf
         // after we created the store, provide bound actioncreators and selectors for ease of use later on
         // we achieve this by iterating over all registered manifest
         UfpSetup.manifests.map((runfest) => {
-
             if (runfest.onConfigure) {
-
                 runfest.onConfigure({
                     UfpCore,
                     config: UfpConfig.getConfig({name: runfest.name})
                 })
-
             }
-
         })
         UfpSetup.manifests.map((runfest) => {
-
             // console.log('Updating runfest')
             var boundSelectors = bindSelectors(runfest.selectors)
             var boundActionCreators = bindActionCreators(runfest.actionCreators)

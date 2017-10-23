@@ -1,19 +1,10 @@
 
 targets:
   default:
-    - setup
     - lint
     - test
     - build
 tasks:
-  setup:
-    - name: Environment Setup
-      description: used to configure environment variables used throughout the build
-      commands:
-        - node node_modules/cross-env UFP_VERSION = ${UFP_VERSION}
-        - node node_modules/cross-env UFP_API_TYPE = ${UFP_API_TYPE}
-        - node node_modules/cross-env UFP_THEME = ${UFP_THEME}
-        - node node_modules/cross-env UFP_NODE_ENV = ${UFP_NODE_ENV}
   lint:
     - name: Linting Sourcecode
       description: ... performing static code analysis
