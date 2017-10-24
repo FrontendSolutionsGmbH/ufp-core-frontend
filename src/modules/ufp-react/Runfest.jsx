@@ -50,9 +50,9 @@ const Runfest = {
         const sibblings = []
         console.log('ufp-reactx Root Sibblings are ', sibblings)
 
-        _RootSibblings.map((item) => {
+        _RootSibblings.map((item, index) => {
             const Component = item
-            sibblings.push(<Component />)
+            sibblings.push(<Component key={'sibbling' + index} />)
         })
 
         _Providers.map((item, index) => {
@@ -61,7 +61,6 @@ const Runfest = {
             // component providers rely on single child policy ... tsts even china got rid of it...
             // trick here is summing up all providers as childs
             currentRootComponent = (
-
                 <Component>{index === 0 ?
                     (sibblings.length === 0 ? currentRootComponent :
                         <div>{currentRootComponent}{sibblings}</div>) : currentRootComponent }</Component>)
