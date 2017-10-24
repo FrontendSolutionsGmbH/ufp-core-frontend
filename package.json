@@ -161,7 +161,7 @@
     "node-watch": "0.5.5",
     "normalize": "0.3.1",
     "plato": "1.7.0",
-    "preact": "8.2.5",
+    "preact": "8.2.6",
     "preact-compat": "3.17.0",
     "preprocess-loader": "0.2.2",
     "preprocessor-loader": "1.0.5",
