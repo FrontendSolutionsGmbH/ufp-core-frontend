@@ -36,7 +36,7 @@ const UfpConfig = {
     UFP_VERSION: process.env.UFP_VERSION || '0.0.0',
     UFP_API_TYPE: process.env.UFP_API_TYPE || 'live',
     UFP_THEME: process.env.UFP_THEME || 'defaultTheme',
-    UFP_NODE_ENV: process.env.NODE_ENV
+    UFP_NODE_ENV: project.env
 }
 
 const config = {
