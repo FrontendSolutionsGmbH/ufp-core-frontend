@@ -13,6 +13,7 @@ const project = UFP.requireDefault(
     path.join(__dirname, '/../project.config.js')
 )
 const StatsPlugin = require('stats-webpack-plugin')
+const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin')
 const VisualizerPlugin = require('webpack-visualizer-plugin')
 // const CompressionPlugin = require('compression-webpack-plugin')
 // const PurifyCSSPlugin = require('purifycss-webpack')
@@ -292,6 +293,7 @@ config.module.rules.push({
     })
 })
 config.plugins.push(extractStyles)
+config.plugins.push(new CaseSensitivePathsPlugin({debug: true}))
 
 // Images
 // ------------------------------------
