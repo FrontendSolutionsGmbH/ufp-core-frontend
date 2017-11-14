@@ -29,7 +29,7 @@ const __DEV__ = project.env === 'development'
 const __TEST__ = project.env === 'test'
 const __PROD__ = project.env === 'production'
 
-// console.log('ENVIRONMENT IS ', process.env)
+console.log('Project IS ', project)
 // console.log('ENVIRONMENT IS ', process.env.UFP_VERSION)
 process.traceDeprecation = true
 const UfpConfig = {
@@ -440,16 +440,16 @@ if (__PROD__) {
         }
     }))
 }
-
-config.plugins.push(function () {
-    this.plugin('done', function (stats) {
-        if (stats.compilation.errors && stats.compilation.errors.length && process.argv.indexOf('--watch') === -1) {
-            console.log(stats.compilation.errors)
-            //  process.exit(1); // or throw new Error('webpack build failed.');
-        }
-        // ...
-    })
-})
+//
+// config.plugins.push(function () {
+//     this.plugin('done', function (stats) {
+//         if (stats.compilation.errors && stats.compilation.errors.length && process.argv.indexOf('--watch') === -1) {
+//             console.log(stats.compilation.errors)
+//             //  process.exit(1); // or throw new Error('webpack build failed.');
+//         }
+//         // ...
+//     })
+// })
 
 //
 // config.plugins.push(new ClosureCompilerPlugin({
@@ -462,4 +462,7 @@ config.plugins.push(function () {
 //     },
 //     concurrency: 3,
 // }))
+
+console.log('WEBPACK COnfig is', config)
+
 module.exports = config
