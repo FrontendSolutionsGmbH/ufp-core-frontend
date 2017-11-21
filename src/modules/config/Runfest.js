@@ -2,15 +2,11 @@
  * the manifest.js defines the properties of the ufp-module
  * @type {{name: string}}
  */
-import ConfigReducer from './ConfigReducer'
+import ConfigReducer from './ConfigReducerCreatorFunction'
 import ConfigActionCreators from './ConfigActionCreators'
 import ConfigConstants from './ConfigConstants'
 import ConfigSelectors from './ConfigSelectors'
 import {ThrowParam} from '../../utils/JSUtils'
-
-export const setConfigValueAction = {
-    name: 'SET_CONFIG_VALUE'
-}
 
 var data = {}
 
@@ -26,8 +22,8 @@ const Runfest = {
     description: 'Ufp Config Reducer - property storage',
     actionCreators: ConfigActionCreators,
     selectors: ConfigSelectors,
-
-      registerConfigDefault: (initialState, area = ConfigConstants.DEFAULT_AREA) => {
+    reducerCreatorFunction,
+    registerConfigDefault: (initialState, area = ConfigConstants.DEFAULT_AREA) => {
         data[area] = Object.assign(data[area] || {}, initialState)
     },
 

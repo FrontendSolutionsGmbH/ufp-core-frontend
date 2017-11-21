@@ -101,3 +101,7 @@ using the ufpAutoConfigured selector to retrieve a value from it
     console.log('DEMO Retrieve Config', ConfigRunfest.getConfigValue({key: 'bar'}))
 ```
 
+### Hints
+
+* for binary execution of installed npm modules enter ./node_modules/.bin into your $PATH env config
+

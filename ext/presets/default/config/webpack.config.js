@@ -13,6 +13,7 @@ const project = UFP.requireDefault(
     path.join(__dirname, '/../project.config.js')
 )
 const StatsPlugin = require('stats-webpack-plugin')
+const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin')
 const VisualizerPlugin = require('webpack-visualizer-plugin')
 // const CompressionPlugin = require('compression-webpack-plugin')
 // const PurifyCSSPlugin = require('purifycss-webpack')
@@ -28,18 +29,19 @@ const __DEV__ = project.env === 'development'
 const __TEST__ = project.env === 'test'
 const __PROD__ = project.env === 'production'
 
-console.log('ENVIRONMENT IS ', process.env)
-console.log('ENVIRONMENT IS ', process.env.UFP_VERSION)
+console.log('Project IS ', project)
+// console.log('ENVIRONMENT IS ', process.env.UFP_VERSION)
 process.traceDeprecation = true
 const UfpConfig = {
 
     UFP_VERSION: process.env.UFP_VERSION || '0.0.0',
     UFP_API_TYPE: process.env.UFP_API_TYPE || 'live',
     UFP_THEME: process.env.UFP_THEME || 'defaultTheme',
-    UFP_NODE_ENV: process.env.NODE_ENV
+    UFP_NODE_ENV: project.env
 }
 
 const config = {
+    context: path.join(project.basePath),
     entry: {
         main: [
             inProjectSrc(project.main)
@@ -52,7 +54,7 @@ const config = {
         reasons: true,
         errorDetails: true,
         // Examine all modules
-        maxModules: 'Infinity',
+        // maxModules: 'Infinity',
         // Display bailout reasons
         optimizationBailout: true
     },
@@ -100,7 +102,7 @@ const config = {
         }, project.globals))
     ]
 }
-console.log('Config is ', config)
+// console.log('Config is ', config)
 /**
  * start of ufp static folders copywebpackplugin config
  */
@@ -115,7 +117,7 @@ const folders = [
              * please note that /res is taken from project root whereas /src/static is taken
              * from project src
              */
-            from: 'src/static',
+            from: path.join(project.srcDir, 'static'),
             to: ''
         },
         {
@@ -129,6 +131,7 @@ const folders = [
             to: 'res'
         }
     ]
+// console.info('FOLDER CONFIG IS ', folders)
 // and create copy plugin entries if folders exist in project structure
 folders.map((folderData) => {
         if (fs.existsSync(path.join(process.cwd(), folderData.from))) {
@@ -137,7 +140,7 @@ folders.map((folderData) => {
                     {
                         from: folderData.from,
                         to: folderData.to
-                    }])
+                    }], {debug: 'debug'})
             )
         }
     }
@@ -207,7 +210,8 @@ if (project.env !== 'test') {
         loader: 'eslint-loader',
         options: {
             formatter: require('eslint/lib/formatters/codeframe'),
-            configFile: path.join(__dirname, '../../../../src/.eslintrc')
+
+            configFile: UFP.chooseExistingPath(inProject('.eslintrc'), path.join(__dirname, '../../../../src/.eslintrc'))
         }
     })
 }
@@ -289,6 +293,7 @@ config.module.rules.push({
     })
 })
 config.plugins.push(extractStyles)
+config.plugins.push(new CaseSensitivePathsPlugin({debug: true}))
 
 // Images
 // ------------------------------------
@@ -435,16 +440,16 @@ if (__PROD__) {
         }
     }))
 }
-
-config.plugins.push(function () {
-    this.plugin('done', function (stats) {
-        if (stats.compilation.errors && stats.compilation.errors.length && process.argv.indexOf('--watch') === -1) {
-            console.log(stats.compilation.errors)
-            //  process.exit(1); // or throw new Error('webpack build failed.');
-        }
-        // ...
-    })
-})
+//
+// config.plugins.push(function () {
+//     this.plugin('done', function (stats) {
+//         if (stats.compilation.errors && stats.compilation.errors.length && process.argv.indexOf('--watch') === -1) {
+//             console.log(stats.compilation.errors)
+//             //  process.exit(1); // or throw new Error('webpack build failed.');
+//         }
+//         // ...
+//     })
+// })
 
 //
 // config.plugins.push(new ClosureCompilerPlugin({
@@ -457,4 +462,7 @@ config.plugins.push(function () {
 //     },
 //     concurrency: 3,
 // }))
+
+console.log('WEBPACK COnfig is', config)
+
 module.exports = config

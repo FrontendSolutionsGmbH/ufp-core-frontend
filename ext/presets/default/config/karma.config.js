@@ -1,11 +1,14 @@
 /* eslint filenames/match-exported: 0 */
+const path = require('path')
+const glob = require('glob')
 const argv = require('yargs').argv
 const webpackConfig = require('./webpack.config.js')
 
-const TEST_BUNDLER = './tests/test-bundler.js'
+// const TEST_BUNDLER = './tests/test-bundler.js'
+const TEST_BUNDLER = './tests/**/*.spec.js'
 
-console.log('testsContext ')
-console.log('testsContext ', process.cwd())
+// console.log('testsContext ')
+// console.log('testsContext ', process.cwd())
 const karmaConfig = {
     browserDisconnectTimeout: 10000,
     browserDisconnectTolerance: 1,
@@ -37,16 +40,24 @@ const karmaConfig = {
             }
         ]
     },
-    files: [{
-        pattern: TEST_BUNDLER,
-        watched: false,
-        served: true,
-        included: true
-    }],
-    frameworks: ['mocha'],
+    files: [
+        {
+            pattern: path.resolve(__dirname, 'karma.setup.js'),
+            watched: false,
+            served: true,
+            included: true
+        },
+        {
+            pattern: TEST_BUNDLER,
+            watched: false,
+            served: true,
+            included: true
+        }],
+    frameworks: ['mocha', 'chai'],
     reporters: ['mocha', 'junit', 'coverage'],
     preprocessors: {
-        [TEST_BUNDLER]: ['webpack', 'coverage']
+        [path.resolve(__dirname, 'karma.setup.js')]: ['webpack'],
+        [TEST_BUNDLER]: ['webpack']
     },
     logLevel: 'DEBUG',
     browserConsoleLogOptions: {
@@ -60,9 +71,22 @@ const karmaConfig = {
         useBrowserName: false, // add browser name to report and classes names
         xmlVersion: null // use '1' if reporting to be per SonarQube 6.2 XML format
     },
+    plugins: [
+        'karma-chai',
+        'karma-chrome-launcher',
+        'karma-coverage',
+        'karma-junit-reporter',
+        'karma-mocha',
+        'karma-mocha-reporter',
+        'karma-requirejs',
+        'karma-sinon',
+        'karma-spec-reporter',
+        'karma-webpack'
+    ],
     webpack: {
-        entry: TEST_BUNDLER,
-        devtool: 'cheap-module-source-map',
+        context: process.cwd(),
+        entry: [...glob.sync(TEST_BUNDLER, {cwd: process.cwd()})],
+        devtool: 'inline-source-map',
         module: webpackConfig.module,
         plugins: webpackConfig.plugins,
         resolve: webpackConfig.resolve,

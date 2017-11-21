@@ -5,7 +5,7 @@
 
 const exec = require('child_process').exec
 
-const logger = require('./build/lib/logger')
+const logger = require('./build/lib/Logger')('update-package-json')
 
 logger.info('Updating package.json from ufp-core')
 

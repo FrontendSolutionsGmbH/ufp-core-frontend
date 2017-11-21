@@ -1,4 +1,3 @@
-
 // import 'normalize.js'
 import chai from 'chai'
 import sinon from 'sinon'
@@ -29,9 +28,10 @@ chai.use(sinonChai)
 // ------------------------------------
 // We use a Webpack global here as it is replaced with a string during compile.
 // Using a regular JS variable is not statically analyzable so webpack will throw warnings.
-const testsContext = require.context('./', true, /\.(spec|test)\.(js|ts|tsx)$/)
+const testsContext = require.context('./', true, /\.(spec)\.(js|ts|tsx)$/)
+testsContext.keys().forEach(testsContext);
 console.log('/////////////////////////////////////////////////////////////////////')
-console.log(testsContext)
+console.log(JSON.stringify(testsContext))
 console.log('/////////////////////////////////////////////////////////////////////')
 // When a test file changes, only rerun that spec file. If something outside of a
 // test file changed, rerun all tests.

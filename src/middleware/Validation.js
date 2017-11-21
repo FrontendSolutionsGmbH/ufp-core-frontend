@@ -63,7 +63,7 @@ const UFPTypesPropTypes = {
     })])
 }
 
-const isUFPAction = (action) => {
+export const isUFPAction = (action) => {
     return typeof action === 'object' && action.hasOwnProperty(UFPRequestActions.UFP_REQUEST_ACTION)
 }
 
@@ -76,7 +76,7 @@ const isUFPAction = (action) => {
  * @param {object} action - The action to check against the RSAA definition
  * @returns {array}
  */
-const validateUFPAction = (action) => {
+export const validateUFPAction = (action) => {
     try {
         UfpMiddlewareUtils.ReactPropTypesCheck(action, UFPActionPropTypes, true)
     }
@@ -100,4 +100,7 @@ const validateUFPAction = (action) => {
     return []
 }
 
-export {isUFPAction, validateUFPAction}
+export default {
+    isUFPAction,
+    validateUFPAction
+}

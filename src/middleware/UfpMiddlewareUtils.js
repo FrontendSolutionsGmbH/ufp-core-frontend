@@ -2,6 +2,7 @@ import queryParams from './QueryParams'
 import {UfpMiddlewareResulthandlerMoreThenOneSuccessError} from './Errors'
 import UfpMiddlewareHelperUtils from './UfpMiddlewareHelperUtils'
 import StringUtils from '../utils/StringUtils'
+
 const {
     ReactPropTypesCheck,
     PropTypesCheck,
@@ -33,9 +34,11 @@ const ufpMiddlewarePrepareConfig = (ufpAction) => {
         const {urlParams, queryParams} = ufpData
 
         if (queryParams && !isEmptyObject(queryParams)) {
-            config.url = url + '?' + Object.keys(queryParams).map((item) => {
-                    return item + '=' + queryParams[item]
-                }).join('&')
+            config.url = url + '?' + Object.keys(queryParams)
+                                           .map((item) => {
+                                               return item + '=' + queryParams[item]
+                                           })
+                                           .join('&')
         } else {
             config.url = url
         }

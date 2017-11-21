@@ -1,10 +1,28 @@
-# Changelog
-All notable changes to this project will be documented in this file.
+# Ufp-Core-Frontend Changelog
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [unreleased]
+
+## [0.4.0]
+
+- introduction of promises for UfpCore methods
+- onConfigure for
+- updated scripts - execute 'npm run ufp-update'
+- internal change: build output controllable using log4js 
+- change: rename modules/rect to modules/ufp-react
+- change: rename modules/redux to modules/ufp-redux
+- new: UfpConfig: deep object setting/getting
+- react16 dependency
+- change: validate configuration objects using ReactPropTypes
+- test setup utility script command 'ufp-util:createTests'
+- UfpMiddlewareUtils
+
+- CHANGE: include the following in the test-bundler.js to accomodate enzyme-3.x compatibility until
+    a more convenient way is in place
+
+        import 'ufp-core/ext/presets/default/config/karma.setup.js'
 
 
 ## [0.3.5]
@@ -56,10 +74,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [0.1.0] - 2017-08-01
 
-### Added
 - Initial Release
 
-[Unreleased]: https://bitbucket.org/frontendsolutions/ufp-core/branches/compare/0.3.4...develop
+[Unreleased]: https://bitbucket.org/frontendsolutions/ufp-core/branches/compare/0.4.0...develop
+[0.4.0]: https://github.com/FrontendSolutionsGmbH/ufp-core-frontend/compare/0.3.4...0.4.0
 [0.3.5]: https://github.com/FrontendSolutionsGmbH/ufp-core-frontend/compare/0.3.4...0.3.5
 [0.3.4]: https://github.com/FrontendSolutionsGmbH/ufp-core-frontend/compare/0.3.3...0.3.4
 [0.3.3]: https://github.com/FrontendSolutionsGmbH/ufp-core-frontend/compare/0.3.2...0.3.3

@@ -1,10 +1,11 @@
 import {ThrowParam} from '../utils/JSUtils'
 import UfpSetup from './UfpSetup'
-// import UfpCoreConstants from './UfpCoreConstants'
 import AdditionsRunfest from './addition/Runfest'
 import BaseRunfest from './base/Runfest'
+import UfpConfig from './UfpConfig'
 import {applyMiddleware, compose, combineReducers, createStore} from 'redux'
-
+import RunfestPropype from './proptypes/RunfestPropType'
+import {CheckPropTypes} from '../utils/ReactPropTypesCheck'
 var store = null
 
 /**
@@ -24,11 +25,11 @@ const bindSelectors = (selectors) => {
 
     if (selectors) {
         Object.keys(selectors)
-            .map((key) => {
-                result[key] = (...params) => {
-                    return selectors[key](store.getState(), ...params)
-                }
-            })
+              .map((key) => {
+                  result[key] = (...params) => {
+                      return selectors[key](store.getState(), ...params)
+                  }
+              })
     }
 
     return result
@@ -38,11 +39,11 @@ const bindActionCreators = (actionCreators) => {
     var result = {}
     if (actionCreators) {
         Object.keys(actionCreators)
-            .map((key) => {
-                result[key] = (...params) => {
-                    return store.dispatch(actionCreators[key](...params))
-                }
-            })
+              .map((key) => {
+                  result[key] = (...params) => {
+                      return store.dispatch(actionCreators[key](...params))
+                  }
+              })
     }
     return result
 }
@@ -128,6 +129,7 @@ const registerReducerCreator = ({
     if (UfpSetup.reducers[id]) {
         ThrowParam('Reducer already registered ... ', id)
     }
+
     UfpSetup.reducerCreators[id] = {
         id,
         reducerCreatorFunction
@@ -149,10 +151,13 @@ const registerEnhancerCreator = ({
     enhancerCreatorFunction = ThrowParam('enhancerCreatorFunction Required for registerEnhancerCreator')
 
 }) => {
-    checkStarted()
-    UfpSetup.reducers.push({
-        id,
-        enhancerCreatorFunction
+    return new Promise((resolve) => {
+        checkStarted()
+        UfpSetup.reducers.push({
+            id,
+            enhancerCreatorFunction
+        })
+        resolve(UfpCore)
     })
 }
 const checkStarted = () => {
@@ -160,13 +165,27 @@ const checkStarted = () => {
         ThrowParam('Ufp Application already started registering no longer possible')
     }
 }
-const registerRunfest = (manifest) => {
-    checkStarted()
-
+const registerRunfest = (runfest) => {
+    return new Promise((resolve) => {
+        CheckPropTypes({
+            object: runfest,
+            propTypes: RunfestPropype,
+            doThrow: true,
+            name: 'RunfestPropype'
+        })
+        checkStarted()
+        initRunfest(runfest)
+        UfpSetup.manifests.push(runfest)
+        resolve(UfpCore)
+    })
+}
+const initRunfest = (runfest) => {
     // call onRegistered only if explicit
-    if (manifest.onRegistered) {
+    if (runfest.onRegistered) {
         // console.log('Calling onRegistered on manifest', UfpCore)
-        manifest.onRegistered({UfpCore})
+        runfest.onRegistered({
+            UfpCore
+        })
     }
 
     /*
@@ -176,24 +195,23 @@ const registerRunfest = (manifest) => {
     // after we created the store, provide bound actioncreators and selectors for ease of use later on
     // we achieve this by iterating over all registered manifest
 
-    if (manifest.actionCreators) {
-        Object.keys(manifest.actionCreators)
-            .map((key) => {
-                // extend js object with notification throw error when startup has not been called
-                // yes its brutal, but convenient
-                manifest[key] = () => ThrowParam(manifest.name + '.' + key + ' called before ufpCore.startup() ')
-            })
+    if (runfest.actionCreators) {
+        Object.keys(runfest.actionCreators)
+              .map((key) => {
+                  // extend js object with notification throw error when startup has not been called
+                  // yes its brutal, but convenient
+                  runfest[key] = () => ThrowParam(runfest.name + '.' + key + ' called before ufpCore.startup() ')
+              })
     }
 
-    if (manifest.selectors) {
-        Object.keys(manifest.selectors)
-            .map((key) => {
-                // extend js object with notification throw error when startup has not been called
-                // yes its brutal, but convenient
-                manifest[key] = () => ThrowParam(manifest.name + '.' + key + ' called before ufpCore.startup() ')
-            })
+    if (runfest.selectors) {
+        Object.keys(runfest.selectors)
+              .map((key) => {
+                  // extend js object with notification throw error when startup has not been called
+                  // yes its brutal, but convenient
+                  runfest[key] = () => ThrowParam(runfest.name + '.' + key + ' called before ufpCore.startup() ')
+              })
     }
-    UfpSetup.manifests.push(manifest)
 }
 
 /**
@@ -202,119 +220,129 @@ const registerRunfest = (manifest) => {
  * @param applicationNameIn
  */
 const startup = ({applicationNameIn = 'Ufp Application'}={applicationNameIn: 'Ufp Application'}) => {
-    checkStarted()
+    return new Promise((resolve) => {
+        checkStarted()
 
-    registerRunfest(AdditionsRunfest)
-    registerRunfest(BaseRunfest)
+        registerRunfest(AdditionsRunfest)
+        registerRunfest(BaseRunfest)
 
-    // @if NODE_ENV=='develop'
-    const DebugRunfest = require('./debug/Runfest')
-    registerRunfest(DebugRunfest)
+        // @if NODE_ENV=='develop'
+        const DebugRunfest = require('./debug/Runfest').default
+        registerRunfest(DebugRunfest)
+        // @endif
 
-    // @endif
+        startedUp = true
+        applicationName = applicationNameIn
+        // console.log('UFP Application startup - ', applicationName)
+        const reducers = []
+        Object.keys(UfpSetup.reducers)
+              .map((key) => {
+                  // console.log('Creating Reducer From', key, index, UfpSetup.reducers[key])
+                  reducers[key] = UfpSetup.reducers[key].reducer
+              })
 
-    startedUp = true
-    applicationName = applicationNameIn
-    // console.log('UFP Application startup - ', applicationName)
-    const reducers = []
-    Object.keys(UfpSetup.reducers)
-        .map((key) => {
-            // console.log('Creating Reducer From', key, index, UfpSetup.reducers[key])
-            reducers[key] = UfpSetup.reducers[key].reducer
+        Object.keys(UfpSetup.reducerCreators)
+              .map((key) => {
+                  // console.log('Creating Reducer From CreatorFunction', key, index)
+                  reducers[key] = UfpSetup.reducerCreators[key].reducerCreatorFunction()
+              })
+
+        const middleware = []
+        UfpSetup.middlewares.map((item) => {
+            middleware.push(item.middleware)
+        })
+        UfpSetup.middlewareCreators.map((item) => {
+            middleware.push(item.middlewareCreatorFunction())
         })
 
-    Object.keys(UfpSetup.reducerCreators)
-        .map((key) => {
-            // console.log('Creating Reducer From CreatorFunction', key, index)
-            reducers[key] = UfpSetup.reducerCreators[key].reducerCreatorFunction()
+        // ======================================================
+        // Store Enhancers
+        // ======================================================
+        const enhancers = []
+        UfpSetup.enhancers.map((item) => {
+            enhancers.push(item.enhancer)
         })
 
-    const middleware = []
-    UfpSetup.middlewares.map((item) => {
-        middleware.push(item.middleware)
-    })
-    UfpSetup.middlewareCreators.map((item) => {
-        middleware.push(item.middlewareCreatorFunction())
-    })
+        UfpSetup.enhancerCreators.map((item) => {
+            enhancers.push(item.enhancerCreatorFunction())
+        })
 
-    // ======================================================
-    // Store Enhancers
-    // ======================================================
-    const enhancers = []
-    UfpSetup.enhancers.map((item) => {
-        enhancers.push(item.enhancer)
-    })
+        var composeEnhancers = compose
 
-    UfpSetup.enhancerCreators.map((item) => {
-        enhancers.push(item.enhancerCreatorFunction())
-    })
+        // check dev environment
+        if (__DEV__) {
+            if (typeof window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ === 'function') {
+                composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
+                    name: 'UFP ' + applicationName,
+                    shouldCatchErrors: true,
+                    actionCreators: UfpSetup.getAllActionCreators()
 
-    var composeEnhancers = compose
-
-    // check dev environment
-    if (__DEV__) {
-        if (typeof window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ === 'function') {
-            composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
-                name: 'UFP ' + applicationName,
-                shouldCatchErrors: true,
-                actionCreators: UfpSetup.getAllActionCreators()
-
-            })
+                })
+            }
         }
-    }
 
-    // debug
+        // debug
 
-    const rootReducer = makeRootReducer(reducers)
-    // console.log('Reducers are:', rootReducer)
-    // console.log('middleware are: ', middleware)
-    // console.log('enhancers are:', enhancers)
+        const rootReducer = makeRootReducer(reducers)
+        // console.log('Reducers are:', rootReducer)
+        // console.log('middleware are: ', middleware)
+        // console.log('enhancers are:', enhancers)
 
-    store = createStore(
-        rootReducer,
-        // initialstate shall be managed by reducers themselves no direct state initialisation foreseen
-        getInitialState(),
-        composeEnhancers(
-            applyMiddleware(...middleware),
-            ...enhancers
+        store = createStore(
+            rootReducer,
+            // initialstate shall be managed by reducers themselves no direct state initialisation foreseen
+            getInitialState(),
+            composeEnhancers(
+                applyMiddleware(...middleware),
+                ...enhancers
+            )
         )
-    )
 
-    // after we created the store, provide bound actioncreators and selectors for ease of use later on
-    // we achieve this by iterating over all registered manifest
-    UfpSetup.manifests.map((manifest) => {
-        // console.log('Updating manifest')
-        var boundSelectors = bindSelectors(manifest.selectors)
-        var boundActionCreators = bindActionCreators(manifest.actionCreators)
-        Object.keys(boundSelectors)
-            .map((key) => {
-                // extend js object of incoming manifest
-                // yes its brutal, but convenient
-                // console.log('boundSelectors : ', key, boundSelectors[key])
-                manifest[key] = boundSelectors[key]
-            })
-
-        Object.keys(boundActionCreators)
-            .map((key) => {
-                // extend js object of incoming manifest
-                // yes its brutal, but convenient
-                // console.log('boundActionCreators : ', key, boundActionCreators[key])
-                manifest[key] = boundActionCreators[key]
-            })
-    })
-
-    // iterate over all manifests an call 'onPreStartup'
-    Object.keys(UfpSetup.manifests)
-        .map((key) => {
-            if (UfpSetup.manifests[key] && UfpSetup.manifests[key].onPreStartup) {
-                UfpSetup.manifests[key].onPreStartup({UfpCore})
+        // after we created the store, provide bound actioncreators and selectors for ease of use later on
+        // we achieve this by iterating over all registered manifest
+        UfpSetup.manifests.map((runfest) => {
+            if (runfest.onConfigure) {
+                runfest.onConfigure({
+                    UfpCore,
+                    config: UfpConfig.getConfig({name: runfest.name})
+                })
             }
         })
+        UfpSetup.manifests.map((runfest) => {
+            // console.log('Updating runfest')
+            var boundSelectors = bindSelectors(runfest.selectors)
+            var boundActionCreators = bindActionCreators(runfest.actionCreators)
+            Object.keys(boundSelectors)
+                  .map((key) => {
+                      // extend js object of incoming runfest
+                      // yes its brutal, but convenient
+                      // console.log('boundSelectors : ', key, boundSelectors[key])
+                      runfest[key] = boundSelectors[key]
+                  })
 
-    /**
-     * dispatch init action
-     */
-    BaseRunfest.startupAction()
+            Object.keys(boundActionCreators)
+                  .map((key) => {
+                      // extend js object of incoming runfest
+                      // yes its brutal, but convenient
+                      // console.log('boundActionCreators : ', key, boundActionCreators[key])
+                      runfest[key] = boundActionCreators[key]
+                  })
+        })
+
+        // iterate over all manifests an call 'onPreStartup'
+        Object.keys(UfpSetup.manifests)
+              .map((key) => {
+                  if (UfpSetup.manifests[key] && UfpSetup.manifests[key].onPreStartup) {
+                      UfpSetup.manifests[key].onPreStartup({UfpCore})
+                  }
+              })
+
+        /**
+         * dispatch init action
+         */
+        BaseRunfest.startupAction()
+        resolve(UfpCore)
+    })
 }
 
 const registerInitialStateCallback = ({
@@ -322,19 +350,17 @@ const registerInitialStateCallback = ({
 }) => {
     UfpSetup.initialStateCallbacks.push(callback)
 }
-
+const configure = UfpConfig.configure
 const UfpCore = {
     registerInitialStateCallback,
     registerReducer,
     registerMiddleware,
     registerEnhancer,
-
     registerReducerCreator,
     registerMiddlewareCreator,
     registerEnhancerCreator,
-
     registerRunfest,
-
+    configure,
     startup,
 
     // wrapping of redux store

@@ -7,14 +7,12 @@ import DefaultLoaderView from './DefaultLoaderView'
 export class LoaderDisplay extends Component {
 
     static propTypes = {
-        loaderComponent: PropTypes.any.isRequired,
         appComponent: PropTypes.any.isRequired,
-        totalPercentage: PropTypes.number.isRequired,
+        appInitialized: PropTypes.bool.isRequired,
+        loaderComponent: PropTypes.any.isRequired,
         stagePercentage: PropTypes.number.isRequired,
         stepPercentage: PropTypes.number.isRequired,
-        appInitialized: PropTypes.bool.isRequired,
-        defaultMessage: PropTypes.string,
-        values: PropTypes.object
+        totalPercentage: PropTypes.number.isRequired
     }
 
     static defaultProps = {

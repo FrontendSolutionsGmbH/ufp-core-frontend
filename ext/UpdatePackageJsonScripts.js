@@ -6,7 +6,7 @@ const fs = require('fs')
 const path = require('path')
 const UFP = require('./build/lib/ufp')
 
-const logger = require('./build/lib/logger')
+const logger = require('./build/lib/Logger')('update-package-json')
 
 logger.info('Updating package.json from ufp-core refs')
 
@@ -35,7 +35,8 @@ fs.readFile(packageSrc, 'utf8', function (err, data) {
         if (errDest) {
             logger.error(errDest)
         }
-        // console.log(dataDest);
+        logger.debug(dataDest)
+        logger.debug(data)
         //
         // console.log(JSON.parse(dataDest))
         const JSONDest = JSON.parse(dataDest)

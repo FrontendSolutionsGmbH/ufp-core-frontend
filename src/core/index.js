@@ -10,5 +10,6 @@ export const registerMiddlewareCreator = _UfpCore.registerMiddlewareCreator
 export const registerEnhancerCreator = _UfpCore.registerEnhancerCreator
 export const registerRunfest = _UfpCore.registerRunfest
 export const startupUfpCore = _UfpCore.startup
+export const configure = _UfpCore.configure
 
 // No default export! BECAUSE it creates hardwired dependency, cherrypick your methods
