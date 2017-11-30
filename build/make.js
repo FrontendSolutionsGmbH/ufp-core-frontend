@@ -1,7 +1,7 @@
 const path = require('path')
 const execSync = require('child_process').execSync
 const Constants = require('../ext/build/scripts/constants')
-const logger = require('../ext/build/lib/Logger')('ufp-make')
+const logger = require('../ext/build/lib/Logger2')('ufp-make')
 const validator = require('validator')
 const rimraf = require('rimraf')
 // var Table = require('cli-table')

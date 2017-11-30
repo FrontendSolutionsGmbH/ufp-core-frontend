@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-const logger = require('../ext/build/lib/Logger')('ufp-core-cli')
+const logger = require('../ext/build/lib/Logger2')('ufp-core-cli')
 const package = require('../package.json')
 
 logger.mark('UfpCore v%s', package.version)
