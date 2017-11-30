@@ -5,6 +5,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [unreleased]
 
+## [0.4.1]
+
+- bugfix npm published wrong versions? 
+
 ## [0.4.0]
 
 - introduction of promises for UfpCore methods
