@@ -12,6 +12,7 @@ class MenuWrapper extends Component {
         menuAreaName: PropTypes.string,
         menuItems: PropTypes.array,
         menuRenderer: PropTypes.any,
+        menuItemRenderer: PropTypes.any,
         menuSubAreaName: PropTypes.string
     }
     static defaultProps = {
@@ -19,6 +20,7 @@ class MenuWrapper extends Component {
         menuSubAreaName: MenuConstants.DEFAULT_SUBAREA,
         menuRenderer: DefaultMenuAreaRenderer,
         menuItems: [],
+        menuItemRenderer: undefined
     }
 
     render() {
@@ -27,6 +29,7 @@ class MenuWrapper extends Component {
         return (
             <Component menuAreaName={this.props.menuAreaName}
                        menuItems={this.props.menuItems}
+                       menuItemRenderer={this.props.menuItemRenderer}
                        menuSubAreaName={this.props.menuSubAreaName} />
         )
     }
