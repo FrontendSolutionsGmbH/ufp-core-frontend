@@ -5,6 +5,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [unreleased]
 
+## [0.4.2]
+
+- totally strange npm publish behaviour - a file is definately not updated, now trying to rename
+the file and looks what happens ...
+
 ## [0.4.1]
 
 - bugfix npm published wrong versions?
@@ -81,7 +86,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - Initial Release
 
-[Unreleased]: https://bitbucket.org/frontendsolutions/ufp-core/branches/compare/0.4.1...develop
+[Unreleased]: https://bitbucket.org/frontendsolutions/ufp-core/branches/compare/0.4.2...develop
+[0.4.0]: https://github.com/FrontendSolutionsGmbH/ufp-core-frontend/compare/0.4.1...0.4.2
 [0.4.0]: https://github.com/FrontendSolutionsGmbH/ufp-core-frontend/compare/0.4.0...0.4.1
 [0.4.0]: https://github.com/FrontendSolutionsGmbH/ufp-core-frontend/compare/0.3.4...0.4.0
 [0.3.5]: https://github.com/FrontendSolutionsGmbH/ufp-core-frontend/compare/0.3.4...0.3.5
