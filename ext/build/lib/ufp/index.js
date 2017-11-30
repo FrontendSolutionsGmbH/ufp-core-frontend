@@ -1,6 +1,6 @@
 var fs = require('fs')
 
-const logger = require('../Logger')('ufp-utils')
+const logger = require('../Logger2')('ufp-utils')
 
 /**
  * this utility checks if a file exists, if yes return content of the file
