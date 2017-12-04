@@ -1,7 +1,8 @@
 const path = require('path')
 const execSync = require('child_process').execSync
 const Constants = require('./constants')
-const logger = require('../lib/Logger')('ufp-client')
+const logger = require('../lib/Logger2')('ufp-client')
+
 const rimraf = require('rimraf')
 const validator = require('validator')
 
