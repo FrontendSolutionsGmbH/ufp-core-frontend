@@ -2,8 +2,8 @@
 const path = require('path')
 const chalk = require('chalk')
 const webpack = require('webpack')
-const logger = require('./logger')
-var UFP = require('..//lib/ufp')
+const logger = require('../lib/Logger2')('ufp-compile')
+var UFP = require('../lib/ufp')
 
 const webpackConfig = UFP.requireDefault(
     path.join(process.cwd(), '/config/webpack.config'),
