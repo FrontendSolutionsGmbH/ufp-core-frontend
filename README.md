@@ -4,6 +4,8 @@
 
 # Ufp Core Frontend
 
+## Alpha Version (use at own risk)
+
 Ufp-Core-Frontend is a Webpack build system managing a side effect enabled Redux store using  ReduxThunk and ReduxObservable .   The Ufp-Middleware is designed to provide application wide interceptions for asyncronous operations. Ufp-Runfest is the Runtime Manifest definition to construct ufp-applications.
 
 build in modules:

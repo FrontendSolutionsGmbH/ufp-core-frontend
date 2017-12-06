@@ -226,7 +226,7 @@ const startup = ({applicationNameIn = 'Ufp Application'}={applicationNameIn: 'Uf
         registerRunfest(AdditionsRunfest)
         registerRunfest(BaseRunfest)
 
-        // @if NODE_ENV=='develop'
+        // @if UFP_NODE_ENV=='develop'
         const DebugRunfest = require('./debug/Runfest').default
         registerRunfest(DebugRunfest)
         // @endif
@@ -270,6 +270,7 @@ const startup = ({applicationNameIn = 'Ufp Application'}={applicationNameIn: 'Uf
         var composeEnhancers = compose
 
         // check dev environment
+
         if (__DEV__) {
             if (typeof window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ === 'function') {
                 composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({

@@ -201,20 +201,19 @@ const javascriptConfig = {
         ]
     }
 
-if (project.env !== 'test') {
-    /**
-     * disable linting for /test files
-     * todo: prepare lint config for tests
-     */
-    javascriptConfig.use.push({
-        loader: 'eslint-loader',
-        options: {
-            formatter: require('eslint/lib/formatters/codeframe'),
-
-            configFile: UFP.chooseExistingPath(inProject('.eslintrc'), path.join(__dirname, '../../../../src/.eslintrc'))
-        }
-    })
-}
+// if (project.env !== 'test' && project.env !== 'development') {
+//     /**
+//      * disable linting for /test files
+//      * todo: prepare lint config for tests
+//      */
+//     javascriptConfig.use.push({
+//         loader: 'eslint-loader',
+//         options: {
+//             formatter: require('eslint/lib/formatters/codeframe'),
+//             configFile: UFP.chooseExistingPath(inProject('.eslintrc'), path.join(__dirname, '../../../../src/.eslintrc'))
+//         }
+//     })
+// }
 
 javascriptConfig.use.push({
         loader: 'preprocess-loader',
