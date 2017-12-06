@@ -1,8 +1,5 @@
 const NODE_ENV = process.env.NODE_ENV || 'development'
 
-console.log("NODE ENV IS ", process)
-console.log("NODE ENV IS ", NODE_ENV)
-
 module.exports = {
     /** The environment to use when building the project */
     env: NODE_ENV,

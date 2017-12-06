@@ -100,13 +100,13 @@ const initCommands = [
 ]
 const validateCommands = [
     'npm run ufp-lint -- -f codeframe',
-    'npm run ufp-lint -- -f junit -o ' + path.join(Constants.TEST_REPORT_FOLDER, '/eslint/eslint-junit.xml'),
+    'npm run ufp-lint -- -f junit -o ' + path.join(Constants.TEST_REPORT_FOLDER, '/eslint/eslint-junit.xml')
 ]
 const testCommands = [
     'npm run ufp-test'
 ]
 const buildCommands = [
-    'npm run ufp-compile:bare',
+    'npm run ufp-compile:bare'
 ]
 
 // always exec init
