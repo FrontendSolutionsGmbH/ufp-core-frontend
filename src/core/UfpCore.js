@@ -88,7 +88,7 @@ const registerReducer = ({
     //     ThrowParam('Reducer already registered ... ', id, UfpSetup.reducers)
     // }s
 
-    console.log('Registering Reducer ', id, reducer)
+    // console.log('Registering Reducer ', id, reducer)
     UfpSetup.reducers[id] = {
         id: id,
         reducer
