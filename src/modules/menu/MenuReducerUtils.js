@@ -3,8 +3,8 @@ import MenuConfigurationInternal from './MenuConfigurationInternal'
 import MenuInternalUtils from './MenuInternalUtils'
 
 export const getInitialState = () => {
-    console.log('Initial State Menu called ', MenuConfigurationInternal)
-    console.log(MenuConfigurationInternal)
+    // console.log('Initial State Menu called ', MenuConfigurationInternal)
+    // console.log(MenuConfigurationInternal)
 
     return {
 

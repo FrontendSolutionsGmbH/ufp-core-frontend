@@ -29,7 +29,7 @@ const __DEV__ = project.env === 'development'
 const __TEST__ = project.env === 'test'
 const __PROD__ = project.env === 'production'
 
-console.log('Project IS ', project)
+// console.log('Project IS ', project)
 // console.log('ENVIRONMENT IS ', process.env.UFP_VERSION)
 process.traceDeprecation = true
 const UfpConfig = {
@@ -159,6 +159,17 @@ const javascriptConfig = {
                 loader: 'babel-loader',
 
                 options: {
+                    env: {
+                        development: {
+                            plugins: [['react-transform', {
+                                transforms: [{
+                                    transform: 'react-transform-hmr',
+                                    imports: ['react'],
+                                    locals: ['module']
+                                }]
+                            }]]
+                        }
+                    },
                     cacheDirectory: true,
                     plugins: [
 
@@ -462,6 +473,6 @@ if (__PROD__) {
 //     concurrency: 3,
 // }))
 
-console.log('WEBPACK COnfig is', config)
+// console.log('WEBPACK COnfig is', config)
 
 module.exports = config

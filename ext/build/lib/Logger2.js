@@ -31,7 +31,7 @@ module.exports = (area) => {
             console.error('error', area, rest)
         },
         mark: (...rest) => {
-            console.error('mark', area, rest)
+            console.log('mark', area, rest)
         },
         success: (...rest) => {
             console.error('success', area, rest)

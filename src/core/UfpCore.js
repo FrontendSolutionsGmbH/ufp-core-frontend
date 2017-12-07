@@ -271,18 +271,7 @@ const startup = ({applicationNameIn = 'Ufp Application'}={applicationNameIn: 'Uf
 
         // check dev environment
 
-        if (__DEV__) {
-            if (typeof window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ === 'function') {
-                composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
-                    name: 'UFP ' + applicationName,
-                    shouldCatchErrors: true,
-                    actionCreators: UfpSetup.getAllActionCreators()
 
-                })
-            }
-        }
-
-        // debug
 
         const rootReducer = makeRootReducer(reducers)
         // console.log('Reducers are:', rootReducer)

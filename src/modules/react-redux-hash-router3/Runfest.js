@@ -18,7 +18,7 @@ const Runfest = {
     selectors: RouterSelectors,
 
     onRegistered: ({UfpCore}) => {
-        console.log('ROUTER REGISTERED CALLED ')
+        // console.log('ROUTER REGISTERED CALLED ')
 
         UfpCore.registerMiddleware({
             id: 'router-middleware',

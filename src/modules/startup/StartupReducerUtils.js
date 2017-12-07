@@ -116,7 +116,7 @@ const stepReducer = (state, action) => {
         return state
     }
 
-    console.log('Step Reducer Called', state, action)
+    // console.log('Step Reducer Called', state, action)
 
     var currentStageIndex = state.status.currentStageIndex
     var stageKeys = Object.keys(state.stageDefinition)
@@ -125,7 +125,7 @@ const stepReducer = (state, action) => {
     // marker flag if any of the registered actions are incoming (dont update state otherwise)
     var currentStage = state.stageDefinition[stageKeys[currentStageIndex]]
 
-    console.log('Step Reducer Called Current Stage is', currentStage)
+    // console.log('Step Reducer Called Current Stage is', currentStage)
 
     currentStage.some((stepDef) => {
         // // console.log('StartupReducer checking', stepDef)
