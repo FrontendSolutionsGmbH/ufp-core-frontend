@@ -61,7 +61,7 @@ const setLanguage = (lang) => (dispatch, getState) => {
     }
 }
 
-const initSetLanguage = () => (dispatch, getState) => {
+const initSetLanguage = () => (dispatch) => {
     // console.log('UFP Intl Setting Language', getState().apiConfig)
 
     dispatch(setLanguage('en'))

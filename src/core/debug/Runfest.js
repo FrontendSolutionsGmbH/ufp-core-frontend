@@ -8,9 +8,7 @@ export default{
     name: 'Ufp Debug',
     description: 'Ufp Debug - redux logger...',
     onRegistered: ({UfpCore}) => {
-
         if (RoutingUtils.getParameterByName('debug') === 'true') {
-
             UfpCore.registerMiddleware({
                 id: 'Redux-Logger',
                 middleware: logger
@@ -18,9 +16,8 @@ export default{
 
             if (typeof window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ === 'function') {
                 UfpCore.registerEnhancer(window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
-                    name: 'UFP ' + applicationName,
-                    shouldCatchErrors: true,
-                    actionCreators: UfpSetup.getAllActionCreators()
+                    name: 'UFP Application',
+                    shouldCatchErrors: true
 
                 }))
             }

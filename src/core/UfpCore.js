@@ -18,7 +18,6 @@ var store = null
  */
 
 var startedUp = false
-var applicationName
 
 const bindSelectors = (selectors) => {
     var result = {}
@@ -232,8 +231,8 @@ const startup = ({applicationNameIn = 'Ufp Application'}={applicationNameIn: 'Uf
         // @endif
 
         startedUp = true
-        applicationName = applicationNameIn
-        // console.log('UFP Application startup - ', applicationName)
+        // applicationName = applicationNameIn
+        console.log('UFP Application startup - ', applicationNameIn)
         const reducers = []
         Object.keys(UfpSetup.reducers)
               .map((key) => {
@@ -270,8 +269,6 @@ const startup = ({applicationNameIn = 'Ufp Application'}={applicationNameIn: 'Uf
         var composeEnhancers = compose
 
         // check dev environment
-
-
 
         const rootReducer = makeRootReducer(reducers)
         // console.log('Reducers are:', rootReducer)
