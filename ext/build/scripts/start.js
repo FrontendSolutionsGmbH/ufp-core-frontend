@@ -6,7 +6,7 @@ process.on('uncaughtException', function (err) {
     } else {
         logger.error('Some other error: ', err)
     }
-    process.exit(1)
+    process.exit(0)
 })
 
 logger.info(`Starting ufp-dev server... on port ${port}`)

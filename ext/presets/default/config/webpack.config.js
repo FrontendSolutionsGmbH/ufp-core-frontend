@@ -7,6 +7,7 @@ var UFP = require('../../../build/lib/ufp')
 const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const project = UFP.requireDefault(
     path.join(process.cwd(), '/project.config.js'),
@@ -428,13 +429,13 @@ if (__PROD__) {
     // config.plugins.push(
     //     new BabelMinifyPlugin()
     // )
-    config.plugins.push(new webpack.optimize.UglifyJsPlugin({
+    config.plugins.push(new UglifyJsPlugin({
         sourceMap: project.sourcemaps,
-        mangle: true,
+        uglifyOptions: {
+            mangle: true,
         compress: {
             passes: 3,
             warnings: false,
-            screw_ie8: true,
             drop_console: true,
             hoist_vars: true,
             hoist_funs: true,
@@ -447,6 +448,7 @@ if (__PROD__) {
             evaluate: true,
             if_return: true,
             join_vars: true
+        }
         }
     }))
 }
@@ -473,6 +475,8 @@ if (__PROD__) {
 //     concurrency: 3,
 // }))
 
-// console.log('WEBPACK COnfig is', config)
+ console.log('<WEBPACK Config is')
+ console.log(config)
+ console.log('WEBPACK Config is>')
 
 module.exports = config
