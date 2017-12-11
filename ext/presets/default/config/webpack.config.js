@@ -7,6 +7,7 @@ var UFP = require('../../../build/lib/ufp')
 const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
+var SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const project = UFP.requireDefault(
@@ -426,6 +427,16 @@ if (__PROD__) {
         //     paths: glob.sync(path.join(__dirname, 'dist/*.html'))
         // })
     )
+
+    config.plugins.push(new SWPrecacheWebpackPlugin({
+        cacheId: project.name,
+        dontCacheBustUrlsMatching: /\.\w{8}\./,
+        filename: 'service-worker.js',
+        minify: true,
+        navigateFallback: project.publicPath+ 'index.html',
+        staticFileGlobsIgnorePatterns: [/\.map$/, /asset-manifest\.json$/]
+    }))
+
     // config.plugins.push(
     //     new BabelMinifyPlugin()
     // )

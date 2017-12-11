@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [unreleased]
 
 
+## [0.4.5]
+
+- new: enable sw-precache progressive webapp per default
+
 ## [0.4.4]
 
 - fix: production build, minification
