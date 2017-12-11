@@ -13,7 +13,7 @@ console.log('version is', package.version)
 // regexp for ommiting v beginning and capture group for tags
 const semverRegexp = /\bv?(?:0|[1-9]\d*)\.(?:0|[1-9]\d*)\.(?:0|[1-9]\d*)(?:-([\da-z-]+(?:\.[\da-z-]+)*)?(?:\+[\da-z-]+(?:\.[\da-z-]+)*))?\b/
 
-const match = semverRegexp.exec('1.1.1')
+const match = semverRegexp.exec(project.version)
 if (match) {
 
     if (match[1] === undefined) {
