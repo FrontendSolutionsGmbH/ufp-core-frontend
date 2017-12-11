@@ -16,7 +16,7 @@ const project = UFP.requireDefault(
 const StatsPlugin = require('stats-webpack-plugin')
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin')
 const VisualizerPlugin = require('webpack-visualizer-plugin')
-// const CompressionPlugin = require('compression-webpack-plugin')
+ const CompressionPlugin = require('compression-webpack-plugin')
 // const PurifyCSSPlugin = require('purifycss-webpack')
 // const BabelMinifyPlugin = require('babel-minify-webpack-plugin')
 const DuplicatePackageCheckerWebpackPlugin = require('duplicate-package-checker-webpack-plugin')
@@ -407,13 +407,13 @@ if (__PROD__) {
         new VisualizerPlugin({
             filename: './stats.html'
         })
-        // new CompressionPlugin({
-        //     asset: '[path].gz[query]',
-        //     algorithm: 'gzip',
-        //     test: /\.(js|html|svg)$/,
-        //     threshold: 10240,
-        //     minRatio: 0.8
-        // }),
+        new CompressionPlugin({
+            asset: '[path].gz[query]',
+            algorithm: 'gzip',
+            test: /\.(js|html|svg)$/,
+            threshold: 10240,
+            minRatio: 0.8
+        }),
         // new ZopfliPlugin({
         //   asset: "[path].gz[query]",
         //   algorithm: "zopfli",
