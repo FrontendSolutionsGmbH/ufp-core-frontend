@@ -7,6 +7,7 @@ var UFP = require('../../../build/lib/ufp')
 const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const project = UFP.requireDefault(
     path.join(process.cwd(), '/project.config.js'),
@@ -15,7 +16,7 @@ const project = UFP.requireDefault(
 const StatsPlugin = require('stats-webpack-plugin')
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin')
 const VisualizerPlugin = require('webpack-visualizer-plugin')
-// const CompressionPlugin = require('compression-webpack-plugin')
+ const CompressionPlugin = require('compression-webpack-plugin')
 // const PurifyCSSPlugin = require('purifycss-webpack')
 // const BabelMinifyPlugin = require('babel-minify-webpack-plugin')
 const DuplicatePackageCheckerWebpackPlugin = require('duplicate-package-checker-webpack-plugin')
@@ -29,7 +30,7 @@ const __DEV__ = project.env === 'development'
 const __TEST__ = project.env === 'test'
 const __PROD__ = project.env === 'production'
 
-console.log('Project IS ', project)
+// console.log('Project IS ', project)
 // console.log('ENVIRONMENT IS ', process.env.UFP_VERSION)
 process.traceDeprecation = true
 const UfpConfig = {
@@ -159,6 +160,17 @@ const javascriptConfig = {
                 loader: 'babel-loader',
 
                 options: {
+                    env: {
+                        development: {
+                            plugins: [['react-transform', {
+                                transforms: [{
+                                    transform: 'react-transform-hmr',
+                                    imports: ['react'],
+                                    locals: ['module']
+                                }]
+                            }]]
+                        }
+                    },
                     cacheDirectory: true,
                     plugins: [
 
@@ -196,25 +208,24 @@ const javascriptConfig = {
                         // }],
                     ]
                 }
-            },
+            }
 
         ]
     }
 
-if (project.env !== 'test') {
-    /**
-     * disable linting for /test files
-     * todo: prepare lint config for tests
-     */
-    javascriptConfig.use.push({
-        loader: 'eslint-loader',
-        options: {
-            formatter: require('eslint/lib/formatters/codeframe'),
-
-            configFile: UFP.chooseExistingPath(inProject('.eslintrc'), path.join(__dirname, '../../../../src/.eslintrc'))
-        }
-    })
-}
+// if (project.env !== 'test' && project.env !== 'development') {
+//     /**
+//      * disable linting for /test files
+//      * todo: prepare lint config for tests
+//      */
+//     javascriptConfig.use.push({
+//         loader: 'eslint-loader',
+//         options: {
+//             formatter: require('eslint/lib/formatters/codeframe'),
+//             configFile: UFP.chooseExistingPath(inProject('.eslintrc'), path.join(__dirname, '../../../../src/.eslintrc'))
+//         }
+//     })
+// }
 
 javascriptConfig.use.push({
         loader: 'preprocess-loader',
@@ -395,14 +406,14 @@ if (__PROD__) {
         }),
         new VisualizerPlugin({
             filename: './stats.html'
+        }),
+        new CompressionPlugin({
+            asset: '[path].gz[query]',
+            algorithm: 'gzip',
+            test: /\.(js|html|svg)$/,
+            threshold: 10240,
+            minRatio: 0.8
         })
-        // new CompressionPlugin({
-        //     asset: '[path].gz[query]',
-        //     algorithm: 'gzip',
-        //     test: /\.(js|html|svg)$/,
-        //     threshold: 10240,
-        //     minRatio: 0.8
-        // }),
         // new ZopfliPlugin({
         //   asset: "[path].gz[query]",
         //   algorithm: "zopfli",
@@ -418,13 +429,13 @@ if (__PROD__) {
     // config.plugins.push(
     //     new BabelMinifyPlugin()
     // )
-    config.plugins.push(new webpack.optimize.UglifyJsPlugin({
+    config.plugins.push(new UglifyJsPlugin({
         sourceMap: project.sourcemaps,
-        mangle: true,
+        uglifyOptions: {
+            mangle: true,
         compress: {
             passes: 3,
             warnings: false,
-            screw_ie8: true,
             drop_console: true,
             hoist_vars: true,
             hoist_funs: true,
@@ -437,6 +448,7 @@ if (__PROD__) {
             evaluate: true,
             if_return: true,
             join_vars: true
+        }
         }
     }))
 }
@@ -463,6 +475,8 @@ if (__PROD__) {
 //     concurrency: 3,
 // }))
 
-console.log('WEBPACK COnfig is', config)
+ console.log('<WEBPACK Config is')
+ console.log(config)
+ console.log('WEBPACK Config is>')
 
 module.exports = config

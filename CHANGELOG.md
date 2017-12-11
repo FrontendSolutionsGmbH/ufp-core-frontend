@@ -5,6 +5,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [unreleased]
 
+
+## [0.4.4]
+
+- fix: production build, minification
+- new: ?debug=true parameter for rendered pages enables redux-logger and redux-devtools
+- new ufp-start:dist to serve static production build (run ufp-update to make available in project)
+
+
 ## [0.4.3]
 
 - bugfix runtime
@@ -68,6 +76,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - rename Runfest.js to Runfest.js abbreviation for RUNtimemaniFEST
 - disallow direct imports, enforce use of index.js of bundles
 
+
 ## [0.2.2] - 2017-09-19
 
 - remove update dependencies during installation
@@ -89,10 +98,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - Initial Release
 
-[Unreleased]: https://bitbucket.org/frontendsolutions/ufp-core/branches/compare/0.4.3...develop
-[0.4.0]: https://github.com/FrontendSolutionsGmbH/ufp-core-frontend/compare/0.4.2...0.4.3
-[0.4.0]: https://github.com/FrontendSolutionsGmbH/ufp-core-frontend/compare/0.4.1...0.4.2
-[0.4.0]: https://github.com/FrontendSolutionsGmbH/ufp-core-frontend/compare/0.4.0...0.4.1
+[Unreleased]: https://bitbucket.org/frontendsolutions/ufp-core/branches/compare/0.4.4...develop
+[0.4.4]: https://github.com/FrontendSolutionsGmbH/ufp-core-frontend/compare/0.4.3...0.4.4
+[0.4.3]: https://github.com/FrontendSolutionsGmbH/ufp-core-frontend/compare/0.4.2...0.4.3
+[0.4.2]: https://github.com/FrontendSolutionsGmbH/ufp-core-frontend/compare/0.4.1...0.4.2
+[0.4.1]: https://github.com/FrontendSolutionsGmbH/ufp-core-frontend/compare/0.4.0...0.4.1
 [0.4.0]: https://github.com/FrontendSolutionsGmbH/ufp-core-frontend/compare/0.3.4...0.4.0
 [0.3.5]: https://github.com/FrontendSolutionsGmbH/ufp-core-frontend/compare/0.3.4...0.3.5
 [0.3.4]: https://github.com/FrontendSolutionsGmbH/ufp-core-frontend/compare/0.3.3...0.3.4

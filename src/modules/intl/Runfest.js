@@ -22,7 +22,7 @@ const Runfest = {
     onConfigure: ({config}) => {
         const {locales, languages}=config
 
-        console.log('xxxxxxxxxxxxxxxxx onConfigure for intl called', config)
+        // console.log('xxxxxxxxxxxxxxxxx onConfigure for intl called', config)
 
         IntlConfig.locales.push(...locales)
         IntlConfig.languages.push(...languages)
@@ -37,7 +37,7 @@ const Runfest = {
         languages = ThrowParam('At least one language should be provided')
 
     }) => {
-        console.log('Registering locale', locales)
+        // console.log('Registering locale', locales)
 
         configure({
             data: {
@@ -57,7 +57,7 @@ const Runfest = {
         addLocaleData(locale)
     },
     onRegistered({UfpCore = ThrowParam('UfpCore Instance Required')}) {
-        console.log('INTL Runfest is ', this)
+        // console.log('INTL Runfest is ', this)
 
         if (onceRegistered) {
             ThrowParam('UfpCore Already registered ')

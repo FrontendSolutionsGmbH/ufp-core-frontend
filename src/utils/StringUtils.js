@@ -1,5 +1,5 @@
 const replaceTemplateVar = (str, vars) => {
-    console.log('Replacing Template String', str, vars)
+    // console.log('Replacing Template String', str, vars)
 
     var result = str
 
@@ -10,7 +10,7 @@ const replaceTemplateVar = (str, vars) => {
               result = result.replace('{' + key + '}', vars[key])
           })
 
-    console.log('Template String result', result)
+    // console.log('Template String result', result)
     return result
 }
 

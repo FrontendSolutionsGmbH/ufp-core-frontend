@@ -7,7 +7,7 @@ const createActionCreatorForDefinition = (definition, ufpPrehandler = [], ufpRes
         body: undefined,
         ufpPayload: {}
     }) => {
-        console.log('Executing automaticly generated action from definition ', UFPRequestActions, definition)
+        // console.log('Executing automaticly generated action from definition ', UFPRequestActions, definition)
         const result = ({
             [UFPRequestActions.UFP_REQUEST_ACTION]: {
                 ufpDefinition: definition,
@@ -21,7 +21,7 @@ const createActionCreatorForDefinition = (definition, ufpPrehandler = [], ufpRes
                 ufpResultHandler: ufpResultHandler
             }
         })
-        console.log('Executing automaticl result is ', result)
+        // console.log('Executing automaticl result is ', result)
         return result
     }
 

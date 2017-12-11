@@ -3,12 +3,17 @@ targets:
   default:
     - production
   production:
+    - clean
     - lint
     - test
     - build
   development:
     - build
 tasks:
+  clean:
+    - name: Cleaning dist/ folder
+      commands:
+      - rimraf dist
   lint:
     - name: Linting Sourcecode
       description: ... performing static code analysis
@@ -26,7 +31,7 @@ tasks:
       allowedToFail: false
       description: ... actually executing the build
       commands:
-      - npm run ufp-compile
+      - npm run ufp-compile:production
 
 
 

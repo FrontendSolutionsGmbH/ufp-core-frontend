@@ -26,8 +26,8 @@ const setMessages = ({
 })
 
 const setLanguage = (lang) => (dispatch, getState) => {
-    console.log('SetLanguage called ', dispatch, getState)
-    console.log('SetLanguage called ', getState())
+    // console.log('SetLanguage called ', dispatch, getState)
+    // console.log('SetLanguage called ', getState())
 
     if (IntlSelectors.AllMessagesSelector(getState())[lang]) {
         dispatch({
@@ -61,8 +61,8 @@ const setLanguage = (lang) => (dispatch, getState) => {
     }
 }
 
-const initSetLanguage = () => (dispatch, getState) => {
-    console.log('UFP Intl Setting Language', getState().apiConfig)
+const initSetLanguage = () => (dispatch) => {
+    // console.log('UFP Intl Setting Language', getState().apiConfig)
 
     dispatch(setLanguage('en'))
 

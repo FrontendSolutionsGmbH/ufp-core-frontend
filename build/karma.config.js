@@ -66,7 +66,7 @@ const karmaConfig = {
     browserConsoleLogOptions: {
         terminal: true,
         format: '%b %T: %m',
-        level: '',
+        level: ''
     },
     junitReporter: {
         outputDir: 'test-report', // results will be saved as $outputDir/$browserName.xml
@@ -122,7 +122,7 @@ const karmaConfig = {
                                         'helpers': true,
                                         'polyfill': false,
                                         // we polyfill needed features in src/normalize.js
-                                        'regenerator': true,
+                                        'regenerator': true
                                     }
                                 ],
                                 'babel-plugin-transform-class-properties',
@@ -160,12 +160,12 @@ const karmaConfig = {
                                 // }],
                             ]
                         }
-                    }],
+                    }]
                 },
 
                 {
                     test: /\.(sass|scss|css)$/,
-                    loader: 'sass-loader',
+                    loader: 'sass-loader'
 
                 }
 
@@ -178,7 +178,7 @@ const karmaConfig = {
 
         },
         watch: argv.watch
-    },
+    }
 
 }
 

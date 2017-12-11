@@ -6,7 +6,7 @@ const UFPList = ({data, props, component, inputRef = undefined}) => {
     if (data && data.map) {
         data.map((item, index) => {
             const ComponentNew = component
-            console.log('Rendering UFP ComponentNew', ComponentNew)
+            // console.log('Rendering UFP ComponentNew', ComponentNew)
             content.push(
                 <ComponentNew data={item}
                               inputRef={inputRef}

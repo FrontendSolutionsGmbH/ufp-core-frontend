@@ -1,6 +1,6 @@
 import merge from 'deepmerge'
 import {ReactPropTypesCheck} from '../utils/ReactPropTypesCheck'
-console.log('xxxxxxxxxxxxxxxxxxxxxxxxxx', ReactPropTypesCheck)
+// console.log('xxxxxxxxxxxxxxxxxxxxxxxxxx', ReactPropTypesCheck)
 
 function PropTypesCheck(data, propTypes) {
     try {
@@ -100,7 +100,7 @@ const createConfigDefault = (config) => {
 }
 
 function infoLogger() {
-    console.log.apply(console, arguments)
+    // console.log.apply(console, arguments)
 }
 
 export default {

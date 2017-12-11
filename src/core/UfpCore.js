@@ -18,7 +18,6 @@ var store = null
  */
 
 var startedUp = false
-var applicationName
 
 const bindSelectors = (selectors) => {
     var result = {}
@@ -88,7 +87,7 @@ const registerReducer = ({
     //     ThrowParam('Reducer already registered ... ', id, UfpSetup.reducers)
     // }s
 
-    console.log('Registering Reducer ', id, reducer)
+    // console.log('Registering Reducer ', id, reducer)
     UfpSetup.reducers[id] = {
         id: id,
         reducer
@@ -226,14 +225,14 @@ const startup = ({applicationNameIn = 'Ufp Application'}={applicationNameIn: 'Uf
         registerRunfest(AdditionsRunfest)
         registerRunfest(BaseRunfest)
 
-        // @if NODE_ENV=='develop'
+        // @if UFP_NODE_ENV=='develop'
         const DebugRunfest = require('./debug/Runfest').default
         registerRunfest(DebugRunfest)
         // @endif
 
         startedUp = true
-        applicationName = applicationNameIn
-        // console.log('UFP Application startup - ', applicationName)
+        // applicationName = applicationNameIn
+        console.log('UFP Application startup - ', applicationNameIn)
         const reducers = []
         Object.keys(UfpSetup.reducers)
               .map((key) => {
@@ -270,18 +269,6 @@ const startup = ({applicationNameIn = 'Ufp Application'}={applicationNameIn: 'Uf
         var composeEnhancers = compose
 
         // check dev environment
-        if (__DEV__) {
-            if (typeof window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ === 'function') {
-                composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
-                    name: 'UFP ' + applicationName,
-                    shouldCatchErrors: true,
-                    actionCreators: UfpSetup.getAllActionCreators()
-
-                })
-            }
-        }
-
-        // debug
 
         const rootReducer = makeRootReducer(reducers)
         // console.log('Reducers are:', rootReducer)

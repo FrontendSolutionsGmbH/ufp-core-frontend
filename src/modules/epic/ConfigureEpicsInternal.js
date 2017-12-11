@@ -24,7 +24,7 @@ const ConfigureEpicsInternal = {
     },
 
     createEpicMiddleware: () => {
-        console.log('Creating Epic Middleware', epics)
+        // console.log('Creating Epic Middleware', epics)
 
         return createEpicMiddleware(combineEpics(...epics))
     },

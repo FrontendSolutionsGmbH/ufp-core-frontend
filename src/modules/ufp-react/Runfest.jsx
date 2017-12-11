@@ -26,29 +26,29 @@ const Runfest = {
     registerProvider: ({
         component
     }) => {
-        console.log('ufp-react root provider registered:', component)
+        // console.log('ufp-react root provider registered:', component)
         _Providers.push(component)
     },
 
     registerRootSibbling: ({
         component = ThrowParam('component Root sibbling has to be set')
     }) => {
-        console.log('ufp-react root sibbling :', component)
+        // console.log('ufp-react root sibbling :', component)
         _RootSibblings.push(component)
     },
 
     onPreStartup: ({UfpCore}) => {
-        console.log('ufp-reactx onPreStartup called React ', UfpCore)
+        // console.log('ufp-reactx onPreStartup called React ', UfpCore)
         _ReactApp = _ReactAppCreatorFunction({UfpCore})
 
-        console.log('ufp-reactx', _RootNode, _ReactApp)
+        // console.log('ufp-reactx', _RootNode, _ReactApp)
 
         const App = _ReactApp
 
         var currentRootComponent = (<App />)
 
         const sibblings = []
-        console.log('ufp-reactx Root Sibblings are ', sibblings)
+        // console.log('ufp-reactx Root Sibblings are ', sibblings)
 
         _RootSibblings.map((item, index) => {
             const Component = item
@@ -65,7 +65,7 @@ const Runfest = {
                     (sibblings.length === 0 ? currentRootComponent :
                         <div>{currentRootComponent}{sibblings}</div>) : currentRootComponent }</Component>)
         })
-        console.log('ufp-reactx RootComponent is  ', currentRootComponent)
+        // console.log('ufp-reactx RootComponent is  ', currentRootComponent)
 
         ReactDOM.render(<Provider store={UfpCore.getStore()}>{currentRootComponent}</Provider>, _RootNode
         )

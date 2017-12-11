@@ -11,7 +11,7 @@ class DefaultMenuAreaRenderer extends Component {
     static defaultProps = {}
 
     render() {
-        console.log('Rendering Default Menu Area ', this.props)
+        // console.log('Rendering Default Menu Area ', this.props)
         return (
             <UfpList component={DefaultMenuRenderer}
                  data={this.props.menuArea} />

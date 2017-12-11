@@ -12,23 +12,23 @@ function createMenu(MenuConfig) {
     // the actions are what triggers either the update of the menu area, either by using
     // a static menu def or a localised menu reducer
     if (MenuConfig.actions) {
-        console.log('Initialising menu, checking actions')
+        // console.log('Initialising menu, checking actions')
 
         Object.keys(MenuConfig.actions)
               .map((key) => {
-                  console.log('Initialising menu, checking actions', key)
+                  // console.log('Initialising menu, checking actions', key)
                   actionNames.push(key)
               })
     }
 
-    console.log('GENERICMENU createGenericMenu ', MenuConfig)
-    console.log('GENERICMENU createGenericMenu', actionNames)
+    // console.log('GENERICMENU createGenericMenu ', MenuConfig)
+    // console.log('GENERICMENU createGenericMenu', actionNames)
     MenuConfigurationInternal.registerMenuReducer({
         area: MenuConfig.settings.area || 'main',
         subArea: MenuConfig.settings.subArea,
         sortIndex: MenuConfig.settings.sortIndex,
         actionHandler: (data) => {
-            console.log('GENERICMENU ACTION HANDLER', data)
+            // console.log('GENERICMENU ACTION HANDLER', data)
             function createEntry(item) {
                 //console.log('createEntry', item)
                 var children = []
@@ -88,7 +88,7 @@ function createMenu(MenuConfig) {
             //console.log('GENERICMENU ACTION HANDLER CREATING UNAUTHENTICATED MENU')
 
             var currentDef = MenuConfig.unauthenticated
-            console.log('xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx', MenuConfig, data.action.type.substr(-5))
+            // console.log('xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx', MenuConfig, data.action.type.substr(-5))
             // remove menu suffix from action and check if in menu definition exists an entry for that
             if (MenuConfig.actions[data.action.type.substr(0, data.action.type.length - 5)]) {
                 currentDef = MenuConfig.actions[data.action.type.substr(0, data.action.type.length - 5)]
@@ -102,7 +102,7 @@ function createMenu(MenuConfig) {
                     action: data.action
                 })
             }
-            console.log('xxxxxxxxxxxxxxxmenu def is then ', currentDef)
+            // console.log('xxxxxxxxxxxxxxxmenu def is then ', currentDef)
 
             if (Array.isArray(currentDef)) {
                 currentDef.map((item) => {
@@ -112,7 +112,7 @@ function createMenu(MenuConfig) {
                     })
                 })
             }
-            console.log('menuUnauthenticated', menuUnauthenticated)
+            // console.log('menuUnauthenticated', menuUnauthenticated)
             return update(data.state, {$set: menuUnauthenticated})
         },
         actionNames: actionNames

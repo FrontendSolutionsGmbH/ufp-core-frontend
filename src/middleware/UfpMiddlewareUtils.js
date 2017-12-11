@@ -18,7 +18,7 @@ const {
 }=UfpMiddlewareHelperUtils
 
 const ufpMiddlewarePrepareConfig = (ufpAction) => {
-    console.log(' ufpMiddlewarePrepareConfig ', JSON.parse(JSON.stringify(ufpAction)))
+    // console.log(' ufpMiddlewarePrepareConfig ', JSON.parse(JSON.stringify(ufpAction)))
 
     const {ufpDefinition, ufpData} = ufpAction
     const {url, method} =ufpDefinition
@@ -47,7 +47,7 @@ const ufpMiddlewarePrepareConfig = (ufpAction) => {
     } else {
         config.url = url
     }
-    console.log('ufpMiddlewarePrepareConfig ', JSON.parse(JSON.stringify(config)))
+    // console.log('ufpMiddlewarePrepareConfig ', JSON.parse(JSON.stringify(config)))
     return config
 }
 
@@ -177,7 +177,7 @@ const handlePreHandlers = async(handlerArray, resultData) => {
 }
 
 const ufpMiddlewareRequest = async(config) => {
-    console.log('ufpMiddlewareRequest', JSON.parse(JSON.stringify(config)))
+    // console.log('ufpMiddlewareRequest', JSON.parse(JSON.stringify(config)))
 
     var requestResponse
 
