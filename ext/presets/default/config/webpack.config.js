@@ -406,14 +406,14 @@ if (__PROD__) {
         }),
         new VisualizerPlugin({
             filename: './stats.html'
-        })
+        }),
         new CompressionPlugin({
             asset: '[path].gz[query]',
             algorithm: 'gzip',
             test: /\.(js|html|svg)$/,
             threshold: 10240,
             minRatio: 0.8
-        }),
+        })
         // new ZopfliPlugin({
         //   asset: "[path].gz[query]",
         //   algorithm: "zopfli",
