@@ -29,18 +29,20 @@ console.log('version is', package.version)
 // regexp for ommiting v beginning and capture group for tags
 const semverRegexp = /\b(?:0|[1-9]\d*)\.(?:0|[1-9]\d*)\.(?:0|[1-9]\d*)(?:-(([\da-z-]+(?:\.[\da-z-]+)*)?(?:\+[\da-z-]+(?:\.[\da-z-]+)*)?))\b/
 
-const match = semverRegexp.exec(package.version)
+const match = semverRegexp.exec( '0.4.6-rc1')
 if (match) {
 
     if (match[1] === undefined) {
         console.error('publishing production release', match[0])
 
-        child_process.execSync(__dirname + '/npm_publish.sh  ')
+        const res= child_process.execSync(__dirname + '/npm_publish.sh  ')
+        console.log('result is 'res.toString());
 
     } else {
         console.error('beta version is', match[1])
-        child_process.execSync(__dirname + '/npm_publish.sh --tag beta')
+        const res= child_process.execSync(__dirname + '/npm_publish.sh --tag beta')
 
+        console.log('result is 'res.toString());
     }
     // execute publish script with the login credentials
 
@@ -49,3 +51,4 @@ if (match) {
 }
 
 console.log('finished with npm publish')
+process.exit(0)
