@@ -13,6 +13,8 @@ module.exports = {
     main: 'main',
     /** The name of the directory in which to emit compiled assets */
     outDir: 'dist',
+    /** html webpack configuration, automatically include chunks in entry html or not */
+    injectChunks: true,
     ignoreModules: [],
     /** The base path for all projects assets (relative to the website root) */
     publicPath: '',

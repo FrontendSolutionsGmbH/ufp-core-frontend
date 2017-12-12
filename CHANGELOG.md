@@ -5,12 +5,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [unreleased]
 
+## [0.4.6-rc1] (unreleased)
+- new: configure html script injection in project.json
 
-## [0.4.5]
 
+## [0.4.5] (unreleased)
 - new: enable sw-precache progressive webapp plugin
 
-## [0.4.4]
+## [0.4.4] (unreleased)
 
 - fix: production build, minification
 - new: ?debug=true parameter for rendered pages enables redux-logger and redux-devtools
