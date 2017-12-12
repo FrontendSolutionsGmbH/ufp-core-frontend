@@ -16,20 +16,20 @@
  */
 
 const child_process = require('child_process')
+const package = require(process.cwd() + '/package.json')
 
 console.log('This script determines wether a beta version or an untagged production release to npm shall be done...')
-
 console.log()
 console.log('module is', package.name)
 console.log('version is', package.version)
 
-const package = require(process.cwd() + '/package.json')
+
 
 // modified from https://github.com/sindresorhus/semver-regex/blob/master/index.js
 // regexp for ommiting v beginning and capture group for tags
-const semverRegexp = /\bv?(?:0|[1-9]\d*)\.(?:0|[1-9]\d*)\.(?:0|[1-9]\d*)(?:-([\da-z-]+(?:\.[\da-z-]+)*)?(?:\+[\da-z-]+(?:\.[\da-z-]+)*))?\b/
+const semverRegexp = /\b(?:0|[1-9]\d*)\.(?:0|[1-9]\d*)\.(?:0|[1-9]\d*)(?:-(([\da-z-]+(?:\.[\da-z-]+)*)?(?:\+[\da-z-]+(?:\.[\da-z-]+)*)?))\b/
 
-const match = semverRegexp.exec(project.version)
+const match = semverRegexp.exec(package.version)
 if (match) {
 
     if (match[1] === undefined) {
