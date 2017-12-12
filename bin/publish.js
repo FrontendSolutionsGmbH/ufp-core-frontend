@@ -1,13 +1,29 @@
 #!/usr/bin/env node
+/*
+
+ info:
+
+ this is a utility skript to call the (logged in) npm publish script with '-tag beta' to provide the
+ mechanics for automatically publishing beta versions to npm repository through git repository tags
+
+ the rule is heuristically simple:
+
+ - make it a beta version if it has a version extension
+
+ x.x.x-whatever
+
+
+ */
 
 const child_process = require('child_process')
-const package = require(process.cwd() + '/package.json')
 
 console.log('This script determines wether a beta version or an untagged production release to npm shall be done...')
 
 console.log()
 console.log('module is', package.name)
 console.log('version is', package.version)
+
+const package = require(process.cwd() + '/package.json')
 
 // modified from https://github.com/sindresorhus/semver-regex/blob/master/index.js
 // regexp for ommiting v beginning and capture group for tags
