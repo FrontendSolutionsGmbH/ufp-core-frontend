@@ -10,7 +10,6 @@ const CopyWebpackPlugin = require('copy-webpack-plugin')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
-
 const projectDefault=require(path.join(__dirname, '/../project.config.js'))
 
 const projectConfig = UFP.requireDefault(
@@ -18,7 +17,7 @@ const projectConfig = UFP.requireDefault(
     path.join(__dirname, '/../project.config.js')
 )
 
-const project=Object.assign({},projectDefault,projectConfig)
+const project=Object.assign({}, projectDefault, projectConfig)
 const StatsPlugin = require('stats-webpack-plugin')
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin')
 const VisualizerPlugin = require('webpack-visualizer-plugin')
