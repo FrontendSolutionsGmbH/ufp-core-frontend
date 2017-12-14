@@ -246,15 +246,6 @@ javascriptConfig.use.push({
 
     })
 
-javascriptConfig.use.push({
-    test: /\.worker\.js$/,
-    use: {
-        loader: 'worker-loader',
-        options: {
-            name: 'WorkerName.[hash].js'
-        }
-    }
-})
 config.module.rules.push(javascriptConfig)
 // Styles
 // ------------------------------------

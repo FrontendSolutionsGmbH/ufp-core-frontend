@@ -205,7 +205,6 @@
     "webpack-hot-middleware": "2.21.0",
     "webpack-visualizer-plugin": "0.1.11",
     "whatwg-fetch": "2.0.3",
-    "worker-loader": "^1.1.0",
     "yargs": "10.0.3"
   }
 }
