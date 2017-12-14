@@ -77,7 +77,7 @@ export const makeRootReducer = (reducers) => {
 }
 const registerReducer = ({
     id = ThrowParam('Id Required for registerReducer'),
-    reducer = ThrowParam('RreducerRequired for registerReducer')
+    reducer = ThrowParam('ReducerRequired for registerReducer')
 
 }) => {
     checkStarted()
