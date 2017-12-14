@@ -9,10 +9,15 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
-const project = UFP.requireDefault(
+
+const projectDefault=require(path.join(__dirname, '/../project.config.js'))
+
+const projectConfig = UFP.requireDefault(
     path.join(process.cwd(), '/project.config.js'),
     path.join(__dirname, '/../project.config.js')
 )
+
+const project=Object.assign({}, projectDefault, projectConfig)
 const StatsPlugin = require('stats-webpack-plugin')
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin')
 const VisualizerPlugin = require('webpack-visualizer-plugin')
@@ -258,24 +263,25 @@ config.module.rules.push({
             {
                 loader: 'css-loader',
                 options: {
-                    sourceMap: project.sourcemaps,
-                    minimize: {
-                        autoprefixer: {
-                            add: true,
-                            remove: true,
-                            browsers: ['last 2 versions']
-                        },
-                        discardComments: {
-                            removeAll: true
-                        },
-                        discardUnused: false,
-                        mergeIdents: false,
-                        reduceIdents: false,
-                        safe: true,
-                        sourcemap: project.sourcemaps
-                    }
-                }
+                    sourceMap: project.sourcemaps
+                //     minimize: {
+                //         autoprefixer: {
+                //             add: true,
+                //             remove: true,
+                //             browsers: ['last 5 versions']
+                //         },
+                //         discardComments: {
+                //             removeAll: true
+                //         },
+                //         discardUnused: false,
+                //         mergeIdents: false,
+                //         reduceIdents: false,
+                //         safe: true,
+                //         sourcemap: project.sourcemaps
+                //     }
+                 }
             },
+
             {
                 loader: 'sass-loader',
                 options: {
@@ -285,21 +291,12 @@ config.module.rules.push({
                     ]
                 }
             },
-            // {
-            //     loader: "postcss-loader",
-            //     options: {
-            //         config: {
-            //             path: UFP.requireDefault(
-            //                 path.join(process.cwd(), '/styles/postcss.config.js'),
-            //                 path.join(__dirname, '/../styles/postcss.config.js')
-            //             )
-            //         }
-            //     }
-            // },
+
             {
                 loader: 'preprocess-loader'
 
             }
+
         ]
     })
 })
@@ -346,7 +343,7 @@ config.module.rules.push({
 // ------------------------------------
 config.plugins.push(new HtmlWebpackPlugin({
     template: inProjectSrc('index.html'),
-    inject: true,
+    inject: project.injectChunks,
     minify: {
         collapseWhitespace: true
     },
@@ -426,6 +423,16 @@ if (__PROD__) {
         //     paths: glob.sync(path.join(__dirname, 'dist/*.html'))
         // })
     )
+
+    // config.plugins.push(new SWPrecacheWebpackPlugin({
+    //     cacheId: project.name,
+    //     dontCacheBustUrlsMatching: /\.\w{8}\./,
+    //     filename: 'service-worker.js',
+    //     minify: true,
+    //     navigateFallback: project.publicPath+ 'index.html',
+    //     staticFileGlobsIgnorePatterns: [/\.map$/, /asset-manifest\.json$/]
+    // }))
+
     // config.plugins.push(
     //     new BabelMinifyPlugin()
     // )
