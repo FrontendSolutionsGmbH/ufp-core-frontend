@@ -26,13 +26,12 @@ export default {
     },
 
     [IntlConstants.APPEND_MESSAGES]: (state, action) => {
-        var result = update(state, {
+        return update(state, {
             allMessages: {
                 [action.payload.lang]: {$push: action.payload.messages}
             },
             randomKey: {$set: Math.random()}
         })
-        return result
 
     },
     [IntlConstants.UPDATE_MESSAGES]: (state, action) => {
