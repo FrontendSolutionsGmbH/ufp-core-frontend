@@ -77,7 +77,7 @@ export const makeRootReducer = (reducers) => {
 }
 const registerReducer = ({
     id = ThrowParam('Id Required for registerReducer'),
-    reducer = ThrowParam('RreducerRequired for registerReducer')
+    reducer = ThrowParam('ReducerRequired for registerReducer')
 
 }) => {
     checkStarted()
@@ -112,6 +112,7 @@ const registerEnhancer = ({
     enhancer = ThrowParam('enhancer Required for registerEnhancer')
 
 }) => {
+    console.log('Registering enhancer', id, enhancer)
     checkStarted()
     UfpSetup.enhancers.push({
         id: id,
@@ -268,6 +269,16 @@ const startup = ({applicationNameIn = 'Ufp Application'}={applicationNameIn: 'Uf
 
         var composeEnhancers = compose
 
+        // @if UFP_NODE_ENV=='develop'
+        if (typeof window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ === 'function') {
+            composeEnhancers =
+                window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
+                    name: 'UFP Application',
+                    shouldCatchErrors: true
+
+                })
+        }
+        // @endif
         // check dev environment
 
         const rootReducer = makeRootReducer(reducers)
