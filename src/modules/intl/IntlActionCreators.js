@@ -1,6 +1,4 @@
 import IntlConstants from './IntlConstants'
-import IntlSelectors from './IntlSelectors'
-import {getConfigValue} from '../config'
 
 const setActiveLanguages = (languages = []) => (dispatch) => dispatch({
     type: IntlConstants.SET_LANGUAGES,
@@ -48,29 +46,29 @@ const setLanguage = (lang) => (dispatch, getState) => {
     // console.log('SetLanguage called ', getState())
 
 //    if (IntlSelectors.AllMessagesSelector(getState())[lang]===undefined) {
-        dispatch({
-            type: IntlConstants.SET_LANGUAGE_REQUEST,
-            payload: {lang: lang}
-        })
-        // return Promise.resolve(dispatch(loadMessages(lang)))
-        //               .then(() => {
-        //                   dispatch({
-        //                       type: IntlConstants.SET_LANGUAGE_SUCCESS,
-        //                       payload: {lang: lang}
-        //                   })
-        //                   return true
-        //               })
-        //               .catch((e) => {
-        //                   dispatch({
-        //                       type: IntlConstants.SET_LANGUAGE_FAILURE,
-        //                       payload: {
-        //
-        //                           error: e
-        //
-        //                       }
-        //                   })
-        //                   //        return Promise.reject(false)
-        //               })
+    dispatch({
+        type: IntlConstants.SET_LANGUAGE_REQUEST,
+        payload: {lang: lang}
+    })
+    // return Promise.resolve(dispatch(loadMessages(lang)))
+    //               .then(() => {
+    //                   dispatch({
+    //                       type: IntlConstants.SET_LANGUAGE_SUCCESS,
+    //                       payload: {lang: lang}
+    //                   })
+    //                   return true
+    //               })
+    //               .catch((e) => {
+    //                   dispatch({
+    //                       type: IntlConstants.SET_LANGUAGE_FAILURE,
+    //                       payload: {
+    //
+    //                           error: e
+    //
+    //                       }
+    //                   })
+    //                   //        return Promise.reject(false)
+    //               })
     // } else {
     //     dispatch({
     //         type: IntlConstants.SET_LANGUAGE,

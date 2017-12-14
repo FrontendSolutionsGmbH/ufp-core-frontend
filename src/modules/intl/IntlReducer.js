@@ -2,7 +2,6 @@ import ReduxUtils from '../../utils/ReduxUtils'
 import IntlConstants from './IntlConstants'
 // import IntlActionCreators from './IntlActionCreators'
 import IntlActionHandlers from './IntlActionHandlers'
-import StorageReal from '../../utils/storage/StorageReal'
 import IntlConfig from './IntlConfig'
 
 const initialState = {

@@ -27,6 +27,6 @@ export default {
      * as a setLanguage() has occured and means that some process shall provide
      * the actual messages required for that language
      */
-    SET_LANGUAGE_REQUEST: 'SET_LANGUAGE_REQUEST',
+    SET_LANGUAGE_REQUEST: 'SET_LANGUAGE_REQUEST'
 
 }

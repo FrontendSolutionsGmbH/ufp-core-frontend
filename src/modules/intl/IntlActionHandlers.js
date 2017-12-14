@@ -32,10 +32,8 @@ export default {
             },
             randomKey: {$set: Math.random()}
         })
-
     },
     [IntlConstants.UPDATE_MESSAGES]: (state, action) => {
-
         const {messages, lang}=action.payload
         var result = state
 
@@ -61,11 +59,8 @@ export default {
                 }
             })
             if (!found) {
-
                 result = update(result, {languages: {$push: [action.payload.lang]}})
-
             }
-
         }
 
         console.log('UPDATE MESSAGE result ', result)

@@ -13,8 +13,6 @@ export default{
                 id: 'Redux-Logger',
                 middleware: logger
             })
-
-
         }
     }
 
