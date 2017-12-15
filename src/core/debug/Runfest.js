@@ -13,14 +13,6 @@ export default{
                 id: 'Redux-Logger',
                 middleware: logger
             })
-
-            if (typeof window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ === 'function') {
-                UfpCore.registerEnhancer(window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
-                    name: 'UFP Application',
-                    shouldCatchErrors: true
-
-                }))
-            }
         }
     }
 

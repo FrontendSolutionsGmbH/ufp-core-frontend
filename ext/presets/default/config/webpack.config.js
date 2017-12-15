@@ -10,18 +10,18 @@ const CopyWebpackPlugin = require('copy-webpack-plugin')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
-const projectDefault=require(path.join(__dirname, '/../project.config.js'))
+const projectDefault = require(path.join(__dirname, '/../project.config.js'))
 
 const projectConfig = UFP.requireDefault(
     path.join(process.cwd(), '/project.config.js'),
     path.join(__dirname, '/../project.config.js')
 )
 
-const project=Object.assign({}, projectDefault, projectConfig)
+const project = Object.assign({}, projectDefault, projectConfig)
 const StatsPlugin = require('stats-webpack-plugin')
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin')
 const VisualizerPlugin = require('webpack-visualizer-plugin')
- const CompressionPlugin = require('compression-webpack-plugin')
+const CompressionPlugin = require('compression-webpack-plugin')
 // const PurifyCSSPlugin = require('purifycss-webpack')
 // const BabelMinifyPlugin = require('babel-minify-webpack-plugin')
 const DuplicatePackageCheckerWebpackPlugin = require('duplicate-package-checker-webpack-plugin')
@@ -264,22 +264,22 @@ config.module.rules.push({
                 loader: 'css-loader',
                 options: {
                     sourceMap: project.sourcemaps
-                //     minimize: {
-                //         autoprefixer: {
-                //             add: true,
-                //             remove: true,
-                //             browsers: ['last 5 versions']
-                //         },
-                //         discardComments: {
-                //             removeAll: true
-                //         },
-                //         discardUnused: false,
-                //         mergeIdents: false,
-                //         reduceIdents: false,
-                //         safe: true,
-                //         sourcemap: project.sourcemaps
-                //     }
-                 }
+                    //     minimize: {
+                    //         autoprefixer: {
+                    //             add: true,
+                    //             remove: true,
+                    //             browsers: ['last 5 versions']
+                    //         },
+                    //         discardComments: {
+                    //             removeAll: true
+                    //         },
+                    //         discardUnused: false,
+                    //         mergeIdents: false,
+                    //         reduceIdents: false,
+                    //         safe: true,
+                    //         sourcemap: project.sourcemaps
+                    //     }
+                }
             },
 
             {
@@ -440,22 +440,22 @@ if (__PROD__) {
         sourceMap: project.sourcemaps,
         uglifyOptions: {
             mangle: true,
-        compress: {
-            passes: 3,
-            warnings: false,
-            drop_console: true,
-            hoist_vars: true,
-            hoist_funs: true,
-            conditionals: true,
-            unused: true,
-            unsafe: true,
-            comparisons: true,
-            sequences: true,
-            dead_code: true,
-            evaluate: true,
-            if_return: true,
-            join_vars: true
-        }
+            compress: {
+                passes: 3,
+                warnings: false,
+                drop_console: true,
+                hoist_vars: true,
+                hoist_funs: true,
+                conditionals: true,
+                unused: true,
+                unsafe: true,
+                comparisons: true,
+                sequences: true,
+                dead_code: true,
+                evaluate: true,
+                if_return: true,
+                join_vars: true
+            }
         }
     }))
 }
@@ -482,8 +482,8 @@ if (__PROD__) {
 //     concurrency: 3,
 // }))
 
- console.log('<WEBPACK Config is')
- console.log(config)
- console.log('WEBPACK Config is>')
+console.log('<WEBPACK Config is')
+console.log(config)
+console.log('WEBPACK Config is>')
 
 module.exports = config

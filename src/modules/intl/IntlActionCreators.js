@@ -1,5 +1,4 @@
 import IntlConstants from './IntlConstants'
-import IntlSelectors from './IntlSelectors'
 
 const setActiveLanguages = (languages = []) => (dispatch) => dispatch({
     type: IntlConstants.SET_LANGUAGES,
@@ -9,7 +8,7 @@ const setActiveLanguages = (languages = []) => (dispatch) => dispatch({
 })
 
 /**
- * set messages actually sets a message
+ * set messages sets all translations for a language, removing its current values
  * config for a language
  * @param lang
  * @param messages
@@ -25,44 +24,64 @@ const setMessages = ({
     }
 })
 
+/**
+ * append messages to existing translations
+ * config for a language
+ * @param lang
+ * @param messages
+ */
+const appendMessages = ({
+    lang,
+    messages
+}) => ({
+    type: IntlConstants.UPDATE_MESSAGES,
+    payload: {
+        lang,
+        messages
+    }
+})
+
 const setLanguage = (lang) => (dispatch, getState) => {
-    // console.log('SetLanguage called ', dispatch, getState)
+    console.log('SetLanguage called ', dispatch, getState)
     // console.log('SetLanguage called ', getState())
 
-    if (IntlSelectors.AllMessagesSelector(getState())[lang]) {
-        dispatch({
-            type: IntlConstants.SET_LANGUAGE_REQUEST,
-            payload: {lang: lang}
-        })
-        // return Promise.resolve(dispatch(loadMessages(lang)))
-        //               .then(() => {
-        //                   dispatch({
-        //                       type: IntlConstants.SET_LANGUAGE_SUCCESS,
-        //                       payload: {lang: lang}
-        //                   })
-        //                   return true
-        //               })
-        //               .catch((e) => {
-        //                   dispatch({
-        //                       type: IntlConstants.SET_LANGUAGE_FAILURE,
-        //                       payload: {
-        //
-        //                           error: e
-        //
-        //                       }
-        //                   })
-        //                   //        return Promise.reject(false)
-        //               })
-    } else {
-        dispatch({
-            type: IntlConstants.SET_LANGUAGE,
-            payload: {lang: lang}
-        })
-    }
+//    if (IntlSelectors.AllMessagesSelector(getState())[lang]===undefined) {
+    dispatch({
+        type: IntlConstants.SET_LANGUAGE_REQUEST,
+        payload: {lang: lang}
+    })
+    // return Promise.resolve(dispatch(loadMessages(lang)))
+    //               .then(() => {
+    //                   dispatch({
+    //                       type: IntlConstants.SET_LANGUAGE_SUCCESS,
+    //                       payload: {lang: lang}
+    //                   })
+    //                   return true
+    //               })
+    //               .catch((e) => {
+    //                   dispatch({
+    //                       type: IntlConstants.SET_LANGUAGE_FAILURE,
+    //                       payload: {
+    //
+    //                           error: e
+    //
+    //                       }
+    //                   })
+    //                   //        return Promise.reject(false)
+    //               })
+    // } else {
+    //     dispatch({
+    //         type: IntlConstants.SET_LANGUAGE,
+    //         payload: {lang: lang}
+    //     })
+    // }
 }
 
 const initSetLanguage = () => (dispatch) => {
     // console.log('UFP Intl Setting Language', getState().apiConfig)
+//    IntlSelectors.CurrentLanguageSelector(getState())
+
+//    getConfigValue(getState(),{area:'intl',key:'defaultLanguage',IntlConstants.DEFAULT_LANGUAGE)
 
     dispatch(setLanguage('en'))
 
@@ -114,6 +133,7 @@ const initSetLanguage = () => (dispatch) => {
 
 export default {
     setMessages,
+    appendMessages,
     setActiveLanguages,
     initSetLanguage,
     setLanguage

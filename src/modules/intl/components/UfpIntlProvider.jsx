@@ -5,9 +5,8 @@ import React from 'react'
 import IntlSelectors from '../IntlSelectors'
 
 const UfpIntlProvider = ({randomKey, locale, messages, children}) => {
-    // console.log('Intl Provider rendering', locale, messages, randomKey)
+    console.log('Intl Provider rendering', locale, messages, randomKey)
     return (
-
         <IntlProvider key={randomKey}
                       locale={locale}
                       messages={messages}

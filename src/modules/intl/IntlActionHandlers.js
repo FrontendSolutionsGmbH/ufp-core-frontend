@@ -25,10 +25,21 @@ export default {
         return state
     },
 
-    [IntlConstants.UPDATE_MESSAGES]: (state, action) => {
-        var result = update(state, {
+    [IntlConstants.APPEND_MESSAGES]: (state, action) => {
+        return update(state, {
             allMessages: {
-                [action.payload.lang]: {$set: action.payload.messages}
+                [action.payload.lang]: {$push: action.payload.messages}
+            },
+            randomKey: {$set: Math.random()}
+        })
+    },
+    [IntlConstants.UPDATE_MESSAGES]: (state, action) => {
+        const {messages, lang}=action.payload
+        var result = state
+
+        result = update(result, {
+            allMessages: {
+                [lang]: {$set: messages}
             },
             randomKey: {$set: Math.random()}
         })
@@ -40,7 +51,19 @@ export default {
             result = update(result, {
                 currentLanguage: {$set: action.payload.lang}
             })
+
+            var found = false
+            state.languages.map((langid) => {
+                if (langid === action.payload.lang) {
+                    found = true
+                }
+            })
+            if (!found) {
+                result = update(result, {languages: {$push: [action.payload.lang]}})
+            }
         }
+
+        console.log('UPDATE MESSAGE result ', result)
 
         return result
     }

@@ -1,8 +1,7 @@
+import IntlConstants from 'modules/intl/IntlConstants'
 
-                import IntlConstants from 'modules/intl/IntlConstants'
-
-                describe('Class IntlConstants', () => {
-                    it('Should Exist', () => {
-                        expect(IntlConstants).to.exist
-                    })
-                })
+describe('Class IntlConstants', () => {
+    it('Should Exist', () => {
+        expect(IntlConstants).to.exist
+    })
+})
