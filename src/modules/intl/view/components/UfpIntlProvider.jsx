@@ -2,7 +2,7 @@ import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {IntlProvider} from 'react-intl'
 import React from 'react'
-import IntlSelectors from '../IntlSelectors'
+import IntlSelectors from '../model/IntlSelectors'
 
 const UfpIntlProvider = ({randomKey, locale, messages, children}) => {
     console.log('Intl Provider rendering', locale, messages, randomKey)

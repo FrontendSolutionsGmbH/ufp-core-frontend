@@ -1,4 +1,4 @@
-import IntlConstants from './IntlConstants'
+import IntlConstants from '../model/IntlConstants'
 
 const setActiveLanguages = (languages = []) => (dispatch) => dispatch({
     type: IntlConstants.SET_LANGUAGES,

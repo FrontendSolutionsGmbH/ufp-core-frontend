@@ -1,6 +1,6 @@
 import _Runfest from './Runfest'
-import _IntlConstants from './IntlConstants'
-import _IntlActionCreators from './IntlActionCreators'
+import _IntlConstants from './model/IntlConstants'
+import _IntlActionCreators from './controller/IntlActionCreators'
 
 export const Runfest = _Runfest
 export const IntlRunfest = _Runfest

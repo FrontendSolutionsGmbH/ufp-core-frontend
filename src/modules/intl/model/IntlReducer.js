@@ -1,4 +1,4 @@
-import ReduxUtils from '../../utils/ReduxUtils'
+import ReduxUtils from '../../../utils/ReduxUtils'
 import IntlConstants from './IntlConstants'
 // import IntlActionCreators from './IntlActionCreators'
 import IntlActionHandlers from './IntlActionHandlers'
