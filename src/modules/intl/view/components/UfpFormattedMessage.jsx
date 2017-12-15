@@ -21,4 +21,5 @@ UfpFormattedMessage.defaultProps = {
     values: {}
 }
 UfpFormattedMessage.contextTypes = {intl: PropTypes.any}
+
 export default UfpFormattedMessage

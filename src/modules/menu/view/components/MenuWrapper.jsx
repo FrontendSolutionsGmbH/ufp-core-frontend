@@ -6,7 +6,7 @@ import MenuActionCreators from '../MenuActionCreators'
 import MenuConstants from '../MenuConstants'
 import DefaultMenuAreaRenderer from './DefaultMenuAreaRenderer'
 
-class MenuWrapper extends Component {
+class HOCMenu extends Component {
 
     static propTypes = {
         menuAreaName: PropTypes.string,
@@ -50,4 +50,4 @@ const mapDispatchToProps = {
     menuOpen: MenuActionCreators.menuOpen
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(MenuWrapper)
+export default connect(mapStateToProps, mapDispatchToProps)(HOCMenu)

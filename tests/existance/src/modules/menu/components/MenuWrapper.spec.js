@@ -1,7 +1,7 @@
 
-                import MenuWrapper from 'modules/menu/components/MenuWrapper'
+                import MenuWrapper from 'modules/menu/components/HOCMenu'
 
-                describe('Class MenuWrapper', () => {
+                describe('Class HOCMenu', () => {
                     it('Should Exist', () => {
                         expect(MenuWrapper).to.exist
                     })

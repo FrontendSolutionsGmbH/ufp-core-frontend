@@ -1,7 +1,8 @@
 import _Runfest from './Runfest'
-import MenuConfiguration from './MenuConfigurationPublic'
-import _MenuSelectors from './MenuSelectors'
-import _MenuActionCreators from './MenuActionCreators'
+import MenuConfiguration from './model/MenuConfigurationPublic'
+import _MenuSelectors from './model/MenuSelectors'
+import _MenuActionCreators from './controller/MenuActionCreators'
+import _MenuActionCreators from './view/Components/MenuWrapper'
 
 export const Runfest = _Runfest
 export const MenuRunfest = _Runfest

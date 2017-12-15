@@ -2,7 +2,7 @@ import {FormattedMessage} from 'react-intl'
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
-import IntlSelectors from '../model/IntlSelectors'
+import IntlSelectors from '../../model/IntlSelectors'
 
 export class UfpPrintCurrentLanguage extends Component {
 
