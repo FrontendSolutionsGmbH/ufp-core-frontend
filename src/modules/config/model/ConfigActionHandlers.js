@@ -1,6 +1,6 @@
 import ConfigConstants from './ConfigConstants'
 import update from 'react-addons-update'
-import ObjectUtils from '../../utils/ObjectUtils'
+import ObjectUtils from '../../../utils/ObjectUtils'
 
 export default {
 

@@ -1,6 +1,6 @@
-import {ThrowParam} from '../../utils/JSUtils'
+import {ThrowParam} from '../../../utils/JSUtils'
 import ConfigConstants from './ConfigConstants'
-import UfpCoreSelectors from '../../core/UfpCoreSelectors'
+import UfpCoreSelectors from '../../../core/UfpCoreSelectors'
 
 const getReducerState = (state) => UfpCoreSelectors.getUfpState(state)[ConfigConstants.NAME]
 
