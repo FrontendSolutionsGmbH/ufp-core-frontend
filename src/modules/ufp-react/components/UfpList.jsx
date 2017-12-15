@@ -13,7 +13,6 @@ const UFPList = ({data, component, ...props}) => {
     return (<React.Fragment>
         {content}
     </React.Fragment>)
-
 }
 
 UFPList.propTypes = {
