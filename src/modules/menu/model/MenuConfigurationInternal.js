@@ -1,7 +1,7 @@
 import MenuConstants from './MenuConstants'
-import {registerEpic} from '../epic'
-import MenuActionEpicCreator from './epics/MenuActionEpicCreator'
-import JSUtils from '../../utils/JSUtils'
+import {registerEpic} from '../../epic'
+import MenuActionEpicCreator from './../controller/MenuActionEpicCreator'
+import JSUtils from '../../../utils/JSUtils'
 import MenuInternalUtils from './MenuInternalUtils'
 const EmptyFunc = () => {
 }

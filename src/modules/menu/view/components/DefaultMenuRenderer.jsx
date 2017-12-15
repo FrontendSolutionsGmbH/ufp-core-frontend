@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
-import UfpList from '../../ufp-react/components/UfpList'
+import {UfpList} from '../../../ufp-react'
 import DefaultMenuItemRenderer from './DefaultMenuItemRenderer'
 
 class DefaultMenuRenderer extends Component {

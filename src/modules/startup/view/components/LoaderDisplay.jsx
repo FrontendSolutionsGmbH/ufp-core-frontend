@@ -1,7 +1,6 @@
 import React, {Component} from 'react'
-import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
-import StartupSelectors from '../StartupSelectors'
+import HOCLoader from '../HOCLoader'
 import DefaultLoaderView from './DefaultLoaderView'
 
 export class LoaderDisplay extends Component {
@@ -34,11 +33,4 @@ export class LoaderDisplay extends Component {
 
 }
 
-const mapStateToProps = (state) => ({
-    appInitialized: StartupSelectors.AppInitialisedSelector(state),
-    totalPercentage: StartupSelectors.TotalPercentageSelector(state),
-    stagePercentage: StartupSelectors.StagePercentageSelector(state),
-    stepPercentage: StartupSelectors.StepPercentageSelector(state)
-})
-const mapDispatchToProps = {}
-export default connect(mapStateToProps, mapDispatchToProps)(LoaderDisplay)
+export default HOCLoader(LoaderDisplay)

@@ -1,6 +1,6 @@
-import UfpCoreConstants from '../../core/UfpCoreConstants'
-import StartupConstants from './StartupConstants'
-import StartupSelectors from './StartupSelectors'
+import UfpCoreConstants from '../../../core/UfpCoreConstants'
+import StartupConstants from './../model/StartupConstants'
+import StartupSelectors from './../model/StartupSelectors'
 import StartupActionCreators from './StartupActionCreators'
 
 const startupInit = (action$) => {

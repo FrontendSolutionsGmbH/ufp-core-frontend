@@ -1,6 +1,6 @@
-import {registerEpic} from '../epic'
-import StartupEpic from './StartupEpic'
-import JSUtils from '../../utils/JSUtils'
+import {registerEpic} from '../../epic'
+import StartupEpic from './../controller/StartupEpic'
+import JSUtils from '../../../utils/JSUtils'
 
 var StartupStages = {}
 

@@ -1,4 +1,4 @@
-import MenuConstants from './MenuConstants'
+import MenuConstants from './../model/MenuConstants'
 
 const menuClick = (menuEntry, pushActionCreator) => (dispatch, getState) => {
     if (menuEntry.hash) {

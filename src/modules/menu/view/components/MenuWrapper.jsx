@@ -1,9 +1,9 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
-import MenuSelectors from '../MenuSelectors'
-import MenuActionCreators from '../MenuActionCreators'
-import MenuConstants from '../MenuConstants'
+import MenuSelectors from '../../model/MenuSelectors'
+import MenuActionCreators from '../../controller/MenuActionCreators'
+import MenuConstants from '../../model/MenuConstants'
 import DefaultMenuAreaRenderer from './DefaultMenuAreaRenderer'
 
 class HOCMenu extends Component {
