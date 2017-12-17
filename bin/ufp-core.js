@@ -1,12 +1,14 @@
 #!/usr/bin/env node
+const yargs = require('yargs')
 const logger = require('../ext/build/lib/Logger2')('ufp-core-cli')
 const package = require('../package.json')
 
-logger.mark('UfpCore ', package.version)
-logger.mark(package.description)
-logger.mark('')
-logger.mark('For now use the following commands for init')
-logger.mark('Install ')
-logger.mark(package.scripts['ufp-install'])
-logger.mark('Update ')
-logger.mark(package.scripts['ufp-update'])
+yargs.version(package.version)
+yargs.command(require('./commands/defaultCommand'))
+yargs.command(require('./commands/initCommand'))
+yargs.command(require('./commands/startCommand'))
+yargs.command(require('./commands/buildCommand'))
+yargs.command(require('./commands/statusCommand'))
+yargs.help()
+yargs.argv
+

@@ -1,7 +1,7 @@
 const NODE_ENV = process.env.NODE_ENV || 'development'
 
 module.exports = {
-
+    debug: false,
     name: 'ufp-app',
     /** The environment to use when building the project */
     env: NODE_ENV,
@@ -15,6 +15,10 @@ module.exports = {
     outDir: 'dist',
     /** html webpack configuration, automatically include chunks in entry html or not */
     injectChunks: true,
+
+    devServer: {
+        stats: 'minimal'
+    },
     ignoreModules: [],
     /** The base path for all projects assets (relative to the website root) */
     publicPath: '',
@@ -27,8 +31,7 @@ module.exports = {
     chunkFolder: 'gen',
     /** A hash map of variables and their values to expose globally */
     globals: {},
-    /** Whether to enable verbose logging */
-    verbose: true,
+
     /** The list of modules to bundle separately from the core application code */
     vendors: [
         // 'ufp-core'

@@ -7,14 +7,10 @@ const logger = require('../lib/Logger2')('ufp-server')
 const webpack = require('webpack')
 
 const webpackConfig = UFP.requireDefault(
-    path.join(process.cwd(), '/config/webpack.config'),
+    path.join(process.cwd(), '/config/webpack.config.js'),
     path.join(__dirname, '/../../presets/default/config/webpack.config.js')
 )
-const project = UFP.requireDefault(
-    path.join(process.cwd(), '/project.config'),
-    path.join(__dirname, '/../../presets/default/project.config.js')
-)
-
+const project = require('./../../presets/default/config/project.config.wrapper')
 const compress = require('compression')
 
 const main = express()
@@ -33,8 +29,8 @@ if (project.env === 'development') {
         hot: true,
         quiet: false,
         noInfo: false,
-        lazy: false,
-        stats: 'normal'
+        stats: project.devServer.stats,
+        lazy: false
     }))
     main.use(require('webpack-hot-middleware')(compiler, {
         path: '/__webpack_hmr'

@@ -1,5 +1,6 @@
 const logger = require('../lib/Logger2')('ufp-start')
 const port = 3000
+
 process.on('uncaughtException', function (err) {
     if (err.errno === 'EADDRINUSE') {
         logger.error(`The port ${port} on local machine is already in use, please check for any other running node-express or any other server running on your local machine using port ${port}`)
