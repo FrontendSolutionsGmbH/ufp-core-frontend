@@ -1,6 +1,6 @@
 import update from 'react-addons-update'
 import MenuConstants from './MenuConstants'
-import ObjectUtils from '../../utils/ObjectUtils'
+import ObjectUtils from '../../../utils/ObjectUtils'
 import MenuInternalUtils from './MenuInternalUtils'
 
 export default {

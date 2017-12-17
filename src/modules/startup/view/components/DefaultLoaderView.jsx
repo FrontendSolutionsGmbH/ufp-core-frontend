@@ -1,6 +1,5 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
-import './DefaultLoaderView.scss'
 
 export class DefaultLoaderView extends Component {
 

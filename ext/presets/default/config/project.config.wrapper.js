@@ -1,4 +1,3 @@
-const fs = require('fs')
 var UFP = require('../../../build/lib/ufp')
 const path = require('path')
 
@@ -9,6 +8,4 @@ const projectConfig = UFP.requireDefault(
     path.join(__dirname, '/../project.config.js')
 )
 
-const project = Object.assign({}, projectDefault, projectConfig)
-
-module.exports = project
+module.exports = Object.assign({}, projectDefault, projectConfig)

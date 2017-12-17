@@ -1,4 +1,3 @@
-import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import MenuSelectors from '../model/MenuSelectors'
 import MenuActionCreators from '../controller/MenuActionCreators'
@@ -17,4 +16,4 @@ const mapDispatchToProps = {
     menuOpen: MenuActionCreators.menuOpen
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)
+export default () => connect(mapStateToProps, mapDispatchToProps)

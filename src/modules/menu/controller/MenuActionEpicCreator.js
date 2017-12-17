@@ -1,4 +1,4 @@
-import MenuConstants from '../MenuConstants'
+import MenuConstants from '../model/MenuConstants'
 /**
  * the menu relies on dedicated menu actions that arise from defined action names, this epic transforms
  * any givven actionName to actionName+MenuSuffix that is then handled in the menureducer

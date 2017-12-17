@@ -3,13 +3,11 @@
 const path = require('path')
 const fs = require('fs')
 // const glob = require('glob')
-var UFP = require('../../../build/lib/ufp')
 const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
-
 
 const project = require('./project.config.wrapper')
 
@@ -49,7 +47,7 @@ const config = {
         ]
     },
 
-    stats: "errors-only",
+    stats: 'errors-only',
     devtool: project.sourcemaps ? 'source-map' : 'source-map',
     output: {
         path: inProject(project.outDir),

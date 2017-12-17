@@ -2,11 +2,11 @@
  * the manifest.js defines the properties of the ufp-module
  * @type {{name: string}}
  */
-import StartupActionCreators from './StartupActionCreators'
-import StartupSelectors from './StartupSelectors'
-import StartupConfiguration from './StartupConfiguration'
-import StartupConstants from './StartupConstants'
-import StartupReducer from './StartupReducer'
+import StartupActionCreators from './controller/StartupActionCreators'
+import StartupSelectors from './model/StartupSelectors'
+import StartupConfiguration from './model/StartupConfiguration'
+import StartupConstants from './model/StartupConstants'
+import StartupReducer from './model/StartupReducer'
 import {ThrowParam} from '../../utils/JSUtils'
 
 var onceRegistered = false

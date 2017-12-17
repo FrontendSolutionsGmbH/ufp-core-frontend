@@ -33,4 +33,4 @@ export class LoaderDisplay extends Component {
 
 }
 
-export default HOCLoader(LoaderDisplay)
+export default HOCLoader()(LoaderDisplay)

@@ -7,7 +7,7 @@ import IntlSelectors from './model/IntlSelectors'
 import {registerRootProvider} from '../ufp-react'
 import UfpIntlProvider from './view/components/UfpIntlProvider'
 import {addLocaleData} from 'react-intl'
-import StartupConfigurator from '../startup/StartupConfiguration'
+import {StartupConfiguration} from '../startup'
 var onceRegistered = false
 
 const Runfest = {
@@ -48,7 +48,7 @@ const Runfest = {
         }
         onceRegistered = true
 
-        StartupConfigurator.registerStagedResource({
+        StartupConfiguration.registerStagedResource({
             stage: '1',
             name: 'initSetLanguage',
             actionCreator: IntlActionCreators.initSetLanguage,
@@ -58,11 +58,11 @@ const Runfest = {
 
         // register provided locales (en is always present)
         IntlConfig.getLocales()
-                  .map((locale) => {
-                      console.log('Adding locale data ', locale)
+            .map((locale) => {
+                console.log('Adding locale data ', locale)
 
-                      addLocaleData(locale)
-                  })
+                addLocaleData(locale)
+            })
 
         registerRootProvider({component: UfpIntlProvider})
 

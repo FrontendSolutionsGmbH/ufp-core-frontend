@@ -1,5 +1,5 @@
 
-                import UfpList from 'modules/react/components/UfpList'
+                import UfpList from 'modules/ufp-react/components/UfpList'
 
                 describe('Class UfpList', () => {
                     it('Should Exist', () => {

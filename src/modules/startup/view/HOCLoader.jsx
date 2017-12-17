@@ -1,4 +1,4 @@
-
+import StartupSelectors from '../model/StartupSelectors'
 import {connect} from 'react-redux'
 const mapStateToProps = (state) => ({
     appInitialized: StartupSelectors.AppInitialisedSelector(state),
@@ -10,6 +10,4 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = {}
 
-
-
-export default connect(mapStateToProps, mapDispatchToProps)
+export default () => connect(mapStateToProps, mapDispatchToProps)

@@ -10,4 +10,5 @@ export const DefaultLoaderView = _DefaultLoaderView
 export const LoaderDisplay = _LoaderDisplay
 export const StartupSelectors = _Selectors
 
+export const StartupConfiguration = _StartupConfiguration
 export const registerStagedResource = _StartupConfiguration.registerStagedResource
