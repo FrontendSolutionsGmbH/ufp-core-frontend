@@ -19,26 +19,23 @@ exports.default = {
         const helperparts = helper.split('/')
         const className = helperparts[helperparts.length - 1]
 
-        if ((className == 'index')  ) {
+        if ((className == 'index')) {
             let testFile = `
-                import ${className} from '${helper}'
+                import '${helper}'
 
                 describe('Class ${className}', () => {
-                    it('Should Exist', () => {
-                        expect(${className}).to.exist
-                    })
+                    
                 })
 `
             return testFile
-        }else if (  (className !== 'main')) {
+        } else if ((className === 'main')) {
             let testFile = `
-                import ${className} from '${helper}'
-
+                import '${helper}'
+                 
                 describe('Class ${className}', () => {
-                    it('Should Exist', () => {
-                       
-                    })
+                    
                 })
+            
 `
             return testFile
         } else {
