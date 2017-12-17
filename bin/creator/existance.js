@@ -18,7 +18,9 @@ exports.default = {
         helper = helper.replace('.js', '')
         const helperparts = helper.split('/')
         const className = helperparts[helperparts.length - 1]
-        const testFile = `
+
+        if ((className == 'index')  ) {
+            let testFile = `
                 import ${className} from '${helper}'
 
                 describe('Class ${className}', () => {
@@ -27,12 +29,29 @@ exports.default = {
                     })
                 })
 `
-        if (className !== 'index') {
+            return testFile
+        }else if (  (className !== 'main')) {
+            let testFile = `
+                import ${className} from '${helper}'
 
+                describe('Class ${className}', () => {
+                    it('Should Exist', () => {
+                       
+                    })
+                })
+`
             return testFile
         } else {
-            return null
-            logger.info('index.js files ignored for now...')
+            let testFile = `
+                import ${className} from '${helper}'
+
+                describe('Class ${className}', () => {
+                    it('Should Exist', () => {
+                      
+                    })
+                })
+`
+            return testFile
 
         }
 

@@ -55,26 +55,33 @@ const printConfig = (obj) => {
     console.log(printConfig2(obj))
 }
 
-const handleLinesOfCodeStats = (dir) => {
+const handleLinesOfCodeStats = (dirs) => {
     var table = new Table({
         head: ['dir', 'loc', 'sloc', 'blank', 'comments', 'files']
     });
-    const options = {
-        path: path.join(process.cwd(), dir)
-    }
-    // Using promises
-    sloc(options).then((res) => {
+    var count = dirs.length
+    const handle = function (dir, res) {
 
         table.push(['/' + dir, ...Object.values(res.sloc)])
-        table.push(
-            [{
-                colSpan: 6,
-                content: `source code stats
-loc=Lines of Code, sloc=Source Lines of Code`
-            }])
-        console.log(table.toString())
-    })
 
+        if (--count == 0) {
+            table.push(
+                [{
+                    colSpan: 6,
+                    content: `source code stats
+loc=Lines of Code, sloc=Source Lines of Code`
+                }])
+            console.log(table.toString())
+        }
+    }
+
+    dirs.map((dir) => {
+        const options = {
+            path: path.join(process.cwd(), dir)
+        }
+        // Using promises
+        sloc(options).then(handle.bind(this, dir))
+    })
 }
 
 const handleDirStats = (dirs) => {
@@ -188,8 +195,8 @@ exports.handler = function (argv) {
     console.log(table.toString());
 
     // lines of code
-    handleLinesOfCodeStats('src')
-    handleDirStats(['src', 'node_modules', 'dist'])
+    handleLinesOfCodeStats(['src', 'tests'])
+    handleDirStats(['src', 'node_modules', 'dist','tests'])
     // lines of code end
     printConfig(config)
 
