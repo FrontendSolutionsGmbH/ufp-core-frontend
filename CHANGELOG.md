@@ -5,7 +5,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [unreleased]
 
-## [0.4.6] (unreleased)
+## [0.5.0] 
+
+- change: module interfaces, everything is provided through main index.js of module
+- new: ufp-core cli command main command with stats,build,start,status commands for now managing ufp app
+
+
+## [0.4.6]  
 - new: configure html script injection in project.json
 
 ## [0.4.5] (unreleased)

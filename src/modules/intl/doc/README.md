@@ -28,6 +28,7 @@ register in main application runfest
 
 ### Changelog
 
+- 0.3.0 restructure to model/view/controller separation
 
 - 0.2.0
 - add append messages functionality

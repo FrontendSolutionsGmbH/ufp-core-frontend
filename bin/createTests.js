@@ -1,4 +1,5 @@
-const logger = require("../ext/build/lib/Logger2")('create-tests')
+
+const logger = require('../ext/build/lib/Logger2')('create-tests')
 const path = require("path")
 const glob = require("glob")
 const fs = require("fs")

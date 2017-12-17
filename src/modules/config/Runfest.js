@@ -2,10 +2,10 @@
  * the manifest.js defines the properties of the ufp-module
  * @type {{name: string}}
  */
-import ConfigReducer from './ConfigReducerCreatorFunction'
-import ConfigActionCreators from './ConfigActionCreators'
-import ConfigConstants from './ConfigConstants'
-import ConfigSelectors from './ConfigSelectors'
+import ConfigReducer from './model/ConfigReducerCreatorFunction'
+import ConfigActionCreators from './controller/ConfigActionCreators'
+import ConfigConstants from './model/ConfigConstants'
+import ConfigSelectors from './model/ConfigSelectors'
 import {ThrowParam} from '../../utils/JSUtils'
 
 var data = {}

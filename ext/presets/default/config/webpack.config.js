@@ -3,21 +3,14 @@
 const path = require('path')
 const fs = require('fs')
 // const glob = require('glob')
-var UFP = require('../../../build/lib/ufp')
 const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
-const projectDefault = require(path.join(__dirname, '/../project.config.js'))
+const project = require('./project.config.wrapper')
 
-const projectConfig = UFP.requireDefault(
-    path.join(process.cwd(), '/project.config.js'),
-    path.join(__dirname, '/../project.config.js')
-)
-
-const project = Object.assign({}, projectDefault, projectConfig)
 const StatsPlugin = require('stats-webpack-plugin')
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin')
 const VisualizerPlugin = require('webpack-visualizer-plugin')
@@ -54,16 +47,7 @@ const config = {
         ]
     },
 
-    stats: {
-        colors: true,
-        modules: true,
-        reasons: true,
-        errorDetails: true,
-        // Examine all modules
-        // maxModules: 'Infinity',
-        // Display bailout reasons
-        optimizationBailout: true
-    },
+    stats: 'errors-only',
     devtool: project.sourcemaps ? 'source-map' : 'source-map',
     output: {
         path: inProject(project.outDir),
@@ -146,7 +130,9 @@ folders.map((folderData) => {
                     {
                         from: folderData.from,
                         to: folderData.to
-                    }], {debug: 'debug'})
+                    }], {
+                    debug: project.debug
+                })
             )
         }
     }
@@ -236,7 +222,6 @@ javascriptConfig.use.push({
         loader: 'preprocess-loader',
         options: {
             NODE_ENV: project.env,
-
             ...UfpConfig
         }
     },
@@ -301,7 +286,7 @@ config.module.rules.push({
     })
 })
 config.plugins.push(extractStyles)
-config.plugins.push(new CaseSensitivePathsPlugin({debug: true}))
+config.plugins.push(new CaseSensitivePathsPlugin({debug: project.debug}))
 
 // Images
 // ------------------------------------
@@ -391,7 +376,7 @@ if (__PROD__) {
     config.plugins.push(
         new webpack.LoaderOptionsPlugin({
             minimize: true,
-            debug: true
+            debug: project.debug
         })
     )
 
@@ -481,9 +466,5 @@ if (__PROD__) {
 //     },
 //     concurrency: 3,
 // }))
-
-console.log('<WEBPACK Config is')
-console.log(config)
-console.log('WEBPACK Config is>')
 
 module.exports = config
