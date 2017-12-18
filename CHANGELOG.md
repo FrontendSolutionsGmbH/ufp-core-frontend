@@ -5,10 +5,17 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [unreleased]
 
-## [0.5.0] 
+## [0.5.0-rc1] 
 
 - change: module interfaces, everything is provided through main index.js of module
-- new: ufp-core cli command main command with stats,build,start,status commands for now managing ufp app
+- new: ufp-core cli command main command with stats,build,start,status commands for now managing ufp app 
+    try it out with 'ufp-core' or 'node_modules/.bin/ufp-core' in case your binaries are not linked, 
+    or install ufp-core globally using the -g switch
+- fix: project specific webpack config
+- new: devServer config in project.json
+- new: HtmlFormatted message wrapped in ufp-intl
+- change: internal structure featuring model/view/controller split up of components
+- new: 'ufp-core init' for installing sample app 
 
 
 ## [0.4.6]  
@@ -109,7 +116,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - Initial Release
 
-[Unreleased]: https://bitbucket.org/frontendsolutions/ufp-core/branches/compare/0.4.6...develop
+[Unreleased]: https://bitbucket.org/frontendsolutions/ufp-core/branches/compare/0.5.0-rc1...develop
+[0.5.0-rc1]: https://github.com/FrontendSolutionsGmbH/ufp-core-frontend/compare/0.4.7...0.5.0-rc1
+[0.4.7]: https://github.com/FrontendSolutionsGmbH/ufp-core-frontend/compare/0.4.6...0.4.7
 [0.4.6]: https://github.com/FrontendSolutionsGmbH/ufp-core-frontend/compare/0.4.5...0.4.6
 [0.4.5]: https://github.com/FrontendSolutionsGmbH/ufp-core-frontend/compare/0.4.4...0.4.5
 [0.4.4]: https://github.com/FrontendSolutionsGmbH/ufp-core-frontend/compare/0.4.3...0.4.4
