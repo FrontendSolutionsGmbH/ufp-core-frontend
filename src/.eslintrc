@@ -61,7 +61,6 @@
     "immutable/no-this": 0,
     "react/display-name": 0,
     "immutable/no-mutation": 0,
-    "react/jsx-key": 0,
     "promise/always-return": 2,
     "no-webpack-loader-syntax": 0,
     "promise/no-return-wrap": 2,
