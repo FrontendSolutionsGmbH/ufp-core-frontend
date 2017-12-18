@@ -2,11 +2,11 @@
  * the runfest.js defines the properties of the ufp-module RUNtimemaniFEST
  * @type {{name: string}}
  */
-import MenuActionCreators from './MenuActionCreators'
-import MenuSelectors from './MenuSelectors'
-import MenuReducer from './MenuReducer'
+import MenuActionCreators from './controller/MenuActionCreators'
+import MenuSelectors from './model/MenuSelectors'
+import MenuReducer from './model/MenuReducer'
 import {EpicRunfest} from '../epic'
-import MenuContants from './MenuConstants'
+import MenuContants from './model/MenuConstants'
 import {ThrowParam} from '../../utils/JSUtils'
 
 const Runfest = {

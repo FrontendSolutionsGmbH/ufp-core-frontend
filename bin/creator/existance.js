@@ -1,4 +1,4 @@
-const logger = require("../../build/scripts/logger")
+const logger = require('../../ext/build/lib/Logger2')('ufp-existance')
 const path = require("path")
 const glob = require("glob")
 const fs = require("fs")
@@ -18,21 +18,37 @@ exports.default = {
         helper = helper.replace('.js', '')
         const helperparts = helper.split('/')
         const className = helperparts[helperparts.length - 1]
-        const testFile = `
+
+        if ((className == 'index')) {
+            let testFile = `
+                import '${helper}'
+
+                describe('Class ${className}', () => {
+                    
+                })
+`
+            return testFile
+        } else if ((className === 'main')) {
+            let testFile = `
+                import '${helper}'
+                 
+                describe('Class ${className}', () => {
+                    
+                })
+            
+`
+            return testFile
+        } else {
+            let testFile = `
                 import ${className} from '${helper}'
 
                 describe('Class ${className}', () => {
                     it('Should Exist', () => {
-                        expect(${className}).to.exist
+                      
                     })
                 })
 `
-        if (className !== 'index') {
-
             return testFile
-        } else {
-            return null
-            logger.info('index.js files ignored for now...')
 
         }
 

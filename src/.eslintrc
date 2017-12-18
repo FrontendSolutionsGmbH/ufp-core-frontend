@@ -53,6 +53,7 @@
         "switches": "never"
       }
     ],
+    "react/jsx-key": 0,
     "react/no-children-prop": 0,
     "react/jsx-no-comment-textnodes": 0,
     "no-console": 0,

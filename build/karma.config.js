@@ -164,7 +164,7 @@ const karmaConfig = {
                 },
 
                 {
-                    test: /\.(sass|scss|css)$/,
+                    test: /\.scss$/,
                     loader: 'sass-loader'
 
                 }

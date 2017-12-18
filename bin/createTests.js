@@ -1,4 +1,4 @@
-const logger = require("../ext/build/lib/Logger2")('create-tests')
+const logger = require('../ext/build/lib/Logger2')('create-tests')
 const path = require("path")
 const glob = require("glob")
 const fs = require("fs")
@@ -22,7 +22,9 @@ function mkdirp(filepath) {
 
     console.log('filepath is ', filepath)
     try {
-        fs.mkdirSync(dirname);
+        if (!fs.existsSync(dirname)) {
+            fs.mkdirSync(dirname);
+        }
     } catch (e) {
         logger.error(e)
     }
@@ -30,7 +32,7 @@ function mkdirp(filepath) {
 
 // options is optional
 const exec = () => {
-    glob(srcDir + "/**/*.js*", {
+    glob(srcDir + "/xx**/*.(js|jsx)$", {
             cwd: process.cwd(),
             root: path.join(process.cwd(), srcDir),
 
@@ -99,8 +101,8 @@ const createTests =
             targetDir = JSUtils.ThrowParam('targetDir has to be set')
         }=JSUtils.ThrowParam('execute() needs to be called with parameter object')) => {
 
-// options is optional
-            glob(srcDir + "/**/*.js*", {
+            // options is optional
+            glob(srcDir + "/**/*.{js,jsx}", {
                     cwd: process.cwd(),
                     root: path.join(process.cwd(), srcDir),
 
