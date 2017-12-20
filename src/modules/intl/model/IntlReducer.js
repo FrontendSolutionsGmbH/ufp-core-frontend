@@ -5,10 +5,6 @@ import IntlActionHandlers from './IntlActionHandlers'
 import IntlConfig from './IntlConfig'
 
 export default () => {
-    console.log('Creating intl reducer', initialState)
-
-
-
     const initialState = {
         currentLanguage: IntlConstants.DEFAULT_LANGUAGE,
         randomKey: Math.random(),
