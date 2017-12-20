@@ -41,3 +41,15 @@ are declared to identify success/or fail
 
 registers a react root sibbling, may be used for non invasive html represantatives,
 e.g. tracking scrolling
+
+
+### How To Use
+
+use the HOC (HigherOrderComponent) provided by the startup module
+
+    import {HOCLoader} from 'ufp-core/lib/modules/startup'
+    
+    ... 
+    render()=>{
+        return this.props.appInitialized?<RenderFinished>:<RenderLoader {...this.props.loader}
+    }
