@@ -4,17 +4,23 @@ import IntlConstants from './IntlConstants'
 import IntlActionHandlers from './IntlActionHandlers'
 import IntlConfig from './IntlConfig'
 
-const initialState = {
-    currentLanguage: IntlConstants.DEFAULT_LANGUAGE,
-    randomKey: Math.random(),
-    nextLanguage: null,
-    locales: IntlConfig.getLocales(),
-    allMessages: {
+export default () => {
+    console.log('Creating intl reducer', initialState)
 
-        [IntlConstants.DEFAULT_LANGUAGE]: {}
 
-    },
-    languages: IntlConfig.getLanguages()
+
+    const initialState = {
+        currentLanguage: IntlConstants.DEFAULT_LANGUAGE,
+        randomKey: Math.random(),
+        nextLanguage: null,
+        locales: IntlConfig.getLocales(),
+        allMessages: {
+
+            [IntlConstants.DEFAULT_LANGUAGE]: {}
+
+        },
+        languages: IntlConfig.getLanguages()
+    }
+
+    return ReduxUtils.createReducer(initialState, IntlActionHandlers)
 }
-
-export default ReduxUtils.createReducer(initialState, IntlActionHandlers)
