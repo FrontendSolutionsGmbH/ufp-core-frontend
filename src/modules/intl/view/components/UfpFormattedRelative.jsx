@@ -2,7 +2,7 @@ import {FormattedTime} from 'react-intl'
 import React from 'react'
 import PropTypes from 'prop-types'
 
-const UfpFormattedTimeMessage = ({defaultMessage, id, values,...rest}) => {
+const UfpFormattedRelative= ({defaultMessage, id, values, ...rest}) => {
     return (
         <FormattedTime defaultMessage={defaultMessage}
                            id={id}
@@ -10,13 +10,13 @@ const UfpFormattedTimeMessage = ({defaultMessage, id, values,...rest}) => {
                            values={values} />)
 }
 
-UfpFormattedTimeMessage.propTypes = {
+UfpFormattedRelative.propTypes = {
     defaultMessage: PropTypes.string,
     id: PropTypes.string.isRequired,
     values: PropTypes.object
 }
 
-UfpFormattedTimeMessage.defaultProps = {
+UfpFormattedRelative.defaultProps = {
     defaultMessage: '',
     values: {}
 }
@@ -24,4 +24,4 @@ UfpFormattedTimeMessage.defaultProps = {
 // code for getting the intl context (providing fallbacks inf)
 // UfpFormattedHtmlMessage.contextTypes = {intl: PropTypes.any}
 
-export default UfpFormattedTimeMessage
+export default UfpFormattedRelative
