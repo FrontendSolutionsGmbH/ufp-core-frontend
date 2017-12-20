@@ -2,11 +2,11 @@ import {FormattedMessage} from 'react-intl'
 import React from 'react'
 import PropTypes from 'prop-types'
 
-const UfpFormattedMessage = ({defaultMessage, id, values}, context) => {
-    console.log('CONTEXT IS ', context)
+const UfpFormattedMessage = ({defaultMessage, id, values, ...rest}) => {
     return (
         <FormattedMessage defaultMessage={defaultMessage}
                           id={id}
+                          {...rest}
                           values={values} />)
 }
 
