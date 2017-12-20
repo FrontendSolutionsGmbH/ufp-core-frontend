@@ -27,7 +27,7 @@ const Runfest = {
         languages = ThrowParam('At least one language should be provided')
 
     }) => {
-        console.log('Registering locale', locales)
+        console.log('Registering locale', locales, languages)
         IntlConfig.locales.push(...locales)
         IntlConfig.languages.push(...languages)
     },
@@ -58,17 +58,17 @@ const Runfest = {
 
         // register provided locales (en is always present)
         IntlConfig.getLocales()
-            .map((locale) => {
-                console.log('Adding locale data ', locale)
+                  .map((locale) => {
+                      console.log('Adding locale data ', locale)
 
-                addLocaleData(locale)
-            })
+                      addLocaleData(locale)
+                  })
 
         registerRootProvider({component: UfpIntlProvider})
 
-        UfpCore.registerReducer({
+        UfpCore.registerReducerCreator({
                 id: IntlConstants.NAME,
-                reducer: IntlReducer
+            reducerCreatorFunction: IntlReducer
             }
         )
     }
