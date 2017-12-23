@@ -4,7 +4,8 @@ import {InvalidUFPAction, UfpMiddlewareRequestCancelledError, UfpMiddlewareMaxRe
 import UFPMiddlewareUtils from './UfpMiddlewareUtils'
 import UFPMiddlewareConstants from './UfpMiddlewareConstants'
 import UFPMiddlewareConfiguration from './UfpMiddlewareConfiguration'
-// console.log('UfpMiddleware imported ')
+
+console.log('UfpMiddleware imported ')
 function UfpMiddleware(options = {}) {
     return ({getState, dispatch}) => {
         return (next) => async(action) => {
@@ -99,9 +100,10 @@ function UfpMiddleware(options = {}) {
                         // console.log('UFPMiddleware executing: ', retryCount, ufpAction)
                         if (UFPMiddlewareConfiguration.get().createConfig === undefined ||
                             typeof UFPMiddlewareConfiguration.get().createConfig !== 'function') {
-                            config = UFPMiddlewareUtils.createConfigDefault(configPrepared)
+
+                            config = UFPMiddlewareUtils.createConfigDefault(configPrepared )
                         } else {
-                            config = UFPMiddlewareConfiguration.get().createConfig(configPrepared, ufpAction, getState())
+                            config = UFPMiddlewareConfiguration.get().createConfig( ufpAction, getState())
                         }
 
                         // console.log('UFP MIDDLEWARE config', config)

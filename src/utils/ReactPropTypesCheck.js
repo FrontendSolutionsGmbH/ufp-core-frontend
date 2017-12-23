@@ -8,21 +8,11 @@ import checkPropTypes from 'check-prop-types'
 import JsUtils from './JSUtils'
 
 export const ReactPropTypesCheck = (object, propTypes, _throw) => {
-    console.warn('ReactPropTypesCheck is deprecated use CheckPropTypes() ')
-    var propName
-
-    for (propName in propTypes) {
-        if (propTypes.hasOwnProperty(propName)) {
-            var error = checkPropTypes(propTypes, object, 'prop', 'UfpPropTypesCheck')
-            if (error) {
-                if (_throw) {
-                    throw error
-                } else {
-                    console.error(error.message)
-                }
-            }
-        }
-    }
+    return ({
+        object,
+        propTypes: CheckPropTypes,
+        doThrow: _throw
+    })
 }
 
 /**
@@ -42,6 +32,7 @@ export const CheckPropTypes = ({
 }) => {
     var propName
 
+    console.log('ReactPropTypesCheck  ', object, propTypes)
     for (propName in propTypes) {
         if (propTypes.hasOwnProperty(propName)) {
             var error = checkPropTypes(propTypes, object, 'prop', name)

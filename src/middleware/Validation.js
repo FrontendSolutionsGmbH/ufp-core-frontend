@@ -81,11 +81,10 @@ export const validateUFPAction = (action) => {
         UfpMiddlewareUtils.ReactPropTypesCheck(action, UFPActionPropTypes, true)
     }
     catch (e) {
-        //  console.error('Validation returned check ', action)
-        //  console.error('Validation returned check ', action[UfpRequestActions.UFP_REQUEST_ACTION])
-        //  console.error('Validation returned check ', action[UfpRequestActions.UFP_REQUEST_ACTION]['ufpTypes'])
-        // console.error('Validation returned ', e)
-        //  console.error('--->' + e + '<--')
+        console.error('Validation returned check ', action)
+        console.error('Validation returned ', e)
+        console.error('--->' + e + '<--')
+
         return [e]
     }
     try {

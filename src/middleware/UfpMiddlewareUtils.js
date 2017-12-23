@@ -35,10 +35,10 @@ const ufpMiddlewarePrepareConfig = (ufpAction) => {
 
         if (queryParams && !isEmptyObject(queryParams)) {
             config.url = url + '?' + Object.keys(queryParams)
-                                           .map((item) => {
-                                               return item + '=' + queryParams[item]
-                                           })
-                                           .join('&')
+                    .map((item) => {
+                        return item + '=' + queryParams[item]
+                    })
+                    .join('&')
         } else {
             config.url = url
         }
@@ -142,7 +142,7 @@ const wrapDispatcher = (dispatch/*, getState , ufpAction*/) => (action) => {
 const handleResultHandlers = async(handlerArray, resultData) => {
     const ufpErrorHandlerResultPromiseArray = []
     handlerArray.map((handlerObject) => {
-        if (handlerObject.matcher(resultData)) {
+        if (handlerObject && handlerObject.matcher && handlerObject.matcher(resultData)) {
             ufpErrorHandlerResultPromiseArray.push(handlerObject.handler(resultData))
         }
     })
@@ -160,7 +160,7 @@ const handlePreHandlers = async(handlerArray, resultData) => {
     var result = await handlerArray.reduce((previousPromise, currentItem) => {
         return previousPromise.then((previousResult) => {
             if (!previousResult.handled) {
-                if (currentItem.matcher(resultData)) {
+                if (currentItem && currentItem.matcher && currentItem.matcher(resultData)) {
                     return Promise.resolve(currentItem.handler(resultData))
                 } else {
                     return Promise.resolve(previousResult)
