@@ -18,7 +18,7 @@ const {
 }=UfpMiddlewareHelperUtils
 
 const ufpMiddlewarePrepareConfig = (ufpAction) => {
-    // console.log(' ufpMiddlewarePrepareConfig ', JSON.parse(JSON.stringify(ufpAction)))
+    console.log(' ufpMiddlewarePrepareConfig ', JSON.parse(JSON.stringify(ufpAction)))
 
     const {ufpDefinition, ufpData} = ufpAction
     const {url, method} =ufpDefinition
@@ -76,6 +76,8 @@ const uniteActionResultTypes = (ufpTypes = {}, actionConstants = {}) => {
         REQUEST: [],
         SUCCESS: [],
         FAILURE: [],
+        // legacy ... use FAILURE /..
+        FAIL: [],
         END: []
     }
     for (var i in target) {
@@ -93,6 +95,13 @@ const uniteActionResultTypes = (ufpTypes = {}, actionConstants = {}) => {
                 addToArrayIfNotExist(target[i], actionConstants[i])
             }
         }
+    }
+
+    // legacy
+    if (target.FAILURE.length == 0) {
+        console.warn('use FAILURE as action action constants instead of FAIL')
+
+        target.FAILURE = target.FAIL
     }
     return target
 }
@@ -126,7 +135,7 @@ const wrapDispatcher = (dispatch/*, getState , ufpAction*/) => (action) => {
     if (Array.isArray(action.type)) {
         for (var i in action.type) {
             //checkToCallActionCreators(dispatch, getState, ufpAction, action, action.type[i])
-            // //   // console.log('Dispatching array action', i, action.type[i], action.payload)
+            console.log('Dispatching array action', i, action.type[i], action.payload)
             dispatch({
                 type: action.type[i],
                 payload: action.payload
@@ -134,7 +143,7 @@ const wrapDispatcher = (dispatch/*, getState , ufpAction*/) => (action) => {
         }
     } else {
         //checkToCallActionCreators(dispatch, getState, ufpAction,action, action.type)
-        // //   // console.log('Dispatching normal action ', action)
+        console.log('Dispatching normal action ', action)
         return dispatch(action)
     }
 }
