@@ -38,18 +38,18 @@ const UFPActionPropTypes = {
             urlParams: PropTypes.object,
             queryParams: PropTypes.object,
             body: PropTypes.any
-        }).isRequired,
+        }),
         ufpTypes: PropTypes.object,
         ufpPayload: PropTypes.object,
         // ufpActionCreators: PropTypes.object,
         ufpResultHandler: PropTypes.arrayOf(PropTypes.shape({
             matcher: PropTypes.func.isRequired,
             handler: PropTypes.func.isRequired
-        })).isRequired,
+        })),
         ufpPreHandler: PropTypes.arrayOf(PropTypes.shape({
             matcher: PropTypes.func.isRequired,
             handler: PropTypes.func.isRequired
-        })).isRequired
+        }))
     })
 }
 const UFPTypesPropTypes = {

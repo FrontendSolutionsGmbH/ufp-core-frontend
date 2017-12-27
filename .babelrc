@@ -14,7 +14,7 @@
         "helpers": true,
         "polyfill": false,
         // we polyfill needed features in src/normalize.js
-        "regenerator": true,
+        "regenerator": true
       }
     ]
   ]
