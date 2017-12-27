@@ -1,6 +1,5 @@
 import UfpMiddlewareUtils from './UfpMiddlewareUtils'
 import PropTypes from 'prop-types'
-
 import JSUtils from './../utils/JSUtils'
 const UFPMiddlewareConfigurationX = {
     resultHandlings: {
@@ -52,18 +51,14 @@ const registerResultHandler = register(UFPMiddlewareConfigurationX.resultHandlin
 const registerPreHandler = register(UFPMiddlewareConfigurationX.preRequestHandling)
 const registerUnhandledHandler = register(UFPMiddlewareConfigurationX.resultHandlings.unhandledResultHandler)
 //UFPMiddlewareConfigurationX.resultHandlings.unhandledResultHandler.push(UFPResponseHandler)
-const registerRequestBuilder = (builder) => {
-
-    console.log('Requestbuilder registered')
-
-}
+//UFPMiddlewareConfigurationX.resultHandlings.unhandledResultHandler.push(UFPResponseHandler)
 export default {
     get: () => UFPMiddlewareConfigurationX,
     registerResultHandler,
     registerPreHandler,
     registerUnhandledHandler,
     setCreateConfig,
-    setRequestBuilder: ({creatorFunction=JSUtils.ThrowParam('creatorFunction for request builder has to be set')}) => {
+    setRequestBuilder: ({creatorFunction = JSUtils.ThrowParam('creatorFunction for request builder has to be set')}) => {
         setCreateConfig(creatorFunction)
     }
 }

@@ -180,7 +180,7 @@ const stepReducer = (state, action) => {
             }
             state = update(state, {
                 status: {
-                    loadingState: {$set:StartupConstants.LoadingStateEnum.FAILURE}
+                    loadingState: {$set: StartupConstants.LoadingStateEnum.FAILURE}
                 }
             })
             state = updateStatus(state)

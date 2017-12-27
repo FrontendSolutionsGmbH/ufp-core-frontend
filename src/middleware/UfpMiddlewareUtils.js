@@ -98,7 +98,7 @@ const uniteActionResultTypes = (ufpTypes = {}, actionConstants = {}) => {
     }
 
     // legacy
-    if (target.FAILURE.length == 0) {
+    if (target.FAILURE.length === 0) {
         console.warn('use FAILURE as action action constants instead of FAIL')
 
         target.FAILURE = target.FAIL

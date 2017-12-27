@@ -100,7 +100,6 @@ function UfpMiddleware(options = {}) {
                         // console.log('UFPMiddleware executing: ', retryCount, ufpAction)
                         if (UFPMiddlewareConfiguration.get().createConfig === undefined ||
                             typeof UFPMiddlewareConfiguration.get().createConfig !== 'function') {
-
                             config = UFPMiddlewareUtils.createConfigDefault(configPrepared)
                         } else {
                             config = UFPMiddlewareConfiguration.get().createConfig(ufpAction, getState())
