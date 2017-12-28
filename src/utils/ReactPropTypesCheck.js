@@ -7,7 +7,6 @@
 import checkPropTypes from 'check-prop-types'
 import JsUtils from './JSUtils'
 
-
 export const ReactPropTypesCheck = (object, propTypes, _throw) => {
     return ({
         object,

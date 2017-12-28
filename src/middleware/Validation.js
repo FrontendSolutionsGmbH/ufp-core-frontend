@@ -1,64 +1,64 @@
 import UFPRequestActions from './UfpRequestActions'
-import PropTypes from 'prop-types'
+import UfpTypes from 'ufp-types'
 import UfpMiddlewareUtils from './UfpMiddlewareUtils'
 import UfpMiddlewareConstants from './UfpMiddlewareConstants'
 
-const UFPTypes = PropTypes.shape({
-    END: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.arrayOf(PropTypes.string)
+const UFPResultTypes = UfpTypes.shape({
+    END: UfpTypes.oneOfType([
+        UfpTypes.string,
+        UfpTypes.arrayOf(UfpTypes.string)
     ]).isRequired,
-    FAILURE: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.arrayOf(PropTypes.string)
+    FAILURE: UfpTypes.oneOfType([
+        UfpTypes.string,
+        UfpTypes.arrayOf(UfpTypes.string)
     ]).isRequired,
-    REQUEST: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.arrayOf(PropTypes.string)
+    REQUEST: UfpTypes.oneOfType([
+        UfpTypes.string,
+        UfpTypes.arrayOf(UfpTypes.string)
     ]).isRequired,
-    SUCCESS: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.arrayOf(PropTypes.string)
+    SUCCESS: UfpTypes.oneOfType([
+        UfpTypes.string,
+        UfpTypes.arrayOf(UfpTypes.string)
     ]).isRequired
 }).isRequired
 const UFPActionPropTypes = {
-    [UFPRequestActions.UFP_REQUEST_ACTION]: PropTypes.shape({
-        ufpDefinition: PropTypes.shape({
-            url: PropTypes.string.isRequired,
-            method: PropTypes.oneOf([
+    [UFPRequestActions.UFP_REQUEST_ACTION]: UfpTypes.shape({
+        ufpDefinition: UfpTypes.shape({
+            url: UfpTypes.string.isRequired,
+            method: UfpTypes.oneOf([
                 UfpMiddlewareConstants.RequestMethodConstants.GET,
                 UfpMiddlewareConstants.RequestMethodConstants.POST,
                 UfpMiddlewareConstants.RequestMethodConstants.DELETE,
                 UfpMiddlewareConstants.RequestMethodConstants.PATCH,
                 UfpMiddlewareConstants.RequestMethodConstants.PUT]).isRequired,
-            requestType: PropTypes.string,
-            actionConstants: PropTypes.object
+            requestType: UfpTypes.string,
+            actionConstants: UfpTypes.object
         }).isRequired,
-        ufpData: PropTypes.shape({
-            urlParams: PropTypes.object,
-            queryParams: PropTypes.object,
-            body: PropTypes.any
-        }),
-        ufpTypes: PropTypes.object,
-        ufpPayload: PropTypes.object,
-        // ufpActionCreators: PropTypes.object,
-        ufpResultHandler: PropTypes.arrayOf(PropTypes.shape({
-            matcher: PropTypes.func.isRequired,
-            handler: PropTypes.func.isRequired
-        })),
-        ufpPreHandler: PropTypes.arrayOf(PropTypes.shape({
-            matcher: PropTypes.func.isRequired,
-            handler: PropTypes.func.isRequired
-        }))
+        ufpData: UfpTypes.shape({
+            urlParams: UfpTypes.object,
+            queryParams: UfpTypes.object,
+            body: UfpTypes.any
+        }).isRequired,
+        ufpTypes: UfpTypes.object,
+        ufpPayload: UfpTypes.object,
+        // ufpActionCreators: UfpTypes.object,
+        ufpResultHandler: UfpTypes.arrayOf(UfpTypes.shape({
+            matcher: UfpTypes.func.isRequired,
+            handler: UfpTypes.func.isRequired
+        })).isRequired,
+        ufpPreHandler: UfpTypes.arrayOf(UfpTypes.shape({
+            matcher: UfpTypes.func.isRequired,
+            handler: UfpTypes.func.isRequired
+        })).isRequired
     })
 }
 const UFPTypesPropTypes = {
-    [UFPRequestActions.UFP_REQUEST_ACTION]: PropTypes.oneOfType([PropTypes.shape({
-        ufpTypes: UFPTypes
-    }), PropTypes.shape({
-        ufpDefinition: PropTypes.shape(
+    [UFPRequestActions.UFP_REQUEST_ACTION]: UfpTypes.oneOfType([UfpTypes.shape({
+        ufpTypes: UFPResultTypes
+    }), UfpTypes.shape({
+        ufpDefinition: UfpTypes.shape(
             {
-                actionConstants: UFPTypes
+                actionConstants: UFPResultTypes
             })
     })])
 }
@@ -81,10 +81,11 @@ export const validateUFPAction = (action) => {
         UfpMiddlewareUtils.ReactPropTypesCheck(action, UFPActionPropTypes, true)
     }
     catch (e) {
-        console.error('Validation returned check ', action)
-        console.error('Validation returned ', e)
-        console.error('--->' + e + '<--')
-
+        //  console.error('Validation returned check ', action)
+        //  console.error('Validation returned check ', action[UfpRequestActions.UFP_REQUEST_ACTION])
+        //  console.error('Validation returned check ', action[UfpRequestActions.UFP_REQUEST_ACTION]['ufpTypes'])
+        // console.error('Validation returned ', e)
+        //  console.error('--->' + e + '<--')
         return [e]
     }
     try {

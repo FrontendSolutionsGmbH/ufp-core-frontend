@@ -13,5 +13,3 @@ export const registerRunfest = _UfpCore.registerRunfest
 export const startupUfpCore = _UfpCore.startup
 export const configure = _UfpCore.configure
 export const UfpCoreConstants = _UfpCoreConstants
-
-// No default export! BECAUSE it creates hardwired dependency, cherrypick your methods

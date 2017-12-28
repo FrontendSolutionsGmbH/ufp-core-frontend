@@ -1,6 +1,6 @@
-import {FormattedRelative} from 'react-intl'
 import React from 'react'
 import PropTypes from 'prop-types'
+import {FormattedRelative} from 'react-intl'
 
 const UfpFormattedTime= ({defaultMessage, id, values, ...rest}) => {
     return (

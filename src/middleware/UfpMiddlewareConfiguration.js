@@ -1,5 +1,5 @@
 import UfpMiddlewareUtils from './UfpMiddlewareUtils'
-import PropTypes from 'prop-types'
+import UfpTypes from 'ufp-types'
 import JSUtils from './../utils/JSUtils'
 const UFPMiddlewareConfigurationX = {
     resultHandlings: {
@@ -11,13 +11,13 @@ const UFPMiddlewareConfigurationX = {
 }
 
 const UFPHandlerPropTypeDefinition =
-    PropTypes.shape({
-        matcher: PropTypes.func.isRequired,
-        handler: PropTypes.func.isRequired
+    UfpTypes.shape({
+        matcher: UfpTypes.func.isRequired,
+        handler: UfpTypes.func.isRequired
     })
 
 const UFPHandlerPropTypeDefinitionArray = {
-    input: PropTypes.arrayOf(UFPHandlerPropTypeDefinition).isRequired
+    input: UfpTypes.arrayOf(UFPHandlerPropTypeDefinition).isRequired
 }
 const UFPHandlerPropTypeDefinitionObject = {
     input: UFPHandlerPropTypeDefinition.isRequired

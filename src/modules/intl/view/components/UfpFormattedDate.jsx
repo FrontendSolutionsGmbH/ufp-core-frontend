@@ -1,6 +1,6 @@
-import {FormattedDate} from 'react-intl'
 import React from 'react'
 import PropTypes from 'prop-types'
+import {FormattedDate} from 'react-intl'
 
 const UfpFormattedDate = ({defaultMessage, id, values, ...rest}) => {
     return (
@@ -22,6 +22,6 @@ UfpFormattedDate.defaultProps = {
 }
 
 // code for getting the intl context (providing fallbacks inf)
-// UfpFormattedHtmlMessage.contextTypes = {intl: PropTypes.any}
+// UfpFormattedHtmlMessage.contextTypes = {intl: UfpTypes.any}
 
 export default UfpFormattedDate

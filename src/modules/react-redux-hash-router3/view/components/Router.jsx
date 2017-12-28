@@ -1,6 +1,6 @@
 import React from 'react'
-import ReactRouter from 'react-router/lib/Router'
 import PropTypes from 'prop-types'
+import ReactRouter from 'react-router/lib/Router'
 
 const Router = (props) => (
     <ReactRouter history={props.history}>{props.routes}</ReactRouter>

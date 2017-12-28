@@ -1,12 +1,15 @@
-import PropTypes from 'prop-types'
+/**
+ * these prop types hold the
+ */
+import UfpTypes from 'ufp-types'
 
 const RunfestPropType = {
-    name: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
-    onConfigure: PropTypes.func,
-    onRegistered: PropTypes.func,
-    actionCreators: PropTypes.object,
-    selectors: PropTypes.object
+    name: UfpTypes.string.isRequired,
+    description: UfpTypes.string.isRequired,
+    onConfigure: UfpTypes.func,
+    onRegistered: UfpTypes.func,
+    actionCreators: UfpTypes.object,
+    selectors: UfpTypes.object
 }
 
 export default RunfestPropType
