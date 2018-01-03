@@ -318,7 +318,10 @@ function UfpMiddleware(options = {}) {
                         type: ufpTypesUnited.END,
                         payload: {
                             ufpAction: ufpAction,
-                            config: configPrepared
+                            config: configPrepared,
+
+                            // getstate in action is legacy and shall be removed
+                            getState :getState
                         }
                     })
                     // // // console.log('xxxxx middleware end5')
