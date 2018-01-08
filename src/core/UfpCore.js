@@ -112,7 +112,7 @@ const registerEnhancer = ({
     enhancer = ThrowParam('enhancer Required for registerEnhancer')
 
 }) => {
-    console.log('Registering enhancer', id, enhancer)
+    // console.log('Registering enhancer', id, enhancer)
     checkStarted()
     UfpSetup.enhancers.push({
         id: id,
@@ -233,7 +233,7 @@ const startup = ({applicationNameIn = 'Ufp Application'}={applicationNameIn: 'Uf
 
         startedUp = true
         // applicationName = applicationNameIn
-        console.log('UFP Application startup - ', applicationNameIn)
+        // console.log('UFP Application startup - ', applicationNameIn)
         const reducers = []
         Object.keys(UfpSetup.reducers)
               .map((key) => {

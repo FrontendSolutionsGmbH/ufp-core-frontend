@@ -42,7 +42,7 @@ const appendMessages = ({
 })
 
 const setLanguage = (lang) => (dispatch, getState) => {
-    console.log('SetLanguage called ', dispatch, getState)
+    // console.log('SetLanguage called ', dispatch, getState)
     // console.log('SetLanguage called ', getState())
 
 //    if (IntlSelectors.AllMessagesSelector(getState())[lang]===undefined) {

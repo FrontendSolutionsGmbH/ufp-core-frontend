@@ -3,6 +3,8 @@ import {UfpMiddlewareResulthandlerMoreThenOneSuccessError} from './Errors'
 import UfpMiddlewareHelperUtils from './UfpMiddlewareHelperUtils'
 import StringUtils from '../utils/StringUtils'
 
+import FetchWorker from 'fetch-worker'
+
 const {
     ReactPropTypesCheck,
     PropTypesCheck,
@@ -19,7 +21,7 @@ const {
 }=UfpMiddlewareHelperUtils
 
 const ufpMiddlewarePrepareConfig = (ufpAction) => {
-    console.log(' ufpMiddlewarePrepareConfig ', JSON.parse(JSON.stringify(ufpAction)))
+    // console.log(' ufpMiddlewarePrepareConfig ', JSON.parse(JSON.stringify(ufpAction)))
 
     const {ufpDefinition, ufpData} = ufpAction
     const {url, method} =ufpDefinition
@@ -136,7 +138,7 @@ const wrapDispatcher = (dispatch/*, getState , ufpAction*/) => (action) => {
     if (Array.isArray(action.type)) {
         for (var i in action.type) {
             //checkToCallActionCreators(dispatch, getState, ufpAction, action, action.type[i])
-            console.log('Dispatching array action', i, action.type[i], action.payload)
+            // console.log('Dispatching array action', i, action.type[i], action.payload)
             dispatch({
                 type: action.type[i],
                 payload: action.payload
@@ -144,7 +146,7 @@ const wrapDispatcher = (dispatch/*, getState , ufpAction*/) => (action) => {
         }
     } else {
         //checkToCallActionCreators(dispatch, getState, ufpAction,action, action.type)
-        console.log('Dispatching normal action ', action)
+        // console.log('Dispatching normal action ', action)
         return dispatch(action)
     }
 }
@@ -187,27 +189,29 @@ const handlePreHandlers = async(handlerArray, resultData) => {
 }
 
 const ufpMiddlewareRequest = async(config) => {
-    console.log('ufpMiddlewareRequest', JSON.parse(JSON.stringify(config)))
+    // console.log('ufpMiddlewareRequest', JSON.parse(JSON.stringify(config)))
 
     var requestResponse
 
     var requestUrl = config.url
 
-    var query = ''
+    if (config.params && !isEmptyObject(config.params)) {
+        requestUrl = config.url + '?' + Object.keys(config.params)
+                                              .map((item) => {
+                                                  return item + '=' + config.params[item]
+                                              })
+                                              .join('&')
+    } else {
+        requestUrl = config.url
+    }
 
-    Object.keys(config.params)
-          .map(() => {
-
-              throw 'INTERMEDIATE'
-
-          })
-
-    requestResponse = await fetch(config.url, {
+    requestResponse = await fetch(requestUrl, {
         method: config.method,
         body: JSON.stringify(config.data),
         credentials: config.credentials,
         headers: config.headers || {}
     })
+
     var isResolve = validateStatus(requestResponse.status)
     if (!isResolve) {
         // in case of error retrieve content this way
@@ -218,6 +222,49 @@ const ufpMiddlewareRequest = async(config) => {
     requestResponse.data = await getJSON(requestResponse)
 
     return requestResponse
+}
+
+const ufpMiddlewareRequestWebWorker = async(config) => {
+    // console.log('ufpMiddlewareRequest', JSON.parse(JSON.stringify(config)))
+
+    const dispatchPromise = new Promise(async(resolve /*, reject */) => {
+
+        var requestResponse
+
+        var requestUrl = config.url
+
+        if (config.params && !isEmptyObject(config.params)) {
+            requestUrl = config.url + '?' + Object.keys(config.params)
+                                                  .map((item) => {
+                                                      return item + '=' + config.params[item]
+                                                  })
+                                                  .join('&')
+        } else {
+            requestUrl = config.url
+        }
+
+        requestResponse = await fetch(requestUrl, {
+            method: config.method,
+            body: JSON.stringify(config.data),
+            credentials: config.credentials,
+            headers: config.headers || {}
+        })
+
+        var isResolve = validateStatus(requestResponse.status)
+        if (!isResolve) {
+            // in case of error retrieve content this way
+            const responseClone = requestResponse.clone()
+            const result = await createAxiosLikeErrorResponse(config, responseClone.status, responseClone)
+            return result
+        }
+        requestResponse.data = await getJSON(requestResponse)
+
+        resolve(requestResponse)
+
+    })
+    const result = await dispatchPromise
+    return result
+
 }
 
 export default {
@@ -235,5 +282,5 @@ export default {
     wrapDispatcher,
     handleResultHandlers,
     handlePreHandlers,
-    ufpMiddlewareRequest
+    ufpMiddlewareRequest:ufpMiddlewareRequestWebWorker
 }

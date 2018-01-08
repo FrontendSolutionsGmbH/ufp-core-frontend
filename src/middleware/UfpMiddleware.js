@@ -5,7 +5,7 @@ import UFPMiddlewareUtils from './UfpMiddlewareUtils'
 import UFPMiddlewareConstants from './UfpMiddlewareConstants'
 import UFPMiddlewareConfiguration from './UfpMiddlewareConfiguration'
 
-console.log('UfpMiddleware imported ')
+// console.log('UfpMiddleware imported ')
 function UfpMiddleware(options = {}) {
     return ({getState, dispatch}) => {
         return (next) => async(action) => {
@@ -102,7 +102,8 @@ function UfpMiddleware(options = {}) {
                             typeof UFPMiddlewareConfiguration.get().createConfig !== 'function') {
                             config = UFPMiddlewareUtils.createConfigDefault(configPrepared)
                         } else {
-                            config = UFPMiddlewareConfiguration.get().createConfig(ufpAction, getState())
+                            config = UFPMiddlewareConfiguration.get()
+                                                               .createConfig(ufpAction, getState())
                         }
 
                         // console.log('UFP MIDDLEWARE config', config)
@@ -110,7 +111,8 @@ function UfpMiddleware(options = {}) {
                             type: ufpTypesUnited.REQUEST,
                             payload: {
                                 action: action,
-                                config: configPrepared
+                                config: configPrepared,
+                                ...ufpPayload
                             }
                         })
                         dispatchWrapper({
@@ -166,7 +168,7 @@ function UfpMiddleware(options = {}) {
                                 try {
                                     validateResult = UFPMiddlewareUtils.validateResultHandlerResult(promiseAll0)
                                     // console.log('ResultHandler', validateResult)
-                                    console.log('UFPMiddleware Aggregated Result : ', validateResult)
+                                    // console.log('UFPMiddleware Aggregated Result : ', validateResult)
                                     if (validateResult.handled && validateResult.success) {
                                         dispatchWrapper({
                                             type: ufpTypesUnited.SUCCESS,
@@ -268,7 +270,7 @@ function UfpMiddleware(options = {}) {
                             retry = validateResult.retry
                             console.warn('UFPMiddleware UNHANDLED RESULT USUCCESFYK RETRY5: ', action, validateResult)
                             if (!retry && !validateResult.success) {
-                                console.log('xxxxx middleware rejectin0', action, ufpTypesUnited)
+                                // console.log('xxxxx middleware rejectin0', action, ufpTypesUnited)
                                 dispatchWrapper({
                                     type: ufpTypesUnited.FAILURE,
                                     payload: Object.assign(
@@ -319,9 +321,10 @@ function UfpMiddleware(options = {}) {
                         payload: {
                             ufpAction: ufpAction,
                             config: configPrepared,
+                            ...ufpPayload,
 
                             // getstate in action is legacy and shall be removed
-                            getState :getState
+                            getState: getState
                         }
                     })
                     // // // console.log('xxxxx middleware end5')

@@ -63,7 +63,7 @@ export default {
             }
         }
 
-        console.log('UPDATE MESSAGE result ', result)
+        // console.log('UPDATE MESSAGE result ', result)
 
         return result
     }

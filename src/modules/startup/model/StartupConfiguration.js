@@ -22,7 +22,7 @@ class StartupConfiguration {
         actionNameFailure
 
     }) {
-        console.log('REGISTERING STAGED RESOURCE ', arguments)
+        // console.log('REGISTERING STAGED RESOURCE ', arguments)
 
         var stageString = JSUtils.pad('000', stage) //for lexicographically sort
         if (!StartupStages['stage' + stageString]) {
