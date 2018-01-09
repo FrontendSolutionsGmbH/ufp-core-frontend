@@ -187,11 +187,22 @@ const handlePreHandlers = async(handlerArray, resultData) => {
 }
 
 const ufpMiddlewareRequest = async(config) => {
-    console.log('ufpMiddlewareRequest', JSON.parse(JSON.stringify(config)))
+    // console.log('ufpMiddlewareRequest', JSON.parse(JSON.stringify(config)))
 
     var requestResponse
+    const {params} = config
+    var url = config.url
+    if (params && !isEmptyObject(params)) {
+        url = url + '?' + Object.keys(params)
+                .map((item) => {
+                    return item + '=' + params[item]
+                })
+                .join('&')
+    } else {
+        url = url
+    }
 
-    requestResponse = await fetch(config.url, {
+    requestResponse = await fetch(url, {
         method: config.method,
         body: JSON.stringify(config.data),
         credentials: config.credentials,
