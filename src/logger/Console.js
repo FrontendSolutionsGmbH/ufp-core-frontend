@@ -13,7 +13,7 @@ const styleCenterText = [
 export default {
 
     log: (message, ...rest) => {
-        // console.log('c%' + message, styleCenterText, ...rest)
+        console.log('c%' + message, styleCenterText, ...rest)
     },
     warn: (message, ...rest) => {
         console.warn('c%' + message, styleCenterText, ...rest)

@@ -66,9 +66,7 @@ export const isUFPAction = (action) => {
  * @returns {array}
  */
 export const validateUFPAction = (action) => {
-
     return UfpMiddlewareUtils.ReactPropTypesCheck(action, UFPActionPropTypes, false)
-
 }
 
 export default {

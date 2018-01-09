@@ -41,11 +41,11 @@ const appendMessages = ({
     }
 })
 
-const setLanguage = (lang) => (dispatch, getState) => {
+const setLanguage = (lang) => (dispatch) => {
     // console.log('SetLanguage called ', dispatch, getState)
     // console.log('SetLanguage called ', getState())
 
-//    if (IntlSelectors.AllMessagesSelector(getState())[lang]===undefined) {
+    //    if (IntlSelectors.AllMessagesSelector(getState())[lang]===undefined) {
     dispatch({
         type: IntlConstants.SET_LANGUAGE_REQUEST,
         payload: {lang: lang}
@@ -79,9 +79,9 @@ const setLanguage = (lang) => (dispatch, getState) => {
 
 const initSetLanguage = () => (dispatch) => {
     // console.log('UFP Intl Setting Language', getState().apiConfig)
-//    IntlSelectors.CurrentLanguageSelector(getState())
+    //    IntlSelectors.CurrentLanguageSelector(getState())
 
-//    getConfigValue(getState(),{area:'intl',key:'defaultLanguage',IntlConstants.DEFAULT_LANGUAGE)
+    //    getConfigValue(getState(),{area:'intl',key:'defaultLanguage',IntlConstants.DEFAULT_LANGUAGE)
 
     dispatch(setLanguage('en'))
 

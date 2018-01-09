@@ -24,11 +24,11 @@ const bindSelectors = (selectors) => {
 
     if (selectors) {
         Object.keys(selectors)
-              .map((key) => {
-                  result[key] = (...params) => {
-                      return selectors[key](store.getState(), ...params)
-                  }
-              })
+            .map((key) => {
+                result[key] = (...params) => {
+                    return selectors[key](store.getState(), ...params)
+                }
+            })
     }
 
     return result
@@ -38,11 +38,11 @@ const bindActionCreators = (actionCreators) => {
     var result = {}
     if (actionCreators) {
         Object.keys(actionCreators)
-              .map((key) => {
-                  result[key] = (...params) => {
-                      return store.dispatch(actionCreators[key](...params))
-                  }
-              })
+            .map((key) => {
+                result[key] = (...params) => {
+                    return store.dispatch(actionCreators[key](...params))
+                }
+            })
     }
     return result
 }
@@ -197,20 +197,20 @@ const initRunfest = (runfest) => {
 
     if (runfest.actionCreators) {
         Object.keys(runfest.actionCreators)
-              .map((key) => {
-                  // extend js object with notification throw error when startup has not been called
-                  // yes its brutal, but convenient
-                  runfest[key] = () => ThrowParam(runfest.name + '.' + key + ' called before ufpCore.startup() ')
-              })
+            .map((key) => {
+                // extend js object with notification throw error when startup has not been called
+                // yes its brutal, but convenient
+                runfest[key] = () => ThrowParam(runfest.name + '.' + key + ' called before ufpCore.startup() ')
+            })
     }
 
     if (runfest.selectors) {
         Object.keys(runfest.selectors)
-              .map((key) => {
-                  // extend js object with notification throw error when startup has not been called
-                  // yes its brutal, but convenient
-                  runfest[key] = () => ThrowParam(runfest.name + '.' + key + ' called before ufpCore.startup() ')
-              })
+            .map((key) => {
+                // extend js object with notification throw error when startup has not been called
+                // yes its brutal, but convenient
+                runfest[key] = () => ThrowParam(runfest.name + '.' + key + ' called before ufpCore.startup() ')
+            })
     }
 }
 
@@ -233,19 +233,19 @@ const startup = ({applicationNameIn = 'Ufp Application'}={applicationNameIn: 'Uf
 
         startedUp = true
         // applicationName = applicationNameIn
-        // console.log('UFP Application startup - ', applicationNameIn)
+        console.log('UFP Application startup - ', applicationNameIn)
         const reducers = []
         Object.keys(UfpSetup.reducers)
-              .map((key) => {
-                  // console.log('Creating Reducer From', key, index, UfpSetup.reducers[key])
-                  reducers[key] = UfpSetup.reducers[key].reducer
-              })
+            .map((key) => {
+                // console.log('Creating Reducer From', key, index, UfpSetup.reducers[key])
+                reducers[key] = UfpSetup.reducers[key].reducer
+            })
 
         Object.keys(UfpSetup.reducerCreators)
-              .map((key) => {
-                  // console.log('Creating Reducer From CreatorFunction', key, index)
-                  reducers[key] = UfpSetup.reducerCreators[key].reducerCreatorFunction()
-              })
+            .map((key) => {
+                // console.log('Creating Reducer From CreatorFunction', key, index)
+                reducers[key] = UfpSetup.reducerCreators[key].reducerCreatorFunction()
+            })
 
         const middleware = []
         UfpSetup.middlewares.map((item) => {
@@ -311,29 +311,29 @@ const startup = ({applicationNameIn = 'Ufp Application'}={applicationNameIn: 'Uf
             var boundSelectors = bindSelectors(runfest.selectors)
             var boundActionCreators = bindActionCreators(runfest.actionCreators)
             Object.keys(boundSelectors)
-                  .map((key) => {
-                      // extend js object of incoming runfest
-                      // yes its brutal, but convenient
-                      // console.log('boundSelectors : ', key, boundSelectors[key])
-                      runfest[key] = boundSelectors[key]
-                  })
+                .map((key) => {
+                    // extend js object of incoming runfest
+                    // yes its brutal, but convenient
+                    // console.log('boundSelectors : ', key, boundSelectors[key])
+                    runfest[key] = boundSelectors[key]
+                })
 
             Object.keys(boundActionCreators)
-                  .map((key) => {
-                      // extend js object of incoming runfest
-                      // yes its brutal, but convenient
-                      // console.log('boundActionCreators : ', key, boundActionCreators[key])
-                      runfest[key] = boundActionCreators[key]
-                  })
+                .map((key) => {
+                    // extend js object of incoming runfest
+                    // yes its brutal, but convenient
+                    // console.log('boundActionCreators : ', key, boundActionCreators[key])
+                    runfest[key] = boundActionCreators[key]
+                })
         })
 
         // iterate over all manifests an call 'onPreStartup'
         Object.keys(UfpSetup.manifests)
-              .map((key) => {
-                  if (UfpSetup.manifests[key] && UfpSetup.manifests[key].onPreStartup) {
-                      UfpSetup.manifests[key].onPreStartup({UfpCore})
-                  }
-              })
+            .map((key) => {
+                if (UfpSetup.manifests[key] && UfpSetup.manifests[key].onPreStartup) {
+                    UfpSetup.manifests[key].onPreStartup({UfpCore})
+                }
+            })
 
         /**
          * dispatch init action
