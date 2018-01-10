@@ -164,7 +164,7 @@
     "lodash": "^4.17.4",
     "log4js": "^2.4.1",
     "logger": "^0.0.1",
-    "mime": "^2.2.0",
+    "mime": "^1.4.1",
     "minimatch": "^3.0.4",
     "mocha": "^4.1.0",
     "native-promise-only": "^0.8.1",
