@@ -36,10 +36,10 @@ const ufpMiddlewarePrepareConfig = (ufpAction) => {
 
         if (queryParams && !isEmptyObject(queryParams)) {
             config.url = url + '?' + Object.keys(queryParams)
-                    .map((item) => {
-                        return item + '=' + queryParams[item]
-                    })
-                    .join('&')
+                                           .map((item) => {
+                                               return item + '=' + queryParams[item]
+                                           })
+                                           .join('&')
         } else {
             config.url = url
         }
@@ -194,14 +194,11 @@ const ufpMiddlewareRequest = async(config) => {
     var url = config.url
     if (params && !isEmptyObject(params)) {
         url = url + '?' + Object.keys(params)
-                .map((item) => {
-                    return item + '=' + params[item]
-                })
-                .join('&')
-    } else {
-        url = url
+                                .map((item) => {
+                                    return item + '=' + params[item]
+                                })
+                                .join('&')
     }
-
     requestResponse = await fetch(url, {
         method: config.method,
         body: JSON.stringify(config.data),
