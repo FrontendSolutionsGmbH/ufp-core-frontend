@@ -1,12 +1,12 @@
-import PropTypes from 'prop-types'
+import UfpTypes from 'ufp-types'
 
 const UfpManifestPropType =
-    PropTypes.shape({
+    UfpTypes.shape({
 
-        type: PropTypes.string.isRequired,
-        name: PropTypes.string.isRequired,
-        description: PropTypes.string,
-        register: PropTypes.func.isRequired
+        type: UfpTypes.string.isRequired,
+        name: UfpTypes.string.isRequired,
+        description: UfpTypes.string,
+        register: UfpTypes.func.isRequired
     })
 
 export default {

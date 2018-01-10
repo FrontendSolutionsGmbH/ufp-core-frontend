@@ -1,4 +1,5 @@
 import _UfpCore from './UfpCore'
+import _UfpCoreConstants from './UfpCoreConstants'
 
 export const UfpCore = _UfpCore
 export const registerInitialStateCallback = _UfpCore.registerInitialStateCallback
@@ -11,5 +12,4 @@ export const registerEnhancerCreator = _UfpCore.registerEnhancerCreator
 export const registerRunfest = _UfpCore.registerRunfest
 export const startupUfpCore = _UfpCore.startup
 export const configure = _UfpCore.configure
-
-// No default export! BECAUSE it creates hardwired dependency, cherrypick your methods
+export const UfpCoreConstants = _UfpCoreConstants

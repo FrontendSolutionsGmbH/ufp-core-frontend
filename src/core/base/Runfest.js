@@ -1,6 +1,6 @@
 /**
- * the manifest.js defines the properties of the ufp-module
- * @type {{name: string}}
+ * the base manifest holds the core functionality, namely its action creator
+ * for starting a ufp application
  */
 import UfpCoreActionCreators from './UfpCoreActionCreators'
 

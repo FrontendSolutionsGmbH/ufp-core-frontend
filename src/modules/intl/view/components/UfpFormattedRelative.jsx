@@ -1,6 +1,6 @@
-import {FormattedTime} from 'react-intl'
 import React from 'react'
 import PropTypes from 'prop-types'
+import {FormattedTime} from 'react-intl'
 
 const UfpFormattedRelative= ({defaultMessage, id, values, ...rest}) => {
     return (
@@ -22,6 +22,6 @@ UfpFormattedRelative.defaultProps = {
 }
 
 // code for getting the intl context (providing fallbacks inf)
-// UfpFormattedHtmlMessage.contextTypes = {intl: PropTypes.any}
+// UfpFormattedHtmlMessage.contextTypes = {intl: UfpTypes.any}
 
 export default UfpFormattedRelative

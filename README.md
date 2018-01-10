@@ -6,7 +6,12 @@
 
 ## Alpha Version (use at own risk)
 
-Ufp-Core-Frontend is a Webpack build system managing a side effect enabled Redux store using  ReduxThunk and ReduxObservable .   The Ufp-Middleware is designed to provide application wide interceptions for asyncronous operations. Ufp-Runfest is the Runtime Manifest definition to construct ufp-applications.
+Ufp-Core-Frontend is a Webpack build manager and a [redux-runtime](https://github.com/reactjs/redux). 
+
+The setup makes uses [ReduxThunk](https://github.com/gaearon/redux-thunk) and [ReduxObservable](https://github.com/redux-observable/redux-observable).
+  
+Ufp-Runfest concept defines the runtime configuration in a easy to use manner, a Runfest.js is registered
+against the ufp-core and provides registering to the redux stor
 
 build in modules:
 
@@ -23,10 +28,6 @@ build in modules:
 **ufp-react** react15.x react handling providing a global redux-provider
 
 **ufp-redux-form** ReduxForm Runfest registering Reducer and provides ReduxForms - as is
-
-
-
-
 
 [DOCS](docs/README.md)
 

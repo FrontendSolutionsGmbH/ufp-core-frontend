@@ -11,17 +11,18 @@ const {
     errorToObject,
     validateStatus,
     mergeArrayOfObjects,
+
     createAxiosLikeErrorResponse,
     addToArrayIfNotExist,
     createConfigDefault,
     infoLogger
-}=UfpMiddlewareHelperUtils
+} = UfpMiddlewareHelperUtils
 
 const ufpMiddlewarePrepareConfig = (ufpAction) => {
-    // console.log(' ufpMiddlewarePrepareConfig ', JSON.parse(JSON.stringify(ufpAction)))
+    console.log(' ufpMiddlewarePrepareConfig ', JSON.parse(JSON.stringify(ufpAction)))
 
     const {ufpDefinition, ufpData} = ufpAction
-    const {url, method} =ufpDefinition
+    const {url, method} = ufpDefinition
     const config = {}
 
     config.method = method
@@ -76,6 +77,8 @@ const uniteActionResultTypes = (ufpTypes = {}, actionConstants = {}) => {
         REQUEST: [],
         SUCCESS: [],
         FAILURE: [],
+        // legacy ... use FAILURE /..
+        FAIL: [],
         END: []
     }
     for (var i in target) {
@@ -93,6 +96,13 @@ const uniteActionResultTypes = (ufpTypes = {}, actionConstants = {}) => {
                 addToArrayIfNotExist(target[i], actionConstants[i])
             }
         }
+    }
+
+    // legacy
+    if (target.FAILURE.length === 0) {
+        console.warn('use FAILURE as action action constants instead of FAIL')
+
+        target.FAILURE = target.FAIL
     }
     return target
 }
@@ -126,7 +136,7 @@ const wrapDispatcher = (dispatch/*, getState , ufpAction*/) => (action) => {
     if (Array.isArray(action.type)) {
         for (var i in action.type) {
             //checkToCallActionCreators(dispatch, getState, ufpAction, action, action.type[i])
-            // //   // console.log('Dispatching array action', i, action.type[i], action.payload)
+            console.log('Dispatching array action', i, action.type[i], action.payload)
             dispatch({
                 type: action.type[i],
                 payload: action.payload
@@ -134,7 +144,7 @@ const wrapDispatcher = (dispatch/*, getState , ufpAction*/) => (action) => {
         }
     } else {
         //checkToCallActionCreators(dispatch, getState, ufpAction,action, action.type)
-        // //   // console.log('Dispatching normal action ', action)
+        console.log('Dispatching normal action ', action)
         return dispatch(action)
     }
 }
@@ -142,7 +152,7 @@ const wrapDispatcher = (dispatch/*, getState , ufpAction*/) => (action) => {
 const handleResultHandlers = async(handlerArray, resultData) => {
     const ufpErrorHandlerResultPromiseArray = []
     handlerArray.map((handlerObject) => {
-        if (handlerObject.matcher(resultData)) {
+        if (handlerObject && handlerObject.matcher && handlerObject.matcher(resultData)) {
             ufpErrorHandlerResultPromiseArray.push(handlerObject.handler(resultData))
         }
     })
@@ -160,7 +170,7 @@ const handlePreHandlers = async(handlerArray, resultData) => {
     var result = await handlerArray.reduce((previousPromise, currentItem) => {
         return previousPromise.then((previousResult) => {
             if (!previousResult.handled) {
-                if (currentItem.matcher(resultData)) {
+                if (currentItem && currentItem.matcher && currentItem.matcher(resultData)) {
                     return Promise.resolve(currentItem.handler(resultData))
                 } else {
                     return Promise.resolve(previousResult)
@@ -180,10 +190,18 @@ const ufpMiddlewareRequest = async(config) => {
     // console.log('ufpMiddlewareRequest', JSON.parse(JSON.stringify(config)))
 
     var requestResponse
-
-    requestResponse = await fetch(config.url, {
+    const {params} = config
+    var url = config.url
+    if (params && !isEmptyObject(params)) {
+        url = url + '?' + Object.keys(params)
+                                .map((item) => {
+                                    return item + '=' + params[item]
+                                })
+                                .join('&')
+    }
+    requestResponse = await fetch(url, {
         method: config.method,
-        body: config.data,
+        body: JSON.stringify(config.data),
         credentials: config.credentials,
         headers: config.headers || {}
     })

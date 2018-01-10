@@ -1,6 +1,6 @@
 /**
- * the manifest.js defines the properties of the ufp-module
- * @type {{name: string}}
+ * modules used for debugging a ufp application, it is triggered currently
+ * only via a GET parameter when ufp-core runs in browser
  */
 import logger from 'redux-logger'
 import RoutingUtils from '../../utils/RoutingUtils'

@@ -128,7 +128,7 @@ const stepReducer = (state, action) => {
     // console.log('Step Reducer Called Current Stage is', currentStage)
 
     currentStage.some((stepDef) => {
-        // // console.log('StartupReducer checking', stepDef)
+        // console.log('StartupReducer checking', stepDef)
         // // console.log('StartupReducer checking', action.type, stepDef.actionNameSuccess)
         // // console.log('StartupReducer checking', action.type === stepDef.actionNameSuccess)
         if (action.type === stepDef.actionNameSuccess) {
@@ -153,6 +153,7 @@ const stepReducer = (state, action) => {
             // console.log('StartupReducer success', stepDef)
             return true //breaks the execution
         } else if (action.type === stepDef.actionNameFailure) {
+            // console.log('StartupReducer failure', stepDef)
             state = update(state, {
                 stepStatus: {
                     [stepDef.name]: {$set: LoadingStateEnum.FAILURE}
@@ -177,9 +178,13 @@ const stepReducer = (state, action) => {
                     }
                 })
             }
-
+            state = update(state, {
+                status: {
+                    loadingState: {$set: StartupConstants.LoadingStateEnum.FAILURE}
+                }
+            })
             state = updateStatus(state)
-            // console.log('StartupReducer failed', stepDef)
+            // console.log('StartupReducer failed', state)
             return true //breaks the execution
         }
         return false //continue the execution

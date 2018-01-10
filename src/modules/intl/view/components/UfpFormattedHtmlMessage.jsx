@@ -1,6 +1,6 @@
-import {FormattedHTMLMessage} from 'react-intl'
 import React from 'react'
 import PropTypes from 'prop-types'
+import {FormattedHTMLMessage} from 'react-intl'
 
 const UfpFormattedHtmlMessage = ({defaultMessage, id, values, ...rest}) => {
     return (

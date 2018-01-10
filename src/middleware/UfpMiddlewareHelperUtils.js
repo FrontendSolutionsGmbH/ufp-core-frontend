@@ -2,12 +2,15 @@ import merge from 'deepmerge'
 import {ReactPropTypesCheck} from '../utils/ReactPropTypesCheck'
 // console.log('xxxxxxxxxxxxxxxxxxxxxxxxxx', ReactPropTypesCheck)
 
-function PropTypesCheck(data, propTypes) {
+function PropTypesCheck(data, propTypes, doThrow = false) {
     try {
         ReactPropTypesCheck(data, propTypes, true)
         return true
     } catch (e) {
-        // console.error('Validation error', e)
+        console.error('Validation error', e)
+        if (doThrow) {
+            throw e
+        }
         return false
     }
 }

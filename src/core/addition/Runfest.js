@@ -1,6 +1,8 @@
 /**
- * the manifest.js defines the properties of the ufp-module
- * @type {{name: string}}
+ * addition manifest registers additional default modules, at the beginning
+ * there was only redux-thunk that is installed per default
+ *
+ * as of now this module is mandatory and not configurable, might change in future
  */
 import thunk from 'redux-thunk'
 
