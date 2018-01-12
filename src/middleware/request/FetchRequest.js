@@ -14,25 +14,25 @@ const createAxiosLikeErrorResponse = async(config, code, response) => {
 const FetchRequest = {
 
     ufpMiddlewareRequest: async(config) => {
-        console.log('ufpMiddlewareRequest', JSON.parse(JSON.stringify(config)))
-        console.log('ufpMiddlewareRequest', JSON.parse(JSON.stringify(config)))
-        console.log('ufpMiddlewareRequest', JSON.parse(JSON.stringify(config)))
-        console.log('ufpMiddlewareRequest', JSON.parse(JSON.stringify(config)))
-        console.log('ufpMiddlewareRequest', JSON.parse(JSON.stringify(config)))
-        console.log('ufpMiddlewareRequest', JSON.parse(JSON.stringify(config)))
-        console.log('ufpMiddlewareRequest', JSON.parse(JSON.stringify(config)))
-        console.log('ufpMiddlewareRequest', JSON.parse(JSON.stringify(config)))
-        console.log('ufpMiddlewareRequest', JSON.parse(JSON.stringify(config)))
-        console.log('ufpMiddlewareRequest', JSON.parse(JSON.stringify(config)))
-        console.log('ufpMiddlewareRequest', JSON.parse(JSON.stringify(config)))
-        console.log('ufpMiddlewareRequest', JSON.parse(JSON.stringify(config)))
-        console.log('ufpMiddlewareRequest', JSON.parse(JSON.stringify(config)))
-        console.log('ufpMiddlewareRequest', JSON.parse(JSON.stringify(config)))
-        console.log('ufpMiddlewareRequest', JSON.parse(JSON.stringify(config)))
-        console.log('ufpMiddlewareRequest', JSON.parse(JSON.stringify(config)))
+        // console.log('ufpMiddlewareRequest', JSON.parse(JSON.stringify(config)))
+        // console.log('ufpMiddlewareRequest', JSON.parse(JSON.stringify(config)))
+        // console.log('ufpMiddlewareRequest', JSON.parse(JSON.stringify(config)))
+        // console.log('ufpMiddlewareRequest', JSON.parse(JSON.stringify(config)))
+        // console.log('ufpMiddlewareRequest', JSON.parse(JSON.stringify(config)))
+        // console.log('ufpMiddlewareRequest', JSON.parse(JSON.stringify(config)))
+        // console.log('ufpMiddlewareRequest', JSON.parse(JSON.stringify(config)))
+        // console.log('ufpMiddlewareRequest', JSON.parse(JSON.stringify(config)))
+        // console.log('ufpMiddlewareRequest', JSON.parse(JSON.stringify(config)))
+        // console.log('ufpMiddlewareRequest', JSON.parse(JSON.stringify(config)))
+        // console.log('ufpMiddlewareRequest', JSON.parse(JSON.stringify(config)))
+        // console.log('ufpMiddlewareRequest', JSON.parse(JSON.stringify(config)))
+        // console.log('ufpMiddlewareRequest', JSON.parse(JSON.stringify(config)))
+        // console.log('ufpMiddlewareRequest', JSON.parse(JSON.stringify(config)))
+        // console.log('ufpMiddlewareRequest', JSON.parse(JSON.stringify(config)))
+        // console.log('ufpMiddlewareRequest', JSON.parse(JSON.stringify(config)))
 
-        console.log('ufpMiddlewareRequest', JSON.parse(JSON.stringify(config)))
-        console.log('ufpMiddlewareRequest', JSON.parse(JSON.stringify(config)))
+        // console.log('ufpMiddlewareRequest', JSON.parse(JSON.stringify(config)))
+        // console.log('ufpMiddlewareRequest', JSON.parse(JSON.stringify(config)))
 
         var requestResponse
 
