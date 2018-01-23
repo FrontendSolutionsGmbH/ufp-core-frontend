@@ -202,7 +202,7 @@ const ufpMiddlewareRequest = async(config) => {
                                 })
                                 .join('&')
     }
-    console.log('STARTING FETCH() start', url)
+    // console.log('STARTING FETCH() start', url)
     try {
         requestResponse = await fetch(url, {
             method: config.method,
@@ -212,12 +212,12 @@ const ufpMiddlewareRequest = async(config) => {
         })
     } catch (e) {
 
-        console.log('FETCH ERROR !', e)
+        // console.log('FETCH ERROR !', e)
         const result = await createAxiosLikeErrorResponse(config, -1, undefined)
         return result
 
     }
-    console.log('STARTING FETCH() END', url, requestResponse)
+    // console.log('STARTING FETCH() END', url, requestResponse)
     var isResolve = validateStatus(requestResponse.status)
     if (!isResolve) {
         // in case of error retrieve content this way

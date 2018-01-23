@@ -230,14 +230,14 @@ function UfpMiddleware(options = {}) {
                             // console.log('xxxxx middleware promiseall1', promiseAll1, validateResult)
                             // check if if request is unhandled
                             if (!validateResult.handled && !validateResult.success && !validateResult.retry) {
-                                console.warn('UFPMiddleware UNHANDLED RESULT UNSUSESFUL UNRETRY1: ')
+                                //  console.warn('UFPMiddleware UNHANDLED RESULT UNSUSESFUL UNRETRY1: ')
                                 var promiseAll2
                                 promiseAll2 = await UFPMiddlewareUtils.handleResultHandlers(
                                     UFPMiddlewareConfiguration.get().resultHandlings.unhandledResultHandler,
                                     resultContainerForHandler)
 
                                 // console.log('xxxxx middleware promiseall2', promiseAll2)
-                                console.warn('UFPMiddleware UNHANDLED RESULT UNSUSESFUL UNRETRY2: ', promiseAll2)
+                                //console.warn('UFPMiddleware UNHANDLED RESULT UNSUSESFUL UNRETRY2: ', promiseAll2)
                                 // set validate result to the one returned from unhandledResultHandler
                                 try {
                                     validateResult = UFPMiddlewareUtils.validateResultHandlerResult(promiseAll2)
@@ -250,7 +250,7 @@ function UfpMiddleware(options = {}) {
                                     }
                                 }
                                 catch (err) { //UfpMiddlewareResulthandlerMoreThenOneSuccessError
-                                    console.warn('UFPMiddleware UNHANDLED RESULT USUCCESFYK RETRY3: ', action, err)
+                                    //  console.warn('UFPMiddleware UNHANDLED RESULT USUCCESFYK RETRY3: ', action, err)
                                     dispatchWrapper({
                                         type: ufpTypesUnited.FAILURE,
                                         payload: err,
@@ -263,11 +263,11 @@ function UfpMiddleware(options = {}) {
                                     return resolve(err)
                                 }
 
-                                console.warn('UFPMiddleware UNHANDLED RESULT USUCCESFYK RETRY4: ', action, validateResult)
+                                // console.warn('UFPMiddleware UNHANDLED RESULT USUCCESFYK RETRY4: ', action, validateResult)
                             }
 
                             retry = validateResult.retry
-                            console.warn('UFPMiddleware UNHANDLED RESULT USUCCESFYK RETRY5: ', ufpAction, action, validateResult)
+                            //console.warn('UFPMiddleware UNHANDLED RESULT USUCCESFYK RETRY5: ', ufpAction, action, validateResult)
                             if (!retry && !validateResult.success) {
                                 // console.log('xxxxx middleware rejectin0', action, ufpTypesUnited)
                                 dispatchWrapper({
