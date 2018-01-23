@@ -79,13 +79,15 @@ const mergeArrayOfObjects = (arr, selector = (t) => t) => {
     }, {})
 }
 const createAxiosLikeErrorResponse = async(config, code, response) => {
-    var err = new Error('Request failed with status code ' + response.status)
+    var err = new Error('Request failed with status code ' + code)
     err.config = config
     if (code) {
         err.code = code
     }
     err.response = response
-    err.response.data = await getJSON(response)
+    if (response !== undefined) {
+        err.response.data = await getJSON(response)
+    }
     return err
 }
 

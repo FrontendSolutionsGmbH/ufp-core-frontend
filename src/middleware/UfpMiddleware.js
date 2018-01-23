@@ -71,7 +71,6 @@ function UfpMiddleware(options = {}) {
                     var requestResponse = null
                     const resultContainerForPreHandler = {
                         ufpAction: {
-                            wixi: 'buxi',
                             ufpData,
                             ufpDefinition,
                             ufpPayload: thePayload,
@@ -92,7 +91,6 @@ function UfpMiddleware(options = {}) {
                     // console.log('ufpPreHandler', allPreHandler, resultContainerForPreHandler)
                     const preHandlerResult = await UFPMiddlewareUtils.handlePreHandlers(
                         allPreHandler, resultContainerForPreHandler)
-                    // console.log('preHandlerResult ', preHandlerResult)
                     var validateResult
                     makeRequest = !preHandlerResult.break
                     if (makeRequest) {
@@ -173,7 +171,8 @@ function UfpMiddleware(options = {}) {
                                         dispatchWrapper({
                                             type: ufpTypesUnited.SUCCESS,
                                             payload: Object.assign(
-                                                Object.assign({}, {data: requestResponse.data}, ufpAction.ufpPayload),
+                                                {VALUE: "22222222"}
+                                                , {data: requestResponse.data}, ufpAction.ufpPayload,
                                                 {additionalPayload: validateResult.additionalPayload})
                                         })
                                     }
@@ -222,6 +221,7 @@ function UfpMiddleware(options = {}) {
                                     dispatchWrapper({
                                         type: ufpTypesUnited.END,
                                         payload: thePayload
+
                                     })
                                     return resolve(err)
                                 }
@@ -244,8 +244,7 @@ function UfpMiddleware(options = {}) {
                                     if (validateResult.handled && validateResult.success) {
                                         dispatchWrapper({
                                             type: ufpTypesUnited.SUCCESS,
-                                            payload: Object.assign(
-                                                Object.assign({}, {data: requestResponse.data}, ufpAction.ufpPayload),
+                                            payload: Object.assign({VALUE: "111111111"}, {data: requestResponse.data}, ufpAction.ufpPayload,
                                                 {additionalPayload: validateResult.additionalPayload})
                                         })
                                     }
@@ -268,13 +267,12 @@ function UfpMiddleware(options = {}) {
                             }
 
                             retry = validateResult.retry
-                            console.warn('UFPMiddleware UNHANDLED RESULT USUCCESFYK RETRY5: ', action, validateResult)
+                            console.warn('UFPMiddleware UNHANDLED RESULT USUCCESFYK RETRY5: ', ufpAction, action, validateResult)
                             if (!retry && !validateResult.success) {
                                 // console.log('xxxxx middleware rejectin0', action, ufpTypesUnited)
                                 dispatchWrapper({
                                     type: ufpTypesUnited.FAILURE,
-                                    payload: Object.assign(
-                                        Object.assign({}, {data: requestResponse.data}, ufpAction.ufpPayload),
+                                    payload: Object.assign({ufpData: ufpAction.ufpData}, {data: requestResponse.data}, ufpAction.ufpPayload,
                                         {additionalPayload: validateResult.additionalPayload})
 
                                 })
