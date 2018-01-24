@@ -42,6 +42,11 @@ if (project.env === 'development') {
     // when the application is compiled.
     main.use(express.static(path.resolve(project.basePath, 'public')))
 
+    // todo: fixme: move into own file and implement
+    main.use( '/apiRecording/**', function (req, res, next) {
+        console.log('the record endpoint, post something please next time',req,res,next)
+    })
+
     // This rewrites all routes requests to the root /index.html file
     // (ignoring file requests). If you want to implement universal
     // rendering, you'll want to remove this middleware.
