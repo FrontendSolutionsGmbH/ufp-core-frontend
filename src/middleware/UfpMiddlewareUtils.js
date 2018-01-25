@@ -133,7 +133,6 @@ const uniteActionResultTypes = (ufpTypes = {}, actionConstants = {}) => {
  }*/
 
 const wrapDispatcher = (dispatch/*, getState , ufpAction*/) => (action) => {
-
     // console.log("WRAP DISPATCHER DISPATCHING action", action)
 
     if (Array.isArray(action.type)) {
@@ -211,11 +210,9 @@ const ufpMiddlewareRequest = async(config) => {
             headers: config.headers || {}
         })
     } catch (e) {
-
         // console.log('FETCH ERROR !', e)
         const result = await createAxiosLikeErrorResponse(config, -1, undefined)
         return result
-
     }
     // console.log('STARTING FETCH() END', url, requestResponse)
     var isResolve = validateStatus(requestResponse.status)

@@ -171,7 +171,7 @@ function UfpMiddleware(options = {}) {
                                         dispatchWrapper({
                                             type: ufpTypesUnited.SUCCESS,
                                             payload: Object.assign(
-                                                {VALUE: "22222222"}
+                                                {}
                                                 , {data: requestResponse.data}, ufpAction.ufpPayload,
                                                 {additionalPayload: validateResult.additionalPayload})
                                         })
@@ -244,7 +244,7 @@ function UfpMiddleware(options = {}) {
                                     if (validateResult.handled && validateResult.success) {
                                         dispatchWrapper({
                                             type: ufpTypesUnited.SUCCESS,
-                                            payload: Object.assign({VALUE: "111111111"}, {data: requestResponse.data}, ufpAction.ufpPayload,
+                                            payload: Object.assign({}, {data: requestResponse.data}, ufpAction.ufpPayload,
                                                 {additionalPayload: validateResult.additionalPayload})
                                         })
                                     }
