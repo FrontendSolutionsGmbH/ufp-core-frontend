@@ -7,9 +7,7 @@ const Runfest = {
     name: 'ufp-mock',
     description: 'Utility Collection to be used for storing ufp middleware requests for mocking use later on',
 
-
-
-    onRegistered({UfpCore = ThrowParam('UfpCore Instance Required')}) {
+    onRegistered() {
 
         // todo: implement configuration using the config module only
 

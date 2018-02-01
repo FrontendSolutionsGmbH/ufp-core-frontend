@@ -34,7 +34,6 @@ if (project.env === 'development') {
         lazy: false
     }))
 
-
     main.use(require('webpack-hot-middleware')(compiler, {
         path: '/__webpack_hmr'
     }))
@@ -47,7 +46,6 @@ if (project.env === 'development') {
 
     // todo: fixme: move into own file and implement
     UfpWebpackRequestLogger(main)
-
 
     // This rewrites all routes requests to the root /index.html file
     // (ignoring file requests). If you want to implement universal
