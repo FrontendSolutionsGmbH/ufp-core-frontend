@@ -54,7 +54,7 @@ function UfpMiddleware(options = {}) {
                         ufpTypes
                     } = ufpAction
                     const additionalPayload = {
-
+                        ufpAction
                         // getState: getState,
                         // globalState: getState()
                     }
@@ -101,25 +101,20 @@ function UfpMiddleware(options = {}) {
                             config = UFPMiddlewareUtils.createConfigDefault(configPrepared)
                         } else {
                             config = UFPMiddlewareConfiguration.get()
-                                                               .createConfig(ufpAction, getState())
+                                .createConfig(ufpAction, getState())
                         }
 
                         // console.log('UFP MIDDLEWARE config', config)
                         dispatchWrapper({
                             type: ufpTypesUnited.REQUEST,
                             payload: {
-                                action: action,
+                                ufpData,
+                                ufpAction,
                                 config: configPrepared,
                                 ...ufpPayload
                             }
                         })
-                        dispatchWrapper({
-                            type: 'MIDDLEWARE_REQUEST',
-                            payload: {
-                                action: action,
-                                config: configPrepared
-                            }
-                        })
+
                         while (retry && retryCount < MAX_RETRY_COUNT) {
                             validateResult = undefined
                             retryCount += 1
@@ -244,7 +239,8 @@ function UfpMiddleware(options = {}) {
                                     if (validateResult.handled && validateResult.success) {
                                         dispatchWrapper({
                                             type: ufpTypesUnited.SUCCESS,
-                                            payload: Object.assign({VALUE: "111111111"}, {data: requestResponse.data}, ufpAction.ufpPayload,
+                                            payload: Object.assign({
+                                                    ufpAction}, {data: requestResponse.data}, ufpAction.ufpPayload,
                                                 {additionalPayload: validateResult.additionalPayload})
                                         })
                                     }
@@ -252,11 +248,13 @@ function UfpMiddleware(options = {}) {
                                 catch (err) { //UfpMiddlewareResulthandlerMoreThenOneSuccessError
                                     //  console.warn('UFPMiddleware UNHANDLED RESULT USUCCESFYK RETRY3: ', action, err)
                                     dispatchWrapper({
+                                        ufpAction,
                                         type: ufpTypesUnited.FAILURE,
                                         payload: err,
                                         error: true
                                     })
                                     dispatchWrapper({
+                                        ufpAction,
                                         type: ufpTypesUnited.END,
                                         payload: thePayload
                                     })
@@ -272,7 +270,8 @@ function UfpMiddleware(options = {}) {
                                 // console.log('xxxxx middleware rejectin0', action, ufpTypesUnited)
                                 dispatchWrapper({
                                     type: ufpTypesUnited.FAILURE,
-                                    payload: Object.assign({ufpData: ufpAction.ufpData}, {data: requestResponse.data}, ufpAction.ufpPayload,
+                                    payload: Object.assign({ufpData: ufpAction.ufpData,
+                                            ufpAction}, {data: requestResponse.data}, ufpAction.ufpPayload,
                                         {additionalPayload: validateResult.additionalPayload})
 
                                 })
@@ -288,11 +287,13 @@ function UfpMiddleware(options = {}) {
                             // console.log('UfpMiddleware Max retry count reached')
                             var err = new UfpMiddlewareMaxRetryReachedError()
                             dispatchWrapper({
+                                ufpAction,
                                 type: ufpTypesUnited.FAILURE,
                                 payload: err,
                                 error: true
                             }) //Flux Standard Action , if error is true, the payload SHOULD be an error object.
                             dispatchWrapper({
+                                ufpAction,
                                 type: ufpTypesUnited.END,
                                 payload: thePayload
                             })
@@ -306,6 +307,7 @@ function UfpMiddleware(options = {}) {
                         const err2 = new UfpMiddlewareRequestCancelledError()
                         // console.log('UfpMiddleware Request Cancelled')
                         dispatchWrapper({
+                            ufpAction,
                             type: ufpTypesUnited.FAILURE,
                             payload: err2,
                             error: true
@@ -317,7 +319,7 @@ function UfpMiddleware(options = {}) {
                     dispatchWrapper({
                         type: ufpTypesUnited.END,
                         payload: {
-                            ufpAction: ufpAction,
+                            ufpAction,
                             config: configPrepared,
                             ...ufpPayload,
 
