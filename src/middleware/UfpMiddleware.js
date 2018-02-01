@@ -54,7 +54,7 @@ function UfpMiddleware(options = {}) {
                         ufpTypes
                     } = ufpAction
                     const additionalPayload = {
-
+                        ufpAction
                         // getState: getState,
                         // globalState: getState()
                     }
@@ -71,7 +71,6 @@ function UfpMiddleware(options = {}) {
                     var requestResponse = null
                     const resultContainerForPreHandler = {
                         ufpAction: {
-                            wixi: 'buxi',
                             ufpData,
                             ufpDefinition,
                             ufpPayload: thePayload,
@@ -92,7 +91,6 @@ function UfpMiddleware(options = {}) {
                     // console.log('ufpPreHandler', allPreHandler, resultContainerForPreHandler)
                     const preHandlerResult = await UFPMiddlewareUtils.handlePreHandlers(
                         allPreHandler, resultContainerForPreHandler)
-                    // console.log('preHandlerResult ', preHandlerResult)
                     var validateResult
                     makeRequest = !preHandlerResult.break
                     if (makeRequest) {
@@ -103,25 +101,20 @@ function UfpMiddleware(options = {}) {
                             config = UFPMiddlewareUtils.createConfigDefault(configPrepared)
                         } else {
                             config = UFPMiddlewareConfiguration.get()
-                                                               .createConfig(ufpAction, getState())
+                                .createConfig(ufpAction, getState())
                         }
 
                         // console.log('UFP MIDDLEWARE config', config)
                         dispatchWrapper({
                             type: ufpTypesUnited.REQUEST,
                             payload: {
-                                action: action,
+                                ufpData,
+                                ufpAction,
                                 config: configPrepared,
                                 ...ufpPayload
                             }
                         })
-                        dispatchWrapper({
-                            type: 'MIDDLEWARE_REQUEST',
-                            payload: {
-                                action: action,
-                                config: configPrepared
-                            }
-                        })
+
                         while (retry && retryCount < MAX_RETRY_COUNT) {
                             validateResult = undefined
                             retryCount += 1
@@ -173,7 +166,8 @@ function UfpMiddleware(options = {}) {
                                         dispatchWrapper({
                                             type: ufpTypesUnited.SUCCESS,
                                             payload: Object.assign(
-                                                Object.assign({}, {data: requestResponse.data}, ufpAction.ufpPayload),
+                                                {}
+                                                , {data: requestResponse.data}, ufpAction.ufpPayload,
                                                 {additionalPayload: validateResult.additionalPayload})
                                         })
                                     }
@@ -222,6 +216,7 @@ function UfpMiddleware(options = {}) {
                                     dispatchWrapper({
                                         type: ufpTypesUnited.END,
                                         payload: thePayload
+
                                     })
                                     return resolve(err)
                                 }
@@ -230,51 +225,55 @@ function UfpMiddleware(options = {}) {
                             // console.log('xxxxx middleware promiseall1', promiseAll1, validateResult)
                             // check if if request is unhandled
                             if (!validateResult.handled && !validateResult.success && !validateResult.retry) {
-                                console.warn('UFPMiddleware UNHANDLED RESULT UNSUSESFUL UNRETRY1: ')
+                                //  console.warn('UFPMiddleware UNHANDLED RESULT UNSUSESFUL UNRETRY1: ')
                                 var promiseAll2
                                 promiseAll2 = await UFPMiddlewareUtils.handleResultHandlers(
                                     UFPMiddlewareConfiguration.get().resultHandlings.unhandledResultHandler,
                                     resultContainerForHandler)
 
                                 // console.log('xxxxx middleware promiseall2', promiseAll2)
-                                console.warn('UFPMiddleware UNHANDLED RESULT UNSUSESFUL UNRETRY2: ', promiseAll2)
+                                //console.warn('UFPMiddleware UNHANDLED RESULT UNSUSESFUL UNRETRY2: ', promiseAll2)
                                 // set validate result to the one returned from unhandledResultHandler
                                 try {
                                     validateResult = UFPMiddlewareUtils.validateResultHandlerResult(promiseAll2)
                                     if (validateResult.handled && validateResult.success) {
                                         dispatchWrapper({
                                             type: ufpTypesUnited.SUCCESS,
-                                            payload: Object.assign(
-                                                Object.assign({}, {data: requestResponse.data}, ufpAction.ufpPayload),
+
+                                            payload: Object.assign({
+                                                    ufpAction}, {data: requestResponse.data}, ufpAction.ufpPayload,
+
                                                 {additionalPayload: validateResult.additionalPayload})
                                         })
                                     }
                                 }
                                 catch (err) { //UfpMiddlewareResulthandlerMoreThenOneSuccessError
-                                    console.warn('UFPMiddleware UNHANDLED RESULT USUCCESFYK RETRY3: ', action, err)
+                                    //  console.warn('UFPMiddleware UNHANDLED RESULT USUCCESFYK RETRY3: ', action, err)
                                     dispatchWrapper({
+                                        ufpAction,
                                         type: ufpTypesUnited.FAILURE,
                                         payload: err,
                                         error: true
                                     })
                                     dispatchWrapper({
+                                        ufpAction,
                                         type: ufpTypesUnited.END,
                                         payload: thePayload
                                     })
                                     return resolve(err)
                                 }
 
-                                console.warn('UFPMiddleware UNHANDLED RESULT USUCCESFYK RETRY4: ', action, validateResult)
+                                // console.warn('UFPMiddleware UNHANDLED RESULT USUCCESFYK RETRY4: ', action, validateResult)
                             }
 
                             retry = validateResult.retry
-                            console.warn('UFPMiddleware UNHANDLED RESULT USUCCESFYK RETRY5: ', action, validateResult)
+                            //console.warn('UFPMiddleware UNHANDLED RESULT USUCCESFYK RETRY5: ', ufpAction, action, validateResult)
                             if (!retry && !validateResult.success) {
                                 // console.log('xxxxx middleware rejectin0', action, ufpTypesUnited)
                                 dispatchWrapper({
                                     type: ufpTypesUnited.FAILURE,
-                                    payload: Object.assign(
-                                        Object.assign({}, {data: requestResponse.data}, ufpAction.ufpPayload),
+                                    payload: Object.assign({ufpData: ufpAction.ufpData,
+                                            ufpAction}, {data: requestResponse.data}, ufpAction.ufpPayload,
                                         {additionalPayload: validateResult.additionalPayload})
 
                                 })
@@ -290,11 +289,13 @@ function UfpMiddleware(options = {}) {
                             // console.log('UfpMiddleware Max retry count reached')
                             var err = new UfpMiddlewareMaxRetryReachedError()
                             dispatchWrapper({
+                                ufpAction,
                                 type: ufpTypesUnited.FAILURE,
                                 payload: err,
                                 error: true
                             }) //Flux Standard Action , if error is true, the payload SHOULD be an error object.
                             dispatchWrapper({
+                                ufpAction,
                                 type: ufpTypesUnited.END,
                                 payload: thePayload
                             })
@@ -308,6 +309,7 @@ function UfpMiddleware(options = {}) {
                         const err2 = new UfpMiddlewareRequestCancelledError()
                         // console.log('UfpMiddleware Request Cancelled')
                         dispatchWrapper({
+                            ufpAction,
                             type: ufpTypesUnited.FAILURE,
                             payload: err2,
                             error: true
@@ -319,7 +321,7 @@ function UfpMiddleware(options = {}) {
                     dispatchWrapper({
                         type: ufpTypesUnited.END,
                         payload: {
-                            ufpAction: ufpAction,
+                            ufpAction,
                             config: configPrepared,
                             ...ufpPayload,
 

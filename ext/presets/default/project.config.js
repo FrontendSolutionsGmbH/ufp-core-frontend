@@ -20,6 +20,8 @@ module.exports = {
         stats: 'minimal'
     },
     ignoreModules: [],
+    /** used as entry point for the html, may contain path **/
+    indexHtmlPath: 'index.html',
     /** The base path for all projects assets (relative to the website root) */
     publicPath: '',
     /** Whether to generate sourcemaps */

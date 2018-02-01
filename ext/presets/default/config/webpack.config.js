@@ -327,7 +327,7 @@ config.module.rules.push({
 // HTML Template
 // ------------------------------------
 config.plugins.push(new HtmlWebpackPlugin({
-    template: inProjectSrc('index.html'),
+    template: inProjectSrc(project.indexHtmlPath),
     inject: project.injectChunks,
     minify: {
         collapseWhitespace: true

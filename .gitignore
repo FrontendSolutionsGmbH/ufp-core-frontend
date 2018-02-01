@@ -6,3 +6,4 @@ ufp-core/node_modules/
 node_modules/
 coverage/
 lib/*
+yarn.lock

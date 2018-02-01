@@ -133,6 +133,8 @@ const uniteActionResultTypes = (ufpTypes = {}, actionConstants = {}) => {
  }*/
 
 const wrapDispatcher = (dispatch/*, getState , ufpAction*/) => (action) => {
+    // console.log("WRAP DISPATCHER DISPATCHING action", action)
+
     if (Array.isArray(action.type)) {
         for (var i in action.type) {
             //checkToCallActionCreators(dispatch, getState, ufpAction, action, action.type[i])
@@ -199,12 +201,20 @@ const ufpMiddlewareRequest = async(config) => {
                                 })
                                 .join('&')
     }
-    requestResponse = await fetch(url, {
-        method: config.method,
-        body: JSON.stringify(config.data),
-        credentials: config.credentials,
-        headers: config.headers || {}
-    })
+    // console.log('STARTING FETCH() start', url)
+    try {
+        requestResponse = await fetch(url, {
+            method: config.method,
+            body: JSON.stringify(config.data),
+            credentials: config.credentials,
+            headers: config.headers || {}
+        })
+    } catch (e) {
+        // console.log('FETCH ERROR !', e)
+        const result = await createAxiosLikeErrorResponse(config, -1, undefined)
+        return result
+    }
+    // console.log('STARTING FETCH() END', url, requestResponse)
     var isResolve = validateStatus(requestResponse.status)
     if (!isResolve) {
         // in case of error retrieve content this way

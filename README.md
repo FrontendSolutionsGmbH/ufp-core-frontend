@@ -108,3 +108,13 @@ using the ufpAutoConfigured selector to retrieve a value from it
 
 * for binary execution of installed npm modules enter ./node_modules/.bin into your $PATH env config
 
+
+
+### Philosophy
+@startuml 
+
+
+- comp4props          
+- group
+- propTypes
+@enduml
