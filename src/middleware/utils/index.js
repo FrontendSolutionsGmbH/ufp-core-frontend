@@ -1,5 +1,0 @@
-import _GenericRequestActionHandler from './GenericRequestActionHandler'
-
-export const createActionHandlerForRequestDefinition = _GenericRequestActionHandler.createActionHandlerForRequestDefinition
-export const createKeyFromPayload = _GenericRequestActionHandler.createKeyFromPayload
-export const createKeyFromUrlParams = _GenericRequestActionHandler.createKeyFromUrlParams
