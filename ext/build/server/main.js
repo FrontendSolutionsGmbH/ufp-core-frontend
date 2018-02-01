@@ -12,6 +12,7 @@ const webpackConfig = UFP.requireDefault(
 )
 const project = require('./../../presets/default/config/project.config.wrapper')
 const compress = require('compression')
+const UfpWebpackRequestLogger = require('./UfpWebpackRequestLogger')
 
 const main = express()
 main.use(compress())
@@ -32,6 +33,8 @@ if (project.env === 'development') {
         stats: project.devServer.stats,
         lazy: false
     }))
+
+
     main.use(require('webpack-hot-middleware')(compiler, {
         path: '/__webpack_hmr'
     }))
@@ -41,6 +44,10 @@ if (project.env === 'development') {
     // of development since this directory will be copied into ~/dist
     // when the application is compiled.
     main.use(express.static(path.resolve(project.basePath, 'public')))
+
+    // todo: fixme: move into own file and implement
+    UfpWebpackRequestLogger(main)
+
 
     // This rewrites all routes requests to the root /index.html file
     // (ignoring file requests). If you want to implement universal
