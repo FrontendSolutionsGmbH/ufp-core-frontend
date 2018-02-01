@@ -4,7 +4,6 @@ import UfpMiddlewareActionCreatorInternal from '../../UfpMiddlewareActionCreator
 import GenericResourceHOC from './GenericResourceHOC'
 
 export const createResource = ({reducerName = 'DefaultResourceReducer', definition}) => {
-
     console.log('createResource called', reducerName, definition)
 
     /**
@@ -48,5 +47,4 @@ export const createResource = ({reducerName = 'DefaultResourceReducer', definiti
         selector,
         hoc
     }
-
 }

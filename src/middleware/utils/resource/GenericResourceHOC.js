@@ -13,34 +13,37 @@ import _Get from 'lodash-es/get'
  * @param actionCreator
  * @param selector
  */
-export default({defintion, actionCreator, selector}) => ({
+export default({actionCreator, selector}) => ({
     urlParams = 'resourceProps.urlParams',
     queryParams = 'resourceProps.queryParams',
     dataField = 'resourceDara',
     errorView = (<div>Error...</div>),
 
     loadView = (<div>Loading...</div>),
-    emptyView = (<div>Empty...</div>),
+    emptyView = (<div>Empty...</div>)
 
 }) => (WrappedComponent) => {
     console.log('GenericResourceHOC')
     class GenericResourceHOC extends Component {
 
         static propTypes = {
-            startupCompany: PropTypes.object
+            resourceData: PropTypes.object.isRequired,
+            loadResource: PropTypes.func.isRequired
         }
 
-        static defaultProps = {
-            startupCompany: undefined
-        }
-
+        /**
+         *  check if data is available, if not reload
+         *
+         */
         componentDidMount() {
             this.loadResource()
         }
 
+        /**
+         * is used to initialise and refresh
+         */
         loadResource() {
-
-            if (this.props.startupCompany === undefined) {
+            if (this.props.resourceData === undefined) {
                 this.props.loadResource(
                     {
                         urlParams: _Get(this.props, urlParams),
@@ -49,8 +52,12 @@ export default({defintion, actionCreator, selector}) => ({
             }
         }
 
+        /**
+         * in the render method we check the loading state of resource,
+         * and if present the wrapped component is called with its properties
+         * hiding most of the inner properties created by this wrapper
+         */
         render() {
-
             const {resourceData}=this.props
 
             console.log('GenericResourceHOC ', this.props)
@@ -58,7 +65,6 @@ export default({defintion, actionCreator, selector}) => ({
                 if (resourceData.isLoading) {
                     return loadView
                 } else if (resourceData.hasError) {
-
                     return errorView
                 } else {
                     return (<WrappedComponent {...Object.assign({}, this.props, {
@@ -68,32 +74,39 @@ export default({defintion, actionCreator, selector}) => ({
                     })} />)
                 }
             } else {
-
                 return emptyView
             }
-
         }
 
     }
+    /**
+     * utility preparation to forward static vars through wrapped component
+     */
     hoistNonReactStatic(GenericResourceHOC, WrappedComponent)
+    // create nice react displayname
     HOCUtils.addDisplayName({
         name: 'GenericResourceHOC',
         wrappedComponent: WrappedComponent,
         newComponent: GenericResourceHOC
     })
 
-    const mapStateToProps = (state, props) => {
-        console.log('INCOMING PROPS ARE', urlParams, props)
+    /**
+     * the mapstatetoprops is using the generated belonging selector which selects
+     * from state based on url parameters from request
+     */
+    const mapStateToProps = (state, props) => ({
+        /**
+         * provided SELECTOR upon creation time gets fed the currents object urlParams
+         * as input which returns the result from state
+         */
+        resourceData: selector(state, _Get(props, urlParams))
+    })
 
-        return {
-            /**
-             * provided SELECTOR upon creation time gets fed the currents object urlParams
-             * as input which returns the result from state
-             */
-            resourceData: selector(state, _Get(props, urlParams))
-        }
-    }
-
+    /**
+     * here the required actioncreator is bound, it is created beforehand from
+     * incoming definition, and is called via loadResource({urlParams,body,queryParms})
+     * @type {{loadResource: *}}
+     */
     const mapDispatchToProps = {
 
         /**
@@ -103,8 +116,9 @@ export default({defintion, actionCreator, selector}) => ({
 
     }
 
+    // finally wire it together to the redux store
     const connected = connect(mapStateToProps, mapDispatchToProps)
 
+    // and return connected component
     return connected(GenericResourceHOC)
 }
-

@@ -9,6 +9,6 @@ import {createKeyFromUrlParams} from './GenericResourceActionHandler'
  * @param reducerName
  * @param definition
  */
-export default ({reducerName, definition}) => (state, props) => {
+export default ({reducerName}) => (state, props) => {
     return state[reducerName][createKeyFromUrlParams(props)]
 }

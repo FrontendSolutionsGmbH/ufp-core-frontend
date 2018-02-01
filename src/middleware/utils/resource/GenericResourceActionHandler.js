@@ -18,13 +18,11 @@
     }
 }
 
-
  // create standardized action names from name SOME_REQUEST
  ApiDefinition.someRequest = Object.assign({actionConstants: ReduxUtils.createAsyncResponseActionNames(ReduxUtils.camelCaseToConstant('someRequest')}, ApiDefinition.someRequest)
  }
 
  // reducer could look like this
-
 
  const actionHandler = createActionHandlerForRequestDefinition(ApiDefinitionStartupCompany.getStartupCompany)
 
@@ -34,10 +32,8 @@
 
  const Selector = (state, props) => {
 
-
     return state.Reducer[createKeyFromUrlParams(props)]
 }
-
 
  ///
  mapStateToProps=(state,props){
@@ -58,13 +54,10 @@ export const createKeyFromUrlParams = (params) => {
     }
 
     Object.keys(params).forEach((key) => {
-
         result += key + '-' + params[key]
-
     })
 
     return result
-
 }
 export const createKeyFromPayload = (payload) => {
     const params = payload.ufpAction.ufpData.urlParams
@@ -72,7 +65,6 @@ export const createKeyFromPayload = (payload) => {
 }
 
 export const createActionHandlerForRequestDefinition = ({definition}) => {
-
     // create handler for fail/request ... actions
     return {
         [definition.actionConstants.SUCCESS]: (state, action) => {
@@ -93,7 +85,6 @@ export const createActionHandlerForRequestDefinition = ({definition}) => {
             console.log('GENERIC HANDLER SUCCESS', state)
 
             return state
-
         },
         [definition.actionConstants.FAILURE]: (state, action) => {
             // console.log('GENERIC HANDLER FAILURE', action)
@@ -139,7 +130,7 @@ export const createActionHandlerForRequestDefinition = ({definition}) => {
             const key = createKeyFromPayload(action.payload)
             state = update(state, {
                 [key]: {
-                    isLoading: {$set: false},
+                    isLoading: {$set: false}
 
                 }
 
@@ -149,6 +140,4 @@ export const createActionHandlerForRequestDefinition = ({definition}) => {
         }
 
     }
-
 }
-
