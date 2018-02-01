@@ -5,13 +5,22 @@ import hoistNonReactStatic from 'hoist-non-react-statics'
 import PropTypes from 'prop-types'
 import _Get from 'lodash-es/get'
 
+/**
+ * factory method that returns a HigherOrder React component creator function
+ *
+ *
+ * @param defintion
+ * @param actionCreator
+ * @param selector
+ */
 export default({defintion, actionCreator, selector}) => ({
     urlParams = 'resourceProps.urlParams',
     queryParams = 'resourceProps.queryParams',
-
+    dataField = 'resourceDara',
     errorView = (<div>Error...</div>),
 
-    loadView = (<div>Error...</div>),
+    loadView = (<div>Loading...</div>),
+    emptyView = (<div>Empty...</div>),
 
 }) => (WrappedComponent) => {
     console.log('GenericResourceHOC')
@@ -26,6 +35,11 @@ export default({defintion, actionCreator, selector}) => ({
         }
 
         componentDidMount() {
+            this.loadResource()
+        }
+
+        loadResource() {
+
             if (this.props.startupCompany === undefined) {
                 this.props.loadResource(
                     {
@@ -48,13 +62,14 @@ export default({defintion, actionCreator, selector}) => ({
                     return errorView
                 } else {
                     return (<WrappedComponent {...Object.assign({}, this.props, {
-                        resourceData,
-                        loadStartupCompany: undefined
+                        [dataField]: resourceData,
+                        refresh: this.loadResource,
+                        loadResource: undefined
                     })} />)
                 }
             } else {
 
-                return (<div>StartupCompany not yet assigned</div>)
+                return emptyView
             }
 
         }
