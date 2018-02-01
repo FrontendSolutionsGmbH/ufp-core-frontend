@@ -6,8 +6,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [unreleased]
 - indexHtmlPath config setting
 
-## [0.5.0-rc1-9] 
+## [0.5.0-rc1-10] 
 
+- resource utility, providing actionhandler,actioncreator, higher order component from api definition
 - normalization of fail/succes/request/end actions 
 - change: module interfaces, everything is provided through main index.js of module
 - new: ufp-core cli command main command with stats,build,start,status commands for now managing ufp app 
