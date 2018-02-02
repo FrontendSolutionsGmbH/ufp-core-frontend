@@ -6,8 +6,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [unreleased]
 - indexHtmlPath config setting
 
-## [0.5.0-rc1-10] 
+## [0.5.0-rc1-11] 
 
+- change: no stringification of request bodies - allow multipart/FormData to pass through 
 - resource utility, providing actionhandler,actioncreator, higher order component from api definition
 - normalization of fail/succes/request/end actions 
 - change: module interfaces, everything is provided through main index.js of module

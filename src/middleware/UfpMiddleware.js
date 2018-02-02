@@ -101,7 +101,7 @@ function UfpMiddleware(options = {}) {
                             config = UFPMiddlewareUtils.createConfigDefault(configPrepared)
                         } else {
                             config = UFPMiddlewareConfiguration.get()
-                                .createConfig(ufpAction, getState())
+                                                               .createConfig(ufpAction, getState())
                         }
 
                         // console.log('UFP MIDDLEWARE config', config)
@@ -148,10 +148,11 @@ function UfpMiddleware(options = {}) {
                                 ufpDefinition,
                                 requestResponse: requestResponse
                             }
+
                             var promiseAll0
                             var promiseAll1
-
                             var resultHandler
+
                             // console.log('ufpResultHandler', ufpResultHandler, ufpDefinition)
                             if (ufpResultHandler !== undefined && ufpResultHandler.length > 0) {
                                 resultHandler = ufpResultHandler
@@ -241,7 +242,8 @@ function UfpMiddleware(options = {}) {
                                             type: ufpTypesUnited.SUCCESS,
 
                                             payload: Object.assign({
-                                                    ufpAction}, {data: requestResponse.data}, ufpAction.ufpPayload,
+                                                    ufpAction
+                                                }, {data: requestResponse.data}, ufpAction.ufpPayload,
 
                                                 {additionalPayload: validateResult.additionalPayload})
                                         })
@@ -272,8 +274,10 @@ function UfpMiddleware(options = {}) {
                                 // console.log('xxxxx middleware rejectin0', action, ufpTypesUnited)
                                 dispatchWrapper({
                                     type: ufpTypesUnited.FAILURE,
-                                    payload: Object.assign({ufpData: ufpAction.ufpData,
-                                            ufpAction}, {data: requestResponse.data}, ufpAction.ufpPayload,
+                                    payload: Object.assign({
+                                            ufpData: ufpAction.ufpData,
+                                            ufpAction
+                                        }, {data: requestResponse.data}, ufpAction.ufpPayload,
                                         {additionalPayload: validateResult.additionalPayload})
 
                                 })
