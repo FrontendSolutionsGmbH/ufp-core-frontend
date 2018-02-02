@@ -6,7 +6,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [unreleased]
 - indexHtmlPath config setting
 
-## [0.5.0-rc1-11] 
+## [0.5.0] 
 
 - change: no stringification of request bodies - allow multipart/FormData to pass through 
 - resource utility, providing actionhandler,actioncreator, higher order component from api definition
@@ -120,8 +120,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - Initial Release
 
-[Unreleased]: https://bitbucket.org/frontendsolutions/ufp-core/branches/compare/0.5.0-rc1...develop
-[0.5.0-rc1]: https://github.com/FrontendSolutionsGmbH/ufp-core-frontend/compare/0.4.7...0.5.0-rc1
+[Unreleased]: https://bitbucket.org/frontendsolutions/ufp-core/branches/compare/0.5.0...develop
+[0.5.0-rc1]: https://github.com/FrontendSolutionsGmbH/ufp-core-frontend/compare/0.4.7...0.5.0
 [0.4.7]: https://github.com/FrontendSolutionsGmbH/ufp-core-frontend/compare/0.4.6...0.4.7
 [0.4.6]: https://github.com/FrontendSolutionsGmbH/ufp-core-frontend/compare/0.4.5...0.4.6
 [0.4.5]: https://github.com/FrontendSolutionsGmbH/ufp-core-frontend/compare/0.4.4...0.4.5
