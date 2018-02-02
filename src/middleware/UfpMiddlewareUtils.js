@@ -205,9 +205,10 @@ const ufpMiddlewareRequest = async(config) => {
     try {
         requestResponse = await fetch(url, {
             method: config.method,
-            body: JSON.stringify(config.data),
+            body: config.data,
             credentials: config.credentials,
             headers: config.headers || {}
+
         })
     } catch (e) {
         // console.log('FETCH ERROR !', e)
