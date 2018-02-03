@@ -74,6 +74,7 @@ export const createActionHandlerForRequestDefinition = ({definition}) => {
             state = update(state, {
                 [key]: {
                     hasError: {$set: false},
+                    hasData: {$set: true},
                     dates: {
                         dateEnded: {$set: new Date()}
                     },
@@ -94,6 +95,7 @@ export const createActionHandlerForRequestDefinition = ({definition}) => {
                 [key]: {
 
                     hasError: {$set: true},
+                    hasData: {$set: false},
                     dates: {
                         dateEnded: {$set: new Date()}
                     },
@@ -115,8 +117,9 @@ export const createActionHandlerForRequestDefinition = ({definition}) => {
                     $set: {
                         isLoading: true,
                         hasError: false,
+                        hasData: false,
                         dates: {
-                            loadStart: new Date()
+                            dateStarted: new Date()
                         },
                         data: undefined
                     }
