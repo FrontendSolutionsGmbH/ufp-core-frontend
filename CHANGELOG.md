@@ -6,6 +6,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [unreleased]
 - indexHtmlPath config setting
 
+## [0.5.1 - rc ] 
+
+- fix: reload functionality for hoc resource
+- change: default naming hoc resource
+
 ## [0.5.0] 
 
 - change: no stringification of request bodies - allow multipart/FormData to pass through 
