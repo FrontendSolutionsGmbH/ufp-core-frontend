@@ -16,7 +16,7 @@ import _Get from 'lodash-es/get'
 export default({actionCreator, selector}) => ({
     urlParams = 'resourceProps.urlParams',
     queryParams = 'resourceProps.queryParams',
-    dataField = 'resourceDara',
+    dataField = 'resourceData',
     errorView = (<div>Error...</div>),
 
     loadView = (<div>Loading...</div>),
@@ -36,20 +36,20 @@ export default({actionCreator, selector}) => ({
          *
          */
         componentDidMount() {
-            this.loadResource()
+            if (this.props.resourceData === undefined) {
+                this.loadResource()
+            }
         }
 
         /**
          * is used to initialise and refresh
          */
-        loadResource() {
-            if (this.props.resourceData === undefined) {
-                this.props.loadResource(
-                    {
-                        urlParams: _Get(this.props, urlParams),
-                        queryParams: _Get(this.props, queryParams)
-                    })
-            }
+        loadResource = () => {
+            this.props.loadResource(
+                {
+                    urlParams: _Get(this.props, urlParams),
+                    queryParams: _Get(this.props, queryParams)
+                })
         }
 
         /**
@@ -60,7 +60,7 @@ export default({actionCreator, selector}) => ({
         render() {
             const {resourceData}=this.props
 
-            console.log('GenericResourceHOC ', this.props)
+            console.log('GenericResourceHOC', this.props)
             if (resourceData !== undefined) {
                 if (resourceData.isLoading) {
                     return loadView
@@ -68,7 +68,7 @@ export default({actionCreator, selector}) => ({
                     return errorView
                 } else {
                     return (<WrappedComponent {...Object.assign({}, this.props, {
-                        [dataField]: resourceData,
+                        [dataField]: resourceData.data,
                         refresh: this.loadResource,
                         loadResource: undefined
                     })} />)
