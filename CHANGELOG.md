@@ -6,7 +6,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [unreleased]
 - indexHtmlPath config setting
 
-## [0.5.1 - rc ] 
+## [0.5.1 - rc 2] 
+
+- change: allow parameterles resource reducer utility creation
+
+## [0.5.1 - rc 1] 
 
 - fix: reload functionality for hoc resource
 - change: default naming hoc resource
