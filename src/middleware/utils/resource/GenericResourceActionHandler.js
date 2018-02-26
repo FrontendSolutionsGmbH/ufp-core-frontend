@@ -48,9 +48,9 @@
 import update from 'react-addons-update'
 
 export const createKeyFromUrlParams = (params) => {
-    var result = ''
-    if (params === undefined || params === null) {
-        return 'no-data'
+    var result = 'param-'
+    if (params === undefined || params === null || Object.keys(params).length === 0) {
+        return result + 'default'
     }
 
     Object.keys(params).forEach((key) => {
