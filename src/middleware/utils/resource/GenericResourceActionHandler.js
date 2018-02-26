@@ -68,9 +68,9 @@ export const createActionHandlerForRequestDefinition = ({definition}) => {
     // create handler for fail/request ... actions
     return {
         [definition.actionConstants.SUCCESS]: (state, action) => {
-            console.log('GENERIC HANDLER SUCCESS', state, action)
+            // console.log('GENERIC HANDLER SUCCESS', state, action)
             const key = createKeyFromPayload(action.payload)
-            console.log('GENERIC HANDLER SUCCESS', key)
+            // console.log('GENERIC HANDLER SUCCESS', key)
             state = update(state, {
                 [key]: {
                     hasError: {$set: false},
@@ -83,7 +83,7 @@ export const createActionHandlerForRequestDefinition = ({definition}) => {
 
             })
 
-            console.log('GENERIC HANDLER SUCCESS', state)
+            // console.log('GENERIC HANDLER SUCCESS', state)
 
             return state
         },
@@ -107,7 +107,7 @@ export const createActionHandlerForRequestDefinition = ({definition}) => {
             return state
         },
         [definition.actionConstants.REQUEST]: (state, action) => {
-            console.log('GENERIC HANDLER REQUEST', action)
+            // console.log('GENERIC HANDLER REQUEST', action)
 
             const key = createKeyFromPayload(action.payload)
 
@@ -129,7 +129,7 @@ export const createActionHandlerForRequestDefinition = ({definition}) => {
             return state
         },
         [definition.actionConstants.END]: (state, action) => {
-            console.log('GENERIC HANDLER END', action)
+            // console.log('GENERIC HANDLER END', action)
             const key = createKeyFromPayload(action.payload)
             state = update(state, {
                 [key]: {

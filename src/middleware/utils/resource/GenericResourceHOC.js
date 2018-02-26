@@ -23,7 +23,7 @@ export default({actionCreator, selector}) => ({
     emptyView = (<div>Empty...</div>)
 
 }) => (WrappedComponent) => {
-    console.log('GenericResourceHOC')
+    // console.log('GenericResourceHOC')
     class GenericResourceHOC extends Component {
 
         static propTypes = {
@@ -60,7 +60,7 @@ export default({actionCreator, selector}) => ({
         render() {
             const {resourceData}=this.props
 
-            console.log('GenericResourceHOC', this.props)
+            // console.log('GenericResourceHOC', this.props)
             if (resourceData !== undefined) {
                 if (resourceData.isLoading) {
                     return loadView
