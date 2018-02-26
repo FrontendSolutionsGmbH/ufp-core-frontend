@@ -233,7 +233,7 @@ const startup = ({applicationNameIn = 'Ufp Application'}={applicationNameIn: 'Uf
 
         startedUp = true
         // applicationName = applicationNameIn
-        // console.log('UFP Application startup - ', applicationNameIn)
+        console.log('UFP Application startup - ', applicationNameIn)
         const reducers = []
         Object.keys(UfpSetup.reducers)
             .map((key) => {
