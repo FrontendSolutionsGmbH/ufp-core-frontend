@@ -26,11 +26,22 @@ export default {
     },
 
     [IntlConstants.APPEND_MESSAGES]: (state, action) => {
-        return update(state, {
-            allMessages: {
-                [action.payload.lang]: {$push: action.payload.messages}
-            },
-            randomKey: {$set: Math.random()}
+        var result = state
+        if (action.payload && action.payload.messages) {
+
+            Object.keys(action.payload.messages).forEach((key) => {
+                result = update(result, {
+                    allMessages: {
+                        [action.payload.lang]: {[key]: {$set: action.payload.messages[key]}}
+
+                    }
+                })
+            })
+
+        }
+        // finally make new randomkey for updating views
+        return update(result, {
+            //         randomKey: {$set: Math.random()}
         })
     },
     [IntlConstants.UPDATE_MESSAGES]: (state, action) => {

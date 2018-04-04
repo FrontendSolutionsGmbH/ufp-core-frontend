@@ -6,8 +6,9 @@ export default {
      * set the current language value
      */
     SET_LANGUAGE: 'SET_LANGUAGE',
+    STORAGE_KEY: 'ufp-intl-storage',
 
-    SET_LANGUAGES: 'SET_LANGUAGEs',
+    SET_LANGUAGES: 'SET_LANGUAGES',
     /**
      * UPDATE_MESSAGES
      *
