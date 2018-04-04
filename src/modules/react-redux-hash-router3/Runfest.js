@@ -37,6 +37,7 @@ const Runfest = {
      * route setup is communicated through main manifes
      */
     syncHistoryWithStore: (store) => {
+        console.log('Syncing history with store ...', hashHistory, store)
         return syncHistoryWithStore(hashHistory, store, {
 
             selectLocationState: (state) => state[Runfest.name]
