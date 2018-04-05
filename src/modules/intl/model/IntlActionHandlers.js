@@ -28,7 +28,6 @@ export default {
     [IntlConstants.APPEND_MESSAGES]: (state, action) => {
         var result = state
         if (action.payload && action.payload.messages) {
-
             Object.keys(action.payload.messages).forEach((key) => {
                 result = update(result, {
                     allMessages: {
@@ -37,7 +36,6 @@ export default {
                     }
                 })
             })
-
         }
         // finally make new randomkey for updating views
         return update(result, {
