@@ -50,14 +50,12 @@ const setLanguage = (lang = IntlConstants.DEFAULT_LANGUAGE) => (dispatch) => {
         type: IntlConstants.SET_LANGUAGE_REQUEST,
         payload: {lang: lang}
     })
-
 }
 
 const initSetLanguage = () => (dispatch) => {
     // console.log('UFP Intl Setting Language', getState().apiConfig)
 
     dispatch(setLanguage(IntlConstants.DEFAULT_LANGUAGE))
-
 }
 
 export default {
