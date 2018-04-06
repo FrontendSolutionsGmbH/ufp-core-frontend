@@ -8,18 +8,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - update react 16.3.1
 - remove flow dependency
 
-## [0.5.1 - rc 5] 
+## [0.5.1 ] 
 
 - indexHtmlPath config setting
-- fixes for intl handling
-
-
-## [0.5.1 - rc 2] 
-
-- change: allow parameterles resource reducer utility creation
-
-## [0.5.1 - rc 1] 
-
+- fixes for intl handling  
+- change: allow parameterles resource reducer utility creation 
 - fix: reload functionality for hoc resource
 - change: default naming hoc resource
 
