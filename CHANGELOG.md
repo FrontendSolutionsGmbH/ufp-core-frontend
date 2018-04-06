@@ -4,6 +4,9 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [unreleased]
+- replace lodash with lodash-es
+- update react 16.3.1
+- remove flow dependency
 
 ## [0.5.1 - rc 5] 
 
