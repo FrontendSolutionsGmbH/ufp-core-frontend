@@ -40,6 +40,7 @@ const UfpConfig = {
 }
 
 const config = {
+    mode: project.env,
     context: path.join(project.basePath),
     entry: {
         main: [
@@ -75,6 +76,18 @@ const config = {
     externals: project.externals,
     module: {
         rules: []
+    },
+    optimization: {
+        splitChunks: {
+            cacheGroups: {
+                commons: {
+                    test: /[\\/]node_modules[\\/]/,
+                    name: 'vendor',
+                    chunks: 'all'
+                }
+            }
+        }
+
     },
     plugins: [
         // CopyWebpackPlugin([
@@ -235,7 +248,7 @@ config.module.rules.push(javascriptConfig)
 // Styles
 // ------------------------------------
 const extractStyles = new ExtractTextPlugin({
-    filename: path.join(project.chunkFolder, 'styles/[name].[contenthash].css'),
+    filename: path.join(project.chunkFolder, 'styles/[name].[hash].css'),
     allChunks: true
     // disable: __DEV__
 })
@@ -357,10 +370,6 @@ if (!__TEST__) {
         bundles.unshift('vendor')
         config.entry.vendor = project.vendors
     }
-    config.plugins.push(new webpack.optimize.CommonsChunkPlugin({
-        names: bundles,
-        filename: path.join(project.chunkFolder, 'manifest.js')
-    }))
 }
 
 // ignoring/externalize modules
