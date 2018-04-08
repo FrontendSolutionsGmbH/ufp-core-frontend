@@ -1,5 +1,5 @@
 export default{
 
-    NAME: 'ufp-react-redux-router3'
+    NAME: 'ufp-react-redux-router4'
 
 }

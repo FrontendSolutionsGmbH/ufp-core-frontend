@@ -128,8 +128,8 @@ exports.handler = function (argv) {
     if (localPackage) {
         const tempArray = []
         const table = new Table({
-            head: ['occurence', 'module', 'version', 'description'],
-            colWidths: [5, 25, 20, 80],
+            head: ['#', 'module', 'version', 'description'],
+            colWidths: [5, 25, 15, 40],
             wordWrap: true
         })
 
@@ -151,10 +151,7 @@ exports.handler = function (argv) {
 
                 const packageJson = require(`${process.cwd()}/node_modules/${dependency}/package.json`)
 
-                const result = packageJson.description
-
-                tempArray.push([count.counts - 1, dependency, localPackage.dependencies[dependency],
-                    count.matchingFiles.join(' \n')
+                tempArray.push([count.counts - 1, dependency, localPackage.dependencies[dependency],  packageJson.description
 
                 ])
 

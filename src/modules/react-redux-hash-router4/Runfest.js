@@ -4,7 +4,9 @@
  */
 import RouterSelectors from './RouterSelectors'
 import RouterConstants from './RouterConstants'
-import {routerMiddleware, syncHistoryWithStore, routerReducer as routerReducer3} from 'react-router-redux'
+import RouterProvider from './view/RouterProvider'
+import {registerRootProvider} from '../ufp-react'
+import {routerMiddleware, routerReducer as routerReducer4} from 'react-router-redux'
 import createHistory from 'history/createBrowserHistory'
 // Create a history of your choosing (we're using a browser history in this case)
 const history = createHistory()
@@ -23,10 +25,10 @@ const Runfest = {
         })
 
         UfpCore.registerReducer({
-            id: RouterConstants.NAME,
-            reducer: routerReducer3
+            id: 'router',
+            reducer: routerReducer4
         })
-
+        registerRootProvider({component: RouterProvider})
         // in this example declare react-router
     }
 
