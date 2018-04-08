@@ -1,4 +1,4 @@
-import {Router} from 'react-router-dom'
+import {Route} from 'react-router-dom'
 
 /**
  * wrapper class for containing the required router imports for a specific
@@ -7,4 +7,4 @@ import {Router} from 'react-router-dom'
  *
  */
 
-export default Router
+export default Route

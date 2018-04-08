@@ -7,7 +7,7 @@ import createHashHistory from 'history/lib/createHashHistory'
 import RouterSelectors from './RouterSelectors'
 import RouterConstants from './RouterConstants'
 import {routerMiddleware, syncHistoryWithStore, routerReducer as routerReducer3} from 'react-router-redux'
-
+console.warn('UFP React Router3 is deprecated')
 const hashHistory = useRouterHistory(createHashHistory)({
     basename: ''
 })

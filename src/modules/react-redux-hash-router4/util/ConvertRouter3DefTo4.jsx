@@ -1,7 +1,7 @@
 import React from 'react'
 import {Route} from 'react-router'
 const ConvertRouter3DefTo4 = (routesObject) => {
-    console.log('Converting', routesObject)
+    // console.log('Converting', routesObject)
     var result = null
     if (routesObject) {
 
@@ -21,7 +21,7 @@ const ConvertRouter3DefTo4 = (routesObject) => {
         }
 
     }
-    console.log('Converting', routesObject, '-->', result)
+    // console.log('Converting', routesObject, '-->', result)
     return result
 }
 
