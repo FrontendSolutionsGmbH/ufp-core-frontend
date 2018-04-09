@@ -8,7 +8,6 @@
   ],
   "plugins": [
     "filenames",
-    "flowtype",
     "import",
     "promise",
     "babel",

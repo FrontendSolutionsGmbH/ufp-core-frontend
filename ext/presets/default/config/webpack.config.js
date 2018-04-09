@@ -206,12 +206,12 @@ const javascriptConfig = {
                         ['babel-preset-env', {
                             modules: false,
                             targets: {
-                                chrome: "60",
+                                chrome: '60'
                             },
-                            uglify: true,
+                            uglify: true
 
                         }], [
-                            'react'],
+                            'react']
                     ]
                 }
             }
