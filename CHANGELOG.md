@@ -5,6 +5,15 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [unreleased]
 
+[0.6.0-rc-x]
+- async router dev update 
+
+- replace lodash with lodash-es
+- update react 16.3.1
+- remove flow dependency
+- react router 4 
+	- update using [README](./src/modules/react-redux-hash-router4/doc/README.md)
+
 ## [0.5.1 ] 
 
 - indexHtmlPath config setting

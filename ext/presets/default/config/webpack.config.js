@@ -40,6 +40,7 @@ const UfpConfig = {
 }
 
 const config = {
+    mode: project.env,
     context: path.join(project.basePath),
     entry: {
         main: [
@@ -75,6 +76,18 @@ const config = {
     externals: project.externals,
     module: {
         rules: []
+    },
+    optimization: {
+        splitChunks: {
+            cacheGroups: {
+                commons: {
+                    test: /[\\/]node_modules[\\/]/,
+                    name: 'vendor',
+                    chunks: 'all'
+                }
+            }
+        }
+
     },
     plugins: [
         // CopyWebpackPlugin([
@@ -186,17 +199,19 @@ const javascriptConfig = {
                     ],
                     presets: [
                         // use this for es5 transpile target
-                        ['es2015', {'modules': false}], ['react']
+                        // ['es2015', {'modules': false}], [
+                        //     'react']
 
                         // modern way of declaring transpile targets
-                        // ['babel-preset-env', {
-                        //   modules: false,
-                        //   targets: {
-                        //     chrome: "60",
-                        //   },
-                        //   uglify: true,
-                        //
-                        // }],
+                        ['babel-preset-env', {
+                            modules: false,
+                            targets: {
+                                chrome: '60'
+                            },
+                            uglify: true
+
+                        }], [
+                            'react']
                     ]
                 }
             }
@@ -235,7 +250,7 @@ config.module.rules.push(javascriptConfig)
 // Styles
 // ------------------------------------
 const extractStyles = new ExtractTextPlugin({
-    filename: path.join(project.chunkFolder, 'styles/[name].[contenthash].css'),
+    filename: path.join(project.chunkFolder, 'styles/[name].[hash].css'),
     allChunks: true
     // disable: __DEV__
 })
@@ -357,10 +372,6 @@ if (!__TEST__) {
         bundles.unshift('vendor')
         config.entry.vendor = project.vendors
     }
-    config.plugins.push(new webpack.optimize.CommonsChunkPlugin({
-        names: bundles,
-        filename: path.join(project.chunkFolder, 'manifest.js')
-    }))
 }
 
 // ignoring/externalize modules
