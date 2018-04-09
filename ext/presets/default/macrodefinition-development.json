@@ -5,7 +5,9 @@
       "scope": "line",
       "name": "ROUTER3_DYNAMICINCLUDE\\((.*)\\)",
       "flags": "g",
-      "inline": "(nextState, cb) => { require.ensure([], (require) => { const Component = require($1).default; cb(null, Component) }) }"
+      "inlineDeprecated": "(nextState, cb) => { require.ensure([], (require) => { const Component = require($1).default; cb(null, Component) }) }",
+      // router4 just use async component
+      "inline": "asyncComponent({ resolve: () => System.import('$1')})"
     }
   ]
 }
