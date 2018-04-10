@@ -7,8 +7,7 @@ const TEST_BUNDLER = 'tests/**/*.spec.js'
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CircularDependencyPlugin = require('circular-dependency-plugin')
 
-const argv = require('yargs')
-    .boolean('watch').argv
+const argv = require('yargs').argv
 
 // console.log('Argv is ', argv)
 
@@ -79,7 +78,7 @@ const karmaConfig = {
         [TEST_BUNDLER]: ['webpack']
     },
     webpack: {
-
+        mode: 'production',
         resolve: {
             // enforce no-symlinking for module resolving, required when using modules from filesystem (e.g. ufp-core)
             symlinks: false,
