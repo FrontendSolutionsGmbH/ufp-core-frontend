@@ -57,7 +57,7 @@ module.exports = {
             default: 'default'
         },
         [LOG_LEVEL]: {
-            describe: 'Log Level following log4j, higher levels include lower onew',
+            describe: 'Log Level following log4j, higher levels include lower ones',
             choices: LOG_LEVELS,
             default: LOG_LEVELS[0]
 
