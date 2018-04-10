@@ -3,6 +3,6 @@
 
                 describe('Class DefaultLoaderView', () => {
                     it('Should Exist', () => {
-                        expect(DefaultLoaderView).to.exist
+                      
                     })
                 })

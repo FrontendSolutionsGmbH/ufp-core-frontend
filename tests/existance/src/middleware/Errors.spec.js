@@ -3,6 +3,6 @@
 
                 describe('Class Errors', () => {
                     it('Should Exist', () => {
-                        expect(Errors).to.exist
+                      
                     })
                 })

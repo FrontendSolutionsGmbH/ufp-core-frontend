@@ -3,6 +3,6 @@
 
                 describe('Class ReactPropTypesCheck', () => {
                     it('Should Exist', () => {
-                        expect(ReactPropTypesCheck).to.exist
+                      
                     })
                 })

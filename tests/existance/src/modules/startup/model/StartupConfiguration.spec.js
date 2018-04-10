@@ -3,6 +3,6 @@
 
                 describe('Class StartupConfiguration', () => {
                     it('Should Exist', () => {
-                        expect(StartupConfiguration).to.exist
+                      
                     })
                 })

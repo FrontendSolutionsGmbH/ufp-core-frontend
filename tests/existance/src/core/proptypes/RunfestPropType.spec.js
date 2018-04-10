@@ -3,6 +3,6 @@
 
                 describe('Class RunfestPropType', () => {
                     it('Should Exist', () => {
-                        expect(RunfestPropType).to.exist
+                      
                     })
                 })

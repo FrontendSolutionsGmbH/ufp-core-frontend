@@ -3,6 +3,6 @@
 
                 describe('Class DefaultMenuAreaRenderer', () => {
                     it('Should Exist', () => {
-                        expect(DefaultMenuAreaRenderer).to.exist
+                      
                     })
                 })

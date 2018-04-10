@@ -3,6 +3,6 @@
 
                 describe('Class MenuActionCreators', () => {
                     it('Should Exist', () => {
-                        expect(MenuActionCreators).to.exist
+                      
                     })
                 })

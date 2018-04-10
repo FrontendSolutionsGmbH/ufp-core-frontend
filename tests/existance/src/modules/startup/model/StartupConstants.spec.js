@@ -3,6 +3,6 @@
 
                 describe('Class StartupConstants', () => {
                     it('Should Exist', () => {
-                        expect(StartupConstants).to.exist
+                      
                     })
                 })

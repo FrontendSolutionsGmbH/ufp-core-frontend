@@ -3,6 +3,6 @@
 
                 describe('Class UfpCoreActionCreators', () => {
                     it('Should Exist', () => {
-                        expect(UfpCoreActionCreators).to.exist
+                      
                     })
                 })

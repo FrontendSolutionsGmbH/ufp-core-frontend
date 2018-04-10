@@ -3,6 +3,6 @@
 
                 describe('Class FetchRequest', () => {
                     it('Should Exist', () => {
-                        expect(FetchRequest).to.exist
+                      
                     })
                 })

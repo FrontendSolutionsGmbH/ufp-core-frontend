@@ -3,6 +3,6 @@
 
                 describe('Class UfpMiddlewareUtils', () => {
                     it('Should Exist', () => {
-                        expect(UfpMiddlewareUtils).to.exist
+                      
                     })
                 })

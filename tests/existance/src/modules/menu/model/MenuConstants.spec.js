@@ -3,6 +3,6 @@
 
                 describe('Class MenuConstants', () => {
                     it('Should Exist', () => {
-                        expect(MenuConstants).to.exist
+                      
                     })
                 })

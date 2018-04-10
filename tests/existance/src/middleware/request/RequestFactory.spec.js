@@ -3,6 +3,6 @@
 
                 describe('Class RequestFactory', () => {
                     it('Should Exist', () => {
-                        expect(RequestFactory).to.exist
+                      
                     })
                 })

@@ -3,6 +3,6 @@
 
                 describe('Class StartupActionHandlers', () => {
                     it('Should Exist', () => {
-                        expect(StartupActionHandlers).to.exist
+                      
                     })
                 })

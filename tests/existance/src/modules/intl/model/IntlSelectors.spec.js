@@ -3,6 +3,6 @@
 
                 describe('Class IntlSelectors', () => {
                     it('Should Exist', () => {
-                        expect(IntlSelectors).to.exist
+                      
                     })
                 })

@@ -3,6 +3,6 @@
 
                 describe('Class IntlActionHandlers', () => {
                     it('Should Exist', () => {
-                        expect(IntlActionHandlers).to.exist
+                      
                     })
                 })

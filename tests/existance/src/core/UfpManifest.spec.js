@@ -3,6 +3,6 @@
 
                 describe('Class UfpManifest', () => {
                     it('Should Exist', () => {
-                        expect(UfpManifest).to.exist
+                      
                     })
                 })

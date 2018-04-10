@@ -3,6 +3,6 @@
 
                 describe('Class IntlActionCreators', () => {
                     it('Should Exist', () => {
-                        expect(IntlActionCreators).to.exist
+                      
                     })
                 })

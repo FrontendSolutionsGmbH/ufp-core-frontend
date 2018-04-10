@@ -3,6 +3,6 @@
 
                 describe('Class UfpFormattedHtmlMessage', () => {
                     it('Should Exist', () => {
-                        expect(UfpFormattedHtmlMessage).to.exist
+                      
                     })
                 })

@@ -3,6 +3,6 @@
 
                 describe('Class HOCMenu', () => {
                     it('Should Exist', () => {
-                        expect(HOCMenu).to.exist
+                      
                     })
                 })

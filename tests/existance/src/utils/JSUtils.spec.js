@@ -3,6 +3,6 @@
 
                 describe('Class JSUtils', () => {
                     it('Should Exist', () => {
-                        expect(JSUtils).to.exist
+                      
                     })
                 })

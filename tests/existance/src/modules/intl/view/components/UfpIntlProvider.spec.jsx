@@ -3,6 +3,6 @@
 
                 describe('Class UfpIntlProvider', () => {
                     it('Should Exist', () => {
-                        expect(UfpIntlProvider).to.exist
+                      
                     })
                 })

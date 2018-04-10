@@ -3,6 +3,6 @@
 
                 describe('Class IntlConstants', () => {
                     it('Should Exist', () => {
-                        expect(IntlConstants).to.exist
+                      
                     })
                 })

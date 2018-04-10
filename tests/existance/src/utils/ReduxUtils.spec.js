@@ -3,6 +3,6 @@
 
                 describe('Class ReduxUtils', () => {
                     it('Should Exist', () => {
-                        expect(ReduxUtils).to.exist
+                      
                     })
                 })

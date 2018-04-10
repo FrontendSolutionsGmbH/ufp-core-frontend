@@ -3,6 +3,6 @@
 
                 describe('Class ResultHandlerJson', () => {
                     it('Should Exist', () => {
-                        expect(ResultHandlerJson).to.exist
+                      
                     })
                 })

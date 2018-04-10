@@ -3,6 +3,6 @@
 
                 describe('Class ConfigSelectors', () => {
                     it('Should Exist', () => {
-                        expect(ConfigSelectors).to.exist
+                      
                     })
                 })

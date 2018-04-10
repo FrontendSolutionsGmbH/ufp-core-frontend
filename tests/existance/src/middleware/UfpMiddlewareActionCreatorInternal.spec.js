@@ -3,6 +3,6 @@
 
                 describe('Class UfpMiddlewareActionCreatorInternal', () => {
                     it('Should Exist', () => {
-                        expect(UfpMiddlewareActionCreatorInternal).to.exist
+                      
                     })
                 })

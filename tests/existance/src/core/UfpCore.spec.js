@@ -3,6 +3,6 @@
 
                 describe('Class UfpCore', () => {
                     it('Should Exist', () => {
-                        expect(UfpCore).to.exist
+                      
                     })
                 })

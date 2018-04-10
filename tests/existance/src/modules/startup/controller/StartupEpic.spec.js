@@ -3,6 +3,6 @@
 
                 describe('Class StartupEpic', () => {
                     it('Should Exist', () => {
-                        expect(StartupEpic).to.exist
+                      
                     })
                 })

@@ -3,6 +3,6 @@
 
                 describe('Class UfpPrintCurrentLanguage', () => {
                     it('Should Exist', () => {
-                        expect(UfpPrintCurrentLanguage).to.exist
+                      
                     })
                 })

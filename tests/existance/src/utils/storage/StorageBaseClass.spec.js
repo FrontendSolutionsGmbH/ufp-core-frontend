@@ -3,6 +3,6 @@
 
                 describe('Class StorageBaseClass', () => {
                     it('Should Exist', () => {
-                        expect(StorageBaseClass).to.exist
+                      
                     })
                 })

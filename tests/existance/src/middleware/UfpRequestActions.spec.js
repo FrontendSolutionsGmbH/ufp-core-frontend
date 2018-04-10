@@ -3,6 +3,6 @@
 
                 describe('Class UfpRequestActions', () => {
                     it('Should Exist', () => {
-                        expect(UfpRequestActions).to.exist
+                      
                     })
                 })

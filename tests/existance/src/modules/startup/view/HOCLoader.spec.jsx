@@ -3,6 +3,6 @@
 
                 describe('Class HOCLoader', () => {
                     it('Should Exist', () => {
-                        expect(HOCLoader).to.exist
+                      
                     })
                 })

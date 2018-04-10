@@ -3,6 +3,6 @@
 
                 describe('Class ObjectUtils', () => {
                     it('Should Exist', () => {
-                        expect(ObjectUtils).to.exist
+                      
                     })
                 })
