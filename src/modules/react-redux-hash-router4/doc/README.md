@@ -37,3 +37,18 @@ use react-router4 routes anywhere in the program
 	}
 	
 	export default Convert3To4Routes
+
+for that you might need:
+
+	import { asyncComponent } from 'react-async-component'
+	
+as import in router3 definition file
+
+and use 'component' instead of 'getComponent' for lazy usage 
+but prefer way here is to switch completely to router4 on the client, so beware of using the now deprecated macro:
+
+  {
+                path: 'someRoute',
+                component: ROUTER3_DYNAMICINCLUDE('componentPath')
+   }
+            

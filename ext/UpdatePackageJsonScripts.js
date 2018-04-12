@@ -10,8 +10,8 @@ const logger = require('./build/lib/Logger2')('update-package-json')
 
 logger.info('Updating package.json from ufp-core refs')
 
-// const packageSrc = __dirname + '/../node_modules/ufp-core/package.json'
-// const packageDes = __dirname + '/../package.json'
+// const packageSrcPath = __dirname + '/../node_modules/ufp-core/package.json'
+// const packageDesPath = __dirname + '/../package.json'
 
 const packageDes = path.join(process.cwd(), '/package.json')
 const packageSrc = path.join(__dirname, '/../package.json')

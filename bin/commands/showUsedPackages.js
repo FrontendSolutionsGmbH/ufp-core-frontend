@@ -129,7 +129,7 @@ exports.handler = function (argv) {
         const tempArray = []
         const table = new Table({
             head: ['#', 'module', 'version', 'description'],
-            colWidths: [5, 25, 15, 40],
+            colWidths: [8, 25, 15, 32],
             wordWrap: true
         })
 
