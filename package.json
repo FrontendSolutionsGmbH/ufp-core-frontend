@@ -165,6 +165,7 @@
     "prop-types": "^15.6.1",
     "react": "^16.3.1",
     "react-addons-update": "^15.6.2",
+    "react-async-component": "^2.0.0",
     "react-dom": "^16.3.1",
     "react-intl": "^2.4.0",
     "react-redux": "^5.0.7",
