@@ -5,7 +5,7 @@ const ConvertRouter3DefTo4 = (routesObject) => {
     var result = null
     if (routesObject.map) {
         console.log('Converting map', routesObject)
-        return (<div>{ routesObject.map(ConvertRouter3DefTo4) }</div> )
+        return (<div>{ routesObject.map(ConvertRouter3DefTo4) }</div>)
     } else if (routesObject) {
         console.log('Converting object', routesObject)
         const Component = routesObject.component
@@ -25,7 +25,7 @@ const ConvertRouter3DefTo4 = (routesObject) => {
         }
     }
 
-    console.log('Converting result', routesObject )
+    console.log('Converting result', result)
     return result
 }
 

@@ -1,19 +1,22 @@
-import React from 'react'
+import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {IntlProvider} from 'react-intl'
 import IntlSelectors from '../../model/IntlSelectors'
 
-const UfpIntlProvider = ({randomKey, locale, messages, children}) => {
-    // console.log('Intl Provider rendering', locale, messages, randomKey)
-    return (
-        <IntlProvider key={randomKey}
-                      locale={locale}
-                      messages={messages}
-        >
-            {children}
-        </IntlProvider>
-    )
+class UfpIntlProvider extends Component {
+
+    render() {
+        const {randomKey, locale, messages, children} =this.props
+        console.log('Intl Provider rendering', children, locale, messages, randomKey)
+        return (<IntlProvider key={randomKey}
+                              locale={locale}
+                              messages={messages} >
+                {children}
+            </IntlProvider>
+        )
+    }
+
 }
 
 UfpIntlProvider.propTypes = {

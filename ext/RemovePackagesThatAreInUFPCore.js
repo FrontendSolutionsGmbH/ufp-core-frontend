@@ -2,7 +2,7 @@
  * warning: thesee are ufp-projectr scripts to be executed in project context, not
  * used for any ufp-core processes
  */
-const fs = require('fs')
+// const fs = require('fs')
 const path = require('path')
 const UFP = require('./build/lib/ufp')
 
@@ -39,17 +39,14 @@ logger.debug(packageSrc)
 const getcleaned = (packages, packagesProof) => {
     var result = {}
     Object.keys(packages).forEach((packageName) => {
-
         if (packagesProof[packageName]) {
             // it exists in check array, dont put it in result
         } else {
             // does not exist in check list, keep
             result[packageName] = packages[packageName]
         }
-
     })
     return result
-
 }
 
 // loop over all src dependencies
@@ -61,5 +58,3 @@ packageDes.scripts = UFP.defaultMerge(
 packageDes.dependencies = getcleaned(packageDes.dependencies, Object.assign(packageSrc.dependencies, packageSrc.devDependencies))
 
 UFP.writeFileWithBackup(packageDesPath, JSON.stringify(packageDes, null, 2), 'scripts')
-
-

@@ -1,11 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import createHistory from 'history/createBrowserHistory'
 import {ConnectedRouter} from 'react-router-redux'
-const history = createHistory()
+import history from '../history'
 
-const RouterProvider = ({children}) => {
-    console.log('RENDERING RouterProvider')
+const RouterProvider = ({children}, context) => {
+    console.log('RENDERING RouterProvider2', children, context)
     return (// provider is provided through ufp-react... just connect the router
         <ConnectedRouter history={history} >
             {children}

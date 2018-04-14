@@ -39,7 +39,7 @@ export default {
         }
         // finally make new randomkey for updating views
         return update(result, {
-            //         randomKey: {$set: Math.random()}
+           // randomKey: {$set: Math.random()}
         })
     },
     [IntlConstants.UPDATE_MESSAGES]: (state, action) => {
@@ -49,8 +49,8 @@ export default {
         result = update(result, {
             allMessages: {
                 [lang]: {$set: messages}
-            },
-            randomKey: {$set: Math.random()}
+            }
+        //    randomKey: {$set: Math.random()}
         })
 
         if (state.nextLanguage === action.payload.lang && state.currentLanguage !== state.nextLanguage) {
@@ -73,7 +73,6 @@ export default {
         }
 
         // console.log('UPDATE MESSAGE result ', result)
-
         return result
     }
 
