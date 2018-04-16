@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 [0.6.0-rc-x]
 - async router dev update 
-
+- karma and mocha updated to 2 and 5
 - replace lodash with lodash-es
 - update react 16.3.1
 - remove flow dependency
