@@ -1,4 +1,4 @@
-import set  from 'lodash-es/set'
+import set from 'lodash-es/set'
 /**
  * helper method to create the 3 action names request,success,fail to be used by async middleware
  * @param apiDefinitionPath the prefix for the action names
