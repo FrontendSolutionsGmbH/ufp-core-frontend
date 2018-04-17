@@ -2,7 +2,7 @@ import _Runfest from './Runfest'
 import _Link from './view/components/Link'
 import _Router from './view/components/Router'
 import _ConvertRouter3DefTo4 from './util/ConvertRouter3DefTo4'
-import _GetSearchObject from './util/_GetSearchObject'
+import _GetSearchObject from './util/GetSearchObject'
 // import _Router from './view/components/Router'
 
 export const Router = _Router
