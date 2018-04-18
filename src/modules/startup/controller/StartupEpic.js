@@ -5,9 +5,9 @@ import StartupActionCreators from './StartupActionCreators'
 
 const startupInit = (action$) => {
     return action$.filter((action) => action.type === UfpCoreConstants.ACTION_NAMES.STARTUP)
-                  .mapTo(
-                      StartupActionCreators.initialiseApplication()
-                  )
+        .mapTo(
+            StartupActionCreators.initialiseApplication()
+        )
 }
 const startupStep = (action$, store) => {
     //console.log('startupStep Epic Action called ', action$, store)
@@ -28,13 +28,13 @@ const startupStep = (action$, store) => {
         }
         return false
     })
-                  .mapTo((dispatch, getState) => {
-                      var currentStageIndex = StartupSelectors.CurrentStageIndexSelector(getState())
-                      // console.log('startupstep finished stage:', currentStageIndex)
-                      // console.log('Startupstep load next stage:', currentStageIndex + 1)
-                      dispatch(StartupActionCreators.loadStage(currentStageIndex + 1))
-                  })
-                  .takeUntil(action$.ofType(StartupConstants.ActionConstants.UFP_STARTUP_FINISHED))
+        .mapTo((dispatch, getState) => {
+            var currentStageIndex = StartupSelectors.CurrentStageIndexSelector(getState())
+            // console.log('startupstep finished stage:', currentStageIndex)
+            // console.log('Startupstep load next stage:', currentStageIndex + 1)
+            dispatch(StartupActionCreators.loadStage(currentStageIndex + 1))
+        })
+        .takeUntil(action$.ofType(StartupConstants.ActionConstants.UFP_STARTUP_FINISHED))
 }
 
 const startupFinish = (action$, store) => {
@@ -59,16 +59,16 @@ const startupFinish = (action$, store) => {
             return false
         }
     })
-                  .mapTo((dispatch, getState) => {
-                          dispatch({
-                              type: StartupConstants.ActionConstants.UFP_STARTUP_FINISHED,
-                              payload: {
-                                  getState: getState
-                              }
-                          })
-                      }
-                  )
-                  .takeUntil(action$.ofType(StartupConstants.ActionConstants.UFP_STARTUP_FINISHED))
+        .mapTo((dispatch, getState) => {
+                dispatch({
+                    type: StartupConstants.ActionConstants.UFP_STARTUP_FINISHED,
+                    payload: {
+                        globalState: getState()
+                    }
+                })
+            }
+        )
+        .takeUntil(action$.ofType(StartupConstants.ActionConstants.UFP_STARTUP_FINISHED))
 }
 
 export default {

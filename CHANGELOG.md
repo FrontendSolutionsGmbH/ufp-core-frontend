@@ -6,6 +6,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [unreleased]
 
 [0.6.0-rc-x]
+- change getState() to globalState in ufp-middleware actions - redux4.0
 - async router dev update 
 - karma and mocha updated to 2 and 5
 - replace lodash with lodash-es

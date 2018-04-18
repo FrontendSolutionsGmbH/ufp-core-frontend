@@ -17,6 +17,6 @@ exports.handler = function (argv) {
     logger.mark('Update ')
     logger.mark(package.scripts['ufp-update'])
     logger.mark('for more cli options type')
-    logger.mark('ufp-core --help ')
+    logger.mark('ufp --help ')
 }
 
