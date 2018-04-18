@@ -329,7 +329,7 @@ function UfpMiddleware(options = {}) {
 
                             // getstate in action is legacy and shall be removed
                             // still deprecated but go with state object
-                            globalState: getState()
+                            // globalState: getState()
                         }
                     })
                     // // // console.log('xxxxx middleware end5')
