@@ -17,6 +17,7 @@ tasks:
       description: ... performs the unit tests
       commands:
       - npm run test
+      - echo "TESTS DISABLED :( they hang on bamboo server)"
   build:
     - name: Building
       allowedToFail: false
