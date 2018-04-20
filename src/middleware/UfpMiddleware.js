@@ -325,7 +325,7 @@ function UfpMiddleware(options = {}) {
                         payload: {
                             ufpAction,
                             config: configPrepared,
-                            ...ufpPayload,
+                            ...ufpPayload
 
                             // getstate in action is legacy and shall be removed
                             // still deprecated but go with state object

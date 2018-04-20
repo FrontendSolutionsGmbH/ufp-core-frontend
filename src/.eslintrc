@@ -13,6 +13,7 @@
     "babel",
     "jsx",
     "immutable",
+    "flowtype",
     "new-with-error",
     "no-use-extend-native",
     "node",
