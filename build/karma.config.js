@@ -146,7 +146,7 @@ const karmaConfig = {
                             ],
                             presets: [
                                 // use this for es5 transpile target
-                                'env' ,
+                                'env',
                                 'stage-0', 'react'
                                 // modern way of declaring transpile targets
                                 // ['babel-preset-env', {
