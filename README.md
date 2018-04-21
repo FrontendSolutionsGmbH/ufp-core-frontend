@@ -64,6 +64,34 @@ Execute ufp specific package.json project update for putting everything in place
         > npm run ufp-compile
 
 
+### UFP Cli
+
+when installed using -g ufp-core provides the following cli commands:
+
+	$ ufp --help
+	ufp-core.js
+	
+	default ufp command
+	
+	Commands:
+	  ufp-core.js           default ufp command                            [default]
+	  ufp-core.js i         initialise ufp-application               [aliases: init]
+	  ufp-core.js s [dist]  start ufp application dev server        [aliases: start]
+	  ufp-core.js b         build ufp application                   [aliases: build]
+	  ufp-core.js st        some informations about ufp-application[aliases: status]
+	  ufp-core.js ct        create predefined test cases e.g. existance
+															  [aliases: createTests]
+	  ufp-core.js t         execute the unit tests                   [aliases: test]
+	  ufp-core.js sp        show npm package description of used packages
+															 [aliases: showpackages]
+	
+	Options:
+	  --version  Show version number                                       [boolean]
+	  --help     Show help                                                 [boolean]
+	
+
+
+
 ### Empty Application:
 ```javascript
         // main.js
