@@ -4,6 +4,7 @@ const package = require('../../package.json')
 const Table = require('cli-table2')
 const logger = require('../../ext/build/lib/Logger2')('ufp-show-used-packages')
 const fs = require('fs');
+const path = require('path');
 const notMatchFolders = /node_modules/
 const matchFile = /.*\.(json|js|ts|yml)/
 const stripper = [
