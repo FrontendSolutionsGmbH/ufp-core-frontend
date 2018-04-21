@@ -25,7 +25,7 @@ const Runfest = {
         })
 
         UfpCore.registerReducer({
-            id: 'router',
+            id: RouterConstants.REDUCER_NAME,
             reducer: routerReducer4
         })
         /**

@@ -1,9 +1,8 @@
 ufp-core/lib/
 *.backup
 ufp-core/package-lock.json
-test-report/
+#static linking temporary the test-report/
 ufp-core/node_modules/
 node_modules/
-coverage/
 lib/*
 yarn.lock

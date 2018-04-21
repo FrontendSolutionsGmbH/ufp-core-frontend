@@ -198,20 +198,10 @@ const javascriptConfig = {
                         ]
                     ],
                     presets: [
-                        // use this for es5 transpile target
-                        // ['es2015', {'modules': false}], [
-                        //     'react']
 
                         // modern way of declaring transpile targets
-                        ['babel-preset-env', {
-                            modules: false,
-                            targets: {
-                                chrome: '60'
-                            },
-                            uglify: true
-
-                        }], [
-                            'react']
+                       'babel-preset-env',
+                            'babel-preset-react'
                     ]
                 }
             }

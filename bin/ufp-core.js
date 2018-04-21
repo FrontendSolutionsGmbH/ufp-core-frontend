@@ -12,6 +12,13 @@ yargs.command(require('./commands/statusCommand'))
 yargs.command(require('./commands/createTestsCommand'))
 yargs.command(require('./commands/testCommand'))
 yargs.command(require('./commands/showUsedPackages'))
+
+if (process.env.NODE_ENV === 'development') {
+    yargs.command(require('./commands/devStripDependenciesFromCore'))
+    yargs.command(require('./commands/devTransformDependenciesFromCore'))
+}
 yargs.help()
 yargs.argv
+
+
 

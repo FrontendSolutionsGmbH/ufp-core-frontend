@@ -81,7 +81,6 @@ function UfpMiddleware(options = {}) {
                         ufpDefinition,
                         dispatch: dispatchWrapper,
                         dispatchOriginal: dispatch,
-                        getState: getState,
                         globalState: getState()
                     }
                     var configPrepared = UFPMiddlewareUtils.ufpMiddlewarePrepareConfig(ufpAction)
@@ -101,7 +100,7 @@ function UfpMiddleware(options = {}) {
                             config = UFPMiddlewareUtils.createConfigDefault(configPrepared)
                         } else {
                             config = UFPMiddlewareConfiguration.get()
-                                                               .createConfig(ufpAction, getState())
+                                .createConfig(ufpAction, getState())
                         }
 
                         // console.log('UFP MIDDLEWARE config', config)
@@ -143,7 +142,6 @@ function UfpMiddleware(options = {}) {
                                 },
                                 dispatch: dispatchWrapper,
                                 dispatchOriginal: dispatch,
-                                getState: getState,
                                 globalState: getState(),
                                 ufpDefinition,
                                 requestResponse: requestResponse
@@ -327,10 +325,11 @@ function UfpMiddleware(options = {}) {
                         payload: {
                             ufpAction,
                             config: configPrepared,
-                            ...ufpPayload,
+                            ...ufpPayload
 
                             // getstate in action is legacy and shall be removed
-                            getState: getState
+                            // still deprecated but go with state object
+                            // globalState: getState()
                         }
                     })
                     // // // console.log('xxxxx middleware end5')

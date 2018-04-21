@@ -2,7 +2,8 @@
  * wrapper for provided components
  */
 import {Route as _Route, withRouter as _withRouter, Router as _Router, Redirect as _Redirect, Switch as _Switch, Link as _Link} from 'react-router-dom'
-
+import _HOCRouter from './HOCRouter'
+export const HOCRouter = _HOCRouter
 export const Router = _Router
 export const Route = _Route
 export const withRouter = _withRouter
