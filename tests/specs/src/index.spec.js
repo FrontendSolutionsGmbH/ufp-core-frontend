@@ -9,5 +9,4 @@ describe('Ufp-Core lib index.js exists ', () => {
         // >v0.6
         expect(UfpCore).to.exist
     })
-
 })
