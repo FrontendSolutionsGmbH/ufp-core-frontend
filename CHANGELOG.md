@@ -5,7 +5,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [unreleased]
 
-[0.6.0-rc-x]
+[0.6.2]
 - ufpdate ufp-core router4 and, redux4 update, remove getState() method completely from any action payload
 - change getState() to globalState in ufp-middleware actions - redux4.0
 - async router dev update 
