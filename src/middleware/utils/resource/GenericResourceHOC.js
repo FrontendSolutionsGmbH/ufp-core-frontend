@@ -27,8 +27,12 @@ export default({actionCreator, selector}) => ({
     class GenericResourceHOC extends Component {
 
         static propTypes = {
-            resourceData: PropTypes.object.isRequired,
+            resourceData: PropTypes.object,
             loadResource: PropTypes.func.isRequired
+        }
+
+        static defaultProps = {
+            resourceData: {}
         }
 
         /**

@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
-<testsuite name="HeadlessChrome 0.0.0 (Windows 10 0.0.0)" package="" timestamp="2018-04-20T20:00:28" id="0" hostname="ckleinhuix-PC" tests="146" errors="0" failures="0" time="0.01">
+<testsuite name="HeadlessChrome 0.0.0 (Windows 10 0.0.0)" package="" timestamp="2018-04-23T19:24:51" id="0" hostname="ckleinhuix-PC" tests="146" errors="0" failures="0" time="0.006">
   <properties>
     <property name="browser.fullName" value="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/66.0.3359.117 Safari/537.36"/>
   </properties>
-  <testcase name="Class UfpConfig Should Exist" time="0.001" classname="Class UfpConfig"/>
+  <testcase name="Class UfpConfig Should Exist" time="0" classname="Class UfpConfig"/>
   <testcase name="Class UfpCore Should Exist" time="0" classname="Class UfpCore"/>
   <testcase name="Class UfpCoreConstants Should Exist" time="0" classname="Class UfpCoreConstants"/>
   <testcase name="Class UfpCoreSelectors Should Exist" time="0" classname="Class UfpCoreSelectors"/>
@@ -29,7 +29,7 @@
   <testcase name="Class Validation Should Exist" time="0" classname="Class Validation"/>
   <testcase name="Class FetchRequest Should Exist" time="0" classname="Class FetchRequest"/>
   <testcase name="Class RequestFactory Should Exist" time="0" classname="Class RequestFactory"/>
-  <testcase name="Class ResultHandlerJson Should Exist" time="0.001" classname="Class ResultHandlerJson"/>
+  <testcase name="Class ResultHandlerJson Should Exist" time="0" classname="Class ResultHandlerJson"/>
   <testcase name="Class PreHandlerResult Should Exist" time="0" classname="Class PreHandlerResult"/>
   <testcase name="Class ResultHandlerResult Should Exist" time="0" classname="Class ResultHandlerResult"/>
   <testcase name="Class GenericResourceActionHandler Should Exist" time="0" classname="Class GenericResourceActionHandler"/>
@@ -90,21 +90,21 @@
   <testcase name="Class StringUtils Should Exist" time="0" classname="Class StringUtils"/>
   <testcase name="Class StorageBaseClass Should Exist" time="0" classname="Class StorageBaseClass"/>
   <testcase name="Class StorageReal Should Exist" time="0" classname="Class StorageReal"/>
-  <testcase name="Ufp-Core index.js exists  Should Exist" time="0.001" classname="Ufp-Core index.js exists "/>
+  <testcase name="Ufp-Core index.js exists  Should Exist" time="0" classname="Ufp-Core index.js exists "/>
   <testcase name="Ufp-Core index.js exists  UfpCore Exist" time="0" classname="Ufp-Core index.js exists "/>
   <testcase name="Ufp-Core index.js exists  registerInitialStateCallback Exist" time="0" classname="Ufp-Core index.js exists "/>
   <testcase name="Ufp-Core index.js exists  registerReducer Exist" time="0" classname="Ufp-Core index.js exists "/>
   <testcase name="Ufp-Core index.js exists  registerMiddleware Exist" time="0" classname="Ufp-Core index.js exists "/>
   <testcase name="Ufp-Core index.js exists  registerEnhancer Exist" time="0" classname="Ufp-Core index.js exists "/>
   <testcase name="Ufp-Core index.js exists  registerReducerCreator Exist" time="0" classname="Ufp-Core index.js exists "/>
-  <testcase name="Ufp-Core index.js exists  registerMiddlewareCreator Exist" time="0.001" classname="Ufp-Core index.js exists "/>
+  <testcase name="Ufp-Core index.js exists  registerMiddlewareCreator Exist" time="0" classname="Ufp-Core index.js exists "/>
   <testcase name="Ufp-Core index.js exists  registerEnhancerCreator Exist" time="0" classname="Ufp-Core index.js exists "/>
   <testcase name="Ufp-Core index.js exists  registerRunfest Exist" time="0" classname="Ufp-Core index.js exists "/>
   <testcase name="Ufp-Core index.js exists  startupUfpCore Exist" time="0" classname="Ufp-Core index.js exists "/>
   <testcase name="Ufp-Core lib index.js exists  Should Exist" time="0" classname="Ufp-Core lib index.js exists "/>
   <testcase name="Ufp-Core lib index.js exists  Should Exist" time="0" classname="Ufp-Core lib index.js exists "/>
   <testcase name="Module Ufp-Config ConfigRunfest  Should Exist" time="0" classname="Module Ufp-Config ConfigRunfest "/>
-  <testcase name="Module Ufp-Config ConfigActionCreators  Should Exist" time="0" classname="Module Ufp-Config ConfigActionCreators "/>
+  <testcase name="Module Ufp-Config ConfigActionCreators  Should Exist" time="0.001" classname="Module Ufp-Config ConfigActionCreators "/>
   <testcase name="Module Ufp-Config ConfigActionCreators  Should throw with null params" time="0.001" classname="Module Ufp-Config ConfigActionCreators "/>
   <testcase name="Module Ufp-Config ConfigActionCreators  Should throw with empty params" time="0" classname="Module Ufp-Config ConfigActionCreators "/>
   <testcase name="Module Ufp-Config ConfigActionCreators  Should throw with only key params" time="0" classname="Module Ufp-Config ConfigActionCreators "/>
@@ -124,31 +124,31 @@
   <testcase name="Module Ufp-Config ConfigConstants  DEFAULT_AREA=default" time="0" classname="Module Ufp-Config ConfigConstants "/>
   <testcase name="Module Ufp-Config ConfigConstants  DEFAULT_VALUE=NOT-SET" time="0" classname="Module Ufp-Config ConfigConstants "/>
   <testcase name="Module Ufp-Config ConfigConstants  ACTION_NAMES.SET_CONFIG_VALUE=SET_CONFIG_VALUE" time="0" classname="Module Ufp-Config ConfigConstants "/>
-  <testcase name="Module Ufp-Config ConfigReducer  Should Exist" time="0.001" classname="Module Ufp-Config ConfigReducer "/>
+  <testcase name="Module Ufp-Config ConfigReducer  Should Exist" time="0" classname="Module Ufp-Config ConfigReducer "/>
   <testcase name="Module Ufp-Config ConfigReducer  Reducer Creater returns non-null" time="0" classname="Module Ufp-Config ConfigReducer "/>
   <testcase name="Module Ufp-Config ConfigReducer  Should throw on missing action" time="0" classname="Module Ufp-Config ConfigReducer "/>
-  <testcase name="Module Ufp-Config ConfigReducer  Should return unchanged state on empty action" time="0" classname="Module Ufp-Config ConfigReducer "/>
+  <testcase name="Module Ufp-Config ConfigReducer  Should return unchanged state on empty action" time="0.001" classname="Module Ufp-Config ConfigReducer "/>
   <testcase name="Module Ufp-Config ConfigReducer  Test plain property set" time="0" classname="Module Ufp-Config ConfigReducer "/>
-  <testcase name="Module Ufp-Config ConfigReducer  Test deep property set" time="0.001" classname="Module Ufp-Config ConfigReducer "/>
+  <testcase name="Module Ufp-Config ConfigReducer  Test deep property set" time="0" classname="Module Ufp-Config ConfigReducer "/>
   <testcase name="Module Ufp-Config ConfigReducer  Test invalid input syntax" time="0" classname="Module Ufp-Config ConfigReducer "/>
   <testcase name="Module Ufp-Config ConfigSelectors  Should Exist" time="0" classname="Module Ufp-Config ConfigSelectors "/>
   <testcase name="Module Ufp-Config ConfigSelectors  getConfigValue Should Exist " time="0" classname="Module Ufp-Config ConfigSelectors "/>
   <testcase name="GetSearchObject tests  Should Exist" time="0" classname="GetSearchObject tests "/>
-  <testcase name="GetSearchObject tests  Should return object from query string only" time="0.001" classname="GetSearchObject tests "/>
+  <testcase name="GetSearchObject tests  Should return object from query string only" time="0" classname="GetSearchObject tests "/>
   <testcase name="GetSearchObject tests  Should return empty from undefined " time="0" classname="GetSearchObject tests "/>
   <testcase name="ReplaceRouteVariables tests  Should Exist" time="0" classname="ReplaceRouteVariables tests "/>
   <testcase name="ReplaceRouteVariables tests  Should replace vars" time="0" classname="ReplaceRouteVariables tests "/>
   <testcase name="Class ObjectUtils Should Exist" time="0" classname="Class ObjectUtils"/>
   <testcase name="Class ObjectUtils createUpdate Test createUpdate Should Exist" time="0" classname="Class ObjectUtils"/>
-  <testcase name="Class ObjectUtils createUpdate Test makeUpdate creates update() config from path and input obj {}" time="0" classname="Class ObjectUtils"/>
-  <testcase name="Class ObjectUtils createUpdate Test makeUpdate creates update() config from path and input obj { foo: string }" time="0" classname="Class ObjectUtils"/>
+  <testcase name="Class ObjectUtils createUpdate Test makeUpdate creates update() config from path and input obj {}" time="0.001" classname="Class ObjectUtils"/>
+  <testcase name="Class ObjectUtils createUpdate Test makeUpdate creates update() config from path and input obj { foo: string }" time="0.001" classname="Class ObjectUtils"/>
   <testcase name="Class ObjectUtils createUpdate Test makeUpdate creates update() config from path and input obj { foo: ...}" time="0.001" classname="Class ObjectUtils"/>
   <testcase name="Class ObjectUtils getObjectForPath Test buildUpdateObjectSetValue Should Exist" time="0" classname="Class ObjectUtils"/>
   <testcase name="Class ObjectUtils getObjectForPath Test getObjectForPath creates object from path" time="0" classname="Class ObjectUtils"/>
   <testcase name="Class ObjectUtils buildUpdateObjectSetValue Test buildUpdateObjectSetValue Should Exist" time="0" classname="Class ObjectUtils"/>
   <testcase name="Class ObjectUtils buildUpdateObjectSetValue Test buildUpdateObjectSetValue is deprecated and should throw error on call" time="0" classname="Class ObjectUtils"/>
   <testcase name="Class ObjectUtils isObjectEmpty Test isObjectEmpty Should Exist" time="0" classname="Class ObjectUtils"/>
-  <testcase name="Class ObjectUtils isObjectEmpty Test isObjectEmpty test" time="0.001" classname="Class ObjectUtils"/>
+  <testcase name="Class ObjectUtils isObjectEmpty Test isObjectEmpty test" time="0" classname="Class ObjectUtils"/>
   <system-out>
     <![CDATA[HeadlessChrome 0.0.0 (Windows 10 0.0.0) LOG: Object{foo: Object{bar: Object{$set: ...}}}
 
