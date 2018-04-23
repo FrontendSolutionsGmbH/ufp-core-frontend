@@ -3,6 +3,7 @@ import _UfpCoreConstants from './UfpCoreConstants'
 
 export const UfpCore = _UfpCore
 export const registerInitialStateCallback = _UfpCore.registerInitialStateCallback
+export const STARTUP_ACTION_NAME = _UfpCoreConstants.ACTION_NAMES.STARTUP
 export const registerReducer = _UfpCore.registerReducer
 export const registerMiddleware = _UfpCore.registerMiddleware
 export const registerEnhancer = _UfpCore.registerEnhancer
