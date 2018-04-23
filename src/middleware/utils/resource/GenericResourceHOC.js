@@ -1,6 +1,7 @@
 import {connect} from 'react-redux'
 import React, {Component} from 'react'
 import HOCUtils from '../../../utils/HOCUtils'
+import JSUtils from '../../../utils/JSUtils'
 import hoistNonReactStatic from 'hoist-non-react-statics'
 import PropTypes from 'prop-types'
 import _Get from 'lodash-es/get'
@@ -13,7 +14,7 @@ import _Get from 'lodash-es/get'
  * @param actionCreator
  * @param selector
  */
-export default({actionCreator, selector}) => ({
+export default({actionCreator, selector = JSUtils.ThrowParam(`Selector can't be undefined`)}) => ({
     urlParams = 'resourceProps.urlParams',
     queryParams = 'resourceProps.queryParams',
     dataField = 'resourceData',
