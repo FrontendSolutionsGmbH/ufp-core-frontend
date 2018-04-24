@@ -22,7 +22,6 @@ export default({
     queryParams = 'resourceProps.queryParams',
     dataField = 'resourceData',
     errorView = (<div>Error...</div>),
-
     loadView = (<div>Loading...</div>),
     emptyView = (<div>Empty...</div>)
 
@@ -36,7 +35,7 @@ export default({
         }
 
         static defaultProps = {
-            resourceData: {}
+            resourceData: undefined
         }
 
         /**
