@@ -5,13 +5,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [unreleased]
 
-[0.6.6]
+## [0.6.6]
+- quasi 0.6.0 release all previous versions lack stability
+- fix hoc resource utility default value usage/linting
 - fix for import of lodash-es es6 import style, somehow breaking on slow connection 
-
-[0.6.5]
 - enforce selector in util/resource
-
-[0.6.2]
 - ufpdate ufp-core router4 and, redux4 update, remove getState() method completely from any action payload
 - change getState() to globalState in ufp-middleware actions - redux4.0
 - async router dev update 
@@ -21,6 +19,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - remove flow dependency
 - react router 4 
 	- update using [README](./src/modules/react-redux-hash-router4/doc/README.md)
+
+## [0.6.5-0.6.0] *broken*
 
 ## [0.5.1 ] 
 
