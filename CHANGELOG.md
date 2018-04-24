@@ -5,7 +5,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [unreleased]
 
-[0.6.3]
+[0.6.5]
 - enforce selector in util/resource
 
 [0.6.2]
