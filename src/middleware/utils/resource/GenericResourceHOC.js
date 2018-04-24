@@ -4,7 +4,7 @@ import HOCUtils from '../../../utils/HOCUtils'
 import JSUtils from '../../../utils/JSUtils'
 import hoistNonReactStatic from 'hoist-non-react-statics'
 import PropTypes from 'prop-types'
-import _Get from 'lodash-es/get'
+import {get} from 'lodash-es'
 
 /**
  * factory method that returns a HigherOrder React component creator function
@@ -14,8 +14,10 @@ import _Get from 'lodash-es/get'
  * @param actionCreator
  * @param selector
  */
-export default({actionCreator,
-    selector = JSUtils.ThrowParam('Selector can\'t be undefined')}) => ({
+export default({
+    actionCreator,
+    selector = JSUtils.ThrowParam('Selector can\'t be undefined')
+}) => ({
     urlParams = 'resourceProps.urlParams',
     queryParams = 'resourceProps.queryParams',
     dataField = 'resourceData',
@@ -53,8 +55,8 @@ export default({actionCreator,
         loadResource = () => {
             this.props.loadResource(
                 {
-                    urlParams: _Get(this.props, urlParams),
-                    queryParams: _Get(this.props, queryParams)
+                    urlParams: get(this.props, urlParams),
+                    queryParams: get(this.props, queryParams)
                 })
         }
 
@@ -105,7 +107,7 @@ export default({actionCreator,
          * provided SELECTOR upon creation time gets fed the currents object urlParams
          * as input which returns the result from state
          */
-        resourceData: selector(state, _Get(props, urlParams))
+        resourceData: selector(state, get(props, urlParams))
     })
 
     /**
