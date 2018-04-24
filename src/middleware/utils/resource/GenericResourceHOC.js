@@ -15,7 +15,7 @@ import _Get from 'lodash-es/get'
  * @param selector
  */
 export default({actionCreator,
-    selector = JSUtils.ThrowParam('Selector can't be undefined')}) => ({
+    selector = JSUtils.ThrowParam('Selector can\'t be undefined')}) => ({
     urlParams = 'resourceProps.urlParams',
     queryParams = 'resourceProps.queryParams',
     dataField = 'resourceData',
