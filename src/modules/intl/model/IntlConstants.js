@@ -6,6 +6,11 @@ export default {
      * set the current language value
      */
     SET_LANGUAGE: 'SET_LANGUAGE',
+    /*
+     flushes the root key forcing a rerendering of the tree, this is
+     by intention now removed from changing the intl keys
+      */
+    INTL_FLUSH_KEYS: 'INTL_FLUSH_KEYS',
     STORAGE_KEY: 'ufp-intl-storage',
 
     SET_LANGUAGES: 'SET_LANGUAGES',
