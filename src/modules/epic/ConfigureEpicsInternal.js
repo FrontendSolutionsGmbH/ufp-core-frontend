@@ -1,12 +1,13 @@
-
-import 'rxjs/add/operator/mapTo'
-import 'rxjs/add/operator/count'
-import 'rxjs/add/operator/delay'
-import 'rxjs/add/operator/debounce'
-import 'rxjs/add/operator/map'
-import 'rxjs/add/operator/mergeMap'
-import 'rxjs/add/operator/takeUntil'
-import 'rxjs/add/operator/filter'
+// eslint-disable-next-line no-unused-vars
+// import {mapTo, count, delay, map, debounce, mergeMap, takeUntil, filter} from 'rxjs/operators'
+// import 'rxjs/add/operator/mapTo'
+// import 'rxjs/add/operator/count'
+// import 'rxjs/add/operator/delay'
+// import 'rxjs/add/operator/debounce'
+// import 'rxjs/add/operator/map'
+// import 'rxjs/add/operator/mergeMap'
+// import 'rxjs/add/operator/takeUntil'
+// import 'rxjs/add/operator/filter'
 import {createEpicMiddleware, combineEpics} from 'redux-observable'
 import {ThrowParam} from '../../utils/JSUtils.js'
 
@@ -25,7 +26,6 @@ const ConfigureEpicsInternal = {
 
     createEpicMiddleware: () => {
         // console.log('Creating Epic Middleware', epics)
-
         return createEpicMiddleware(combineEpics(...epics))
     },
 

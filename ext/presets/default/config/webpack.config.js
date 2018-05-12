@@ -47,8 +47,7 @@ const config = {
             inProjectSrc(project.main)
         ]
     },
-
-    stats: 'errors-only',
+    stats: 'normal',
     devtool: project.sourcemaps ? 'source-map' : 'source-map',
     output: {
         path: inProject(project.outDir),
@@ -200,8 +199,8 @@ const javascriptConfig = {
                     presets: [
 
                         // modern way of declaring transpile targets
-                       'babel-preset-env',
-                            'babel-preset-react'
+                        'babel-preset-env',
+                        'babel-preset-react'
                     ]
                 }
             }
@@ -467,5 +466,6 @@ if (__PROD__) {
 //     },
 //     concurrency: 3,
 // }))
-
+console.log('xdevelopx project config is', project)
+console.log('xdevelopx webpack config is', config)
 module.exports = config

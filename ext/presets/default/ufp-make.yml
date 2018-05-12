@@ -25,7 +25,7 @@ tasks:
     - name: Testing
       description: ... performs the unit tests
       commands:
-      - npm run ufp-test
+#      - npm run ufp-test
   build:
     - name: Building
       allowedToFail: false
