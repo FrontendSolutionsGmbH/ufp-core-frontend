@@ -1,6 +1,6 @@
 import MenuConstants from '../model/MenuConstants'
 import {ofType} from 'redux-observable'
-import {mapTo, filter} from 'rxjs/operators'
+import {mapTo} from 'rxjs/operators'
 /**
  * the menu relies on dedicated menu actions that arise from defined action names, this epic transforms
  * any givven actionName to actionName+MenuSuffix that is then handled in the menureducer
@@ -10,7 +10,7 @@ import {mapTo, filter} from 'rxjs/operators'
 const createEpicTransformActionToMenuAction = (actionName) => (action$, storeLite) => {
     // console.log('MenuActionEpic Action called ', action$)
     return action$.pipe(
-        filter((action) => action.type === actionName),
+        ofType(actionName),
         mapTo({
             type: actionName + MenuConstants.MENU_ACTION_SUFFIX,
             payload: {
