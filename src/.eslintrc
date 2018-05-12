@@ -19,7 +19,9 @@
     "node",
     "promise",
     "react",
-    "standard"
+    "standard"   ,
+    "no-inferred-method-name",
+    "no-use-extend-native"
   ],
   "env": {
     "browser": true

@@ -14,6 +14,11 @@ export default {
             nextLanguage: {$set: action.payload.lang}
         })
     },
+    [IntlConstants.INTL_FLUSH_KEYS]: (state) => {
+        return update(state, {
+            randomKey: {$set: Math.random()}
+        })
+    },
     [IntlConstants.SET_LANGUAGE]: (state, action) => {
         if (action.payload.lang && state.currentLanguage !== action.payload.lang) {
             return update(state, {
@@ -39,7 +44,7 @@ export default {
         }
         // finally make new randomkey for updating views
         return update(result, {
-           // randomKey: {$set: Math.random()}
+            // randomKey: {$set: Math.random()}
         })
     },
     [IntlConstants.UPDATE_MESSAGES]: (state, action) => {
@@ -50,7 +55,7 @@ export default {
             allMessages: {
                 [lang]: {$set: messages}
             }
-        //    randomKey: {$set: Math.random()}
+            //    randomKey: {$set: Math.random()}
         })
 
         if (state.nextLanguage === action.payload.lang && state.currentLanguage !== state.nextLanguage) {

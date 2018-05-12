@@ -57,8 +57,14 @@ const initSetLanguage = () => (dispatch) => {
 
     dispatch(setLanguage(IntlConstants.DEFAULT_LANGUAGE))
 }
+const flushKey = () => ({
+
+    type: IntlConstants.INTL_FLUSH_KEYS
+
+})
 
 export default {
+    flushKey,
     setMessages,
     appendMessages,
     setActiveLanguages,

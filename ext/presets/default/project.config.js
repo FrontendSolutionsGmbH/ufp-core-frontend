@@ -17,7 +17,7 @@ module.exports = {
     injectChunks: true,
 
     devServer: {
-        stats: 'minimal'
+        stats: 'normal'
     },
     ignoreModules: [],
     /** used as entry point for the html, may contain path **/
