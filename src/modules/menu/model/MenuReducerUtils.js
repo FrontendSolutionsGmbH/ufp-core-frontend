@@ -1,6 +1,7 @@
 import update from 'react-addons-update'
 import MenuConfigurationInternal from './MenuConfigurationInternal'
 import MenuInternalUtils from './MenuInternalUtils'
+import {isArray} from 'lodash-es'
 
 export const getInitialState = () => {
     // console.log('Initial State Menu called ', MenuConfigurationInternal)
@@ -46,7 +47,7 @@ const MenuActionListReducer = (state, action) => {
                 if (menuEntryAll !== undefined) {
                     menuEntryAll.map((menuEntry) => {
                             if (menuEntry.actionName === action.type ||
-                                (Array.isArray(menuEntry.actionNames) &&
+                                (isArray(menuEntry.actionNames) &&
                                 menuEntry.actionNames.indexOf(action.type) !== -1)) {
                                 // call menu reducer with its state from this reducer
                                 // // console.log('MenuReducer Called menudef entry is 1', menuEntry)
@@ -57,7 +58,7 @@ const MenuActionListReducer = (state, action) => {
                                     state: state.MenuData[menuEntry.area][menuEntry.subArea].items,
                                     action: action
                                 })
-                                if (Array.isArray(newLocalState)) {
+                                if (isArray(newLocalState)) {
                                     newLocalState.map((menuEntry) => {
                                         MenuInternalUtils.sortAllChildren(menuEntry)
                                     })

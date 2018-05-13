@@ -1,4 +1,4 @@
-import {isUndefined} from 'lodash-es'
+import {isUndefined,isArray} from 'lodash-es'
 
 export const ThrowParam = (string) => {
     throw new Error(string)
@@ -17,7 +17,7 @@ function pad(pad, str, padRight) {
 
 const factorMethodSkalarArray = (fn) => {
     return (param) => {
-        if (Array.isArray(param)) {
+        if (isArray(param)) {
             // if is array call method for each array item
             param.map((item) => {
                 fn(item)

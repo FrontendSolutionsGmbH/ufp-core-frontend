@@ -1,6 +1,8 @@
 import UfpMiddlewareUtils from './UfpMiddlewareUtils'
 import UfpTypes from 'ufp-types'
 import JSUtils from './../utils/JSUtils'
+import {isArray} from 'lodash-es'
+
 const UFPMiddlewareConfigurationX = {
     resultHandlings: {
         genericResultHandler: [],
@@ -26,7 +28,7 @@ const UFPHandlerPropTypeDefinitionObject = {
 const register = (array) => (handlers) => {
     // console.log('UfpMiddlewareUtils', UfpMiddlewareUtils)
 
-    if (Array.isArray(handlers)) {
+    if (isArray(handlers)) {
         if (UfpMiddlewareUtils.PropTypesCheck({input: handlers}, UFPHandlerPropTypeDefinitionArray)) {
             handlers.map((handler) => {
                 array.push(handler)

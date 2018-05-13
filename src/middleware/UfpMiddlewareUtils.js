@@ -2,6 +2,7 @@ import queryParams from './QueryParams'
 import {UfpMiddlewareResulthandlerMoreThenOneSuccessError} from './Errors'
 import UfpMiddlewareHelperUtils from './UfpMiddlewareHelperUtils'
 import StringUtils from '../utils/StringUtils'
+import {isArray} from 'lodash-es'
 
 const {
     ReactPropTypesCheck,
@@ -83,14 +84,14 @@ const uniteActionResultTypes = (ufpTypes = {}, actionConstants = {}) => {
     }
     for (var i in target) {
         if (ufpTypes[i] !== undefined) {
-            if (Array.isArray(ufpTypes[i])) {
+            if (isArray(ufpTypes[i])) {
                 ufpTypes[i].map((element) => addToArrayIfNotExist(target[i], element))
             } else {
                 addToArrayIfNotExist(target[i], ufpTypes[i])
             }
         }
         if (actionConstants[i] !== undefined) {
-            if (Array.isArray(actionConstants[i])) {
+            if (isArray(actionConstants[i])) {
                 actionConstants[i].map((element) => addToArrayIfNotExist(target[i], element))
             } else {
                 addToArrayIfNotExist(target[i], actionConstants[i])
@@ -110,7 +111,7 @@ const uniteActionResultTypes = (ufpTypes = {}, actionConstants = {}) => {
 const wrapDispatcher = (dispatch/*, getState , ufpAction*/) => (action) => {
     // console.log("WRAP DISPATCHER DISPATCHING action", action)
 
-    if (Array.isArray(action.type)) {
+    if (isArray(action.type)) {
         for (var i in action.type) {
             //checkToCallActionCreators(dispatch, getState, ufpAction, action, action.type[i])
             // console.log('Dispatching array action', i, action.type[i], action.payload)

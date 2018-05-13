@@ -1,4 +1,4 @@
-import {isObject, isUndefined} from 'lodash-es'
+import {isObject, isUndefined,isArray} from 'lodash-es'
 
 function encode(val) {
     return encodeURIComponent(val)
