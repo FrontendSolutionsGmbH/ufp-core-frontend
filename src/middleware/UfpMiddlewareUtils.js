@@ -106,31 +106,6 @@ const uniteActionResultTypes = (ufpTypes = {}, actionConstants = {}) => {
     }
     return target
 }
-/*const checkToCallActionCreators = (dispatch, getState, ufpAction, action, actionType) => {
- if (ufpAction.ufpActionCreators) {
- // //   // console.log('UFPMiddleware calling action creators', ufpAction, actionType)
- var actionCreator = ufpAction.ufpActionCreators[actionType]
- if (Array.isArray(actionCreator)) {
- // call all actioncreators
- for (var i in actionCreator) {
- // call each actioncreator in array individually
- if (typeof actionCreator[i] === 'function') {
- dispatch(actionCreator[i]({
- payload: Object.assign({}, {globalState: getState()}, action.payload),
- dispatch: dispatch
- }))
- }
- }
- } else if (typeof actionCreator === 'function') {
- // //   // console.log('UFPMiddleware calling action creators', ufpAction, actionType)
- // just call single listed creator
- dispatch(actionCreator({
- payload: Object.assign({}, {globalState: getState()}, action.payload),
- dispatch: dispatch
- }))
- }
- }
- }*/
 
 const wrapDispatcher = (dispatch/*, getState , ufpAction*/) => (action) => {
     // console.log("WRAP DISPATCHER DISPATCHING action", action)

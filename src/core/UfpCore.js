@@ -6,6 +6,8 @@ import UfpConfig from './UfpConfig'
 import {applyMiddleware, compose, combineReducers, createStore} from 'redux'
 import RunfestPropype from './proptypes/RunfestPropType'
 import {CheckPropTypes} from '../utils/ReactPropTypesCheck'
+import {isFunction} from 'lodash-es'
+
 var store = null
 
 /**
@@ -60,7 +62,7 @@ const bindActionCreators = (actionCreators) => {
 const getInitialState = () => {
     var result = {}
     UfpSetup.initialStateCallbacks.forEach((cb) => {
-        if (typeof cb === 'function') {
+        if (isFunction(cb) {
             result = Object.assign(result, cb())
         }
     })
@@ -270,7 +272,7 @@ const startup = ({applicationNameIn = 'Ufp Application'}={applicationNameIn: 'Uf
         var composeEnhancers = compose
 
         // @if UFP_NODE_ENV=='develop'
-        if (typeof window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ === 'function') {
+        if (isFunction(window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__)) {
             composeEnhancers =
                 window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
                     name: 'UFP Application',

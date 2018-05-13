@@ -1,9 +1,11 @@
+import {isUndefined} from 'lodash-es'
+
 export const ThrowParam = (string) => {
     throw new Error(string)
 }
 
 function pad(pad, str, padRight) {
-    if (typeof str === 'undefined') {
+    if (isUndefined(str)) {
         return pad
     }
     if (padRight) {
@@ -39,12 +41,12 @@ export const _Includes = (collection, value) => {
             result = true
         }
         Object.keys(item)
-              .map((key) => {
-                  if (item[key] === value) {
-                      //    console.log('_Includes return true', key, item[key], value)
-                      result = true
-                  }
-              })
+            .map((key) => {
+                if (item[key] === value) {
+                    //    console.log('_Includes return true', key, item[key], value)
+                    result = true
+                }
+            })
     })
     return result
 }

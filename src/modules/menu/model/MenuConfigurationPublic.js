@@ -1,5 +1,6 @@
 import MenuConfigurationInternal from './MenuConfigurationInternal'
 import update from 'react-addons-update'
+import {isFunction} from 'lodash-es'
 
 function createMenu(MenuConfig) {
     var actionNames = [
@@ -15,10 +16,10 @@ function createMenu(MenuConfig) {
         // console.log('Initialising menu, checking actions')
 
         Object.keys(MenuConfig.actions)
-              .map((key) => {
-                  // console.log('Initialising menu, checking actions', key)
-                  actionNames.push(key)
-              })
+            .map((key) => {
+                // console.log('Initialising menu, checking actions', key)
+                actionNames.push(key)
+            })
     }
 
     // console.log('GENERICMENU createGenericMenu ', MenuConfig)
@@ -61,7 +62,7 @@ function createMenu(MenuConfig) {
                     def.hash = item.hash
                 }
 
-                if (item.callback !== undefined && typeof item.callback === 'function') {
+                if (item.callback !== undefined && isFunction(item.callback)) {
                     def.callback = item.callback
                 }
                 return [MenuConfigurationInternal.createMenuEntry(def)]
@@ -96,7 +97,7 @@ function createMenu(MenuConfig) {
 
             var menuUnauthenticated = []
 
-            if (typeof currentDef === 'function') {
+            if (isFunction(currentDef)) {
                 currentDef = currentDef({
                     globalState: data.action.payload.getState(),
                     action: data.action
