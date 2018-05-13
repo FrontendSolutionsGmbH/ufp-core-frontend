@@ -62,7 +62,7 @@ const bindActionCreators = (actionCreators) => {
 const getInitialState = () => {
     var result = {}
     UfpSetup.initialStateCallbacks.forEach((cb) => {
-        if (isFunction(cb) {
+        if (isFunction(cb)) {
             result = Object.assign(result, cb())
         }
     })
