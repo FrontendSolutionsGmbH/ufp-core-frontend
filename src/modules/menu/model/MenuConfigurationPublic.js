@@ -1,7 +1,6 @@
 import MenuConfigurationInternal from './MenuConfigurationInternal'
 import update from 'react-addons-update'
-import {isFunction} from 'lodash-es'
-import {isArray} from 'lodash-es'
+import {isFunction, isArray} from 'lodash-es'
 
 function createMenu(MenuConfig) {
     var actionNames = [

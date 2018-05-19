@@ -30,12 +30,8 @@
 //     }
 //     return target
 // }
-export const isObject = (val) => {
+export const isObject = () => {
     throw new Error('is object ufp core util is deprecated')
-    if (val === null) {
-        return false
-    }
-    return ((typeof val === 'function') || (typeof val === 'object'))
 }
 
 export const getObjectForPath = (path, newValue) => {

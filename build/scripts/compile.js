@@ -6,6 +6,7 @@ const logger = require('../../ext/build/lib/Logger2')('ufp-start')
 const rimraf = require('rimraf')
 const webpackConfig = require('../webpack.config.js')
 const project = require('../../project.config')
+
 rimraf(path.join(__dirname, '../../lib'))
 const runWebpackCompiler = (webpackConfig) =>
     new Promise((resolve, reject) => {

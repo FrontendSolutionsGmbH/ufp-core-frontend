@@ -1,5 +1,6 @@
 import update from 'react-addons-update'
 import StartupConstants from './StartupConstants'
+
 var LoadingStateEnum = StartupConstants.LoadingStateEnum
 
 export default
