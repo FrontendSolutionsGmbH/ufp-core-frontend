@@ -5,7 +5,8 @@
     "plugin:react/recommended",
     "standard",
     "eslint:recommended",
-    "standard-react"
+    "standard-react",
+    "plugin:flowtype/recommended"
   ],
   "plugins": [
     "filenames",
