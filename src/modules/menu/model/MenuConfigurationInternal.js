@@ -3,6 +3,8 @@ import {registerEpic} from '../../epic'
 import MenuActionEpicCreator from './../controller/MenuActionEpicCreator'
 import JSUtils from '../../../utils/JSUtils'
 import MenuInternalUtils from './MenuInternalUtils'
+import {isArray} from 'lodash-es'
+
 const EmptyFunc = () => {
 }
 
@@ -79,7 +81,7 @@ class MenuConfigurationInternal {
 
         //
 
-        if (Array.isArray(actionNames)) {
+        if (isArray(actionNames)) {
             // for quick reference put all original action names into handled actions to be found
             // easily by menureducer to defer its call to the ones renamed in the menu entry
             actionNames.map((currentActionName) => {

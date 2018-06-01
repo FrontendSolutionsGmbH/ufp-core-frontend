@@ -7,7 +7,7 @@ import {mapTo} from 'rxjs/operators'
  * @param actionName
  */
 
-const createEpicTransformActionToMenuAction = (actionName) => (action$, storeLite) => {
+const createEpicTransformActionToMenuAction = (actionName) => (action$, state$) => {
     // console.log('MenuActionEpic Action called ', action$)
     return action$.pipe(
         ofType(actionName),
@@ -15,7 +15,7 @@ const createEpicTransformActionToMenuAction = (actionName) => (action$, storeLit
             type: actionName + MenuConstants.MENU_ACTION_SUFFIX,
             payload: {
                 // getState: storeLite.getState
-                getState: storeLite.getState
+                globalState: state$.value
             }
         }))
 }

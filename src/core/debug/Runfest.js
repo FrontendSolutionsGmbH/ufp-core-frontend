@@ -4,6 +4,7 @@
  */
 import logger from 'redux-logger'
 import RoutingUtils from '../../utils/RoutingUtils'
+
 export default{
     name: 'Ufp Debug',
     description: 'Ufp Debug - redux logger...',

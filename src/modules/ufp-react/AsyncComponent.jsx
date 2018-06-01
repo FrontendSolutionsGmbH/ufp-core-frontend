@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+
 export default function (getComponent) {
     class AsyncComponent extends Component {
 

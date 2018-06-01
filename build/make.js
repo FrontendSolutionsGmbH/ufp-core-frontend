@@ -17,6 +17,7 @@ var countCommands = {}
 
 logger.mark('Ufp-Make ')
 const yargs = require('yargs')
+
 yargs.version('1.0.0')
 
 Object.keys(Constants.MAKE_OPTIONS)

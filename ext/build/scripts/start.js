@@ -1,4 +1,5 @@
 const logger = require('../lib/Logger2')('ufp-start')
+
 const port = 3000
 
 process.on('uncaughtException', function (err) {

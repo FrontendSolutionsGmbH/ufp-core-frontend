@@ -4,7 +4,9 @@
     "eslint:recommended",
     "plugin:react/recommended",
     "standard",
-    "standard-react"
+    "eslint:recommended",
+    "standard-react",
+    "plugin:flowtype/recommended"
   ],
   "plugins": [
     "filenames",
@@ -19,7 +21,7 @@
     "node",
     "promise",
     "react",
-    "standard"   ,
+    "standard",
     "no-inferred-method-name",
     "no-use-extend-native"
   ],
@@ -55,6 +57,8 @@
         "switches": "never"
       }
     ],
+    "import/newline-after-import": 2,
+    "no-dupe-keys": 2,
     "react/jsx-key": 0,
     "react/no-children-prop": 0,
     "react/jsx-no-comment-textnodes": 0,

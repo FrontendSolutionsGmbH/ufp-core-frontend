@@ -51,9 +51,6 @@
 <testsuite package="org.eslint" time="0" tests="1" errors="0" name="D:\ARBEIT\FROSO\ufp-simple-client\src_modules\ufp-core-frontend\src\middleware\index.js">
 <testcase time="0" name="D:\ARBEIT\FROSO\ufp-simple-client\src_modules\ufp-core-frontend\src\middleware\index.js" />
 </testsuite>
-<testsuite package="org.eslint" time="0" tests="1" errors="0" name="D:\ARBEIT\FROSO\ufp-simple-client\src_modules\ufp-core-frontend\src\middleware\QueryParams.js">
-<testcase time="0" name="D:\ARBEIT\FROSO\ufp-simple-client\src_modules\ufp-core-frontend\src\middleware\QueryParams.js" />
-</testsuite>
 <testsuite package="org.eslint" time="0" tests="1" errors="0" name="D:\ARBEIT\FROSO\ufp-simple-client\src_modules\ufp-core-frontend\src\middleware\request\FetchRequest.js">
 <testcase time="0" name="D:\ARBEIT\FROSO\ufp-simple-client\src_modules\ufp-core-frontend\src\middleware\request\FetchRequest.js" />
 </testsuite>

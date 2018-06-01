@@ -1,9 +1,11 @@
+import {isUndefined,isArray} from 'lodash-es'
+
 export const ThrowParam = (string) => {
     throw new Error(string)
 }
 
 function pad(pad, str, padRight) {
-    if (typeof str === 'undefined') {
+    if (isUndefined(str)) {
         return pad
     }
     if (padRight) {
@@ -15,7 +17,7 @@ function pad(pad, str, padRight) {
 
 const factorMethodSkalarArray = (fn) => {
     return (param) => {
-        if (Array.isArray(param)) {
+        if (isArray(param)) {
             // if is array call method for each array item
             param.map((item) => {
                 fn(item)
@@ -39,12 +41,12 @@ export const _Includes = (collection, value) => {
             result = true
         }
         Object.keys(item)
-              .map((key) => {
-                  if (item[key] === value) {
-                      //    console.log('_Includes return true', key, item[key], value)
-                      result = true
-                  }
-              })
+            .map((key) => {
+                if (item[key] === value) {
+                    //    console.log('_Includes return true', key, item[key], value)
+                    result = true
+                }
+            })
     })
     return result
 }

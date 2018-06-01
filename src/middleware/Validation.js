@@ -1,6 +1,7 @@
 import UFPRequestActions from './UfpRequestActions'
 import UfpTypes from 'ufp-types'
 import UfpMiddlewareUtils from './UfpMiddlewareUtils'
+import {isObject} from 'lodash-es'
 import UfpMiddlewareConstants from './UfpMiddlewareConstants'
 
 const UFPResultTypes = UfpTypes.shape({
@@ -53,7 +54,7 @@ const UFPActionPropTypes = {
 }
 
 export const isUFPAction = (action) => {
-    return typeof action === 'object' && action.hasOwnProperty(UFPRequestActions.UFP_REQUEST_ACTION)
+    return isObject(action) && action.hasOwnProperty(UFPRequestActions.UFP_REQUEST_ACTION)
 }
 
 /**

@@ -3,7 +3,9 @@
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
-## [unreleased]
+## [0.7.0 beta]
+
+- updates redux-observable towards 1.0
 
 ## [0.6.6]
 - quasi 0.6.0 release all previous versions lack stability

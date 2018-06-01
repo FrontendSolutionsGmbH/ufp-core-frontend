@@ -30,12 +30,8 @@
 //     }
 //     return target
 // }
-
-export const isObject = (val) => {
-    if (val === null) {
-        return false
-    }
-    return ((typeof val === 'function') || (typeof val === 'object'))
+export const isObject = () => {
+    throw new Error('is object ufp core util is deprecated')
 }
 
 export const getObjectForPath = (path, newValue) => {
@@ -123,35 +119,35 @@ const makeUpdate = (obj, objUpdate) => {
     var result = {}
 
     Object.keys(objUpdate)
-          .forEach((key) => {
-              // check if we have reached the leave node
-              if (isObject(objUpdate[key])) {
-                  if (obj[key] !== undefined) {
-                      /**
-                       * if the property exist, check if its structure
-                       * changed e.g. plain value to object, since we now
-                       * our new value is of type object, we need to
-                       * verify that existing value is object as well
-                       */
-                      if (isObject(obj[key])) {
-                          // if object go down that rabbit hole
-                          result = {[key]: makeUpdate(obj[key], objUpdate[key])}
-                      } else {
-                          // if its structure is different insert the $set directive here
-                          result = {[key]: {$set: objUpdate[key]}}
-                      }
-                  } else {
-                      // here we found a non existing property,
-                      // we need at this point to insert the $set directive
-                      // and set the whole remaining object
+        .forEach((key) => {
+            // check if we have reached the leave node
+            if (isObject(objUpdate[key])) {
+                if (obj[key] !== undefined) {
+                    /**
+                     * if the property exist, check if its structure
+                     * changed e.g. plain value to object, since we now
+                     * our new value is of type object, we need to
+                     * verify that existing value is object as well
+                     */
+                    if (isObject(obj[key])) {
+                        // if object go down that rabbit hole
+                        result = {[key]: makeUpdate(obj[key], objUpdate[key])}
+                    } else {
+                        // if its structure is different insert the $set directive here
+                        result = {[key]: {$set: objUpdate[key]}}
+                    }
+                } else {
+                    // here we found a non existing property,
+                    // we need at this point to insert the $set directive
+                    // and set the whole remaining object
 
-                      result = {[key]: {$set: objUpdate[key]}}
-                  }
-              } else {
-                  // plain objects go as $set directlu
-                  result = {[key]: {$set: objUpdate[key]}}
-              }
-          })
+                    result = {[key]: {$set: objUpdate[key]}}
+                }
+            } else {
+                // plain objects go as $set directlu
+                result = {[key]: {$set: objUpdate[key]}}
+            }
+        })
 
     return result
 }

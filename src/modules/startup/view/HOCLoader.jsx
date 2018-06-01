@@ -1,5 +1,6 @@
 import StartupSelectors from '../model/StartupSelectors'
 import {connect} from 'react-redux'
+
 const mapStateToProps = (state) => ({
     loader: {
         appInitialized: StartupSelectors.AppInitialisedSelector(state),

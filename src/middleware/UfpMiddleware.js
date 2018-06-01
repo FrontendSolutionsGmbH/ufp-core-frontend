@@ -4,6 +4,7 @@ import {InvalidUFPAction, UfpMiddlewareRequestCancelledError, UfpMiddlewareMaxRe
 import UFPMiddlewareUtils from './UfpMiddlewareUtils'
 import UFPMiddlewareConstants from './UfpMiddlewareConstants'
 import UFPMiddlewareConfiguration from './UfpMiddlewareConfiguration'
+import {isFunction} from 'lodash-es'
 
 // console.log('UfpMiddleware imported ')
 function UfpMiddleware(options = {}) {
@@ -94,13 +95,13 @@ function UfpMiddleware(options = {}) {
                     makeRequest = !preHandlerResult.break
                     if (makeRequest) {
                         var config
-                        // console.log('UFPMiddleware executing: ', retryCount, ufpAction)
-                        if (UFPMiddlewareConfiguration.get().createConfig === undefined ||
-                            typeof UFPMiddlewareConfiguration.get().createConfig !== 'function') {
+                        console.log('UFPMiddleware executing: ', retryCount, ufpAction, UFPMiddlewareConfiguration.get())
+                        if (!isFunction(UFPMiddlewareConfiguration.get().createConfig)) {
                             config = UFPMiddlewareUtils.createConfigDefault(configPrepared)
                         } else {
-                            config = UFPMiddlewareConfiguration.get()
-                                .createConfig(ufpAction, getState())
+                            config = (UFPMiddlewareConfiguration.get()
+                                                                .createConfig(ufpAction, getState()))
+                            console.log('UFPMiddleware using configured requestconfig', config)
                         }
 
                         // console.log('UFP MIDDLEWARE config', config)

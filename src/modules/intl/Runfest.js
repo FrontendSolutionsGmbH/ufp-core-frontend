@@ -8,6 +8,7 @@ import {registerRootProvider} from '../ufp-react'
 import UfpIntlProvider from './view/components/UfpIntlProvider'
 import {addLocaleData} from 'react-intl'
 import {StartupConfiguration} from '../startup'
+
 var onceRegistered = false
 
 const Runfest = {

@@ -1,3 +1,6 @@
+
+import {isArray} from 'lodash-es'
+
 const findPathForMenuId = (object, id) => {
   var tempResult
   //console.log('findPathForMenuId start ', object, id)
@@ -24,7 +27,7 @@ const findPathForMenuIdTravers = (items, id, currentPath) => {
         value: item
       }
     }
-    if (item.children !== undefined && Array.isArray(item.children)) {
+    if (item.children !== undefined && isArray(item.children)) {
       var tempResult = findPathForMenuIdTravers(item.children, id, currentPath + '.' + index + '.' + 'children')
       if (tempResult != null) {
         return tempResult

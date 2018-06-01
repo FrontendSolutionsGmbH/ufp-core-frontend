@@ -1,3 +1,5 @@
+import {isObject, isFunction} from 'lodash-es'
+
 /**
  * identity helper method to for various occasions, where just the input needs to be returned
  * @param t
@@ -20,7 +22,7 @@ const getNodeFromObject = (nodeName, object) => {
         if (i === nodeName) {
             //     // console.log('Getnode returning 1', object[i])
             return object[i]
-        } else if (typeof object[i] === 'object' && object[i] !== null) {
+        } else if (isObject(object[i])) {
             var tempResult = getNodeFromObject(nodeName, object[i])
             if (tempResult !== undefined) {
                 //      // console.log('Getnode returning 2', tempResult)
@@ -61,7 +63,7 @@ const createLocalSelector = (nodeName, func) => {
  * @returns {Function}
  */
 const createActionCreator = (type, actionCreator, metaCreator) => {
-    const finalActionCreator = typeof actionCreator === 'function' ? actionCreator : identity
+    const finalActionCreator = isFunction(actionCreator) ? actionCreator : identity
 
     return (...args) => {
         const action = {
@@ -74,7 +76,7 @@ const createActionCreator = (type, actionCreator, metaCreator) => {
             action.error = true
         }
 
-        if (typeof metaCreator === 'function') {
+        if (isFunction(metaCreator)) {
             action.meta = metaCreator(...args)
         }
 

@@ -1,11 +1,12 @@
 import update from 'react-addons-update'
 import StartupConstants from './StartupConstants'
+
 var LoadingStateEnum = StartupConstants.LoadingStateEnum
 
 export default
 {
     [StartupConstants.ActionConstants.UFP_STARTUP_NEXT_STAGE]: (state) => {
-        //   // console.log('StartupReducer next stage')
+        console.log('StartupStep next stage', state)
         return update(state, {
             status: {
                 loadingState: {$set: LoadingStateEnum.LOADING},

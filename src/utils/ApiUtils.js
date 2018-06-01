@@ -1,4 +1,4 @@
-import set from 'lodash-es/set'
+import {set, isObject} from 'lodash-es'
 /**
  * helper method to create the 3 action names request,success,fail to be used by async middleware
  * @param apiDefinitionPath the prefix for the action names
@@ -16,7 +16,7 @@ const createAsyncResponseActionNames = (apiDefinitionPath) => {
 const traverseDefinition = (obj, callback, path) => {
     // // console.log('traversinng ', obj, path)
     path = path || []
-    if (typeof obj === 'object' && obj.url === undefined) {
+    if (isObject(obj) && obj.url === undefined) {
         Object.keys(obj).forEach((key) => {
             var value = obj[key]
             traverseDefinition(value, callback, path.concat(key))
