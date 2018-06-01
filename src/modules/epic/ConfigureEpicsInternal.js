@@ -8,7 +8,7 @@
 // import 'rxjs/add/operator/mergeMap'
 // import 'rxjs/add/operator/takeUntil'
 // import 'rxjs/add/operator/filter'
-import {createEpicMiddleware, combineEpics} from 'redux-observable'
+import {createEpicMiddleware} from 'redux-observable'
 import {ThrowParam} from '../../utils/JSUtils.js'
 
 /**
