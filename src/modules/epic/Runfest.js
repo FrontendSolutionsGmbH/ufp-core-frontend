@@ -30,11 +30,10 @@ const Runfest = {
     onPreStartup(){
         console.log('Hello People')
         ConfigureEpicsInternal.getEpics()
-                              .forEach(epic => {
+                              .forEach((epic) => {
                                   console.log('Registering Pre Startup Epics', epic)
                                   ConfigureEpicsInternal.getMiddleware()
                                                         .run(epic)
-
                               })
     }
 }

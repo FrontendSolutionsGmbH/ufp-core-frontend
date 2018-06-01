@@ -30,9 +30,7 @@ const loadStage = (stageIndex) => (dispatch, getState) => {
             })
         }
     } else {
-
         console.log(`Ignoring loadstage call, requested stage ${stageIndex} already active`)
-
     }
 }
 
