@@ -13,9 +13,9 @@ const Runfest = {
         }
         onceRegistered = true
 
-        UfpCore.registerMiddlewareCreator({
+        UfpCore.registerMiddleware({
             id: Runfest.name,
-            middlewareCreatorFunction: ConfigureEpicsInternal.createEpicMiddleware
+            middleware: ConfigureEpicsInternal.getMiddleware()
         })
 
         UfpCore.registerReducer({
@@ -25,6 +25,17 @@ const Runfest = {
                 }
             }
         )
+    },
+
+    onPreStartup(){
+        console.log('Hello People')
+        ConfigureEpicsInternal.getEpics()
+                              .forEach(epic => {
+                                  console.log('Registering Pre Startup Epics', epic)
+                                  ConfigureEpicsInternal.getMiddleware()
+                                                        .run(epic)
+
+                              })
     }
 }
 

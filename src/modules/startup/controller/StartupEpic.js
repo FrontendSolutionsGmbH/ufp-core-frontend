@@ -12,14 +12,14 @@ const startupInit = (action$) => {
             StartupActionCreators.initialiseApplication()
         ))
 }
-const startupStep = (action$, store) => {
+const startupStep = (action$, state$) => {
     //console.log('startupStep Epic Action called ', action$, store)
     return action$.pipe(filter((action) => {
-            // console.log('startupStep Epic Action called state:', store.getState())
+            // console.log('startupStep Epic Action called state:', state$)
             if (action.type !== StartupConstants.ActionConstants.UFP_STARTUP_NEXT_STAGE) {
-                var totalStageCount = StartupSelectors.TotalStagesSelector(store.getState())
-                var currentStageIndex = StartupSelectors.CurrentStageIndexSelector(store.getState())
-                var currentStagePercentage = StartupSelectors.StagePercentageSelector(store.getState())
+                var totalStageCount = StartupSelectors.TotalStagesSelector(state$)
+                var currentStageIndex = StartupSelectors.CurrentStageIndexSelector(state$)
+                var currentStagePercentage = StartupSelectors.StagePercentageSelector(state$)
                 // console.log('startupStep Epic Action called ', {
                 //     totalStageCount,
                 //     currentStageIndex,
@@ -42,19 +42,19 @@ const startupStep = (action$, store) => {
     )
 }
 
-const startupFinish = (action$, store) => {
+const startupFinish = (action$, state$) => {
     // console.log('startupFinish Epic Action called ', action$)
     return action$.pipe(
         filter((action) => {
-            // console.log('startupFinish Epic Action called ', store.getState())
+            // console.log('startupFinish Epic Action called ', state$)
             if (action.type === StartupConstants.ActionConstants.UFP_STARTUP_NO_STEPS) {
                 // console.log('startupFinish Epic Action called return TRUE - no steps registered')
                 return true
             } else {
-                var appInitialised = StartupSelectors.AppInitialisedSelector(store.getState())
-                var totalStageCount = StartupSelectors.TotalStagesSelector(store.getState())
-                var currentStageIndex = StartupSelectors.CurrentStageIndexSelector(store.getState())
-                var currentStagePercentage = StartupSelectors.StagePercentageSelector(store.getState())
+                var appInitialised = StartupSelectors.AppInitialisedSelector(state$)
+                var totalStageCount = StartupSelectors.TotalStagesSelector(state$)
+                var currentStageIndex = StartupSelectors.CurrentStageIndexSelector(state$)
+                var currentStagePercentage = StartupSelectors.StagePercentageSelector(state$)
 
                 // console.log('startupFinish Epic Action called return TRUE - no steps registered', appInitialised, totalStageCount, currentStageIndex, currentStagePercentage)
 

@@ -95,13 +95,13 @@ function UfpMiddleware(options = {}) {
                     makeRequest = !preHandlerResult.break
                     if (makeRequest) {
                         var config
-                        // console.log('UFPMiddleware executing: ', retryCount, ufpAction)
-                        if (UFPMiddlewareConfiguration.get().createConfig === undefined ||
-                            isFunction(UFPMiddlewareConfiguration.get().createConfig)) {
+                        console.log('UFPMiddleware executing: ', retryCount, ufpAction, UFPMiddlewareConfiguration.get())
+                        if (!isFunction(UFPMiddlewareConfiguration.get().createConfig)) {
                             config = UFPMiddlewareUtils.createConfigDefault(configPrepared)
                         } else {
-                            config = UFPMiddlewareConfiguration.get()
-                                .createConfig(ufpAction, getState())
+                            config = (UFPMiddlewareConfiguration.get()
+                                                                .createConfig(ufpAction, getState()))
+                            console.log('UFPMiddleware using configured requestconfig', config)
                         }
 
                         // console.log('UFP MIDDLEWARE config', config)
