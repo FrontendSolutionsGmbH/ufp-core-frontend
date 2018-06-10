@@ -6,6 +6,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [0.7.0 beta]
 
 - updates redux-observable towards 1.0
+- remove preprocessor-loader due to compatibility issues with webpack4
+- deprecation fixes
 
 ## [0.6.6]
 - quasi 0.6.0 release all previous versions lack stability
