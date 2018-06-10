@@ -1,3 +1,4 @@
+import {isObject} from 'lodash-es'
 // candidate for deprecation totally unclear for what this method has been used
 // /**
 //  *
@@ -30,9 +31,7 @@
 //     }
 //     return target
 // }
-export const isObject = () => {
-    throw new Error('is object ufp core util is deprecated')
-}
+
 
 export const getObjectForPath = (path, newValue) => {
     //console.log('buildUpdateObject 1 ', path, newValue)
