@@ -229,11 +229,12 @@ javascriptConfig.use.push({
             ...UfpConfig
         }
     },
-    {
-        loader: 'preprocessor-loader',
-        query: 'config=' + path.join(__dirname, '../macrodefinition-' + project.env + '.json')
-
-    })
+    // deprecated, no longer needed, not working correctly with webpack 4{
+    //     loader: 'preprocessor-loader',
+    //     query: 'config=' + path.join(__dirname, '../macrodefinition-' + project.env + '.json')
+    //
+    // }
+    )
 
 config.module.rules.push(javascriptConfig)
 // Styles
