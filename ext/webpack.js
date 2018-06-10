@@ -7,4 +7,6 @@
  *
  */
 
-module.exports = require('./presets/default/config/webpack.config')
+const webpack = require('./presets/default/config/webpack.config')
+
+module.exports = webpack
