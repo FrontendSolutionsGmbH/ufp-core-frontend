@@ -2,7 +2,7 @@ const child_process = require('child_process')
 const package = require('../../package.json')
 const path = require('path')
 
-const Table = require('cli-table2')
+const Table = require('cli-table3')
 const logger = require('../../ext/build/lib/Logger2')('ufp-show-used-packages')
 const fs = require('fs');
 const notMatchFolders = /node_modules/
