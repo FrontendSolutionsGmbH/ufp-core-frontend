@@ -6,14 +6,15 @@ const logger = require('../lib/Logger2')('ufp-compile')
 var UFP = require('../lib/ufp')
 
 const webpackConfig = UFP.requireDefault(
-    path.join(process.cwd(), '/config/webpack.config'),
+    path.join(process.cwd(), '/config/webpack.config.js'),
     path.join(__dirname, '/../../presets/default/config/webpack.config.js')
 )
 const project = UFP.requireDefault(
-    path.join(process.cwd(), '/project.config'),
+    path.join(process.cwd(), '/project.config.js'),
     path.join(__dirname, '/../../presets/default/project.config.js')
 )
 
+console.log("USING WEBPACK CONFIG",webpackConfig)
 const runWebpackCompiler = (webpackConfig) =>
     new Promise((resolve, reject) => {
         webpack(webpackConfig).run((err, stats) => {
