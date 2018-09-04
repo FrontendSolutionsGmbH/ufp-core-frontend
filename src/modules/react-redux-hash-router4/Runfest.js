@@ -8,7 +8,7 @@ import RouterProvider from './view/RouterProvider'
 import {registerRootProvider} from '../ufp-react'
 // Create a history of your choosing (we're using a browser history in this case)
 import {routerMiddleware, routerReducer as routerReducer4} from 'react-router-redux'
-import history from './history'
+// import history from './history'
 // Create an enhanced history that syncs navigation events with the store
 
 const Runfest = {

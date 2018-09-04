@@ -393,7 +393,7 @@ if (__PROD__) {
         new CompressionPlugin({
             asset: '[path].gz[query]',
             algorithm: 'gzip',
-            test: /\.(js|html|svg)$/,
+            test: /\.(js|html|svg|css|ttf)$/,
             threshold: 10240,
             minRatio: 0.8
         })
