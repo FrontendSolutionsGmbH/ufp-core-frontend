@@ -391,12 +391,12 @@ if (__PROD__) {
             filename: './stats.html'
         }),
         new CompressionPlugin({
-            asset: '[path].gz[query]',
+       /*     asset: '[path].gz[query]',
             algorithm: 'gzip',
             test: /\.(js|html|svg|css|ttf)$/,
             threshold: 10240,
             minRatio: 0.8
-        })
+     */   })
         // new ZopfliPlugin({
         //   asset: "[path].gz[query]",
         //   algorithm: "zopfli",
