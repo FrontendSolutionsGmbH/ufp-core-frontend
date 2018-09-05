@@ -6,6 +6,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 
 ## [0.7.0-beta]
+- migrate to cli table3 (done by the cli table team)
 - missing router utility methods
 - updates redux-observable towards 1.0
 - remove preprocessor-loader due to compatibility issues with webpack4
