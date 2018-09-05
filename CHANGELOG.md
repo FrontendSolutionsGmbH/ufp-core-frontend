@@ -150,9 +150,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - Initial Release
 
-[Unreleased]: https://github.com/frontendsolutions/ufp-core/branches/compare/0.7.0-rc8...develop
-[0.7.0-beta]: https://github.com/frontendsolutions/ufp-core/branches/compare/0.6.6...0.7.0-rc8
-[0.6.6]: https://github.com/frontendsolutions/ufp-core/branches/compare/0.5.0-rc1...0.6.6
+[Unreleased]: https://github.com/FrontendSolutionsGmbH/ufp-core-frontend/compare/0.7.0-rc8...develop
+[0.7.0-beta]: https://github.com/FrontendSolutionsGmbH/ufp-core-frontend/compare/0.6.6...0.7.0-rc8
+[0.6.6]: https://github.com/FrontendSolutionsGmbH/ufp-core-frontend/compare/0.5.0-rc1...0.6.6
 [0.5.0-rc1]: https://github.com/FrontendSolutionsGmbH/ufp-core-frontend/compare/0.4.7...0.5.0
 [0.4.7]: https://github.com/FrontendSolutionsGmbH/ufp-core-frontend/compare/0.4.6...0.4.7
 [0.4.6]: https://github.com/FrontendSolutionsGmbH/ufp-core-frontend/compare/0.4.5...0.4.6
@@ -166,10 +166,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 [0.3.4]: https://github.com/FrontendSolutionsGmbH/ufp-core-frontend/compare/0.3.3...0.3.4
 [0.3.3]: https://github.com/FrontendSolutionsGmbH/ufp-core-frontend/compare/0.3.2...0.3.3
 [0.3.2]: https://github.com/FrontendSolutionsGmbH/ufp-core-frontend/compare/0.3.1...0.3.2
-[0.3.1]: https://github.com/frontendsolutions/ufp-core/branches/compare/0.3.0%0D0.3.1
-[0.3.0]: https://github.com/frontendsolutions/ufp-core/branches/compare/0.2.2%0D0.3.0
-[0.2.2]: https://github.com/frontendsolutions/ufp-core/branches/compare/0.2.1%0D0.2.2
-[0.2.1]: https://github.com/frontendsolutions/ufp-core/branches/compare/0.2.0%0D0.2.1
-[0.2.0]: https://github.com/frontendsolutions/ufp-core/branches/compare/v0.1.1%0D0.2.0
-[0.1.1]: https://github.com/frontendsolutions/ufp-core/branches/compare/v0.1.1%0Dv0.1.0
-[0.1.0]: https://github.com/frontendsolutions/ufp-core/commits/v0.1.0
+[0.3.1]: https://github.com/FrontendSolutionsGmbH/ufp-core-frontend/compare/0.3.0...0.3.1
+[0.3.0]: https://github.com/FrontendSolutionsGmbH/ufp-core-frontend/compare/0.2.2...0.3.0
+[0.2.2]: https://github.com/FrontendSolutionsGmbH/ufp-core-frontend/compare/0.2.1....2.2
+[0.2.1]: https://github.com/FrontendSolutionsGmbH/ufp-core-frontend/compare/0.2.0...0.2.1
+[0.2.0]: https://github.com/FrontendSolutionsGmbH/ufp-core-frontend/compare/0.1.1...0.2.0
+[0.1.1]: https://github.com/FrontendSolutionsGmbH/ufp-core-frontend/compare/0.1.1...0.1.0
+[0.1.0]: https://github.com/FrontendSolutionsGmbH/ufp-core-frontend/compare/0.1.0
