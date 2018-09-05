@@ -3,8 +3,10 @@
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
-## [0.7.0 beta]
+## [Unreleased]
 
+## [0.7.0-beta]
+- missing router utility methods
 - updates redux-observable towards 1.0
 - remove preprocessor-loader due to compatibility issues with webpack4
 - deprecation fixes
@@ -148,7 +150,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - Initial Release
 
-[Unreleased]: https://bitbucket.org/frontendsolutions/ufp-core/branches/compare/0.5.0...develop
+[Unreleased]: https://bitbucket.org/frontendsolutions/ufp-core/branches/compare/0.7.0-rc8...develop
+[0.7.0-beta]: https://bitbucket.org/frontendsolutions/ufp-core/branches/compare/0.6.6...0.7.0-rc8
+[0.6.0]: https://bitbucket.org/frontendsolutions/ufp-core/branches/compare/0.5.0-rc1...0.6.6
 [0.5.0-rc1]: https://github.com/FrontendSolutionsGmbH/ufp-core-frontend/compare/0.4.7...0.5.0
 [0.4.7]: https://github.com/FrontendSolutionsGmbH/ufp-core-frontend/compare/0.4.6...0.4.7
 [0.4.6]: https://github.com/FrontendSolutionsGmbH/ufp-core-frontend/compare/0.4.5...0.4.6
