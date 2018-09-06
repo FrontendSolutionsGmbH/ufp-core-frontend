@@ -8,9 +8,9 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
-
+const ClosurePlugin = require('closure-webpack-plugin');
 const project = require('./project.config.wrapper')
-
+var LodashModuleReplacementPlugin = require('lodash-webpack-plugin');
 const StatsPlugin = require('stats-webpack-plugin')
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin')
 const VisualizerPlugin = require('webpack-visualizer-plugin')
@@ -22,7 +22,12 @@ const CircularDependencyPlugin = require('circular-dependency-plugin')
 // const ClosureCompilerPlugin = require('webpack-closure-compiler')
 
 const inProject = path.resolve.bind(path, project.basePath)
-const inProjectSrc = (file) => inProject(project.srcDir, file)
+const inProjectSrc = (file) => {
+    console.log(`inProjectSrc for file`, file)
+    var result = inProject(project.srcDir, file)
+    console.log(`returns `, result)
+    return result
+}
 
 const __DEV__ = project.env === 'development'
 const __TEST__ = project.env === 'test'
@@ -176,7 +181,7 @@ const javascriptConfig = {
                     },
                     cacheDirectory: true,
                     plugins: [
-
+                        'babel-plugin-lodash',
                         'babel-plugin-transform-class-properties',
                         'babel-plugin-syntax-dynamic-import',
                         //  'transform-react-remove-prop-types',
@@ -231,10 +236,10 @@ javascriptConfig.use.push({
     },
     // deprecated, no longer needed, not working correctly with webpack 4{
     //     loader: 'preprocessor-loader',
-    //     query: 'config=' + path.join(__dirname, '../macrodefinition-' + project.env + '.json')
+    //     options: 'config=' + path.join(__dirname, '../macrodefinition-' + project.env + '.json')
     //
     // }
-    )
+)
 
 config.module.rules.push(javascriptConfig)
 // Styles
@@ -382,23 +387,38 @@ if (__PROD__) {
     )
 
     config.plugins.push(
+        // new ClosurePlugin(
+        //     {
+        //         mode: 'STANDARD',
+        //         closureLibraryBase: require.resolve(
+        //             'google-closure-library/closure/goog/base'
+        //         ),
+        //         deps: [
+        //             require.resolve('google-closure-library/closure/goog/deps'),
+        //         //    './public/deps.js',
+        //         ],
+        //     }, {
+        //         compilation_level: 'ADVANCED',
+        //     }),
+        new LodashModuleReplacementPlugin(),
         new webpack.optimize.ModuleConcatenationPlugin(),
-        new StatsPlugin('stats.json', {
+        new CompressionPlugin({
+            /*     asset: '[path].gz[options]',
+             algorithm: 'gzip',
+             test: /\.(js|html|svg|css|ttf)$/,
+             threshold: 10240,
+             minRatio: 0.8
+             */
+        }), new StatsPlugin('stats.json', {
             chunkModules: true,
             exclude: [/node_modules[\\\/]react/]
         }),
         new VisualizerPlugin({
             filename: './stats.html'
         }),
-        new CompressionPlugin({
-       /*     asset: '[path].gz[query]',
-            algorithm: 'gzip',
-            test: /\.(js|html|svg|css|ttf)$/,
-            threshold: 10240,
-            minRatio: 0.8
-     */   })
+
         // new ZopfliPlugin({
-        //   asset: "[path].gz[query]",
+        //   asset: "[path].gz[options]",
         //   algorithm: "zopfli",
         //   test: /\.(js|html)$/,
         //   threshold: 10240,
@@ -422,28 +442,7 @@ if (__PROD__) {
     // config.plugins.push(
     //     new BabelMinifyPlugin()
     // )
-    config.plugins.push(new UglifyJsPlugin({
-        sourceMap: project.sourcemaps,
-        uglifyOptions: {
-            mangle: true,
-            compress: {
-                passes: 3,
-                warnings: false,
-                drop_console: true,
-                hoist_vars: true,
-                hoist_funs: true,
-                conditionals: true,
-                unused: true,
-                unsafe: true,
-                comparisons: true,
-                sequences: true,
-                dead_code: true,
-                evaluate: true,
-                if_return: true,
-                join_vars: true
-            }
-        }
-    }))
+
 }
 //
 // config.plugins.push(function () {
