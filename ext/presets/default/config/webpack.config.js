@@ -8,7 +8,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
-const ClosurePlugin = require('closure-webpack-plugin')
+// const ClosurePlugin = require('closure-webpack-plugin')
 const project = require('./project.config.wrapper')
 var LodashModuleReplacementPlugin = require('lodash-webpack-plugin')
 const StatsPlugin = require('stats-webpack-plugin')
@@ -463,7 +463,8 @@ if (__PROD__) {
                 if_return: true,
                 join_vars: true
             }
-        })
+        }
+    }))
 }
 
 //
