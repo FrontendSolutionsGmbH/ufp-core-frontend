@@ -5,7 +5,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
-## [0.7.0-beta]
+## [0.7.0]
+- npm audit fixes
 - migrate to cli table3 (done by the cli table team)
 - missing router utility methods
 - updates redux-observable towards 1.0
@@ -151,7 +152,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - Initial Release
 
-[Unreleased]: https://github.com/FrontendSolutionsGmbH/ufp-core-frontend/compare/0.7.0-rc8...develop
+[Unreleased]: https://github.com/FrontendSolutionsGmbH/ufp-core-frontend/compare/0.7.0...develop
+[Unreleased]: https://github.com/FrontendSolutionsGmbH/ufp-core-frontend/compare/0.7.0-rc8...0.7.0
 [0.7.0-beta]: https://github.com/FrontendSolutionsGmbH/ufp-core-frontend/compare/0.6.6...0.7.0-rc8
 [0.6.6]: https://github.com/FrontendSolutionsGmbH/ufp-core-frontend/compare/0.5.0-rc1...0.6.6
 [0.5.0-rc1]: https://github.com/FrontendSolutionsGmbH/ufp-core-frontend/compare/0.4.7...0.5.0
