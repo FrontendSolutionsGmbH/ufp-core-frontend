@@ -8,6 +8,16 @@
     "standard-react",
     "plugin:flowtype/recommended"
   ],
+  "settings": {
+    "react": {
+      // default to "createReactClass"
+      "version": "16.4" // React version, default to the latest React stable release
+    },
+    "propWrapperFunctions": [ "forbidExtraProps" ] // The names of any functions used to wrap the
+    // propTypes object, e.g. `forbidExtraProps`.
+    // If this isn't set, any propTypes wrapped in
+    // a function will be skipped.
+  },
   "plugins": [
     "filenames",
     "import",
