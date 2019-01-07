@@ -8,9 +8,9 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
-const ClosurePlugin = require('closure-webpack-plugin');
+const ClosurePlugin = require('closure-webpack-plugin')
 const project = require('./project.config.wrapper')
-var LodashModuleReplacementPlugin = require('lodash-webpack-plugin');
+var LodashModuleReplacementPlugin = require('lodash-webpack-plugin')
 const StatsPlugin = require('stats-webpack-plugin')
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin')
 const VisualizerPlugin = require('webpack-visualizer-plugin')
@@ -23,9 +23,9 @@ const CircularDependencyPlugin = require('circular-dependency-plugin')
 
 const inProject = path.resolve.bind(path, project.basePath)
 const inProjectSrc = (file) => {
-    console.log(`inProjectSrc for file`, file)
+    console.log('inProjectSrc for file', file)
     var result = inProject(project.srcDir, file)
-    console.log(`returns `, result)
+    console.log('returns ', result)
     return result
 }
 
@@ -443,7 +443,29 @@ if (__PROD__) {
     //     new BabelMinifyPlugin()
     // )
 
+    config.plugins.push(new UglifyJsPlugin({
+        sourceMap: project.sourcemaps,
+        uglifyOptions: {
+            mangle: true,
+            compress: {
+                passes: 3,
+                warnings: false,
+                drop_console: true,
+                hoist_vars: true,
+                hoist_funs: true,
+                conditionals: true,
+                unused: true,
+                unsafe: true,
+                comparisons: true,
+                sequences: true,
+                dead_code: true,
+                evaluate: true,
+                if_return: true,
+                join_vars: true
+            }
+        })
 }
+
 //
 // config.plugins.push(function () {
 //     this.plugin('done', function (stats) {
@@ -455,17 +477,6 @@ if (__PROD__) {
 //     })
 // })
 
-//
-// config.plugins.push(new ClosureCompilerPlugin({
-//     compiler: {
-//         //  jar: 'path/to/your/custom/compiler.jar' //optional
-//         language_in: 'ECMASCRIPT6',
-//         language_out: 'ECMASCRIPT5',
-//         compilation_level: 'ADVANCED',
-//         externs: [path.join(__dirname, './closure.externs.js')]
-//     },
-//     concurrency: 3,
-// }))
 console.log('xdevelopx project config is', project)
 console.log('xdevelopx webpack config is', config)
 module.exports = config

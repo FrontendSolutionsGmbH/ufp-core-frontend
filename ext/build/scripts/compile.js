@@ -14,7 +14,7 @@ const project = UFP.requireDefault(
     path.join(__dirname, '/../../presets/default/project.config.js')
 )
 
-console.log("USING WEBPACK CONFIG",webpackConfig)
+console.log('USING WEBPACK CONFIG',webpackConfig)
 const runWebpackCompiler = (webpackConfig) =>
     new Promise((resolve, reject) => {
         webpack(webpackConfig).run((err, stats) => {
