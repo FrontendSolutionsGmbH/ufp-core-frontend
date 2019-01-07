@@ -4,9 +4,10 @@ import PropTypes from 'prop-types'
 const UFPList = ({data, component, ...props}) => {
     var content = []
     if (data && data.map) {
-        content = data.map((item) => {
+        content = data.map((item, index) => {
             const ComponentNew = component
             return (<ComponentNew data={item}
+                                  index={index}
                                   {...props} />)
         })
     }
