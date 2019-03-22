@@ -156,6 +156,7 @@
     "webpack-hot-middleware": "^2.24.3",
     "webpack-visualizer-plugin": "^0.1.11",
     "whatwg-fetch": "^3.0.0",
+    "ufp-make": "^0.2.5",
     "yargs": "^13.2.2",
     "yargs-interactive": "^2.0.2"
   },
