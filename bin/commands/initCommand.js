@@ -1,6 +1,6 @@
 // my-module.js
 const yargsInteractive = require('yargs-interactive');
-const logger = require('../../ext/build/lib/Logger2')('ufp-init')
+const logger = require('../Logger2')('ufp-init')
 exports.command = ['i', 'init']
 const fs = require('fs-extra');
 const path = require('path');
