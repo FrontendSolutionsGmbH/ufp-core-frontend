@@ -1,6 +1,6 @@
 // my-module.js
 exports.command = ['$0']
-const logger = require('../../ext/build/lib/Logger2')('ufp-default')
+const logger = require('../Logger2')('ufp-default')
 const package = require('../../package.json')
 exports.describe = 'default ufp command'
 

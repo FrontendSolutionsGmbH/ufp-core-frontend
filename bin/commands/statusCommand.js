@@ -1,13 +1,9 @@
-const child_process = require('child_process')
 const fs = require('fs')
 const path = require('path')
-const logger = require('../../ext/build/lib/Logger2')('ufp-status')
-const package = require('../../package.json')
 const Table = require('cli-table3')
 const prettyBytes = require('pretty-bytes')
 const sloc = require('node-sloc')
 var countFiles = require('count-files')
-var config = require('../../ext/presets/default/config/project.config.wrapper')
 
 // my-module.js
 exports.command = ['st', 'status']
@@ -196,7 +192,7 @@ exports.handler = function (argv) {
 
     // lines of code
     handleLinesOfCodeStats(['src', 'tests'])
-    handleDirStats(['src', 'node_modules', 'dist','tests'])
+    handleDirStats(['src', 'node_modules', 'dist', 'tests'])
     // lines of code end
     printConfig(config)
 

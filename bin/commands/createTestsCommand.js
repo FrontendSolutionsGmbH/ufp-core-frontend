@@ -1,7 +1,7 @@
 // my-module.js
 const package = require('../../package.json')
 const child_process = require('child_process')
-const logger = require('../../ext/build/lib/Logger2')('ufp-tests')
+const logger = require('../Logger2')('ufp-tests')
 exports.command = ['ct', 'createTests']
 
 exports.describe = 'create predefined test cases e.g. existance'

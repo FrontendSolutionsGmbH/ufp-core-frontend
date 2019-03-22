@@ -1,6 +1,6 @@
 const child_process = require('child_process')
 const package = require('../../package.json')
-const logger = require('../../ext/build/lib/Logger2')('ufp-start')
+const logger = require('../Logger2')('ufp-start')
 
 // my-module.js
 exports.command = ['c', 'compile']
