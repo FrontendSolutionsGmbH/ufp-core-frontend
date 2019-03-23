@@ -6,10 +6,9 @@ import RouterSelectors from './RouterSelectors'
 import RouterConstants from './RouterConstants'
 import RouterProvider from './view/RouterProvider'
 import {registerRootProvider} from '../ufp-react'
-import { createBrowserHistory } from 'history'
-import { connectRouter } from 'connected-react-router'
+import {createBrowserHistory} from 'history'
 // Create a history of your choosing (we're using a browser history in this case)
-import { routerMiddleware } from 'connected-react-router'
+import {routerMiddleware,connectRouter} from 'connected-react-router'
 // import history from './history'
 // Create an enhanced history that syncs navigation events with the store
 export const history = createBrowserHistory()
@@ -28,7 +27,7 @@ const Runfest = {
 
         UfpCore.registerReducer({
             id: RouterConstants.REDUCER_NAME,
-            reducer: connectRouter(history),
+            reducer: connectRouter(history)
         })
         /**
          * use the root provider injection provided by ufp-react
