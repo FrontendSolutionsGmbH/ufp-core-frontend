@@ -59,12 +59,9 @@
     "connected-react-router": "6.x"
   },
   "dependencies": {
-    "cli-table3": "0.5.x",
-    "count-files": "2.x",
     "deepmerge": "3.x",
     "history": "4.9.x",
     "immutability-helper": "3.x",
-    "js-yaml": "3.x",
     "lodash-es": "4.x",
     "mime": "2.x",
     "normalize": "0.3.x",
@@ -79,14 +76,12 @@
     "redux-logger": "3.x",
     "redux-observable": "1.x",
     "redux-thunk": "^2.x",
-    "source-map": "0.7.x",
     "ufp-types": "1.x",
     "validator": "10.x",
-    "whatwg-fetch": "3.x",
-    "yargs": "13.x",
-    "yargs-interactive": "2.x"
+    "whatwg-fetch": "3.x"
   },
   "devDependencies": {
+    "source-map": "0.7.x",
     "connected-react-router": "^6.3.2",
     "react-dom": "^16.8.5",
     "pretty-bytes": "^5.1.0",
