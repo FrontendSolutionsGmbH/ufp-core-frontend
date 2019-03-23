@@ -62,7 +62,6 @@
     "react-intl": "2.x",
     "react-redux": "6.x",
     "react-router-dom": "5.x",
-    "react-test-renderer": "16.x",
     "react-transition-group": "2.x",
     "redux": "4.x",
     "redux-form": "8.x",
@@ -75,6 +74,7 @@
     "whatwg-fetch": "3.x"
   },
   "devDependencies": {
+    "react-test-renderer": "16.x",
     "@babel/cli": "^7.2.3",
     "@babel/core": "^7.4.0",
     "@babel/plugin-proposal-class-properties": "^7.4.0",
