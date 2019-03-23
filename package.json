@@ -74,7 +74,6 @@
     "whatwg-fetch": "3.x"
   },
   "devDependencies": {
-    "react-test-renderer": "16.x",
     "@babel/cli": "^7.2.3",
     "@babel/core": "^7.4.0",
     "@babel/plugin-proposal-class-properties": "^7.4.0",
@@ -115,6 +114,7 @@
     "react": "^16.8.5",
     "react-dom": "^16.8.5",
     "react-redux": "^6.0.1",
+    "react-test-renderer": "16.x",
     "redux": "^4.0.1",
     "redux-form": "^8.1.0",
     "rimraf": "^2.6.3",
