@@ -1,7 +1,7 @@
 import RouterSelectors from '../RouterSelectors'
 import GetSearchObject from '../util/GetSearchObject'
 import {connect} from 'react-redux'
-import {push, goForward, goBack} from 'react-router-redux'
+import {push, goForward, goBack} from 'connected-react-router'
 
 /**
  * the routerselector simply provides the location propery in any wrapped component
