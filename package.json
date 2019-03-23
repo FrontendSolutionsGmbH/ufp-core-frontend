@@ -78,7 +78,6 @@
     "history": "4.9.0",
     "immutability-helper": "^3.0.0",
     "js-yaml": "^3.13.0",
-    "json-stable-stringify": "^1.0.1",
     "lodash-es": "^4.17.11",
     "mime": "^2.4.0",
     "normalize": "^0.3.1",
