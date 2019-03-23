@@ -1,5 +1,5 @@
 // import createHistory from "history/createBrowserHistory";
 
-import {createBrowserHistory} from 'history'
+import {createBrowserHistory,createHashHistory} from 'history'
 // Create a history of your choosing (we're using a browser history in this case)
-export default createBrowserHistory()
+export default createHashHistory()
