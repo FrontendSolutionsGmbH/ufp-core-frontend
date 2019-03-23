@@ -105,7 +105,7 @@
     "react-async-component": "^2.0.0",
     "react-dom": "^16.8.5",
     "react-intl": "^2.8.0",
-    "react-redux": "^6.0.1",
+    "react-redux": "^7.0.0-beta.0",
     "react-router-dom": "^5.0.0",
     "react-router-redux": "^5.0.0-alpha.9",
     "react-test-renderer": "^16.8.5",
