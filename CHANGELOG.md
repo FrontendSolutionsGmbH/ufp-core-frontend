@@ -6,6 +6,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [0.0.8 Unreleased]
 
 - remove webpack project handling in favour of react-create-app
+- remove queryparams module
 
 ## [0.7.0]
 - npm audit fixes
