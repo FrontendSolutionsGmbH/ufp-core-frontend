@@ -1,4 +1,3 @@
-import queryParams from './QueryParams'
 import {UfpMiddlewareResulthandlerMoreThenOneSuccessError} from './Errors'
 import UfpMiddlewareHelperUtils from './UfpMiddlewareHelperUtils'
 import StringUtils from '../utils/StringUtils'
@@ -20,7 +19,7 @@ const {
 } = UfpMiddlewareHelperUtils
 
 const ufpMiddlewarePrepareConfig = (ufpAction) => {
-    // console.log(' ufpMiddlewarePrepareConfig ', JSON.parse(JSON.stringify(ufpAction)))
+    console.log(' ufpMiddlewarePrepareConfig ', JSON.parse(JSON.stringify(ufpAction)))
 
     const {ufpDefinition, ufpData} = ufpAction
     const {url, method} = ufpDefinition
@@ -37,10 +36,10 @@ const ufpMiddlewarePrepareConfig = (ufpAction) => {
 
         if (queryParams && !isEmptyObject(queryParams)) {
             config.url = url + '?' + Object.keys(queryParams)
-                                           .map((item) => {
-                                               return item + '=' + queryParams[item]
-                                           })
-                                           .join('&')
+                .map((item) => {
+                    return item + '=' + queryParams[item]
+                })
+                .join('&')
         } else {
             config.url = url
         }
@@ -127,7 +126,7 @@ const wrapDispatcher = (dispatch/*, getState , ufpAction*/) => (action) => {
     }
 }
 
-const handleResultHandlers = async(handlerArray, resultData) => {
+const handleResultHandlers = async (handlerArray, resultData) => {
     const ufpErrorHandlerResultPromiseArray = []
     handlerArray.map((handlerObject) => {
         if (handlerObject && handlerObject.matcher && handlerObject.matcher(resultData)) {
@@ -138,7 +137,7 @@ const handleResultHandlers = async(handlerArray, resultData) => {
     return result
 }
 
-const handlePreHandlers = async(handlerArray, resultData) => {
+const handlePreHandlers = async (handlerArray, resultData) => {
     if (handlerArray.length === 0) {
         return {
             break: false,
@@ -164,7 +163,7 @@ const handlePreHandlers = async(handlerArray, resultData) => {
     return result
 }
 
-const ufpMiddlewareRequest = async(config) => {
+const ufpMiddlewareRequest = async (config) => {
     // console.log('ufpMiddlewareRequest', JSON.parse(JSON.stringify(config)))
 
     var requestResponse
@@ -172,10 +171,10 @@ const ufpMiddlewareRequest = async(config) => {
     var url = config.url
     if (params && !isEmptyObject(params)) {
         url = url + '?' + Object.keys(params)
-                                .map((item) => {
-                                    return item + '=' + params[item]
-                                })
-                                .join('&')
+            .map((item) => {
+                return item + '=' + params[item]
+            })
+            .join('&')
     }
     // console.log('STARTING FETCH() start', url)
     try {
@@ -212,7 +211,6 @@ export default {
     validateStatus,
     createConfigDefault,
     infoLogger,
-    queryParams,
     ufpMiddlewarePrepareConfig,
     validateResultHandlerResult,
     uniteActionResultTypes,
