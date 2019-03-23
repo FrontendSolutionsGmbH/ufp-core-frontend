@@ -6,11 +6,13 @@ import RouterSelectors from './RouterSelectors'
 import RouterConstants from './RouterConstants'
 import RouterProvider from './view/RouterProvider'
 import {registerRootProvider} from '../ufp-react'
+import { createBrowserHistory } from 'history'
+import { connectRouter } from 'connected-react-router'
 // Create a history of your choosing (we're using a browser history in this case)
-import {routerMiddleware, routerReducer as routerReducer4} from 'react-router-redux'
+import { routerMiddleware } from 'connected-react-router'
 // import history from './history'
 // Create an enhanced history that syncs navigation events with the store
-
+export const history = createBrowserHistory()
 const Runfest = {
     name: RouterConstants.NAME,
     description: 'React Redux Hash Router3',
@@ -26,7 +28,7 @@ const Runfest = {
 
         UfpCore.registerReducer({
             id: RouterConstants.REDUCER_NAME,
-            reducer: routerReducer4
+            reducer: connectRouter(history),
         })
         /**
          * use the root provider injection provided by ufp-react
