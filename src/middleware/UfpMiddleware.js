@@ -173,7 +173,7 @@ function UfpMiddleware(options = {}) {
                                     }
                                 }
                                 catch (err) { //UfpMiddlewareResulthandlerMoreThenOneSuccessError
-                                    // console.log('Catched error', err)
+                                    console.error('ufp middleware catched error', err)
                                     dispatchWrapper({
                                         type: ufpTypesUnited.FAILURE,
                                         payload: err,
@@ -207,7 +207,7 @@ function UfpMiddleware(options = {}) {
                                     }
                                 }
                                 catch (err) { //UfpMiddlewareResulthandlerMoreThenOneSuccessError
-                                    // console.log('Catched error', err)
+                                    console.error('ufp middleware catched error', err)
                                     dispatchWrapper({
                                         type: ufpTypesUnited.FAILURE,
                                         payload: err,
@@ -249,7 +249,7 @@ function UfpMiddleware(options = {}) {
                                     }
                                 }
                                 catch (err) { //UfpMiddlewareResulthandlerMoreThenOneSuccessError
-                                    //  console.warn('UFPMiddleware UNHANDLED RESULT USUCCESFYK RETRY3: ', action, err)
+                                    console.error('ufp middleware catched error', err)
                                     dispatchWrapper({
                                         ufpAction,
                                         type: ufpTypesUnited.FAILURE,
