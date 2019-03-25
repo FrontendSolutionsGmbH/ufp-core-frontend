@@ -25,27 +25,33 @@ const UFPHandlerPropTypeDefinitionObject = {
     input: UFPHandlerPropTypeDefinition.isRequired
 }
 
-const register = (array) => (handlers) => {
+const register = (array) => (handlers = JSUtils.ThrowParam('register() requires non undefined handlers param')) => {
     // console.log('UfpMiddlewareUtils', UfpMiddlewareUtils)
 
-    if (isArray(handlers)) {
-        if (UfpMiddlewareUtils.PropTypesCheck({input: handlers}, UFPHandlerPropTypeDefinitionArray)) {
-            handlers.map((handler) => {
-                array.push(handler)
-            })
-        } else {
-            throw new Error('UFP ResultHandler or Prehandler Objects need to have a matcher and handler function')
-        }
-    } else {
-        if (UfpMiddlewareUtils.PropTypesCheck({input: handlers}, UFPHandlerPropTypeDefinitionObject)) {
-            array.push(handlers)
+    const itemMethod = (item) => {
+        console.log('UFP ResultHandler registering', item)
+        if (UfpMiddlewareUtils.PropTypesCheck({input: item}, UFPHandlerPropTypeDefinitionObject)) {
+            array.push(item)
         } else {
             throw new Error('UFP ResultHandler or Prehandler Objects need to have a matcher and handler function')
         }
     }
+
+    if (isArray(handlers)) {
+        if (UfpMiddlewareUtils.PropTypesCheck({input: handlers}, UFPHandlerPropTypeDefinitionArray)) {
+            handlers.map(itemMethod)
+        } else {
+            throw new Error('UFP ResultHandler or Prehandler Objects need to have a matcher and handler function')
+        }
+    } else {
+        itemMethod(handlers)
+    }
+
+    console.log('UFP ResultHandler FunkyMunky config is then ', array)
+
 }
 
-const setCreateConfig = (createConfig) => {
+const setCreateConfig = (createConfig = JSUtils.ThrowParam('setCreateConfig() requires non undefined createConfig param')) => {
     UFPMiddlewareConfigurationX.createConfig = createConfig
 }
 

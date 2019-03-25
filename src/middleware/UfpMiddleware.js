@@ -1,6 +1,6 @@
 import UFPRequestActions from './UfpRequestActions'
 import {isUFPAction, validateUFPAction} from './Validation'
-import {InvalidUFPAction, UfpMiddlewareRequestCancelledError, UfpMiddlewareMaxRetryReachedError} from './Errors'
+import {InvalidUFPAction, UfpMiddlewareMaxRetryReachedError, UfpMiddlewareRequestCancelledError} from './Errors'
 import UFPMiddlewareUtils from './UfpMiddlewareUtils'
 import UFPMiddlewareConstants from './UfpMiddlewareConstants'
 import UFPMiddlewareConfiguration from './UfpMiddlewareConfiguration'
@@ -9,13 +9,13 @@ import {isFunction} from 'lodash-es'
 // console.log('UfpMiddleware imported ')
 function UfpMiddleware(options = {}) {
     return ({getState, dispatch}) => {
-        return (next) => async(action) => {
+        return (next) => async (action) => {
             if (!isUFPAction(action)) {
                 return next(action)
             }
 
             // console.log('UfpMiddleware Ufp Action Detected ', UFPMiddlewareConfiguration, action)
-            const dispatchPromise = new Promise(async(resolve /*, reject */) => {
+            const dispatchPromise = new Promise(async (resolve /*, reject */) => {
                 /**
                  *  Do not process actions without a [UFP_ACTION] property
                  * Try to dispatch an error request FSA for invalid UFPAction's
@@ -67,7 +67,7 @@ function UfpMiddleware(options = {}) {
                     const MAX_RETRY_COUNT = options.maxRetryCount || 5
                     var retry = true
                     var retryCount = 0
-                    var makeRequest = true
+                    var makeRequest
                     var totalSuccess = true
                     var requestResponse = null
                     const resultContainerForPreHandler = {
@@ -100,7 +100,7 @@ function UfpMiddleware(options = {}) {
                             config = UFPMiddlewareUtils.createConfigDefault(configPrepared)
                         } else {
                             config = (UFPMiddlewareConfiguration.get()
-                                                                .createConfig(ufpAction, getState()))
+                                .createConfig(ufpAction, getState()))
                             console.log('UFPMiddleware using configured requestconfig', config)
                         }
 
@@ -155,7 +155,7 @@ function UfpMiddleware(options = {}) {
                             // console.log('ufpResultHandler', ufpResultHandler, ufpDefinition)
                             if (ufpResultHandler !== undefined && ufpResultHandler.length > 0) {
                                 resultHandler = ufpResultHandler
-                                // console.log('resultHandler', resultHandler)
+                                console.log('UfpMiddleware xxx resultHandler default', resultHandler)
                                 promiseAll0 = await UFPMiddlewareUtils.handleResultHandlers(resultHandler, resultContainerForHandler)
                                 // console.log('UFPMiddleware HandlerResult: ', promiseAll0, resultHandler)
                                 try {
@@ -171,8 +171,7 @@ function UfpMiddleware(options = {}) {
                                                 {additionalPayload: validateResult.additionalPayload})
                                         })
                                     }
-                                }
-                                catch (err) { //UfpMiddlewareResulthandlerMoreThenOneSuccessError
+                                } catch (err) { //UfpMiddlewareResulthandlerMoreThenOneSuccessError
                                     console.error('ufp middleware catched error', err)
                                     dispatchWrapper({
                                         type: ufpTypesUnited.FAILURE,
@@ -188,6 +187,8 @@ function UfpMiddleware(options = {}) {
                             }
                             // console.log('UFPMiddleware validateResult: ', validateResult)
                             if (!resultHandler || (validateResult && !validateResult.handled)) {
+
+                                console.log('UfpMiddleware xxx resultHandler generic', UFPMiddlewareConfiguration.get().resultHandlings.genericResultHandler)
                                 promiseAll1 = await UFPMiddlewareUtils.handleResultHandlers(
                                     UFPMiddlewareConfiguration.get().resultHandlings.genericResultHandler, resultContainerForHandler)
                                 try {
@@ -205,8 +206,7 @@ function UfpMiddleware(options = {}) {
                                             }
                                         })
                                     }
-                                }
-                                catch (err) { //UfpMiddlewareResulthandlerMoreThenOneSuccessError
+                                } catch (err) { //UfpMiddlewareResulthandlerMoreThenOneSuccessError
                                     console.error('ufp middleware catched error', err)
                                     dispatchWrapper({
                                         type: ufpTypesUnited.FAILURE,
@@ -227,6 +227,7 @@ function UfpMiddleware(options = {}) {
                             if (!validateResult.handled && !validateResult.success && !validateResult.retry) {
                                 //  console.warn('UFPMiddleware UNHANDLED RESULT UNSUSESFUL UNRETRY1: ')
                                 var promiseAll2
+                                console.log('UfpMiddleware xxx resultHandler unhandled',  UFPMiddlewareConfiguration.get().resultHandlings.unhandledResultHandler)
                                 promiseAll2 = await UFPMiddlewareUtils.handleResultHandlers(
                                     UFPMiddlewareConfiguration.get().resultHandlings.unhandledResultHandler,
                                     resultContainerForHandler)
@@ -247,8 +248,7 @@ function UfpMiddleware(options = {}) {
                                                 {additionalPayload: validateResult.additionalPayload})
                                         })
                                     }
-                                }
-                                catch (err) { //UfpMiddlewareResulthandlerMoreThenOneSuccessError
+                                } catch (err) { //UfpMiddlewareResulthandlerMoreThenOneSuccessError
                                     console.error('ufp middleware catched error', err)
                                     dispatchWrapper({
                                         ufpAction,
@@ -268,9 +268,9 @@ function UfpMiddleware(options = {}) {
                             }
 
                             retry = validateResult.retry
-                            //console.warn('UFPMiddleware UNHANDLED RESULT USUCCESFYK RETRY5: ', ufpAction, action, validateResult)
+                            console.warn('UFPMiddleware UNHANDLED RESULT USUCCESFYK RETRY5: ', ufpAction, action, validateResult)
                             if (!retry && !validateResult.success) {
-                                // console.log('xxxxx middleware rejectin0', action, ufpTypesUnited)
+                                console.error('ufp middleware catched error !retry && !validateResult.success', retry, validateResult)
                                 dispatchWrapper({
                                     type: ufpTypesUnited.FAILURE,
                                     payload: Object.assign({
@@ -291,6 +291,7 @@ function UfpMiddleware(options = {}) {
                         if (retryCount === MAX_RETRY_COUNT) {
                             // console.log('UfpMiddleware Max retry count reached')
                             var err = new UfpMiddlewareMaxRetryReachedError()
+                            console.error('ufp middleware catched error2 MAX_RETRY_COUNT', err)
                             dispatchWrapper({
                                 ufpAction,
                                 type: ufpTypesUnited.FAILURE,
@@ -306,11 +307,13 @@ function UfpMiddleware(options = {}) {
                         } else if (totalSuccess) {
                             resolve(requestResponse) //resolve for success
                         } else {
+                            console.error('ufp middleware catched error3 resolve failure', requestResponse)
                             resolve(requestResponse) //resolve when handler say its failure
                         }
                     } else { // end if(makeRequest)
                         const err2 = new UfpMiddlewareRequestCancelledError()
                         // console.log('UfpMiddleware Request Cancelled')
+                        console.error('ufp middleware catched error2 UfpMiddlewareRequestCancelledError', err2)
                         dispatchWrapper({
                             ufpAction,
                             type: ufpTypesUnited.FAILURE,
@@ -343,4 +346,5 @@ function UfpMiddleware(options = {}) {
         }
     }
 }
+
 export default UfpMiddleware

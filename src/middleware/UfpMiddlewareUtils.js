@@ -128,12 +128,20 @@ const wrapDispatcher = (dispatch/*, getState , ufpAction*/) => (action) => {
 
 const handleResultHandlers = async (handlerArray, resultData) => {
     const ufpErrorHandlerResultPromiseArray = []
+    console.log('UfpMiddlewareUtils handleResultHandlers', handlerArray, resultData)
     handlerArray.map((handlerObject) => {
+        console.log('UfpMiddlewareUtils handleResultHandlers mapping', handlerObject)
         if (handlerObject && handlerObject.matcher && handlerObject.matcher(resultData)) {
             ufpErrorHandlerResultPromiseArray.push(handlerObject.handler(resultData))
+        } else {
+            console.log('UfpMiddlewareUtils Strange: MO MATCHER OBJECT', handlerObject)
+
         }
     })
     const result = await Promise.all(ufpErrorHandlerResultPromiseArray)
+
+    console.log('UfpMiddlewareUtils handleResultHandlers result', result)
+
     return result
 }
 
