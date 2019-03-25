@@ -48,7 +48,6 @@ const register = (array) => (handlers = JSUtils.ThrowParam('register() requires 
     }
 
     console.log('UFP ResultHandler FunkyMunky config is then ', array)
-
 }
 
 const setCreateConfig = (createConfig = JSUtils.ThrowParam('setCreateConfig() requires non undefined createConfig param')) => {

@@ -187,7 +187,6 @@ function UfpMiddleware(options = {}) {
                             }
                             // console.log('UFPMiddleware validateResult: ', validateResult)
                             if (!resultHandler || (validateResult && !validateResult.handled)) {
-
                                 console.log('UfpMiddleware xxx resultHandler generic', UFPMiddlewareConfiguration.get().resultHandlings.genericResultHandler)
                                 promiseAll1 = await UFPMiddlewareUtils.handleResultHandlers(
                                     UFPMiddlewareConfiguration.get().resultHandlings.genericResultHandler, resultContainerForHandler)

@@ -135,7 +135,6 @@ const handleResultHandlers = async (handlerArray, resultData) => {
             ufpErrorHandlerResultPromiseArray.push(handlerObject.handler(resultData))
         } else {
             console.log('UfpMiddlewareUtils Strange: MO MATCHER OBJECT', handlerObject)
-
         }
     })
     const result = await Promise.all(ufpErrorHandlerResultPromiseArray)
